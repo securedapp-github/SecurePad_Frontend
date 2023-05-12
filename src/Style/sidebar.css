@@ -1,0 +1,39 @@
+.mainpage{
+    display:flex;
+    flex-direction:row;
+    height:100%;
+}
+.sidebar{
+    display:flex;
+    flex-direction:column;
+    background-color:#101010;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    padding:5px 20px;
+}
+.dashboard{
+    background-image:linear-gradient(to right,black,rgb(14, 14, 61));
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+.navbar{
+    width:100%;
+    height:20%;
+}
+.right{
+    position:relative;
+    right:5%;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+   
+}
+.right div{
+    margin:auto 10%;
+    display:inline-block;
+    text-align:center;
+}
+.wallet {
+    text-align:center;
+}
