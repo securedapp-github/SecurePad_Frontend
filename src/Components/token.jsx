@@ -6,22 +6,22 @@ function token() {
       <div className="tokenCreate">
         <h2 style={{fontWeight:"700",color:"#12D576"}}>Create ERC20 Token</h2>
         <h4 style={{color:"white"}}>Get started by connecting your wallet</h4>
-        <div style={{paddingTop:"1%"}}><input type="radio" id="html" name="fav_language" value="HTML"/>
+        <div style={{paddingTop:"1%",display:"flex",flexDirection:"row"}}><input type="radio" id="html" name="fav_language" value="HTML"/>
         <label htmlFor="html" style={{color:"#949494",padding:"0 2%"}}>Simple, fast and convenient token generator</label>
         </div>
-        <div >
+        <div style={{display:"flex",flexDirection:"row"}}>
         <input type="radio" id="css" name="fav_language" value="CSS"/>
         <label htmlFor="css" style={{color:"#949494",padding:"0 2%"}}>No smart contract programming required</label><br/>
         </div>
-        <div >
+        <div style={{display:"flex",flexDirection:"row"}}>
         <input type="radio" id="javascript" name="fav_language" value="JavaScript"/>
         <label htmlFor="javascript" style={{color:"#949494",padding:"0 2%"}}>Get 100% ownership of generated tokens</label>
         </div>
-        <div >
+        <div style={{display:"flex",flexDirection:"row"}}>
         <input type="radio" id="scss" name="fav_language" value="SCSS"/>
         <label htmlFor="scss" style={{color:"#949494",padding:"0 2%"}}>Set custom token name, symbol and initial supply</label>
         </div>
-        <div >
+        <div style={{display:"flex",flexDirection:"row"}}>
         <input type="radio" id="sass" name="fav_language" value="SASS"/>
         <label htmlFor="sass" style={{color:"#949494",padding:"0 2%"}}>Sign and create with your own wallet</label>
         </div>

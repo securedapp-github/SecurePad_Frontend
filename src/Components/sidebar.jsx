@@ -1,6 +1,4 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-
-
 import React from 'react'
 import '../Style/sidebar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,6 +11,7 @@ import Token from './token.jsx'
 import Contract from './contract.jsx'
 import Send from './send.jsx'
 import Sale from './sale.jsx'
+import {Navbar,Nav} from'react-bootstrap'
 function sidebar(props) {
     const {page}=props
     function Main(){
@@ -40,10 +39,8 @@ function sidebar(props) {
     <div  style={{position:"absolute",left:"2%"}}><div><span  style={{color:"#12D576"}}>Token Tool</span><span> by SecureDApp</span></div></div>   
       <div className="riht" style={{position:"absolute",right:"3%"}}>
            <Link to="/pricing"><div style={{padding:"10px",color:"white"}}>Pricing</div></Link> 
-            <Link to="/contact"><div style={{padding:"10px",color:"white"}}>Contact</div></Link>
-            
-            <ConnectButton showBalance={false} />
-
+            <Link to="/contact"><div style={{padding:"10px",color:"white"}}>Contact</div></Link>           
+            <ConnectButton style={{padding:"10px",color:"white",backgroundColor:"transparent"}} showBalance={false} />  
             {/* <Link to="/"><div style={{padding:"10px",color:"white"}}>ConnectWallet</div></Link> */}
         </div>
     </div>

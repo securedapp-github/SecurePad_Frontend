@@ -5,22 +5,22 @@ function send() {
       <h2 style={{fontWeight:"700",color:"#12D576"}}>Multisend ETH and other tokens to many recipients</h2>
       <div className="tokenBody" style={{padding:"2%"}}>
       <div className="tokenCreate" style={{width:'45%'}}>
-        <div style={{paddingTop:"1%",padding:"2%"}}><input type="radio" id="html" name="fav_language" value="HTML"/>
+        <div style={{paddingTop:"1%",padding:"2%",display:"flex",flexDirection:"row"}}><input type="radio" id="html" name="fav_language" value="HTML"/>
         <label htmlFor="html" style={{color:"#949494",padding:"0 2%"}}>Token multisender dapp for all your tokens</label>
         </div>
-        <div style={{padding:"2%"}}>
+        <div style={{padding:"2%",display:"flex",flexDirection:"row"}}>
         <input type="radio" id="css" name="fav_language" value="CSS"/>
         <label htmlFor="css" style={{color:"#949494",padding:"0 2%"}}>Send your tokens to multiple recipients efficiently</label><br/>
         </div>
-        <div style={{padding:"2%"}}>
+        <div style={{padding:"2%",display:"flex",flexDirection:"row"}}>
         <input type="radio" id="javascript" name="fav_language" value="JavaScript"/>
         <label htmlFor="javascript" style={{color:"#949494",padding:"0 2%"}}>Send stable coins or cryptocurrency for dividend or coupon payments</label>
         </div>
-        <div style={{padding:"2%"}}>
+        <div style={{padding:"2%",display:"flex",flexDirection:"row"}}>
         <input type="radio" id="scss" name="fav_language" value="SCSS"/>
         <label htmlFor="scss" style={{color:"#949494",padding:"0 2%"}}>Input list of addresses and amounts manually</label>
         </div>
-        <div style={{padding:"2%"}}>
+        <div style={{padding:"2%",display:"flex",flexDirection:"row"}}>
         <input type="radio" id="sass" name="fav_language" value="SASS"/>
         <label htmlFor="sass" style={{color:"#949494",padding:"0 2%"}}>Distribute automatically via CSV upload (download a holder snapshot like here)</label>
         </div>

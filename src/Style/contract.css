@@ -7,5 +7,9 @@
     .tokenSettings{
         border:0 !important; 
         padding-left:0;
+        width:100% !important;
+    }
+    .tokenCreate{
+        width:100% !important
     }
 }

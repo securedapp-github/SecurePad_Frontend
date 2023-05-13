@@ -6,22 +6,22 @@ function sale() {
     <div className="tokenBody" style={{padding:"2%"}}>
     <div className="tokenCreate" style={{width:'45%'}}>
     <h2 style={{fontWeight:"700",color:"#12D576"}}>STO/IDO/ICO token sale script</h2>
-      <div style={{paddingTop:"1%",padding:"2%"}}><input type="radio" id="html" name="fav_language" value="HTML"/>
+      <div style={{paddingTop:"1%",padding:"2%",display:"flex",flexDirection:"row"}}><input type="radio" id="html" name="fav_language" value="HTML"/>
       <label htmlFor="html" style={{color:"#949494",padding:"0 2%"}}>Create your token presale in minutes</label>
       </div>
-      <div style={{padding:"2%"}}>
+      <div style={{padding:"2%",display:"flex",flexDirection:"row"}}>
       <input type="radio" id="css" name="fav_language" value="CSS"/>
       <label htmlFor="css" style={{color:"#949494",padding:"0 2%"}}>Proven solidity crowdsale contract</label><br/>
       </div>
-      <div style={{padding:"2%"}}>
+      <div style={{padding:"2%",display:"flex",flexDirection:"row"}}>
       <input type="radio" id="javascript" name="fav_language" value="JavaScript"/>
       <label htmlFor="javascript" style={{color:"#949494",padding:"0 2%"}}>Run an initial coin offer(ICO)</label>
       </div>
-      <div style={{padding:"2%"}}>
+      <div style={{padding:"2%",display:"flex",flexDirection:"row"}}>
       <input type="radio" id="scss" name="fav_language" value="SCSS"/>
       <label htmlFor="scss" style={{color:"#949494",padding:"0 2%"}}>Run a security token offering(STO)</label>
       </div>
-      <div style={{padding:"2%"}}>
+      <div style={{padding:"2%",display:"flex",flexDirection:"row"}}>
       <input type="radio" id="sass" name="fav_language" value="SASS"/>
       <label htmlFor="sass" style={{color:"#949494",padding:"0 2%"}}>Create an IDO token presale</label>
       </div>
