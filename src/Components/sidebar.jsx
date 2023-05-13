@@ -1,3 +1,6 @@
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
+
 import React from 'react'
 import '../Style/sidebar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -38,7 +41,10 @@ function sidebar(props) {
       <div className="riht" style={{position:"absolute",right:"3%"}}>
            <Link to="/pricing"><div style={{padding:"10px",color:"white"}}>Pricing</div></Link> 
             <Link to="/contact"><div style={{padding:"10px",color:"white"}}>Contact</div></Link>
-            <Link to="/"><div style={{padding:"10px",color:"white"}}>ConnectWallet</div></Link>
+            
+            <ConnectButton showBalance={false} />
+
+            {/* <Link to="/"><div style={{padding:"10px",color:"white"}}>ConnectWallet</div></Link> */}
         </div>
     </div>
     <Main/>
