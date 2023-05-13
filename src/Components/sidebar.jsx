@@ -1,30 +1,38 @@
 import React from 'react'
 import '../Style/sidebar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare, faCoffee } from '@fortawesome/fontawesome-free-solid'
+import { faCoffee } from '@fortawesome/fontawesome-free-solid'
 import {Link} from  'react-router-dom'
 import Wallet from './Wallet.jsx'
 import Contact from './contact.jsx'
 import Price from './price.jsx'
+import Token from './token.jsx'
+import Contract from './contract.jsx'
+import Send from './send.jsx'
+import Sale from './sale.jsx'
 function sidebar(props) {
     const {page}=props
     function Main(){
         if(page=="contact")return <Contact/>
         if(page=="pricing")return <Price/>
         if(page=="wallet")return <Wallet/>
+        if(page=="token")return <Token/>
+        if(page=="contract")return <Contract/>
+        if(page=="send")return <Send/>
+        if(page=="sale")return <Sale/>
     }
   return (
     <div className="mainpage">
         <div className="sidebar">
-            <div > <FontAwesomeIcon icon={faCoffee}  size="2x"/></div>
-            <div > <FontAwesomeIcon icon={faCoffee} size="2x"/></div>
-            <div > <FontAwesomeIcon icon={faCoffee} size="2x"/></div>
-            <div> <FontAwesomeIcon icon={faCoffee} size="2x"/></div>
-            <div > <FontAwesomeIcon icon={faCoffee} size="2x"/></div>
+          <Link to="/"> <div > <FontAwesomeIcon icon={faCoffee}  style={{color:"#464646"}} size="2x"/></div></Link> 
+           <Link to="/token"> <div > <FontAwesomeIcon icon={faCoffee} style={{color:"#464646"}} size="2x"/></div></Link> 
+            <Link to="/contract"><div > <FontAwesomeIcon icon={faCoffee} style={{color:"#464646"}} size="2x"/></div></Link>
+            <Link to="/send"><div> <FontAwesomeIcon icon={faCoffee} style={{color:"#464646"}} size="2x"/></div></Link>
+            <Link to="/sale"><div > <FontAwesomeIcon icon={faCoffee} style={{color:"#464646"}} size="2x"/></div></Link>
             <div > <FontAwesomeIcon icon={faCoffee} size="2x"/></div>
             <div > <FontAwesomeIcon icon={faCoffee} size="2x"/></div>
         </div>
-        <div className="dashboard"  >
+        <div className="dashboard" style={{overflow:"auto"}} >
     <div className="navbar" style={{color:"whitesmoke",fontWeight:"700"}}>
     <div  style={{position:"absolute",left:"2%"}}><div><span  style={{color:"#12D576"}}>Token Tool</span><span> by SecureDApp</span></div></div>   
       <div className="riht" style={{position:"absolute",right:"3%"}}>
