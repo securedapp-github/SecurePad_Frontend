@@ -1,5 +1,14 @@
+.head{
+    padding-bottom: 2%;
+    border-bottom: 1px solid white;
+    color:white;
+    margin-left:2%;
+    margin-right:2%;
+    font-weight:700;
+    margin-bottom:3%;
+}
 .price-section{
-    margin-top: 4%;
+    
     margin-bottom:6%;
     display:flex;
     flex-direction:row;
@@ -8,8 +17,7 @@
 }
 .price-section-items{
     width:20%;
-    height:60%;
-    border: 1px solid rgb(173, 161, 161);
+    height:50%;
     border-radius:1%;
     text-align:center;
 }
@@ -18,7 +26,7 @@ p{
     font-weight: 500;
     color:#8f8f8f;
 }
-h2{
+.topic{
     background-color: #139a6d;
     margin:0;
     padding-top:20px;
