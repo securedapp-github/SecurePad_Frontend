@@ -1,0 +1,53 @@
+input[type=radio] {
+    accent-color:#12D576;
+    width: 1rem;
+    height: 1rem;
+    background-color: black;
+    border: 0.15em solid white;
+    border: 2px solid white;
+}
+.tokenBody{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-around;
+}
+.tokenFirstRow{
+    display:flex;
+    flex-direction:column;
+    padding:7% 10%;
+    padding-left:0;
+    gap:10px;
+}
+.tokenSecondRow{
+   display:flex;
+   flex-direction:column;
+   padding:7% 10%;
+   padding-left:0;
+   gap:10px;
+}
+.tokenCoin{
+    display:flex;
+    flex-direction:row;
+}
+.tokenCoin .tokenFirstRow button{
+   background-color:transparent;
+  color:#464646;
+  border:1px solid #464646;
+  border-radius:10px;
+  /* padding:1% 2%; */
+}
+.tokenCoin .tokenSecondRow button{
+    background-color:transparent;
+    color:#464646;
+    border:1px solid #464646;
+    border-radius:10px;
+    /* padding:1% 2%; */
+}
+.tokenSettings{
+    background-color:#2D5C8F1C;
+    opacity:0.75;
+    border:1px solid #2D5C8F1C;
+    padding:3%;
+}
+
