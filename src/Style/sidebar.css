@@ -10,6 +10,11 @@
     flex-wrap: wrap;
     justify-content:space-around;
     padding:5px 20px;
+    padding-left:0;
+}
+.sideNavButton{
+    padding:20px;
+    padding-right:20px;
 }
 .dashboard{
     background-image:linear-gradient(to right,black,rgb(14, 14, 61));
@@ -40,6 +45,8 @@
 }
 [data-rk] .ju367v93 {
     background-color: transparent;
+    font-size:20px;
+    font-weight:400;
 }
 [data-rk]{
     height:100%;
@@ -60,10 +67,13 @@
         margin:0 auto;
     }
 } */
+.rihtLink{
+    padding-left:10px;
+    padding-right:20px;
+}
 .rihtLink:hover{
-    padding-right:14px;
     background-color:#12D576 !important;
-    border-radius:20px;
+    border-radius:30px;
 }
 /* ConnectButton{
     background-color:#12D576 !important;
@@ -83,6 +93,9 @@
 @media only screen and (min-width:648px){
     .iekbcc0.ju367va.ju367v1n:hover{
         background-color:#12D576 !important;
-        border-radius:20px;
+        border-radius:30px;
     }
+}
+.iekbcc0.ju367va.ju367v1n{
+    padding-top:3px;
 }

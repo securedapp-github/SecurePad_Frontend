@@ -34,14 +34,14 @@ input[type=radio] {
    background-color:transparent;
   color:#464646;
   border:1px solid #464646;
-  border-radius:10px;
+  border-radius:14px;
   /* padding:1% 2%; */
 }
 .tokenCoin .tokenSecondRow button{
     background-color:transparent;
     color:#464646;
     border:1px solid #464646;
-    border-radius:10px;
+    border-radius:14px;
     /* padding:1% 2%; */
 }
 .tokenSettings{

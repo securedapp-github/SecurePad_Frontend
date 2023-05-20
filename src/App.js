@@ -32,13 +32,16 @@ function App() {
     <RainbowKitProvider chains={chains}>
     <BrowserRouter>
     <Routes>
+      <Route exact path="/" element={<Sidebar page={"home"}/>} />
       <Route exact path="/token" element={<Sidebar page={"token"}/>} />
       <Route exact path="/contact" element={<Sidebar page={"contact"}/>} />
       <Route exact path="/pricing" element={<Sidebar page={"pricing"}/>} />
-      <Route exact path="/" element={<Sidebar page={"wallet"}/>} />
+      <Route exact path="/wallet" element={<Sidebar page={"wallet"}/>} />
       <Route exact path="/contract" element={<Sidebar page={"contract"}/>} />
       <Route exact path="/send" element={<Sidebar page={"send"}/>} />
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
+      <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
+      <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />
     </Routes>
     </BrowserRouter>
     </RainbowKitProvider>
