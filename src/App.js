@@ -9,7 +9,7 @@ import './App.css'
 import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-
+import Managetoken from './Components/manageToken.jsx'
 const { chains, provider } = configureChains(
   [chain.polygonMumbai, chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
   [alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" }), publicProvider()]
@@ -42,6 +42,7 @@ function App() {
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
       <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />
+      <Route exact path="/managetoken" element={<Managetoken />} />
     </Routes>
     </BrowserRouter>
     </RainbowKitProvider>

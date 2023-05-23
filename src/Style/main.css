@@ -1,0 +1,4 @@
+.mainFirstRow{
+    display:flex;
+    flex-direction:row;
+}
