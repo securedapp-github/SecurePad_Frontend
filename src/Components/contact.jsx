@@ -2,6 +2,7 @@ import React from 'react'
 import '../Style/contact.css'
 function contact() {
   return (
+    
     <div style={{backgroundImage:"linear-gradient(to right,black,rgb(14, 14, 61))",paddingTop:"1%"}}>
     <h1 className="head">Contact Us</h1>
     <form method="post" style={{padding:"0 2%"}} action="">
