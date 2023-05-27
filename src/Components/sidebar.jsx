@@ -9,12 +9,18 @@ import Token from './token.jsx'
 import Contract from './contract.jsx'
 import Send from './send.jsx'
 import Sale from './sale.jsx'
+<<<<<<< Updated upstream
 import {Dropdown} from'react-bootstrap'
 import Logo from '../assets/logo.png'
 import Lock from './lock.jsx'
 import Home from './home.jsx'
 import Manage from './manage.jsx'
 function Sidebar(props) {
+=======
+import Search from './search.jsx'
+import {Navbar,Nav} from'react-bootstrap'
+function sidebar(props) {
+>>>>>>> Stashed changes
     const {page}=props
     function Main(){
         if(page=="home")return <Home/>
@@ -23,6 +29,7 @@ function Sidebar(props) {
         if(page=="wallet")return <Wallet/>
         if(page=="token")return <Token/>
         if(page=="contract")return <Contract/>
+        if(page=="search")return <Search/>
         if(page=="send")return <Send/>
         if(page=="sale")return <Sale/>
         if(page=="lock")return <Lock/>
@@ -61,6 +68,7 @@ function Sidebar(props) {
   return (
     <div className="mainpage">
         <div className="sidebar">
+<<<<<<< Updated upstream
             <Link to='/'><img  style={{paddingLeft:"20px"}} src={Logo} alt="not found" /> </Link>
           <Link to="/wallet"> <div className="sideNavButton" ><svg onClick={showSide} width="45" height="35"  focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="tokenMultiIcon"><path d="m 10,5.1992188 c -4.8506317,0 -8.8007813,3.9501495 -8.8007812,8.8007812 0,4.85065 3.950152,8.800781 8.8007812,8.800781 4.850647,0 8.800781,-3.950134 8.800781,-8.800781 C 18.800781,9.1493708 14.85065,5.1992188 10,5.1992188 Z m 0,1.6015624 c 3.98595,0 7.199219,3.2132878 7.199219,7.1992188 0,3.985953 -3.213266,7.199219 -7.199219,7.199219 C 6.0140692,21.199219 2.8007812,17.98595 2.8007812,14 2.8007812,10.014072 6.0140717,6.8007812 10,6.8007812 Z"></path><path d="M7.82211 6.30021C9.08062 4.20339 11.3764 2.8002 14 2.8002C17.9764 2.8002 21.2 6.02375 21.2 10.0002C21.2 12.6237 19.7968 14.9195 17.6999 16.178C17.4769 16.9683 17.1354 17.7089 16.6959 18.3795C20.2372 17.2411 22.8 13.9199 22.8 10.0002C22.8 5.14009 18.8601 1.2002 14 1.2002C10.0802 1.2002 6.75909 3.76291 5.62061 7.30424C6.29121 6.86475 7.03183 6.52329 7.82211 6.30021Z"></path> </svg></div></Link> 
            <Link to="/token"> <div className="sideNavButton" ><svg  onClick={showSide} width="45" height="35" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="tokenIcon"><path d="M 12,1.1992188 C 6.0447983,1.1992188 1.1992188,6.0447983 1.1992188,12 1.1992188,17.955156 6.0447935,22.800781 12,22.800781 17.95516,22.800781 22.800781,17.95516 22.800781,12 22.800781,6.0447935 17.955156,1.1992188 12,1.1992188 Z m 0,1.6015624 c 5.090444,0 9.199219,4.1087253 9.199219,9.1992188 0,5.09044 -4.108779,9.199219 -9.199219,9.199219 C 6.9095065,21.199219 2.8007812,17.090444 2.8007812,12 2.8007812,6.9095017 6.9095017,2.8007813 12,2.8007812 Z"></path><path d="m 12,5.1992188 c -3.7460617,0 -6.8007813,3.0547195 -6.8007812,6.8007812 0,3.746053 3.0547179,6.800781 6.8007812,6.800781 3.746055,0 6.800781,-3.054726 6.800781,-6.800781 0,-3.7460633 -3.054728,-6.8007812 -6.800781,-6.8007812 z m 0,1.6015624 c 2.881347,0 5.199219,2.3178621 5.199219,5.1992188 0,2.881345 -2.317874,5.199219 -5.199219,5.199219 C 9.1186433,17.199219 6.8007812,14.881347 6.8007812,12 6.8007812,9.1186417 9.1186417,6.8007813 12,6.8007812 Z"></path></svg></div></Link> 
@@ -79,6 +87,26 @@ function Sidebar(props) {
     <div  className="navBrand" style={{position:"absolute",left:"2%"}}><div><span  style={{color:"#12D576",fontSize:"20px",fontWeight:"700"}}>Token Tool</span><span style={{fontSize:"20px",fontWeight:"400"}}> by SecureDApp</span></div></div>   
       <div className="riht" style={{position:"absolute",right:"3%"}}>
         <NavIcons/>
+=======
+          <Link to="/"> <div > <FontAwesomeIcon icon={faCoffee}  style={{color:"#464646"}} size="2x"/></div></Link> 
+           <Link to="/token"> <div > <FontAwesomeIcon icon={faCoffee} style={{color:"#464646"}} size="2x"/></div></Link> 
+            <Link to="/contract"><div > <FontAwesomeIcon icon={faCoffee} style={{color:"#464646"}} size="2x"/></div></Link>
+            <Link to="/send"><div> <FontAwesomeIcon icon={faCoffee} style={{color:"#464646"}} size="2x"/></div></Link>
+            <Link to="/sale"><div > <FontAwesomeIcon icon={faCoffee} style={{color:"#464646"}} size="2x"/></div></Link>
+            <Link to="/search"><div > <FontAwesomeIcon icon={faCoffee} style={{color:"#464646"}} size="2x"/></div></Link>
+            <div > <FontAwesomeIcon icon={faCoffee} size="2x"/></div>
+            <div > <FontAwesomeIcon icon={faCoffee} size="2x"/></div>
+        </div>
+        <div className="dashboard" style={{overflow:"auto"}} >
+    <div className="navbar" style={{color:"whitesmoke",fontWeight:"700"}}>
+    <div  style={{position:"absolute",left:"10%"}}><div><span  style={{color:"#12D576"}}>Token Tool</span><span> by SecureDApp</span></div></div>   
+      <div className="riht" style={{position:"absolute",right:"30%"}}>
+           <Link to="/pricing"><div style={{padding:"10px",color:"white"}}>Pricing</div></Link> 
+            <Link to="/contact"><div style={{padding:"10px",color:"white"}}>Contact</div></Link> </div>
+            <div className="new" style={{position:"fixed",right:"3.5%"}}>         
+            <ConnectButton style={{padding:"10px",color:"white",backgroundColor:"transparent"}} showBalance={false} />  
+            {/* <Link to="/"><div style={{padding:"10px",color:"white"}}>ConnectWallet</div></Link> */}
+>>>>>>> Stashed changes
         </div>
     </div>
     <Main/>

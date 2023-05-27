@@ -1,0 +1,123 @@
+.search {
+    display: flex;
+    flex-direction:row;
+    align-items: left;
+    padding: 6px;
+  }
+  
+  .search-filter-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .search {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .filter {
+    flex-grow: 1;
+    margin-left: 10px;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 300px;
+    margin: 10px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .card-description {
+    font-size: 14px;
+    color: #666;
+  }
+  
+/* ===========================
+   ====== Search Box ====== 
+   =========================== */
+
+   .search
+   {
+       border: 3px solid #CF5C3F;
+       overflow: auto;
+       border-radius: 10px;
+       -moz-border-radius: 5px;
+       -webkit-border-radius: 5px;
+   }
+   
+   .search input[type="text"]
+   {
+       border: 5px;
+       width: 67%;
+       padding: 10px 10px;
+   }
+   
+   .search input[type="text"]:focus
+   {
+       outline: 0;
+   }
+   
+   .search input[type="submit"]
+   {
+       border: 5px;
+       background: none;
+       background-color: #5e3fcf;
+       color: #ffffff;
+       float: right;
+       padding: 2px;
+       border-radius-top-right: 50px;
+       -moz-border-radius-top-right: 5px;
+       -webkit-border-radius-top-right: 5px;
+       border-radius-bottom-right: 5px;
+       -moz-border-radius-bottom-right: 50px;
+       -webkit-border-radius-bottom-right: 50px;
+           cursor:pointer;
+   }
+   
+   /* ===========================
+      ====== Medua Query for Search Box ====== 
+      =========================== */
+   
+   @media only screen and (min-width : 1px) and (max-width : 10px)
+   {
+       {}
+       .search
+       {
+           width: 88%;
+           margin: 1 auto;
+       }
+   
+   }

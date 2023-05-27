@@ -3,6 +3,7 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import React, { Component }  from 'react';
 
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import './App.css'
@@ -39,6 +40,7 @@ function App() {
       <Route exact path="/wallet" element={<Sidebar page={"wallet"}/>} />
       <Route exact path="/contract" element={<Sidebar page={"contract"}/>} />
       <Route exact path="/send" element={<Sidebar page={"send"}/>} />
+      <Route exact path="/search" element={<Sidebar page={"search"}/>} />
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
       <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />

@@ -1,0 +1,62 @@
+.mainpage{
+    display:flex;
+    flex-direction:row;
+    height:100%;
+}
+.sidebar{
+    display:flex;
+    flex-direction:column;
+    background-color:#101010;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    padding:5px 20px;
+}
+.dashboard{
+    background-image:linear-gradient(to right,black,rgb(14, 14, 61));
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+.navbar{
+    width:100%;
+    height:40px;
+    padding:38px 0 !important;
+    position:fixed;
+    margin-bottom: 5px;
+}
+.riht{
+    position:relative;
+    right:5%;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+   
+}
+.riht div{
+    margin:auto 10%;
+    display:inline-block;
+    text-align:center;
+}
+.wallet {
+    text-align:center;
+}
+[data-rk] .ju367v93 {
+    background-color: transparent;
+}
+[data-rk]{
+    height:100%;
+}
+.iekbcc0.ju367va.ju367vz.ju367v10.ju367v6j{
+    position:fixed;
+    top:4px;
+}
+
+[data-rk] ._9pm4ki3{
+    top:0px;
+}
+
+.new{
+    position: fixed;
+    margin-right: 20px;
+    
+}
