@@ -4,7 +4,17 @@ import {Link} from 'react-router-dom'
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import '../Style/managetoken.css'
 import Mains from './main.jsx'
-function manageToken() {
+import LockToken from './lockToken.jsx'
+function manageToken(props) {
+  const {page}=props
+  function ManageToken(){
+    if(page=='managetoken'){
+      return <Mains/>
+    }
+    if(page=='locktoken'){
+      return <LockToken/>
+    }
+  }
   return (
     <div className="manageToken">
       <div className="sidebar" style={{backgroundColor:"black",justifyContent:"start"}}>
@@ -19,7 +29,7 @@ function manageToken() {
             <ConnectButton showBalance={false} />
         </div>
     </div>
-     <Mains/>
+     <ManageToken/>
     </div>
     </div>
   )

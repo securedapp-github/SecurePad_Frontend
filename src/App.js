@@ -3,7 +3,6 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import './App.css'
 import Sidebar from './Components/sidebar.jsx'
@@ -42,7 +41,8 @@ function App() {
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
       <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />
-      <Route exact path="/managetoken" element={<Managetoken />} />
+      <Route exact path="/managetoken" element={<Managetoken page={"managetoken"}/>} />
+      <Route exact path="/locktoken" element={<Managetoken page={"locktoken"}/>} />
     </Routes>
     </BrowserRouter>
     </RainbowKitProvider>
