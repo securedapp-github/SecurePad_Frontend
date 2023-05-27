@@ -65,7 +65,7 @@ function LockToken() {
 
   return (
     <div class="locktoken" style={{padding:"2%",margin:"0 12% 0 15%"}}>
-            <div className="lockTokenFirstRow" style={{width:"110%"}}><div style={{paddingTop:"10px"}}><svg xmlns="http://www.w3.org/2000/svg" height="35" width="35" style={{fill:"#12D576"}} viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></div>
+            <div className="lockTokenFirstRow" style={{width:"100%"}}><div style={{paddingTop:"10px"}}><svg xmlns="http://www.w3.org/2000/svg" height="35" width="35" style={{fill:"#12D576"}} viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></div>
               <div style={{paddingLeft:"20px",width:"70%"}}>
        <div style={{padding:"0",margin:"0",fontSize:"35px",fontWeight:"700",color:"#12D576"}}>Lock Token</div> 
         <div style={{fontSize:"25px",color:"white",fontWeight:"300",paddingBottom:"6%"}}>
