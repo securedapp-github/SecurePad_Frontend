@@ -76,7 +76,7 @@ function Sidebar(props) {
         </div>
         <div className="dashboard" style={{overflow:"auto"}} >
     <div className="navbar" style={{color:"whitesmoke",fontWeight:"700"}}>
-    <div  className="navBrand" style={{position:"absolute",left:"2%"}}><div><span  style={{color:"#12D576",fontSize:"20px",fontWeight:"700"}}>Token Tool</span><span style={{fontSize:"20px",fontWeight:"400"}}> by SecureDApp</span></div></div>   
+    <div  className="navBrand" style={{position:"absolute",left:"2%"}}><div><span  style={{color:"#12D576",fontSize:"20px",fontWeight:"700"}}>Token Launchpad</span><span style={{fontSize:"20px",fontWeight:"400"}}> by SecureDApp</span></div></div>   
       <div className="riht" style={{position:"absolute",right:"3%"}}>
         <NavIcons/>
         </div>

@@ -1,3 +1,22 @@
+
+.createtoken-button{
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove border */
+    color: white; /* White text color */
+    padding: 12px 24px; /* Add padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make it an inline element */
+    font-size: 16px; /* Font size */
+    border-radius: 4px; /* Add rounded corners */
+    cursor: pointer; /* Add cursor on hover */
+    transition: background-color 0.3s ease; /* Add smooth transition */  
+}
+
+.createtoken-button:hover {
+    background-color: #a53c0b; /* Darker green background on hover */
+  }
+
 input[type=radio] {
     accent-color:#12D576;
     width: 1rem;
