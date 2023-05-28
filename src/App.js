@@ -3,7 +3,6 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import './App.css'
 import Sidebar from './Components/sidebar.jsx'
@@ -12,7 +11,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import Managetoken from './Components/manageToken.jsx'
 const { chains, provider } = configureChains(
   [chain.polygonMumbai, chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
-  [alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" }), publicProvider()]
+  [ alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" }), publicProvider()]
 );
 const { connectors } = getDefaultWallets({
   appName: "SecureDApp_Launchpad",
@@ -23,8 +22,6 @@ const wagmiClient = createClient({
   connectors,
   provider
 });
-
-
 
 function App() {
   return (
@@ -42,7 +39,8 @@ function App() {
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
       <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />
-      <Route exact path="/managetoken" element={<Managetoken />} />
+      <Route exact path="/managetoken/:TOKEN" element={<Managetoken page={"managetoken"}/>} />
+      <Route exact path="/locktoken" element={<Managetoken page={"locktoken"}/>} />
     </Routes>
     </BrowserRouter>
     </RainbowKitProvider>
