@@ -17,6 +17,7 @@ import {
   useNetwork,
   useSigner,
   useWaitForTransaction,
+  useProvider
 } from "wagmi";
 
 function Wallet() {
@@ -27,6 +28,7 @@ function Wallet() {
   const [tableHeaders, setTableHeaders] = useState([]);
   const [tableRows, setTableRows] = useState([]);
   const { data: signerData } = useSigner();
+  const provider = useProvider()
 
   const [tokenArray, settokenArray] = useState([]);
   const [salesArray, setsalesArray] = useState([]);
@@ -35,7 +37,7 @@ function Wallet() {
   const FactoryContract = useContract({
     addressOrName: CONTRACT_ADDRESS,
     contractInterface: FACTORYABI,
-    signerOrProvider: signerData
+    signerOrProvider: provider
   });
 
   const getToken = async () => {
@@ -49,7 +51,7 @@ function Wallet() {
         let TOKENCONTRACT = new ethers.Contract(
           tokens[i],
           TOKENABI,
-          signerData
+          provider
         );
         let name = await TOKENCONTRACT.name();
         let symbol = await TOKENCONTRACT.symbol();
@@ -79,7 +81,7 @@ function Wallet() {
         let SALESCONTRACT = new ethers.Contract(
           sales[i],
           SALEABI,
-          signerData
+          provider
         );
         let [tokens, pay, , , , , , saleStartTime, saleEndTime, , , , ] 
         = await SALESCONTRACT.getSaleDetails();
@@ -117,7 +119,7 @@ function Wallet() {
         let LOCKCONTRACT = new ethers.Contract(
           locks[i],
           LOCKABI,
-          signerData
+          provider
         );
         let token = await LOCKCONTRACT.token();
         let duration = await LOCKCONTRACT.lockDuration();
@@ -127,7 +129,7 @@ function Wallet() {
         let TOKENCONTRACT = new ethers.Contract(
           token,
           TOKENABI,
-          signerData
+          provider
         );
         let name = await TOKENCONTRACT.name();  
 

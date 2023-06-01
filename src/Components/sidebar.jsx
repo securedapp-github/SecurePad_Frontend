@@ -1,6 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import React, { useEffect } from 'react'
-import '../Style/sidebar.css'
+import 'Style/sidebar.css'
 import { Link } from 'react-router-dom'
 import Wallet from './Wallet.jsx'
 import Contact from './contact.jsx'
