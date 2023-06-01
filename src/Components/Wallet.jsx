@@ -5,6 +5,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import FACTORYABI from "../ABI/FactoryABI.json";
 import { ethers } from "ethers";
 import TOKENABI from "../ABI/TokenABI.json";
+import SALEABI from "../ABI/SaleABI.json";
+import LOCKABI from "../ABI/LockABI.json";
 
 import {
   useAccount,
@@ -42,7 +44,7 @@ function Wallet() {
     let tokendetails;
     if (tokens.length > 0) {
       settokenArray([]);
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 1; i++) {
         //   for (let i = 0; i < tokens.length; i++) {
         let TOKENCONTRACT = new ethers.Contract(
           tokens[i],
@@ -61,18 +63,91 @@ function Wallet() {
         console.log(23);
       }
     }
-
-
   }
 
-  const gToken = async () => {
+  const getSales = async () => {
+    let sales = await FactoryContract.GetUserSales(address);
+    console.log("Sales : ", sales);
+    let saledetails;
+    if (sales.length > 0) {
+      setsalesArray([]);
+      for (let i = 0; i < 1; i++) {
+        //   for (let i = 0; i < sales.length; i++) {
+        let SALESCONTRACT = new ethers.Contract(
+          sales[i],
+          SALEABI,
+          signerData
+        );
+        let [tokens, pay, , , , , , saleStartTime, saleEndTime, , , , ] 
+        = await SALESCONTRACT.getSaleDetails();
+          let status;
+        if(saleStartTime > Date.now()){
+          status = "Upcoming"
+        }else if(saleEndTime < Date.now()){
+          status = "Completed"
+        }else{
+          status = "Ongoing"
+        }
+        
+        console.log(12);
+        saledetails = { 'id': i + 1, 'sale': sales[i], 'token': tokens, 'payment': pay, 'status':status };
+        console.log(15);
+        setsalesArray(prevItems => [...prevItems, saledetails]);
+        console.log(17);
+        console.log(saledetails);
+        console.log(salesArray);
+        console.log(23);
+      }
+    }
+  }
+
+  const getLocks = async () => {
+    let locks = await FactoryContract.GetUserLocks(address);
+    console.log("Locks : ", locks);
+    let lockdetails;
+    if (locks.length > 0) {
+      setlocksArray([]);
+      for (let i = 0; i < 1; i++) {
+        //   for (let i = 0; i < locks.length; i++) {
+        let LOCKCONTRACT = new ethers.Contract(
+          locks[i],
+          LOCKABI,
+          signerData
+        );
+        let token = await LOCKCONTRACT.token();
+        let duration = await LOCKCONTRACT.lockDuration();
+        let amount = await LOCKCONTRACT.amount();
+        amount = amount.toNumber();
+
+        let TOKENCONTRACT = new ethers.Contract(
+          token,
+          TOKENABI,
+          signerData
+        );
+        let name = await TOKENCONTRACT.name();  
+
+        console.log(12);
+        lockdetails = { 'id': i + 1, 'lock': locks[i], 'token': token, 'name': name, 'locktill': duration, 'amount': amount };
+        console.log(15);
+        setlocksArray(prevItems => [...prevItems, lockdetails]);
+        console.log(17);
+        console.log(lockdetails);
+        console.log(locksArray);
+        console.log(23);
+      }
+    }
+  }
+
+  const gALL = async () => {
     console.log("token fetching...");
     await getToken();
+    await getSales();
+    await getLocks();
   };
 
   useEffect(() => {
     if (!signerData || !address) return;
-    gToken();
+    gALL();
   }, [address, signerData]);
 
 
@@ -84,7 +159,7 @@ function Wallet() {
       setTableHeaders(["ID", "Sale Address", "Token Address", "Payment", "Token	Status", "	MANAGE"]);
     } else if (buttonIndex === 2) {
       // setTableHeaders(["ID","LOCK ADDRESS","TOKEN	","LOCK TILL","	AMOUNT","	MANAGE"]);
-      setTableHeaders(["ID", "Token Address", "NAME", "SYMBOL", "MANAGE"]);
+      setTableHeaders(["ID", "Lock Address","Token Address", "TOKEN NAME", "LOCK TILL","AMOUNT", "MANAGE"]);
     }
   };
 
@@ -205,19 +280,31 @@ function Wallet() {
                   {activeButton == 1 && salesArray.map((row) => (
                     <tr key={row.id}>
                       <td>{row.id}</td>
+                      <td>{row.sale}</td>
                       <td>{row.token}</td>
-                      <td>{row.name}</td>
-                      <td>{row.symbol}</td>
-                      <td>{row.symbol}</td>
+                      <td>{row.payment}</td>
+                      <td>{row.status}</td>
+                      <td>
+                        <Link to={`/managesale/${row.sale}`} >
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS69qJSL7Xd7OV7FOJNW9-HBjjWNDEAq5OW6A&usqp=CAU" alt="Google Logo" width="20px" height="20px" />
+                        </Link>
+                      </td>
                     </tr>
                   ))}
+
                   {activeButton == 2 && locksArray.map((row) => (
                     <tr key={row.id}>
                       <td>{row.id}</td>
+                      <td>{row.lock}</td>
                       <td>{row.token}</td>
                       <td>{row.name}</td>
-                      <td>{row.symbol}</td>
-                      <td>{row.symbol}</td>
+                      <td>{row.duration}</td>
+                      <td>{row.amount}</td>
+                      <td>
+                        <Link to={`/managelock/${row.lock}`} >
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS69qJSL7Xd7OV7FOJNW9-HBjjWNDEAq5OW6A&usqp=CAU" alt="Google Logo" width="20px" height="20px" />
+                        </Link>
+                      </td>
                     </tr>
                   ))}
 

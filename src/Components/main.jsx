@@ -19,7 +19,7 @@ import {
   useWaitForTransaction,
 } from "wagmi";
 
-function Main({ match }) {
+function Main() {
 
   const { TOKEN } = useParams();
 
@@ -64,17 +64,17 @@ function Main({ match }) {
   }, [signerData, TOKEN]);
 
   const mintToken = async () => {
-    // const tx = await TokenContract.mint(mintUser, mintValue);
-    // const receipt = await tx.wait()
-    // console.log("Token Minted ", receipt)
+    const tx = await TokenContract.mint(mintUser, mintValue);
+    const receipt = await tx.wait()
+    console.log("Token Minted ", receipt)
     setModal(false);
     setmintmodal(true);
   }
 
   const burnToken = async () => {
-    // const tx = await TokenContract.burn(burnValue);
-    // const receipt = await tx.wait()
-    // console.log("Token Burn ", receipt)
+    const tx = await TokenContract.burn(burnValue);
+    const receipt = await tx.wait()
+    console.log("Token Burn ", receipt)
     setModal1(false);
     setburnmodal(true);
   }

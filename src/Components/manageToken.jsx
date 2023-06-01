@@ -5,6 +5,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import '../Style/managetoken.css'
 import Mains from './main.jsx'
 import LockToken from './lockToken.jsx'
+import Saletoken from './saleToken.jsx'
+import ManageSale from './managesale.jsx'
 
 function manageToken(props) {
   const {page}=props
@@ -14,6 +16,12 @@ function manageToken(props) {
     }
     if(page=='locktoken'){
       return <LockToken/>
+    }
+    if(page=='saletoken'){
+      return <Saletoken/>
+    }
+    if(page=='managesale'){
+      return <ManageSale/>
     }
   }
   return (

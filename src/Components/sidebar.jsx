@@ -14,6 +14,10 @@ import Logo from '../assets/logo.png'
 import Lock from './lock.jsx'
 import Home from './home.jsx'
 import Manage from './manage.jsx'
+import Search from './search.jsx'
+import LockToken from './lockToken.jsx'
+import ManageLock from './manageLock.jsx'
+
 function Sidebar(props) {
     const {page}=props
     function Main(){
@@ -27,6 +31,9 @@ function Sidebar(props) {
         if(page=="sale")return <Sale/>
         if(page=="lock")return <Lock/>
         if(page=='manage')return <Manage/>
+        if(page=="search")return <Search/>
+        if(page=="locktoken")return <LockToken/>
+        if(page=="managelock")return <ManageLock/>        
     }
     function NavIcons(){
             let ai=document.getElementsByClassName('riht')[0]
