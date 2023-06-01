@@ -7,10 +7,19 @@ import Mains from './main.jsx'
 import LockToken from './lockToken.jsx'
 import Saletoken from './saleToken.jsx'
 import ManageSale from './managesale.jsx'
+import Wallet from './Wallet.jsx'
+import {
+  useAccount
+} from "wagmi";
 
 function manageToken(props) {
   const {page}=props
   function ManageToken(){
+
+    const { address } = useAccount();
+    if (typeof address == 'undefined') {
+      return <Wallet />
+    } else {
     if(page=='managetoken'){
       return <Mains/>
     }
@@ -23,6 +32,7 @@ function manageToken(props) {
     if(page=='managesale'){
       return <ManageSale/>
     }
+  }
   }
   return (
     <div className="manageToken">
