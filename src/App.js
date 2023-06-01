@@ -11,8 +11,9 @@ import 'font-awesome/css/font-awesome.min.css';
 import Managetoken from './Components/manageToken.jsx'
 const { chains, provider } = configureChains(
   [chain.polygonMumbai, chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
-  [ alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" }), publicProvider()]
-);
+  [  publicProvider(), alchemyProvider({ alchemyId: "JItFVmzc5gWClV0ba3hDDdqtppKw-9OP" })]
+); 
+// IItFVmzc5gWClV0ba3hDDdqtppKw
 const { connectors } = getDefaultWallets({
   appName: "SecureDApp_Launchpad",
   chains
@@ -36,11 +37,15 @@ function App() {
       <Route exact path="/wallet" element={<Sidebar page={"wallet"}/>} />
       <Route exact path="/contract" element={<Sidebar page={"contract"}/>} />
       <Route exact path="/send" element={<Sidebar page={"send"}/>} />
+      <Route exact path="/search" element={<Sidebar page={"search"}/>} />
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
       <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />
       <Route exact path="/managetoken/:TOKEN" element={<Managetoken page={"managetoken"}/>} />
-      <Route exact path="/locktoken" element={<Managetoken page={"locktoken"}/>} />
+      <Route exact path="/locktoken/:TOKEN" element={<Sidebar page={"locktoken"}/>} />
+      <Route exact path="/managelock/:LOCK" element={<Sidebar page={"managelock"}/>} />
+      <Route exact path="/saletoken/:TOKEN" element={<Managetoken page={"saletoken"}/>} />
+      <Route exact path="/managesale/:SALE" element={<Managetoken page={"managesale"}/>} />
     </Routes>
     </BrowserRouter>
     </RainbowKitProvider>

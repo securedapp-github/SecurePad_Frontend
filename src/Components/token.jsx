@@ -19,7 +19,7 @@ import {
 import FACTORYABI from "../ABI/FactoryABI.json";
 
 function Token() {
-  const CONTRACT_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
+  const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
   const [modal, setModal] = useState(false)
   const [token, setToken] = useState("");
   const [symbol, setSymbol] = useState("");
@@ -30,7 +30,7 @@ function Token() {
   const { data: signerData } = useSigner();
 
   const FactoryContract = useContract({
-    addressOrName: CONTRACT_ADDRESS,
+    addressOrName: FACTORY_ADDRESS,
     contractInterface: FACTORYABI,
     signerOrProvider: signerData,
   });

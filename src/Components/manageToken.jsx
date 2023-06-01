@@ -5,6 +5,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import '../Style/managetoken.css'
 import Mains from './main.jsx'
 import LockToken from './lockToken.jsx'
+import Saletoken from './saleToken.jsx'
+import ManageSale from './managesale.jsx'
 
 function manageToken(props) {
   const {page}=props
@@ -15,11 +17,17 @@ function manageToken(props) {
     if(page=='locktoken'){
       return <LockToken/>
     }
+    if(page=='saletoken'){
+      return <Saletoken/>
+    }
+    if(page=='managesale'){
+      return <ManageSale/>
+    }
   }
   return (
     <div className="manageToken">
       <div className="sidebar" style={{backgroundColor:"black",justifyContent:"start"}}>
-      <Link to='/'><img  style={{paddingLeft:"20px",paddingTop:"20px"}} src={Logo} alt="not found" /> </Link>
+      <Link to='/'><img  style={{paddingLeft:"20px",paddingTop:"2.5vw"}} src={Logo} alt="not found" /> </Link>
       </div>
       <div className="dashboard" style={{overflow:"auto"}} >
     <div className="navbar" style={{color:"whitesmoke",fontWeight:"700"}}>
