@@ -35,15 +35,15 @@ function Wallet() {
   const FactoryContract = useContract({
     addressOrName: CONTRACT_ADDRESS,
     contractInterface: FACTORYABI,
-    signerOrProvider: signerData,
+    signerOrProvider: signerData
   });
 
   const getToken = async () => {
     let tokens = await FactoryContract.GetUserTokens(address);
     console.log("Toekns : ", tokens);
     let tokendetails;
+   
     if (tokens.length > 0) {
-      settokenArray([]);
       for (let i = 0; i < 1; i++) {
         //   for (let i = 0; i < tokens.length; i++) {
         let TOKENCONTRACT = new ethers.Contract(
@@ -55,7 +55,10 @@ function Wallet() {
         let symbol = await TOKENCONTRACT.symbol();
         console.log(12);
         tokendetails = { 'id': i + 1, 'token': tokens[i], 'name': name, 'symbol': symbol };
-        console.log(15);
+        
+        if(i == 0){
+          settokenArray([]);
+        }
         settokenArray(prevItems => [...prevItems, tokendetails]);
         console.log(17);
         console.log(tokendetails);
@@ -91,7 +94,9 @@ function Wallet() {
         
         console.log(12);
         saledetails = { 'id': i + 1, 'sale': sales[i], 'token': tokens, 'payment': pay, 'status':status };
-        console.log(15);
+        if(i == 0){
+          setsalesArray([]);
+        }
         setsalesArray(prevItems => [...prevItems, saledetails]);
         console.log(17);
         console.log(saledetails);
@@ -128,7 +133,9 @@ function Wallet() {
 
         console.log(12);
         lockdetails = { 'id': i + 1, 'lock': locks[i], 'token': token, 'name': name, 'locktill': duration, 'amount': amount };
-        console.log(15);
+        if(i == 0){
+          setlocksArray([]);
+        }
         setlocksArray(prevItems => [...prevItems, lockdetails]);
         console.log(17);
         console.log(lockdetails);
@@ -140,15 +147,19 @@ function Wallet() {
 
   const gALL = async () => {
     console.log("token fetching...");
+  
     await getToken();
     await getSales();
     await getLocks();
   };
 
   useEffect(() => {
-    if (!signerData || !address) return;
+    if (!signerData || !address ) return;
+    // console.log(address);
+    // console.log(signerData);
+    // console.log(FactoryContract);
     gALL();
-  }, [address, signerData]);
+  }, [address]);
 
 
   const handleButtonClick = (buttonIndex) => {

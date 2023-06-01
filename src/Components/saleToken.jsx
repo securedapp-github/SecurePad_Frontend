@@ -5,6 +5,7 @@ import Vector from '../assets/Vector.png'
 import Fox from '../assets/Fox.png'
 import { Link } from 'react-router-dom'
 import { ethers } from "ethers";
+import { formatAddress } from '../utils/address';
 
 import {
   useAccount,
@@ -15,6 +16,7 @@ import {
   useNetwork,
   useSigner,
   useWaitForTransaction,
+  useProvider
 } from "wagmi";
 
 import TOKENABI from "../ABI/TokenABI.json";
@@ -27,6 +29,7 @@ function SaleToken() {
 
   const [confirmpage, setconfirmpage] = useState(false);
   const { data: signerData } = useSigner();
+  const provider = useProvider()
   const [modal3,setModal3]=useState(false)
   const [tokenName, settokenName] = useState(false);
   const [tokenSymbol, settokenSymbol] = useState(false);
@@ -41,6 +44,7 @@ function SaleToken() {
   const [hard, sethard] = useState("");
   const [min, setmin] = useState("");
   const [max, setmax] = useState("");
+  const [startdate, setstartdate] = useState("");
   const [start, setstart] = useState("");
   const [duration, setduration] = useState("");
   const [cliff, setcliff] = useState("");
@@ -51,13 +55,13 @@ function SaleToken() {
   const TokenContract = useContract({
     addressOrName: TOKEN,
     contractInterface: TOKENABI,
-    signerOrProvider: signerData,
+    signerOrProvider: provider,
   });
 
   const FactoryContract = useContract({
     addressOrName: FACTORY_ADDRESS,
     contractInterface: FACTORYABI,
-    signerOrProvider: signerData,
+    signerOrProvider: provider,
   });
 
   const readTokenDetails = async () => {
@@ -75,16 +79,16 @@ function SaleToken() {
 
   const launchSale = async () => {
 
-        // change start to timestamp
-        const tx = await FactoryContract.launchSecureTokenSale(TOKEN,payment,price,123,duration,releasemonths,cliff,[min,max,soft,hard]);
-        const receipt = await tx.wait()
-        console.log("Sale Created = ", receipt.logs[0].address)
-        setsale(receipt.logs[0].address);
-        // setsale("0xa603352e96beb06a0d217C59Ee0CcA161312E309");
+        alert(start);
+        // const tx = await FactoryContract.launchSecureTokenSale(TOKEN,payment,price,123,duration,releasemonths,cliff,[min,max,soft,hard]);
+        // const receipt = await tx.wait()
+        // console.log("Sale Created = ", receipt.logs[0].address)
+        // setsale(receipt.logs[0].address);
+        // // setsale("0xa603352e96beb06a0d217C59Ee0CcA161312E309");
        
-        if(receipt.status == 1){
-            setModal3(true);
-        }
+        // if(receipt.status == 1){
+        //     setModal3(true);
+        // }
 
     }
  
@@ -103,6 +107,10 @@ function SaleToken() {
       setcustompayment(false) 
       setpayment("0x0000000000000000000000000000000000000000");
     }
+  };
+
+  const copyAddress = (copytext) => {
+    navigator.clipboard.writeText(copytext);
   };
 
 
@@ -137,37 +145,37 @@ function SaleToken() {
       </div>
       <div>
       <div style={{color:"#525252"}}>
-           {tokenName}aaa</div>
+           {tokenName}</div>
            <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {tokenSymbol}aaa</div> 
+           {tokenSymbol}</div> 
           <div style={{paddingTop:"1vw"}}>
-  <svg width="20" height="22" style={{paddingRight:"2px"}} viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg onClick={copyAddress(TOKEN)} width="20" height="22" style={{paddingRight:"2px"}} viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#12D576"/>
-  </svg>{TOKEN}</div>
+  </svg>  {formatAddress(TOKEN)}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {tokenSupply}aaa</div>
+           {tokenSupply}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {hard}aaa</div>
+           {hard}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {price}aaa</div>
+           {price}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {payment}aaa</div>
+           {payment}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {soft}aaa</div>
+           {soft}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {hard}aaa</div>
+           {hard}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {min}aaa</div>
+           {min}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {max}aaa</div>
+           {max}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {start}aaa</div>
+           {start}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {duration}aaa</div>
+           {duration}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
            {cliff}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {releasemonths}aaa</div>
+           {releasemonths}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
            {owner}</div>
       </div>
@@ -280,10 +288,12 @@ function SaleToken() {
           </div>
 
           <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "6%" }}>Set Sale Timings</div>
+         
           <div style={{ paddingTop: "20px", color: "#cccccc" }}>Sale Start Time</div>
           <input type="datetime-local" placeholder="yyyy-mm-dd hh:mm:ss" 
-          value={start} onChange={(e) => setstart(e.target.value)}
+          value={startdate} onChange={(e) => { setstartdate(e.target.value); const dateObject = new Date(e.target.value); setstart(Math.floor(dateObject.getTime()/1000)); }}
           style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
+         
           <div style={{ paddingTop: "20px", color: "#cccccc" }}>Sale Duration in days</div>
           <input type="number" placeholder="e.g. 10" 
           value={duration} onChange={(e) => setduration(e.target.value)}
