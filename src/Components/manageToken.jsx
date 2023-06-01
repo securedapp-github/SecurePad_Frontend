@@ -27,7 +27,7 @@ function manageToken(props) {
   return (
     <div className="manageToken">
       <div className="sidebar" style={{backgroundColor:"black",justifyContent:"start"}}>
-      <Link to='/'><img  style={{paddingLeft:"20px",paddingTop:"20px"}} src={Logo} alt="not found" /> </Link>
+      <Link to='/'><img  style={{paddingLeft:"20px",paddingTop:"2.5vw"}} src={Logo} alt="not found" /> </Link>
       </div>
       <div className="dashboard" style={{overflow:"auto"}} >
     <div className="navbar" style={{color:"whitesmoke",fontWeight:"700"}}>
