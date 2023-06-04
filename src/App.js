@@ -48,6 +48,8 @@ function App() {
       <Route exact path="/managelock/:LOCK" element={<Sidebar page={"managelock"}/>} />
       <Route exact path="/saletoken/:TOKEN" element={<Managetoken page={"saletoken"}/>} />
       <Route exact path="/managesale/:SALE" element={<Managetoken page={"managesale"}/>} />
+      <Route exact path="/buysale/:SALE" element={<Sidebar page={"buysale"}/>} />
+
     </Routes>
     </BrowserRouter>
     </RainbowKitProvider>

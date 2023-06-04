@@ -1,11 +1,121 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import "../Style/search.css" // Import the CSS file for styling
+import FACTORYABI from "../ABI/FactoryABI.json";
+import SALEABI from "../ABI/SaleABI.json";
+import TOKENABI from "../ABI/TokenABI.json";
+import {useNavigate} from 'react-router-dom'
 
+import { ethers } from "ethers";
+
+import {
+    useAccount,
+    useConnect,
+    useContract,
+    useContractRead,
+    useContractWrite,
+    useNetwork,
+    useSigner,
+    useWaitForTransaction,
+    useProvider
+} from "wagmi";
 
 const New = ({ onSearch }) => {
     const [search, setSearch] = useState('');
     const [filterBy, setFilterBy] = useState('');
+    const [count, setcount] = useState(0);
+    const [salesArray, setsalesArray] = useState([]);
 
+    const provider = useProvider()
+    const { address } = useAccount();
+
+    const CONTRACT_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
+    const FactoryContract = useContract({
+        addressOrName: CONTRACT_ADDRESS,
+        contractInterface: FACTORYABI,
+        signerOrProvider: provider
+    });
+   
+
+    const getSales = async () => {
+
+        let [count,] = await FactoryContract.GetAllSales(0, 0);
+        count = count.toString();
+        setcount(count);
+        let saledetails;
+
+        let [, sales] = await FactoryContract.GetAllSales(count, 0);
+        console.log(sales);
+        if (sales.length > 0) {
+
+            setsalesArray([]);
+            for (let i = 0; i < 1; i++) {
+                //   for (let i = 0; i < sales.length; i++) {
+                let SaleContract = new ethers.Contract(
+                    sales[i],
+                    SALEABI,
+                    provider
+                );
+                let [tokens, , , , , softCap, hardCap, saleStartTime, saleEndTime, cliff, lockMonths, , Raised] = await SaleContract.getSaleDetails();
+                let progress = 0;
+                
+                if(Raised.toString() > 0){
+                 progress = Raised.toString() * 100 / hardCap.toString();
+                }
+
+                let TOKENCONTRACT = new ethers.Contract(
+                    tokens,
+                    TOKENABI,
+                    provider
+                );
+                let name = await TOKENCONTRACT.name();
+
+                let status;
+
+                saleStartTime = saleStartTime.toString() * 1000;
+                saleEndTime = saleEndTime.toString() * 1000;
+
+                if (saleStartTime > Date.now()) {
+                    const date = new Date(saleStartTime);
+                    const dateTimeString = date.toLocaleString();
+                    status = "Sale Starts at " + dateTimeString;
+                } else if (saleEndTime < Date.now()) {
+                    const date = new Date(saleEndTime);
+                    const dateTimeString = date.toLocaleString(); 
+
+                    status = "Sale Ended at " + dateTimeString;
+                } else {
+                    const date = new Date(saleEndTime);
+                    const dateTimeString = date.toLocaleString(); 
+                    status = "Sale Ends at " + dateTimeString;
+                }
+
+                saledetails = {
+                    'id': i + 1, 
+                    'title': name, 
+                    'description': '',
+                    'image': 'https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg',
+                    'soft': ethers.utils.formatEther(softCap.toString()),
+                    'hard': ethers.utils.formatEther(hardCap.toString()),
+                    'progress': progress,
+                    'liq': 20,
+                    'lock': lockMonths.toString() * 30,
+                    'end': status,
+                    'token': 'BNB',
+                    'sale' : sales[i]
+                };
+                if (i == 0) {
+                    setsalesArray([]);
+                }
+                setsalesArray(prevItems => [...prevItems, saledetails]);
+            }
+
+        }
+    }
+
+    useEffect(() => {
+        if (!address) return;
+        getSales();
+    }, [address]);
 
 
     const cardsData = [
@@ -13,7 +123,7 @@ const New = ({ onSearch }) => {
             id: 1,
             title: 'MEME ELON DOGE FLOKI',
             description: '',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmQszkA2eZvidYBvosFsipj56hj9G3CW9e4ovl8j9KWOyXKS_aB06F_-hsyISer7yePo&usqp=CAU',
+            image: 'https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg',
             soft: 100,
             hard: 10000,
             progress: 30,
@@ -129,6 +239,9 @@ const New = ({ onSearch }) => {
         },
     ];
 
+
+
+
     // Filter the cards based on the filterBy value
 
     const handleFilterChange = (event) => {
@@ -194,7 +307,7 @@ const New = ({ onSearch }) => {
                             </option>
                         ))}
 
-                                                {/* <option value="" style={{ color: 'blue' }}>All</option>
+                        {/* <option value="" style={{ color: 'blue' }}>All</option>
                                 <option value="MEME ELON DOGE FLOKI" style={{ color: 'blue' }}>MEME ELON DOGE FLOKI</option>
                                 <option value="HCOIN BASE GOT DOWN" style={{ color: 'blue' }}>HCOIN BASE GOT DOWN</option>
                                 <option value="BIT CRYPTO CURRENCY" style={{ color: 'blue' }}>BIT CRYPTO CURRENCY</option>
@@ -208,7 +321,7 @@ const New = ({ onSearch }) => {
                 </div></div>
 
             <div className="card-container">
-                {searchedCards.map((card) => (
+                {salesArray.map((card) => (
                     <Card
                         key={card.id}
                         title={card.title}
@@ -221,6 +334,7 @@ const New = ({ onSearch }) => {
                         lock={card.lock}
                         end={card.end}
                         token={card.token}
+                        sale={card.sale}
                     />
                 ))}
 
@@ -232,8 +346,15 @@ const New = ({ onSearch }) => {
     );
 };
 
-const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token }) => {
+const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token, sale }) => {
+    const navigate=useNavigate()
+
+    const GoToSaleDetail = async(sale) => {
+        navigate('/buySale/'+sale);
+    }
+    
     return (
+        <div onClick={() => {GoToSaleDetail(sale)}} style={{cursor:"pointer",backgroundColor:"rgba(70,70,70,0.4)",width:"25vw",height:"30vw",borderRadius:"2vw"}}>
         <div className="card">
             <img src={image} alt={title} className="card-image" />
             <div className="card-content">
@@ -248,11 +369,11 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
                 <div className="box-container">
                     <div className="box box-1">
                         <span className="box-text">Softcap</span>
-                        <span className="Softcap-text">{soft} {token}</span>
+                        <span className="Softcap-text">{soft} </span>
                     </div>
                     <div className="box box-2">
                         <span className="box-text">Hardcap</span>
-                        <span className="Softcap-text">{hard} {token}</span>
+                        <span className="Softcap-text">{hard} </span>
 
                     </div>
                     <div className="box box-3">
@@ -266,14 +387,15 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
 
                 </div>
                 <div class="line"> </div>
-                <span className="end">Sales Ends in</span>
+                <span className="end">{end}</span>
                 <head>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
                 </head>
-                <div class="icon-container">
+                {/* <div class="icon-container">
                     <span class="fas fa-bell"></span>
-                    <span class="far fa-heart"></span></div>
+                    <span class="far fa-heart"></span></div> */}
             </div>
+        </div>
         </div>
     );
 };

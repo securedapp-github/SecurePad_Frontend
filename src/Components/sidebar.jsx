@@ -17,6 +17,7 @@ import Manage from './manage.jsx'
 import Search from './search.jsx'
 import LockToken from './lockToken.jsx'
 import ManageLock from './manageLock.jsx'
+import BuySale from './buysale.jsx'
 import {
   useAccount
 } from "wagmi";
@@ -26,10 +27,10 @@ function Sidebar(props) {
   const { page } = props
   function Main() {
     const { address } = useAccount();
+    if (page == "home") return <Home />
     if (typeof address == 'undefined') {
       return <Wallet />
     } else {
-      if (page == "home") return <Home />
       if (page == "contact") return <Contact />
       if (page == "pricing") return <Price />
       if (page == "wallet") return <Wallet />
@@ -42,6 +43,7 @@ function Sidebar(props) {
       if (page == "search") return <Search />
       if (page == "locktoken") return <LockToken />
       if (page == "managelock") return <ManageLock />
+      if (page == "buysale") return <BuySale />
     }
   }
 

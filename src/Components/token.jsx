@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal } from 'react-bootstrap'
-import {Link} from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 import "../Style/token.css"
 import Vector from '../assets/Vector.png'
 import Fox from '../assets/Fox.png'
+import { ethers } from 'ethers';
 
 import {
   useAccount,
@@ -13,7 +13,7 @@ import {
   useContractRead,
   useContractWrite,
   useNetwork,
-  useSigner, 
+  useSigner,
   useWaitForTransaction,
 } from "wagmi";
 import FACTORYABI from "../ABI/FactoryABI.json";
@@ -26,6 +26,10 @@ function Token() {
   const [initialSupply, setInitialSupply] = useState("");
   const [decimals, setDecimals] = useState(18);
   const [newToken, setnewToken] = useState("");
+  const [documents, setdocuments] = useState("");
+  const [iskyc, setiskyc] = useState(false);
+  const [isforce, setisforce] = useState(false);
+  const [isdocument, setisdocument] = useState(false);
 
   const { data: signerData } = useSigner();
 
@@ -36,13 +40,35 @@ function Token() {
   });
 
   const createToken = async () => {
-    const tx = await FactoryContract.launchSecureToken(token, symbol, decimals, initialSupply);
+    // if(isdocument || iskyc || isforce || documents != ""){
+    //   console.log(iskyc, isforce , documents);
+    //   const tx = await FactoryContract.launchSecurityToken(documents, token, symbol, decimals, initialSupply, isforce);
+    //   const receipt = await tx.wait()
+    //   console.log("Token Launched = ", receipt.logs[0].address)
+    //   setnewToken(receipt.logs[0].address);
+    // //  setnewToken("0xA95C52AF59E43C528F24EFAC96A08e000012e0e3");
+
+    // }else{
+
+    const tx = await FactoryContract.launchSecureToken(token, symbol, decimals, ethers.utils.parseUnits(initialSupply.toString(), "ether"));
     const receipt = await tx.wait()
     console.log("Token Launched = ", receipt.logs[0].address)
     setnewToken(receipt.logs[0].address);
-      //  setnewToken("0xA95C52AF59E43C528F24EFAC96A08e000012e0e3");
+    //  setnewToken("0xA95C52AF59E43C528F24EFAC96A08e000012e0e3");
+    // }
     setModal(true);
   }
+
+  const handleDocumentChange = () => {
+    setisdocument(!isdocument);
+    setdocuments("");
+  };
+  const handleForceChange = () => {
+    setisforce(!isforce);
+  };
+  const handleKYCChange = () => {
+    setiskyc(!iskyc);
+  };
 
   return (
     <div className="tokenBody" style={{ padding: "2%" }}>
@@ -75,8 +101,9 @@ function Token() {
         <h2 style={{ color: "white" }}>Token Settings</h2>
 
         <div style={{ color: "white", padding: "2%" }}>
-          Token*
+          Token Name*
           <input
+           
             type="text"
             value={token}
             onChange={(e) => setToken(e.target.value)}
@@ -91,7 +118,7 @@ function Token() {
           ></input>
         </div>
         <div style={{ color: "white", padding: "2%" }}>
-          Symbol*
+          Token Symbol*
           <input
             type="text"
             value={symbol}
@@ -109,7 +136,7 @@ function Token() {
         <div style={{ color: "white", display: "flex", flexDirection: "row" }}>
           <div style={{ padding: "2%" }}>
             {" "}
-            Initial Supply*
+            MAX Token Supply*
             <input
               type="number"
               value={initialSupply}
@@ -124,10 +151,11 @@ function Token() {
               }}
             ></input>
           </div>
-          <div style={{ padding: "2%" }}>
+          <div hidden style={{ padding: "2%" }}>
             {" "}
             Decimals (0-18)*
             <input
+              hidden
               type="number"
               readOnly
               value="18"
@@ -145,59 +173,101 @@ function Token() {
             ></input>
           </div>
         </div>
-        <button type="button" className="createtoken-button" onClick={createToken}>
-          Mint
-        </button>
+
+
+        <h2 style={{ color: "white", padding: "2%" }}>Security Token</h2>
+
+        <div style={{ color: "white", padding: "2%" }}>
+          <label>
+            <input
+              type="checkbox"
+              checked={isdocument}
+              onChange={handleDocumentChange}
+            />
+            Has Document
+          </label>
+        </div>
+        {isdocument && (<>
+            <input type="text" placeholder="Token Documents Link" value={documents} onChange={(e) => setdocuments(e.target.value)}
+            style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
+          </>)}
+
+        <div style={{ color: "white", padding: "2%" }}>
+          <label>
+            <input
+              type="checkbox"
+              checked={isforce}
+              onChange={handleForceChange}
+            />
+            Can be Force Transferred
+          </label>
+        </div>
+
+        <div style={{ color: "white", padding: "2%" }}>
+          <label>
+            <input
+              type="checkbox"
+              checked={iskyc}
+              onChange={handleKYCChange}
+            />
+            KYC Mandatory
+          </label>
+        </div>
+          <div style={{padding: "2%"}}></div>
+        <Button type="button" className="createtoken-button" onClick={() => {createToken()}}>
+          Create Token
+        </Button>
+
 
       </div>
 
       <Modal
-          {...{
-            show: modal,
-            onHide: () => setModal(false)
-          }}
-          size="md"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-          </Modal.Header>
-          <Modal.Body>
-            <div style={{ paddingTop: "8%", textAlign: "center", paddingLeft: "9%", paddingRight: "9%" }}>
-              <img src={Vector} alt="not found" />
-              <h5 style={{ fontWeight: "700", paddingTop: "10px" }}>Token created successfully, view it on the block explorer</h5>
+        {...{
+          show: modal,
+          onHide: () => setModal(false)
+        }}
+        size="md"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body>
+          <div style={{ paddingTop: "8%", textAlign: "center", paddingLeft: "9%", paddingRight: "9%" }}>
+            <img src={Vector} alt="not found" />
+            <h5 style={{ fontWeight: "700", paddingTop: "10px" }}>Token created successfully, view it on the block explorer</h5>
+          </div>
+          <div style={{ padding: "3% 8%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+            <div>
+              <div >Token Address</div>
+              <div style={{ paddingTop: "30%" }}>Token Link</div>
             </div>
-            <div style={{ padding: "3% 8%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-              <div>
-                <div >Token Address</div>
-                <div style={{ paddingTop: "30%" }}>Token Link</div>
-              </div>
-              <div>
-                <div style={{ color: "#2D5C8F" }}>
-                  <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
-                  </svg>{newToken}</div>
-                <div style={{ color: "#2D5C8F", paddingTop: "10%" }}>
-                  <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
-                  </svg>{newToken}</div>
-              </div>
+            <div>
+              <div style={{ color: "#2D5C8F" }}>
+                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
+                </svg>{newToken}</div>
+              <div style={{ color: "#2D5C8F", paddingTop: "10%" }}>
+                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
+                </svg>{newToken}</div>
             </div>
-            <div style={{ textAlign: "center", paddingTop: "5%" }}>
-              <Button onClick={() => { setModal(false) }} style={{ backgroundColor: "black", color: "white", padding: "7px 40px", fontSize: "20px", fontWeight: "450" }} variant="">
-                <img src={Fox} alt="" />
-                Add to Metamask</Button>
-              <br />
+          </div>
+          <div style={{ textAlign: "center", paddingTop: "5%" }}>
+            <Button onClick={() => { setModal(false) }} style={{ backgroundColor: "black", color: "white", padding: "7px 40px", fontSize: "20px", fontWeight: "450" }} variant="">
+              <img src={Fox} alt="" />
+              Add to Metamask</Button>
+            <br />
 
-              <Link to={`/managetoken/${newToken}`} >
+            <Link to={`/managetoken/${newToken}`} >
               <Button style={{ marginTop: "3%", backgroundColor: "#12D576", border: "#12D576", padding: "7px 40px", fontSize: "20px", fontWeight: "450" }} variant="">
                 Go to Manage Token</Button>
-                </Link> 
+            </Link>
 
-              <div style={{ color: "#12D576", fontWeight: "600", fontSize: "17px", cursor: "pointer", paddingTop: "3%" }}>Go back to create token</div>
-            </div>
-          </Modal.Body>
-        </Modal>
+            <div style={{ color: "#12D576", fontWeight: "600", fontSize: "17px", cursor: "pointer", paddingTop: "3%" }}>Go back to create token</div>
+          </div>
+        </Modal.Body>
+      </Modal>
 
     </div>
   )

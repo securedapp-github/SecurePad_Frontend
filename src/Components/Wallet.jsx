@@ -7,6 +7,7 @@ import { ethers } from "ethers";
 import TOKENABI from "../ABI/TokenABI.json";
 import SALEABI from "../ABI/SaleABI.json";
 import LOCKABI from "../ABI/LockABI.json";
+import { formatAddress } from '../utils/address';
 
 import {
   useAccount,
@@ -53,19 +54,14 @@ function Wallet() {
           TOKENABI,
           provider
         );
-        let name = await TOKENCONTRACT.name();
-        let symbol = await TOKENCONTRACT.symbol();
-        console.log(12);
+        let [name,symbol,] = await TOKENCONTRACT.getTokenInfo()
+
         tokendetails = { 'id': i + 1, 'token': tokens[i], 'name': name, 'symbol': symbol };
         
         if(i == 0){
           settokenArray([]);
         }
         settokenArray(prevItems => [...prevItems, tokendetails]);
-        console.log(17);
-        console.log(tokendetails);
-        console.log(tokenArray);
-        console.log(23);
       }
     }
   }
@@ -94,16 +90,11 @@ function Wallet() {
           status = "Ongoing"
         }
         
-        console.log(12);
         saledetails = { 'id': i + 1, 'sale': sales[i], 'token': tokens, 'payment': pay, 'status':status };
         if(i == 0){
           setsalesArray([]);
         }
         setsalesArray(prevItems => [...prevItems, saledetails]);
-        console.log(17);
-        console.log(saledetails);
-        console.log(salesArray);
-        console.log(23);
       }
     }
   }
@@ -133,16 +124,13 @@ function Wallet() {
         );
         let name = await TOKENCONTRACT.name();  
 
-        console.log(12);
         lockdetails = { 'id': i + 1, 'lock': locks[i], 'token': token, 'name': name, 'locktill': duration, 'amount': amount };
         if(i == 0){
           setlocksArray([]);
         }
         setlocksArray(prevItems => [...prevItems, lockdetails]);
-        console.log(17);
         console.log(lockdetails);
         console.log(locksArray);
-        console.log(23);
       }
     }
   }
@@ -280,7 +268,7 @@ function Wallet() {
                   {activeButton == 0 && tokenArray.map((row) => (
                     <tr key={row.id}>
                       <td>{row.id}</td>
-                      <td>{row.token}</td>
+                      <td>{formatAddress(row.token)}</td>
                       <td>{row.name}</td>
                       <td>{row.symbol}</td>
                       <td>
@@ -293,9 +281,9 @@ function Wallet() {
                   {activeButton == 1 && salesArray.map((row) => (
                     <tr key={row.id}>
                       <td>{row.id}</td>
-                      <td>{row.sale}</td>
-                      <td>{row.token}</td>
-                      <td>{row.payment}</td>
+                      <td>{formatAddress(row.sale)}</td>
+                      <td>{formatAddress(row.token)}</td>
+                      <td>{formatAddress(row.payment)}</td>
                       <td>{row.status}</td>
                       <td>
                         <Link to={`/managesale/${row.sale}`} >
@@ -308,8 +296,8 @@ function Wallet() {
                   {activeButton == 2 && locksArray.map((row) => (
                     <tr key={row.id}>
                       <td>{row.id}</td>
-                      <td>{row.lock}</td>
-                      <td>{row.token}</td>
+                      <td>{formatAddress(row.lock)}</td>
+                      <td>{formatAddress(row.token)}</td>
                       <td>{row.name}</td>
                       <td>{row.duration}</td>
                       <td>{row.amount}</td>

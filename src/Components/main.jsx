@@ -56,10 +56,9 @@ function Main() {
 
   const readToken = async () => {
     console.log(signerData);
-    let name = await TokenContract.name()
+    let [name,symbol,supply] = await TokenContract.getTokenInfo()
     settokenName(  name );
-    settokenSymbol ( await TokenContract.symbol() );
-    let supply = await TokenContract.totalSupply();
+    settokenSymbol ( symbol );
     supply = supply.toString();
     settokenSupply(ethers.utils.formatEther(supply));
   }
@@ -70,7 +69,12 @@ function Main() {
   }, [signerData, TOKEN]);
 
   const mintToken = async () => {
-    const tx = await TokenContract.mint(mintUser, mintValue);
+    let TokenContract = new ethers.Contract(
+      TOKEN,
+      TOKENABI,
+      signerData
+    );
+    const tx = await TokenContract.mint(mintUser, ethers.utils.parseUnits(mintValue.toString(), "ether"));
     const receipt = await tx.wait()
     console.log("Token Minted ", receipt)
     setModal(false);
@@ -78,7 +82,12 @@ function Main() {
   }
 
   const burnToken = async () => {
-    const tx = await TokenContract.burn(burnValue);
+    let TokenContract = new ethers.Contract(
+      TOKEN,
+      TOKENABI,
+      signerData
+    );
+    const tx = await TokenContract.burn(ethers.utils.parseUnits(burnValue.toString(), "ether"));
     const receipt = await tx.wait()
     console.log("Token Burn ", receipt)
     setModal1(false);
@@ -158,7 +167,7 @@ function Main() {
             onChange={(e) => setmintUser(e.target.value)} placeholder="Enter recipient address" type="text" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494" }} />
             <div style={{ width: "100%", paddingTop: "15%", display: "flex", flexDirection: "row", jsutifyContent: "space-between", gap: "52%" }}>
               <Button onClick={() => { setModal(false) }} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Cancel</Button>
-              <Button onClick={mintToken} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Submit</Button>
+              <Button onClick={() => {mintToken()}} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Submit</Button>
             </div>
           </Modal.Body>
         </Modal>
@@ -183,7 +192,7 @@ function Main() {
             onChange={(e) => setburnValue(e.target.value)}  placeholder="e.g 50000" type="number" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494" }} />
             <div style={{ width: "100%", paddingTop: "15%", display: "flex", flexDirection: "row", jsutifyContent: "space-between", gap: "52%" }}>
               <Button onClick={() => { setModal1(false) }} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Cancel</Button>
-              <Button onClick={burnToken} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Submit</Button>
+              <Button onClick={() => {burnToken()}} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Submit</Button>
             </div>
           </Modal.Body>
         </Modal>

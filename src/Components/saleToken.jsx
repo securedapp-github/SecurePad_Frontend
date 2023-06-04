@@ -61,13 +61,14 @@ function SaleToken() {
   const FactoryContract = useContract({
     addressOrName: FACTORY_ADDRESS,
     contractInterface: FACTORYABI,
-    signerOrProvider: provider,
+    signerOrProvider: signerData,
   });
 
   const readTokenDetails = async () => {
-    settokenName( await TokenContract.name());
-    settokenSymbol( await TokenContract.symbol());
-      let supply = await TokenContract.totalSupply();
+    let [name,symbol,supply] = await TokenContract.getTokenInfo()
+
+    settokenName( name );
+    settokenSymbol( symbol );
       supply = ethers.utils.formatEther(supply.toString());
       settokenSupply(supply);
   }
@@ -79,16 +80,16 @@ function SaleToken() {
 
   const launchSale = async () => {
 
-        alert(start);
-        // const tx = await FactoryContract.launchSecureTokenSale(TOKEN,payment,price,123,duration,releasemonths,cliff,[min,max,soft,hard]);
-        // const receipt = await tx.wait()
-        // console.log("Sale Created = ", receipt.logs[0].address)
-        // setsale(receipt.logs[0].address);
-        // // setsale("0xa603352e96beb06a0d217C59Ee0CcA161312E309");
+        const tx = await FactoryContract.launchSecureTokenSale
+        (TOKEN,payment,price * 10000,start,duration,releasemonths,cliff,[ethers.utils.parseUnits(min.toString(), "ether"),ethers.utils.parseUnits(max.toString(), "ether"),ethers.utils.parseUnits(soft.toString(), "ether"),ethers.utils.parseUnits(hard.toString(), "ether")]);
+        const receipt = await tx.wait()
+        console.log("Sale Created = ", receipt.logs[0].address)
+        setsale(receipt.logs[0].address);
+        // setsale("0xa603352e96beb06a0d217C59Ee0CcA161312E309");
        
-        // if(receipt.status == 1){
-        //     setModal3(true);
-        // }
+        if(receipt.status == 1){
+            setModal3(true);
+        }
 
     }
  
@@ -169,7 +170,7 @@ function SaleToken() {
           <div style={{color:"#525252",paddingTop:"1vw"}}>
            {max}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
-           {start}</div>
+           {startdate}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
            {duration}</div>
           <div style={{color:"#525252",paddingTop:"1vw"}}>
@@ -252,7 +253,7 @@ function SaleToken() {
 
           <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "6%" }}>Set Token Price</div>
           <div style={{ paddingTop: "20px", color: "#cccccc" }}>Price of 1 token in Payment Token [ 1 Sale Token = X Payment Token] </div>
-          <input type="number" placeholder="e.g. 0.1 if 1 Sale Token = 0.1 Payment Token" 
+          <input type="number" placeholder="e.g. 0.1 if 1 Sale Token = 0.1 Payment Token: Min 0.0001" 
           value={price} onChange={(e) => setprice(e.target.value)}
           style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
          

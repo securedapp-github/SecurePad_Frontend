@@ -15,6 +15,7 @@ import {
   useSigner,
   useBalance,
   useWaitForTransaction,
+  useProvider
 } from "wagmi";
 
 import TOKENABI from "../ABI/TokenABI.json";
@@ -44,11 +45,12 @@ function ManageSale() {
   const [cliff, setcliff] = useState(0);
   const [releasemonths, setreleasemonths] = useState(0);
   const [iswhitelist, setiswhitelist] = useState(false);
+  const provider = useProvider()
 
   const SaleContract = useContract({
     addressOrName: SALE,
     contractInterface: SALEABI,
-    signerOrProvider: signerData,
+    signerOrProvider: provider,
   });
 
   const readSaleDetails = async () => {
@@ -57,7 +59,7 @@ function ManageSale() {
     
     settoken(tokens);
     setpayment(pay);
-    tokenPrice = ethers.utils.formatEther(tokenPrice.toString());
+    tokenPrice = tokenPrice.toString();
     setprice(tokenPrice);
     softCap = ethers.utils.formatEther(softCap.toString());
     setsoft(softCap);
@@ -67,25 +69,26 @@ function ManageSale() {
     setmin(investorMin);
     investorMax = ethers.utils.formatEther(investorMax.toString());
     setmax(investorMax);
-    saleStartTime = ethers.utils.formatEther(saleStartTime.toString());
+    saleStartTime = saleStartTime.toString();
     setstart(saleStartTime);
-    saleEndTime = ethers.utils.formatEther(saleEndTime.toString());
+    saleEndTime = saleEndTime.toString();
     setduration(saleEndTime);
-    cliff = ethers.utils.formatEther(cliff.toString());
+    cliff = cliff.toString();
     setcliff(cliff);
-    lockMonths = ethers.utils.formatEther(lockMonths.toString());
+    lockMonths = lockMonths.toString();
     setreleasemonths(lockMonths);
     setiswhitelist(whitelistOn);
 
     let TokenContract = new ethers.Contract(
       tokens,
       TOKENABI,
-      signerData
+      provider
     );
 
-    settokenName(await TokenContract.name());
-    settokenSymbol(await TokenContract.symbol());
-    let supply = await TokenContract.totalSupply();
+    let [name,symbol,supply] = await TokenContract.getTokenInfo()
+
+    settokenName(name);
+    settokenSymbol(symbol);
     supply = ethers.utils.formatEther(supply.toString());
     settokenSupply(supply);
     let amounts = await TokenContract.balanceOf(SALE);
@@ -116,7 +119,7 @@ function ManageSale() {
       signerData
     );
 
-  const tx = await TokenContract.transfer(SALE, sendtoken);
+  const tx = await TokenContract.transfer(SALE, ethers.utils.parseUnits(sendtoken.toString(), "ether"));
     const receipt = await tx.wait();
     if(receipt.status == 1){
       
