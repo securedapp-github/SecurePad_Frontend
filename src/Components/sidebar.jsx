@@ -50,8 +50,13 @@ function Sidebar(props) {
   function NavIcons() {
     let ai = document.getElementsByClassName('riht')[0]
 
-    if (window.innerWidth > 648) return (<><Link to="/pricing" className="rihtLink"><div style={{ fontWeight: "400", padding: "10px", fontSize: "20px", color: "white", }}>Pricing</div></Link>
-      <Link to="/contact" className="rihtLink"><div style={{ fontWeight: "400", padding: "10px", color: "white", fontSize: "20px", paddingRight: "25px" }}>Contact</div></Link>
+    if (window.innerWidth > 648) 
+      return (
+      <>
+        <Link to="/pricing" className="rihtLink"><div style={{ fontWeight: "400", padding: "10px", fontSize: "20px", color: "white", }}>Pricing</div>
+        </Link>
+        <Link to="/contact" className="rihtLink"><div style={{ fontWeight: "400", padding: "10px", color: "white", fontSize: "20px", paddingRight: "25px" }}>Contact</div>
+        </Link>
       <ConnectButton showBalance={false} /> </>)
     if (window.innerWidth <= 648) return (<Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">

@@ -13,9 +13,9 @@ import Managetoken from './components/manageToken.jsx';
 
 const { chains, provider } = configureChains(
   [chain.polygonMumbai, chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
-  [  publicProvider(), alchemyProvider({ alchemyId: "JItFVmzc5gWClV0ba3hDDdqtppKw-9OP" })]
+  [  publicProvider(), alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" })]
 ); 
-// IItFVmzc5gWClV0ba3hDDdqtppKw
+
 const { connectors } = getDefaultWallets({
   appName: "SecureDApp_Launchpad",
   chains
