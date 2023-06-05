@@ -142,7 +142,7 @@ function Wallet() {
   }
 
   const gALL = async () => {
-    console.log("token fetching...");
+    console.log("fetching...");
   
     await getToken();
     await new Promise(resolve => setTimeout(resolve, 2000)); 
@@ -152,12 +152,10 @@ function Wallet() {
   };
 
   useEffect(() => {
-    if (!signerData || !address ) return;
-    // console.log(address);
-    // console.log(signerData);
-    // console.log(FactoryContract);
+    // if (!signerData || !address ) return;
+    console.log('i fire once');
     gALL();
-  }, [address]);
+  }, []);
 
 
   const handleButtonClick = (buttonIndex) => {
