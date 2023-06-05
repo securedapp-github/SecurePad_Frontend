@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.21eb0281.css",
-    "main.js": "/static/js/main.128389c4.js",
+    "main.js": "/static/js/main.35e4d25c.js",
     "static/js/148.bf09d97a.chunk.js": "/static/js/148.bf09d97a.chunk.js",
     "static/js/888.cbaccc87.chunk.js": "/static/js/888.cbaccc87.chunk.js",
     "static/js/624.7e758da2.chunk.js": "/static/js/624.7e758da2.chunk.js",
@@ -25,7 +25,7 @@
     "static/js/575.a493a109.chunk.js": "/static/js/575.a493a109.chunk.js",
     "static/js/563.c3beea43.chunk.js": "/static/js/563.c3beea43.chunk.js",
     "static/js/942.91cf4b5c.chunk.js": "/static/js/942.91cf4b5c.chunk.js",
-    "static/js/419.eb526505.chunk.js": "/static/js/419.eb526505.chunk.js",
+    "static/js/419.3160ce41.chunk.js": "/static/js/419.3160ce41.chunk.js",
     "static/js/48.b0f2fe7b.chunk.js": "/static/js/48.b0f2fe7b.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
@@ -39,7 +39,7 @@
     "static/media/Coin.png": "/static/media/Coin.ea32ce002a5097b67b00.png",
     "index.html": "/index.html",
     "main.21eb0281.css.map": "/static/css/main.21eb0281.css.map",
-    "main.128389c4.js.map": "/static/js/main.128389c4.js.map",
+    "main.35e4d25c.js.map": "/static/js/main.35e4d25c.js.map",
     "148.bf09d97a.chunk.js.map": "/static/js/148.bf09d97a.chunk.js.map",
     "888.cbaccc87.chunk.js.map": "/static/js/888.cbaccc87.chunk.js.map",
     "624.7e758da2.chunk.js.map": "/static/js/624.7e758da2.chunk.js.map",
@@ -61,11 +61,11 @@
     "130.1677f643.chunk.js.map": "/static/js/130.1677f643.chunk.js.map",
     "199.cbf386c2.chunk.js.map": "/static/js/199.cbf386c2.chunk.js.map",
     "575.a493a109.chunk.js.map": "/static/js/575.a493a109.chunk.js.map",
-    "419.eb526505.chunk.js.map": "/static/js/419.eb526505.chunk.js.map",
+    "419.3160ce41.chunk.js.map": "/static/js/419.3160ce41.chunk.js.map",
     "48.b0f2fe7b.chunk.js.map": "/static/js/48.b0f2fe7b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.21eb0281.css",
-    "static/js/main.128389c4.js"
+    "static/js/main.35e4d25c.js"
   ]
 }

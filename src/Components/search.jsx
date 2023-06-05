@@ -39,11 +39,15 @@ const New = ({ onSearch }) => {
     const getSales = async () => {
 
         let [count,] = await FactoryContract.GetAllSales(0, 0);
+        await new Promise(resolve => setTimeout(resolve, 2000)); 
+
         count = count.toString();
         setcount(count);
         let saledetails;
 
         let [, sales] = await FactoryContract.GetAllSales(count, 0);
+        await new Promise(resolve => setTimeout(resolve, 2000)); 
+
         console.log(sales);
         if (sales.length > 0) {
 
@@ -57,7 +61,8 @@ const New = ({ onSearch }) => {
                 );
                 let [tokens, , , , , softCap, hardCap, saleStartTime, saleEndTime, cliff, lockMonths, , Raised] = await SaleContract.getSaleDetails();
                 let progress = 0;
-                
+                await new Promise(resolve => setTimeout(resolve, 2000)); 
+
                 if(Raised.toString() > 0){
                  progress = Raised.toString() * 100 / hardCap.toString();
                 }
@@ -68,6 +73,7 @@ const New = ({ onSearch }) => {
                     provider
                 );
                 let name = await TOKENCONTRACT.name();
+                await new Promise(resolve => setTimeout(resolve, 2000)); 
 
                 let status;
 

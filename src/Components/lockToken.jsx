@@ -124,11 +124,19 @@ function LockToken() {
     }
   
     const readTokenDetails = async () => {
-      settokenName( await TokenContract.name());
+
+      let [name,,supply] = await TokenContract.getTokenInfo()
+
+      settokenName(name);
+      await new Promise(resolve => setTimeout(resolve, 2000)); 
+
       let bal = await TokenContract.balanceOf(address);
+      await new Promise(resolve => setTimeout(resolve, 2000)); 
+
       bal = ethers.utils.formatEther(bal.toString());
       setbalance(bal);
-      let supply = await TokenContract.totalSupply();
+      await new Promise(resolve => setTimeout(resolve, 2000)); 
+
       supply = ethers.utils.formatEther(supply.toString());
       settokenSupply(supply);
     }

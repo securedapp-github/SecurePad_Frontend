@@ -50,7 +50,8 @@ function Token() {
 
     // }else{
 
-    const tx = await FactoryContract.launchSecureToken(token, symbol, decimals, ethers.utils.parseUnits(initialSupply.toString(), "ether"));
+    console.log(token, symbol, decimals, ethers.utils.parseUnits(initialSupply, "ether").toString());
+    const tx = await FactoryContract.launchSecureToken(token, symbol, decimals, ethers.utils.parseUnits(initialSupply, "ether").toString());
     const receipt = await tx.wait()
     console.log("Token Launched = ", receipt.logs[0].address)
     setnewToken(receipt.logs[0].address);

@@ -56,12 +56,17 @@ function ManageLock() {
   
     const readLockDetails = async () => {
       setToken( await LOCKCONTRACT.token());
+      await new Promise(resolve => setTimeout(resolve, 2000)); 
 
       let amounts = await LOCKCONTRACT.amount();
+      await new Promise(resolve => setTimeout(resolve, 2000)); 
+
       amounts = amounts.toNumber();
       setAmount(amounts);
 
       setTime( await LOCKCONTRACT.lockDuration());
+      await new Promise(resolve => setTimeout(resolve, 2000)); 
+
 
       readTokenDetails();
 
@@ -74,9 +79,11 @@ function ManageLock() {
           TOKENABI,
           signerData);
 
-      settokenName( await TokenContract.name());
-     
-      let supply = await TokenContract.totalSupply();
+          let [name,,supply] = await TokenContract.getTokenInfo()
+
+      settokenName( name);
+      await new Promise(resolve => setTimeout(resolve, 2000)); 
+
       supply = ethers.utils.formatEther(supply.toString());
       settokenSupply(supply);
 

@@ -69,12 +69,12 @@ function Main() {
   }, [signerData, TOKEN]);
 
   const mintToken = async () => {
-    let TokenContract = new ethers.Contract(
+    let TokenContracts = new ethers.Contract(
       TOKEN,
       TOKENABI,
       signerData
     );
-    const tx = await TokenContract.mint(mintUser, ethers.utils.parseUnits(mintValue.toString(), "ether"));
+    const tx = await TokenContracts.mint(mintUser, ethers.utils.parseUnits(mintValue.toString(), "ether"));
     const receipt = await tx.wait()
     console.log("Token Minted ", receipt)
     setModal(false);
@@ -82,12 +82,12 @@ function Main() {
   }
 
   const burnToken = async () => {
-    let TokenContract = new ethers.Contract(
+    let TokenContracts = new ethers.Contract(
       TOKEN,
       TOKENABI,
       signerData
     );
-    const tx = await TokenContract.burn(ethers.utils.parseUnits(burnValue.toString(), "ether"));
+    const tx = await TokenContracts.burn(ethers.utils.parseUnits(burnValue.toString(), "ether"));
     const receipt = await tx.wait()
     console.log("Token Burn ", receipt)
     setModal1(false);

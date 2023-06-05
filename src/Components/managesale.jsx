@@ -78,6 +78,7 @@ function ManageSale() {
     lockMonths = lockMonths.toString();
     setreleasemonths(lockMonths);
     setiswhitelist(whitelistOn);
+    await new Promise(resolve => setTimeout(resolve, 2000)); 
 
     let TokenContract = new ethers.Contract(
       tokens,
@@ -94,6 +95,7 @@ function ManageSale() {
     let amounts = await TokenContract.balanceOf(SALE);
     amounts = ethers.utils.formatEther(amounts.toString());
     setamount(amounts);
+    await new Promise(resolve => setTimeout(resolve, 2000)); 
 
     if(pay != "0x0000000000000000000000000000000000000000"){
     let FundContract = new ethers.Contract(

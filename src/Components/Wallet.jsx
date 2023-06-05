@@ -42,13 +42,13 @@ function Wallet() {
   });
 
   const getToken = async () => {
+    try{
     let tokens = await FactoryContract.GetUserTokens(address);
     console.log("Toekns : ", tokens);
     let tokendetails;
-   
     if (tokens.length > 0) {
-      for (let i = 0; i < 1; i++) {
-        //   for (let i = 0; i < tokens.length; i++) {
+        for (let i = 0; i < tokens.length; i++) {
+        await new Promise(resolve => setTimeout(resolve, 2000)); 
         let TOKENCONTRACT = new ethers.Contract(
           tokens[i],
           TOKENABI,
@@ -64,6 +64,9 @@ function Wallet() {
         settokenArray(prevItems => [...prevItems, tokendetails]);
       }
     }
+  } catch(e){
+    console.log(e);
+  }
   }
 
   const getSales = async () => {
@@ -72,8 +75,9 @@ function Wallet() {
     let saledetails;
     if (sales.length > 0) {
       setsalesArray([]);
-      for (let i = 0; i < 1; i++) {
-        //   for (let i = 0; i < sales.length; i++) {
+          for (let i = 0; i < sales.length; i++) {
+            await new Promise(resolve => setTimeout(resolve, 2000)); 
+
         let SALESCONTRACT = new ethers.Contract(
           sales[i],
           SALEABI,
@@ -105,8 +109,10 @@ function Wallet() {
     let lockdetails;
     if (locks.length > 0) {
       setlocksArray([]);
-      for (let i = 0; i < 1; i++) {
-        //   for (let i = 0; i < locks.length; i++) {
+      // for (let i = 0; i < 1; i++) {
+          for (let i = 0; i < locks.length; i++) {
+            await new Promise(resolve => setTimeout(resolve, 2000)); 
+
         let LOCKCONTRACT = new ethers.Contract(
           locks[i],
           LOCKABI,
@@ -139,7 +145,9 @@ function Wallet() {
     console.log("token fetching...");
   
     await getToken();
+    await new Promise(resolve => setTimeout(resolve, 2000)); 
     await getSales();
+    await new Promise(resolve => setTimeout(resolve, 2000)); 
     await getLocks();
   };
 

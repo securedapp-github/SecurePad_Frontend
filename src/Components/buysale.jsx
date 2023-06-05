@@ -28,6 +28,8 @@ function BuySale() {
     const { address } = useAccount();
     const [progress, setprogress] = useState(0);
     const [price, setprice] = useState(0);
+    const [decimal, setdecimal] = useState(0);
+
     const [soft, setsoft] = useState(0);
     const [hard, sethard] = useState(0);
     const [status, setstatus] = useState('');
@@ -44,6 +46,13 @@ function BuySale() {
         navigate('/search')
     }
 
+    function countDecimals(value){ 
+        if ((value % 1) != 0) 
+            return value.toString().split(".")[1].length;  
+        return 0;
+    };
+
+
     const getSaleInfo = async () => {
 
         let SaleContract = new ethers.Contract(
@@ -56,7 +65,13 @@ function BuySale() {
         if (Raised.toString() > 0) {
             setprogress(Raised.toString() * 100 / hardCap.toString());
         }
-        setprice(ethers.utils.formatEther(tokenPrice.toString()));
+
+        let p = tokenPrice.toString();
+        let d = countDecimals(p / 10000);
+        let prices = (p * 10**d)/ 10000; 
+        setprice(prices);
+        setdecimal(10 ** d);
+
         setsoft(ethers.utils.formatEther(softCap.toString()));
         sethard(ethers.utils.formatEther(hardCap.toString()));
         setpayaddress(pay);
@@ -75,6 +90,9 @@ function BuySale() {
             );
             setpay(await TOKENCONTRACT.symbol());
         }
+        // else{
+        //     setpay(nativeTokenSymbol);
+        // }
 
         saleStartTime = saleStartTime.toString() * 1000;
         saleEndTime = saleEndTime.toString() * 1000;
@@ -100,9 +118,9 @@ function BuySale() {
         getSaleInfo();
     }, [address]);
 
-
+    
     const buyToken = async () => {
-        alert();
+
         let SaleContract = new ethers.Contract(
             SALE,
             SALEABI,
@@ -196,10 +214,10 @@ c18 -17 26 -19 35 -10 9 9 5 19 -20 45 -18 18 -35 33 -38 33 -3 0 -20 -15 -38
                     <span style={{ color: "#12D576" }}>BNB Smart Chain</span>
                 </div> */}
                 <div style={{ backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "1.3vw", marginTop: "4vw", color: "white", padding: "0.5vw 1.5vw" }}>
-                    <div >
+                    <div>
                         <span style={{ fontSize: "1.4vw", fontWeight: "700" }}>{status}</span>
-                        {/* <span style={{ fontSize: "1.1vw" }}>00:05:45:20</span> */}
-                        {/* <span style={{ paddingLeft: "3vw" }}><svg className="tokenSvg" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        {/* <span style={{ fontSize: "1.1vw" }}>00:05:45:20</span>
+                        <span style={{ paddingLeft: "3vw" }}><svg className="tokenSvg" version="1.0" xmlns="http://www.w3.org/2000/svg"
                             width="40.000000pt" height="34.000000pt" style={{ fill: "#FFFFFF" }} viewBox="0 0 24.000000 24.000000"
                             preserveAspectRatio="xMidYMid meet">
 
@@ -227,7 +245,7 @@ c18 -17 26 -19 35 -10 9 9 5 19 -20 45 -18 18 -35 33 -38 33 -3 0 -20 -15 -38
                         <div>{hard}{" " + token}</div>
                     </div>
                     <div style={{ fontSize: "1.1vw", paddingTop: "0.7vw" }}>
-                        Buy
+                        {/* Buy */}
                     </div>
                     <div style={{ fontSize: "1.1vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                         <div style={{ border: "2px solid #464646", display: "flex", borderRadius: "1.5vw", padding: "0.3vw 0.5vw" }}>
@@ -245,26 +263,26 @@ c18 -17 26 -19 35 -10 9 9 5 19 -20 45 -18 18 -35 33 -38 33 -3 0 -20 -15 -38
                         <div>Total Contributors</div>
                         <div>0</div>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
+                    {/* <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
                         <div>AVG Contribution</div>
                         <div>0.587 BNB</div>
-                    </div>
+                    </div> */}
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
                         <div>Sale Rate</div>
-                        <div>7,935,227,272.727 MEMELON / BNB</div>
+                        <div> { price } Matic = {decimal} {token} </div>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
+                    {/* <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
                         <div>Listing Rate</div>
                         <div>7,935,227,272.727 MEMELON / BNB</div>
-                    </div>
-                    <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
+                    </div> */}
+                    {/* <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
                         <div>My Contribution</div>
                         <div>0 BNB</div>
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                    </div> */}
+                    {/* <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                         <div>Total Reserved Tokens</div>
                         <div>0 MEMELON</div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
