@@ -5,7 +5,7 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import './App.css'
-import Sidebar from './Components/sidebar.jsx'
+import Sidebar from './components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import Managetoken from './Components/manageToken.jsx';
