@@ -18,7 +18,8 @@ import {
 } from "wagmi";
 import FACTORYABI from "../ABI/FactoryABI.json";
 
-function Token() {
+function Token(props) {
+  const {theme}=props
   const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
   const [modal, setModal] = useState(false)
   const [token, setToken] = useState("");
@@ -75,7 +76,7 @@ function Token() {
     <div className="tokenBody" style={{ padding: "2%" }}>
       <div className="tokenCreate">
         <h2 style={{ fontWeight: "700", color: "#12D576" }}>Create ERC20 Token</h2>
-        <h4 style={{ color: "white", fontWeight: "400" }}>Get started by connecting your wallet</h4>
+        <h4 style={{ color:`${theme==='Dark' ? 'white':'black'}`, fontWeight: "400" }}>Get started by connecting your wallet</h4>
 
         <div style={{ padding: "2%", display: "flex", flexDirection: "row" }}> <svg width="25" height="30" style={{ fill: "#12D576" }} focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="tokenIcon"><path d="M 12,1.1992188 C 6.0447983,1.1992188 1.1992188,6.0447983 1.1992188,12 1.1992188,17.955156 6.0447935,22.800781 12,22.800781 17.95516,22.800781 22.800781,17.95516 22.800781,12 22.800781,6.0447935 17.955156,1.1992188 12,1.1992188 Z m 0,1.6015624 c 5.090444,0 9.199219,4.1087253 9.199219,9.1992188 0,5.09044 -4.108779,9.199219 -9.199219,9.199219 C 6.9095065,21.199219 2.8007812,17.090444 2.8007812,12 2.8007812,6.9095017 6.9095017,2.8007813 12,2.8007812 Z"></path><path d="m 12,5.1992188 c -3.7460617,0 -6.8007813,3.0547195 -6.8007812,6.8007812 0,3.746053 3.0547179,6.800781 6.8007812,6.800781 3.746055,0 6.800781,-3.054726 6.800781,-6.800781 0,-3.7460633 -3.054728,-6.8007812 -6.800781,-6.8007812 z m 0,1.6015624 c 2.881347,0 5.199219,2.3178621 5.199219,5.1992188 0,2.881345 -2.317874,5.199219 -5.199219,5.199219 C 9.1186433,17.199219 6.8007812,14.881347 6.8007812,12 6.8007812,9.1186417 9.1186417,6.8007813 12,6.8007812 Z"></path></svg>
           <label htmlFor="html" style={{ color: "#949494", padding: "3px 2%" }}>Simple, fast and convenient token generator</label>
@@ -99,9 +100,9 @@ function Token() {
 
       </div>
       <div className="tokenSettings">
-        <h2 style={{ color: "white" }}>Token Settings</h2>
+        <h2 style={{ color:`${theme==='Dark' ? 'white':'black'}` }}>Token Settings</h2>
 
-        <div style={{ color: "white", padding: "2%" }}>
+        <div style={{color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           Token Name*
           <input
            
@@ -110,7 +111,7 @@ function Token() {
             onChange={(e) => setToken(e.target.value)}
             style={{
               height: "48px",
-              color: "white",
+              color:`${theme==='Dark' ? 'white':'black'}`,
               width: "100%",
               backgroundColor: "#2D5C8F1C",
               border: "1px solid #464646",
@@ -118,7 +119,7 @@ function Token() {
             }}
           ></input>
         </div>
-        <div style={{ color: "white", padding: "2%" }}>
+        <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           Token Symbol*
           <input
             type="text"
@@ -126,7 +127,7 @@ function Token() {
             onChange={(e) => setSymbol(e.target.value)}
             style={{
               height: "48px",
-              color: "white",
+              color:`${theme==='Dark' ? 'white':'black'}`,
               width: "100%",
               backgroundColor: "#2D5C8F1C",
               border: "1px solid #464646",
@@ -134,7 +135,7 @@ function Token() {
             }}
           ></input>
         </div>
-        <div style={{ color: "white", display: "flex", flexDirection: "row" }}>
+        <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, display: "flex", flexDirection: "row" }}>
           <div style={{ padding: "2%" }}>
             {" "}
             MAX Token Supply*
@@ -144,7 +145,7 @@ function Token() {
               onChange={(e) => setInitialSupply(e.target.value)}
               style={{
                 height: "48px",
-                color: "white",
+                color:`${theme==='Dark' ? 'white':'black'}`,
                 width: "100%",
                 backgroundColor: "#2D5C8F1C",
                 border: "1px solid #464646",
@@ -165,7 +166,7 @@ function Token() {
               // onChange={(e) => setDecimals(e.target.value)}
               style={{
                 height: "48px",
-                color: "white",
+                color:`${theme==='Dark' ? 'white':'black'}`,
                 width: "100%",
                 backgroundColor: "#2D5C8F1C",
                 border: "1px solid #464646",
@@ -176,9 +177,9 @@ function Token() {
         </div>
 
 
-        <h2 style={{ color: "white", padding: "2%" }}>Security Token</h2>
+        <h2 style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>Security Token</h2>
 
-        <div style={{ color: "white", padding: "2%" }}>
+        <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           <label>
             <input
               type="checkbox"
@@ -193,7 +194,7 @@ function Token() {
             style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
           </>)}
 
-        <div style={{ color: "white", padding: "2%" }}>
+        <div style={{color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           <label>
             <input
               type="checkbox"
@@ -204,7 +205,7 @@ function Token() {
           </label>
         </div>
 
-        <div style={{ color: "white", padding: "2%" }}>
+        <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           <label>
             <input
               type="checkbox"
@@ -255,7 +256,7 @@ function Token() {
             </div>
           </div>
           <div style={{ textAlign: "center", paddingTop: "5%" }}>
-            <Button onClick={() => { setModal(false) }} style={{ backgroundColor: "black", color: "white", padding: "7px 40px", fontSize: "20px", fontWeight: "450" }} variant="">
+            <Button onClick={() => { setModal(false) }} style={{ backgroundColor: "black",color:"white", padding: "7px 40px", fontSize: "20px", fontWeight: "450" }} variant="">
               <img src={Fox} alt="" />
               Add to Metamask</Button>
             <br />

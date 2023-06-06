@@ -21,7 +21,8 @@ import {
     useProvider
 } from "wagmi";
 
-function BuySale() {
+function BuySale(props) {
+    const {theme}=props
     const navigate = useNavigate();
     const { SALE } = useParams();
     const provider = useProvider()
@@ -160,38 +161,38 @@ function BuySale() {
                     <img style={{ height: "250px", width: "800px" }} src="https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg" alt="not found" />
                     <br />
                     <img src={Coin} style={{ paddingLeft: "2vw" }} alt="not found" />
-                    <div style={{ paddingLeft: "1vw", paddingTop: "0.2vw", color: "white", fontSize: "3vw", fontWeight: "900" }}>MEME ELON DOGE FLOKI</div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>All Presale contributors will be eligible for PEPELON #PELO airdrop. </div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>https://twitter.com/PELO_Pepelon </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", paddingTop: "0.2vw", color:`${theme==='Dark' ? 'white':'black'}`, fontSize: "3vw", fontWeight: "900" }}>MEME ELON DOGE FLOKI</div>
+                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>All Presale contributors will be eligible for PEPELON #PELO airdrop. </div>
+                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>https://twitter.com/PELO_Pepelon </div>
+                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>
                         Memelon Description.</div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>
                         MEME token with USDT rewards & self liqudity mechanism from Bitball Ecosystem — MEMELON.
                     </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>
                         MEME token launched by Bitball Ecosystem for MEME community via NFTs, hodlers rewards and a defi platform in future.
                     </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>
                         MEMEs created will be converted into NFTs & Auctioned or rewarded to our community.
                     </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>
                         Relaunched for for better tokenomics & decentralization. </div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>
                         Liquidity locked till 2024 </div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>
 
                         Promotions & lot of marketing planning. </div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>
 
                         Cross chain integration in future, i.e Ethereum chain, Binance chain & others. </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: "white", whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color:`${theme==='Dark' ? 'white':'black'}`, whiteSpace: "pre-wrap" }}>
                         TAX - 2% (only on Polygon chain.) </div>
 
                 </div>
             </div>
             <div>
                 {/* <div style={{ fontWeight: "700", fontSize: "1vw", marginTop: "6vw", padding: "0.5vw 1.5vw", borderRadius: "1.5vw", backgroundColor: "rgba(70,70,70,0.4)" }}>
-                    <span style={{ color: "white" }}>Connect Network to</span>
+                    <span style={{ color:`${theme==='Dark' ? 'white':'black'}` }}>Connect Network to</span>
                     <span><svg className="tokenSvg" version="1.0" xmlns="http://www.w3.org/2000/svg"
                         width="24.000000pt" height="19.000000pt" style={{ fill: "#FFFFFF" }} viewBox="0 0 24.000000 24.000000"
                         preserveAspectRatio="xMidYMid meet">
@@ -213,7 +214,7 @@ c18 -17 26 -19 35 -10 9 9 5 19 -20 45 -18 18 -35 33 -38 33 -3 0 -20 -15 -38
                     </svg></span>
                     <span style={{ color: "#12D576" }}>BNB Smart Chain</span>
                 </div> */}
-                <div style={{ backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "1.3vw", marginTop: "4vw", color: "white", padding: "0.5vw 1.5vw" }}>
+                <div style={{ backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "1.3vw", marginTop: "4vw", color:`${theme==='Dark' ? 'white':'black'}`, padding: "0.5vw 1.5vw" }}>
                     <div>
                         <span style={{ fontSize: "1.4vw", fontWeight: "700" }}>{status}</span>
                         {/* <span style={{ fontSize: "1.1vw" }}>00:05:45:20</span>
@@ -252,10 +253,10 @@ c18 -17 26 -19 35 -10 9 9 5 19 -20 45 -18 18 -35 33 -38 33 -3 0 -20 -15 -38
                             <input
                                 value={buyamount}
                                 onChange={(e) => setbuyamount(e.target.value)}
-                                placeholder={'0 ' + pay} style={{ fontWeight: "600", color: "white", fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
-                            <div style={{ color: "#12D576", fontWeight: "700" }}>MAX</div>
+                                placeholder={'0 ' + pay} style={{ fontWeight: "600", color:`${theme==='Dark' ? 'white':'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
+                            <div style={{ color: "#12D576", fontWeight: "700",paddingTop:"0.5vw" }}>MAX</div>
                         </div>
-                        <div onClick={() => { buyToken() }} style={{ backgroundColor: "#464646", padding: "0.5vw 2vw", borderRadius: "1.5vw" }}>
+                        <div onClick={() => { buyToken() }} style={{ backgroundColor: "#464646", padding: "1vw 2vw 1vw 2vw", borderRadius: "1.5vw" }}>
                             BUY {' ' + token}
                         </div>
                     </div>
