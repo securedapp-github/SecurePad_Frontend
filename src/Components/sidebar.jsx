@@ -53,6 +53,8 @@ function Sidebar(props) {
     if (window.innerWidth > 648) 
       return (
       <>
+        <Link to="/search" className="rihtLink"><div style={{ fontWeight: "400", padding: "10px", fontSize: "20px", color: "white", }}>Sales</div>
+        </Link>
         <Link to="/pricing" className="rihtLink"><div style={{ fontWeight: "400", padding: "10px", fontSize: "20px", color: "white", }}>Pricing</div>
         </Link>
         <Link to="/contact" className="rihtLink"><div style={{ fontWeight: "400", padding: "10px", color: "white", fontSize: "20px", paddingRight: "25px" }}>Contact</div>
@@ -63,6 +65,7 @@ function Sidebar(props) {
         Menu
       </Dropdown.Toggle>
       <Dropdown.Menu id="dropdown-basic" style={{ backgroundColor: "#0d0d3a" }}>
+        <Dropdown.Item href="" style={{ fontWeight: "700", color: "white" }}><Link to="/search"><div style={{ padding: "10px", color: "white" }}>Sales</div></Link></Dropdown.Item>
         <Dropdown.Item href="" style={{ fontWeight: "700", color: "white" }}><Link to="/pricing"><div style={{ padding: "10px", color: "white" }}>Pricing</div></Link></Dropdown.Item>
         <Dropdown.Item href="" style={{ fontWeight: "700", color: "white" }}><Link to="/contact"><div style={{ padding: "10px", color: "white" }}>Contact</div></Link> </Dropdown.Item>
         <Dropdown.Item href=""><ConnectButton showBalance={false} /></Dropdown.Item>

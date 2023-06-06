@@ -271,9 +271,9 @@ const New = ({ onSearch }) => {
     return (
         <div className="container">
             <div className="search">
-                <div class="search-container">
+                <div className="search-container">
                     <input
-                        type="text" class="search-box" placeholder="Search..."
+                        type="text" className="search-box" placeholder="Search..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         style={{
@@ -392,7 +392,7 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
                     </div>
 
                 </div>
-                <div class="line"> </div>
+                <div className="line"> </div>
                 <span className="end">{end}</span>
                 <head>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
