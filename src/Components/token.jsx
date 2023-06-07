@@ -5,6 +5,7 @@ import "../Style/token.css"
 import Vector from '../assets/Vector.png'
 import Fox from '../assets/Fox.png'
 import { ethers } from 'ethers';
+import Loader from 'utils/loader';
 
 import {
   useAccount,
@@ -32,6 +33,7 @@ function Token(props) {
   const [iskyc, setiskyc] = useState(false);
   const [isforce, setisforce] = useState(false);
   const [isdocument, setisdocument] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { data: signerData } = useSigner();
 
@@ -42,6 +44,8 @@ function Token(props) {
   });
 
   const createToken = async () => {
+    try {
+    setLoading(true);
     // if(isdocument || iskyc || isforce || documents != ""){
     //   console.log(iskyc, isforce , documents);
     //   const tx = await FactoryContract.launchSecurityToken(documents, token, symbol, decimals, initialSupply, isforce);
@@ -60,6 +64,11 @@ function Token(props) {
     //  setnewToken("0xA95C52AF59E43C528F24EFAC96A08e000012e0e3");
     // }
     setModal(true);
+    setLoading(false);
+  } catch(e){
+    setLoading(false);
+    console.log("Error", e);
+  }
   }
 
   const handleDocumentChange = () => {
@@ -75,6 +84,7 @@ function Token(props) {
 
   return (
     <div className="tokenBody" style={{ padding: "2%" }}>
+        {loading && ( <Loader/>)}
       <div className="tokenCreate">
         <h2 style={{ fontWeight: "700", color: "#12D576" }}>Create ERC20 Token</h2>
         <h4 style={{ color:`${theme==='Dark' ? 'white':'black'}`, fontWeight: "400" }}>Get started by connecting your wallet</h4>

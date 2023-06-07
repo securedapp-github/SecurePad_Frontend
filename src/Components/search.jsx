@@ -52,8 +52,8 @@ const New = ({ onSearch,theme }) => {
         if (sales.length > 0) {
 
             setsalesArray([]);
-            for (let i = 0; i < 1; i++) {
-                //   for (let i = 0; i < sales.length; i++) {
+            // for (let i = 0; i < 1; i++) {
+                  for (let i = 0; i < sales.length; i++) {
                 let SaleContract = new ethers.Contract(
                     sales[i],
                     SALEABI,

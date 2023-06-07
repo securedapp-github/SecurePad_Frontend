@@ -101,9 +101,11 @@ function ManageSale() {
     let FundContract = new ethers.Contract(
       pay,
       TOKENABI,
-      signerData
+      provider
     );
-    setfund(await FundContract.balanceOf(SALE));
+    let funds = await FundContract.balanceOf(SALE);
+    funds = ethers.utils.formatEther(funds.toString());
+    setfund(funds);
     }else{
       let provider = ethers.getDefaultProvider();
       let balance = await provider.getBalance(SALE);
