@@ -164,9 +164,9 @@ function ManageSale() {
               <div style={{ paddingTop: "1vw", color: 'black',paddingLeft: '10px'}}>Tokens currently on sale</div>
               <div style={{ paddingTop: "1vw", paddingBottom: "10%", color: 'black',paddingLeft: '10px'}}>Payment token</div>
             </div>
-            <div style={{ fontWeight: '500', paddingLeft: '17px',paddingRight : '15px'}}>
+            <div style={{ fontWeight: '500', paddingLeft: '25px'}}>
  
-              <div style={{ color: "#525252" ,paddingTop:'15px'}}>
+              <div style={{ color: "#525252" ,paddingTop:'17px'}}>
                 {tokenName}</div>
               <div style={{ color: "#525252", paddingTop: "1vw" }}>
                 {tokenSymbol}</div> 
@@ -194,7 +194,7 @@ function ManageSale() {
 
 
           <div style={{ backgroundColor: 'white', padding: '1vw', paddingTop: "20px" }}>
-          <div style={{ paddingTop: "1vw", fontSize: "17px", color: "white", display: "flex", flexDirection: "row", justifyContent: "" }}>
+          <div style={{ paddingTop: "1vw", fontSize: "20px", color: "white", display: "flex", flexDirection: "row", justifyContent: "" }}>
             <div style={{color: 'black', fontWeight: 'bold', fontFamily: 'Open Sans, sans-serif'}}
             >
               <div >Price per Token</div>
@@ -242,7 +242,7 @@ function ManageSale() {
             <div style={{ color: "black", marginTop: "2vw", }}>No data available</div>
             <Button onClick={() => { setModal(true) }} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "10vw", padding: "7px 25px", fontSize: "20px", fontWeight: "500" }} variant="">+ Add addresses</Button></div>
           </div>
-          <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "7vw" }}>Withdrawls</div><br></br>
+          <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "7vw" }}>Withdrawls</div>
 
           <div style={{ backgroundColor: 'white', padding: '1vw', paddingTop: "20px" }}>
           <div style={{ color: "black", marginTop: "2vw", }}>Sale Token Balance: {amount}</div>

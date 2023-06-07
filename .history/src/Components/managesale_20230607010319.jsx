@@ -166,7 +166,7 @@ function ManageSale() {
             </div>
             <div style={{ fontWeight: '500', paddingLeft: '17px',paddingRight : '15px'}}>
  
-              <div style={{ color: "#525252" ,paddingTop:'15px'}}>
+              <div style={{ color: "#525252" ,paddingTop:'17px'}}>
                 {tokenName}</div>
               <div style={{ color: "#525252", paddingTop: "1vw" }}>
                 {tokenSymbol}</div> 

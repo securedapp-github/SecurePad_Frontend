@@ -164,9 +164,9 @@ function ManageSale() {
               <div style={{ paddingTop: "1vw", color: 'black',paddingLeft: '10px'}}>Tokens currently on sale</div>
               <div style={{ paddingTop: "1vw", paddingBottom: "10%", color: 'black',paddingLeft: '10px'}}>Payment token</div>
             </div>
-            <div style={{ fontWeight: '500', paddingLeft: '17px',paddingRight : '15px'}}>
+            <div style={{ fontWeight: '500', paddingLeft: '17px',paddingRight : '1px'}}>
  
-              <div style={{ color: "#525252" ,paddingTop:'15px'}}>
+              <div style={{ color: "#525252" ,paddingTop:'17px'}}>
                 {tokenName}</div>
               <div style={{ color: "#525252", paddingTop: "1vw" }}>
                 {tokenSymbol}</div> 
