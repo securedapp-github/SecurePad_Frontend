@@ -1,20 +1,5 @@
 [
 	{
-		"inputs": [],
-		"name": "ExceedsBalance",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "LockPeriodOngoing",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "TransferFailed",
-		"type": "error"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -72,6 +57,38 @@
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "ClaimMonthlyToken",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "TokenDeposited",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "amount",
 		"outputs": [
@@ -93,7 +110,12 @@
 			},
 			{
 				"internalType": "uint256",
-				"name": "_lockDuration",
+				"name": "_lockCliffMonths",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_releaseMonths",
 				"type": "uint256"
 			}
 		],
@@ -122,7 +144,20 @@
 	},
 	{
 		"inputs": [],
-		"name": "lockDuration",
+		"name": "lockCliff",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "lockStart",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -150,13 +185,31 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_lockDuration",
+				"name": "_cliffmonths",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
 				"type": "uint256"
 			}
 		],
 		"name": "reLock",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "releaseMonths",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -193,13 +246,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
+		"inputs": [],
 		"name": "withdraw",
 		"outputs": [],
 		"stateMutability": "nonpayable",

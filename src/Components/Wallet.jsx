@@ -153,10 +153,10 @@ function Wallet(props) {
   };
 
   useEffect(() => {
-    // if (!signerData || !address ) return;
+    if (!signerData || !address ) return;
     console.log('i fire once');
     gALL();
-  }, []);
+  }, [address]);
 
 
   const handleButtonClick = (buttonIndex) => {

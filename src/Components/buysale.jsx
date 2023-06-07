@@ -23,6 +23,7 @@ import {
 
 function BuySale(props) {
     const {theme}=props
+
     const navigate = useNavigate();
     const { SALE } = useParams();
     const provider = useProvider()
@@ -30,6 +31,7 @@ function BuySale(props) {
     const [progress, setprogress] = useState(0);
     const [price, setprice] = useState(0);
     const [decimal, setdecimal] = useState(0);
+    const [balance, setbalance] = useState(0);
 
     const [soft, setsoft] = useState(0);
     const [hard, sethard] = useState(0);
@@ -83,6 +85,10 @@ function BuySale(props) {
             provider
         );
         settoken(await TOKENCONTRACT.symbol());
+        let bal = await TOKENCONTRACT.balanceOf(address);
+        bal = ethers.utils.formatEther(bal.toString());
+        setbalance(bal);    
+
         if (pay != '0x0000000000000000000000000000000000000000') {
             TOKENCONTRACT = new ethers.Contract(
                 pay,
@@ -130,9 +136,12 @@ function BuySale(props) {
 
         if (payaddress == '0x0000000000000000000000000000000000000000') {
             const tx = await SaleContract.buyToken(ethers.utils.parseUnits(buyamount.toString(), "ether"), { value: ethers.utils.parseUnits(buyamount.toString(), "ether") });
-            const receipt = await tx.wait()
-        } else {
+            const receipt = await tx.wait();
+            if(receipt.status == 1){
+                alert("Purchase Successful");
+            }
 
+        } else {
             let TOKENCONTRACT = new ethers.Contract(
                 payaddress,
                 TOKENABI,
@@ -191,52 +200,11 @@ function BuySale(props) {
                 </div>
             </div>
             <div>
-                {/* <div style={{ fontWeight: "700", fontSize: "1vw", marginTop: "6vw", padding: "0.5vw 1.5vw", borderRadius: "1.5vw", backgroundColor: "rgba(70,70,70,0.4)" }}>
-                    <span style={{ color:`${theme==='Dark' ? 'white':'black'}` }}>Connect Network to</span>
-                    <span><svg className="tokenSvg" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                        width="24.000000pt" height="19.000000pt" style={{ fill: "#FFFFFF" }} viewBox="0 0 24.000000 24.000000"
-                        preserveAspectRatio="xMidYMid meet">
-
-                        <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
-                            stroke="none">
-                            <path d="M82 197 c-25 -26 -29 -36 -20 -45 9 -9 17 -7 35 10 l23 21 23 -21
-c18 -17 26 -19 35 -10 9 9 5 19 -20 45 -18 18 -35 33 -38 33 -3 0 -20 -15 -38
--33z"/>
-                            <path d="M14 129 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16
--11z"/>
-                            <path d="M104 129 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16
--11z"/>
-                            <path d="M194 129 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16
--11z"/>
-                            <path d="M62 87 c-9 -11 -4 -21 23 -47 l35 -34 35 34 c27 26 32 36 23 47 -9
-11 -15 10 -35 -8 l-23 -22 -23 22 c-20 18 -26 19 -35 8z"/>
-                        </g>
-                    </svg></span>
-                    <span style={{ color: "#12D576" }}>BNB Smart Chain</span>
-                </div> */}
+           
                 <div style={{ backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "1.3vw", marginTop: "4vw", color:`${theme==='Dark' ? 'white':'black'}`, padding: "0.5vw 1.5vw" }}>
                     <div>
                         <span style={{ fontSize: "1.4vw", fontWeight: "700" }}>{status}</span>
-                        {/* <span style={{ fontSize: "1.1vw" }}>00:05:45:20</span>
-                        <span style={{ paddingLeft: "3vw" }}><svg className="tokenSvg" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                            width="40.000000pt" height="34.000000pt" style={{ fill: "#FFFFFF" }} viewBox="0 0 24.000000 24.000000"
-                            preserveAspectRatio="xMidYMid meet">
-
-                            <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
-                                stroke="none">
-                                <path d="M82 197 c-25 -26 -29 -36 -20 -45 9 -9 17 -7 35 10 l23 21 23 -21
-c18 -17 26 -19 35 -10 9 9 5 19 -20 45 -18 18 -35 33 -38 33 -3 0 -20 -15 -38
--33z"/>
-                                <path d="M14 129 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16
--11z"/>
-                                <path d="M104 129 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16
--11z"/>
-                                <path d="M194 129 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16
--11z"/>
-                                <path d="M62 87 c-9 -11 -4 -21 23 -47 l35 -34 35 34 c27 26 32 36 23 47 -9
-11 -15 10 -35 -8 l-23 -22 -23 22 c-20 18 -26 19 -35 8z"/>
-                            </g>
-                        </svg></span> */}
+              
                     </div>
                     <div style={{ marginTop: "1vw", height: "1vw", borderRadius: "1vw", backgroundColor: "#464646" }}>
                         <div style={{ height: "1vw", width: "20%", borderRadius: "1vw", backgroundColor: "#12D576" }}></div>
@@ -254,36 +222,26 @@ c18 -17 26 -19 35 -10 9 9 5 19 -20 45 -18 18 -35 33 -38 33 -3 0 -20 -15 -38
                                 value={buyamount}
                                 onChange={(e) => setbuyamount(e.target.value)}
                                 placeholder={'0 ' + pay} style={{ fontWeight: "600", color:`${theme==='Dark' ? 'white':'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
-                            <div style={{ color: "#12D576", fontWeight: "700",paddingTop:"0.5vw" }}>MAX</div>
+                            <div style={{ color: "#12D576", fontWeight: "700",paddingTop:"0.5vw" }}>Matic</div>
                         </div>
                         <div onClick={() => { buyToken() }} style={{ backgroundColor: "#464646", padding: "1vw 2vw 1vw 2vw", borderRadius: "1.5vw" }}>
                             BUY {' ' + token}
                         </div>
                     </div>
                     <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
-                        <div>Total Contributors</div>
-                        <div>0</div>
+                        <div>Expected Token</div>
+                        <div>{buyamount * decimal}</div>
                     </div>
-                    {/* <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div>AVG Contribution</div>
-                        <div>0.587 BNB</div>
-                    </div> */}
+
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
                         <div>Sale Rate</div>
                         <div> { price } Matic = {decimal} {token} </div>
                     </div>
-                    {/* <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div>Listing Rate</div>
-                        <div>7,935,227,272.727 MEMELON / BNB</div>
-                    </div> */}
-                    {/* <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
-                        <div>My Contribution</div>
-                        <div>0 BNB</div>
-                    </div> */}
-                    {/* <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                        <div>Total Reserved Tokens</div>
-                        <div>0 MEMELON</div>
-                    </div> */}
+                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
+                        <div>Your Balance</div>
+                        <div> { balance } {token} </div>
+                    </div>
+                   
                 </div>
             </div>
         </div>

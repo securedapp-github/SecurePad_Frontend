@@ -20,7 +20,7 @@ import {
 
 import TOKENABI from "../ABI/TokenABI.json";
 import SALEABI from "../ABI/SaleABI.json";
-import Sale from './sale';
+// import Sale from './sale';
 
 function ManageSale() {
 
@@ -115,16 +115,17 @@ function ManageSale() {
 
 
   const sendTokenToSale = async () => {
+
     let TokenContract = new ethers.Contract(
       token,
       TOKENABI,
       signerData
     );
 
-  const tx = await TokenContract.transfer(SALE, ethers.utils.parseUnits(sendtoken.toString(), "ether"));
+  const tx = await TokenContract.transfer(SALE, ethers.utils.parseUnits(sendtoken.toString(),"ether"));
     const receipt = await tx.wait();
     if(receipt.status == 1){
-      
+      alert("Token Transferred");
     }
   }
 
@@ -184,7 +185,7 @@ function ManageSale() {
           </div>
           <div style={{ paddingTop: "20px",color:"#12D576"}}>Send Tokens to Sale Contract</div>
           <input value={sendtoken} onChange={(e) => setsendtoken(e.target.value)} placeholder="Enter Amount" type="number" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494" }} />
-          <Button style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Send Token To Sale Contract</Button>
+          <Button onClick={() => {sendTokenToSale()}} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Send Token To Sale Contract</Button>
           <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "8vw" }}>General Settings</div>
           <div style={{ paddingTop: "1vw", fontSize: "20px", color: "white", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <div>

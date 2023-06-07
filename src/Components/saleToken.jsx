@@ -39,16 +39,16 @@ function SaleToken() {
 
   const [custompayment, setcustompayment] = useState(false);
   const [payment, setpayment] = useState("");
-  const [price, setprice] = useState("");
-  const [soft, setsoft] = useState("");
-  const [hard, sethard] = useState("");
-  const [min, setmin] = useState("");
-  const [max, setmax] = useState("");
+  const [price, setprice] = useState(0);
+  const [soft, setsoft] = useState(0);
+  const [hard, sethard] = useState(0);
+  const [min, setmin] = useState(0);
+  const [max, setmax] = useState(0);
   const [startdate, setstartdate] = useState("");
-  const [start, setstart] = useState("");
-  const [duration, setduration] = useState("");
-  const [cliff, setcliff] = useState("");
-  const [releasemonths, setreleasemonths] = useState("");
+  const [start, setstart] = useState(0);
+  const [duration, setduration] = useState(0);
+  const [cliff, setcliff] = useState(0);
+  const [releasemonths, setreleasemonths] = useState(0);
   const [owner, setowner] = useState("");
 
 
@@ -78,8 +78,12 @@ function SaleToken() {
     readTokenDetails();
   }, [signerData, TOKEN]);
 
+  useEffect(() => {
+    alert(123);
+  }, [duration,hard]);
   const launchSale = async () => {
 
+        console.log(TOKEN,payment,price * 10000,start,duration,releasemonths,cliff,[ethers.utils.parseUnits(min.toString(), "ether"),ethers.utils.parseUnits(max.toString(), "ether"),ethers.utils.parseUnits(soft.toString(), "ether"),ethers.utils.parseUnits(hard.toString(), "ether")]);
         const tx = await FactoryContract.launchSecureTokenSale
         (TOKEN,payment,price * 10000,start,duration,releasemonths,cliff,[ethers.utils.parseUnits(min.toString(), "ether"),ethers.utils.parseUnits(max.toString(), "ether"),ethers.utils.parseUnits(soft.toString(), "ether"),ethers.utils.parseUnits(hard.toString(), "ether")]);
         const receipt = await tx.wait()

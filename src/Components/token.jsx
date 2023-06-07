@@ -24,7 +24,8 @@ function Token(props) {
   const [modal, setModal] = useState(false)
   const [token, setToken] = useState("");
   const [symbol, setSymbol] = useState("");
-  const [initialSupply, setInitialSupply] = useState("");
+  const [initialSupply, setInitialSupply] = useState(0);
+  const [maxSupply, setmaxSupply] = useState(0);
   const [decimals, setDecimals] = useState(18);
   const [newToken, setnewToken] = useState("");
   const [documents, setdocuments] = useState("");
@@ -51,8 +52,8 @@ function Token(props) {
 
     // }else{
 
-    console.log(token, symbol, decimals, ethers.utils.parseUnits(initialSupply, "ether").toString());
-    const tx = await FactoryContract.launchSecureToken(token, symbol, decimals, ethers.utils.parseUnits(initialSupply, "ether").toString());
+    console.log(token, symbol, decimals, ethers.utils.parseUnits(initialSupply, "ether").toString(), ethers.utils.parseUnits(maxSupply, "ether").toString());
+    const tx = await FactoryContract.launchSecureToken(token, symbol, decimals, ethers.utils.parseUnits(initialSupply, "ether").toString(), ethers.utils.parseUnits(maxSupply, "ether").toString());
     const receipt = await tx.wait()
     console.log("Token Launched = ", receipt.logs[0].address)
     setnewToken(receipt.logs[0].address);
@@ -103,7 +104,7 @@ function Token(props) {
         <h2 style={{ color:`${theme==='Dark' ? 'white':'black'}` }}>Token Settings</h2>
 
         <div style={{color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
-          Token Name*
+          Token Name
           <input
            
             type="text"
@@ -120,7 +121,7 @@ function Token(props) {
           ></input>
         </div>
         <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
-          Token Symbol*
+          Token Symbol
           <input
             type="text"
             value={symbol}
@@ -135,10 +136,26 @@ function Token(props) {
             }}
           ></input>
         </div>
+        <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
+          Initial Token Supply to Owner (Optional)
+          <input
+            type="text"
+            value={maxSupply}
+            onChange={(e) => setmaxSupply(e.target.value)}
+            style={{
+              height: "48px",
+              color:`${theme==='Dark' ? 'white':'black'}`,
+              width: "100%",
+              backgroundColor: "#2D5C8F1C",
+              border: "1px solid #464646",
+              borderRadius: "7px",
+            }}
+          ></input>
+        </div>
         <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, display: "flex", flexDirection: "row" }}>
           <div style={{ padding: "2%" }}>
             {" "}
-            MAX Token Supply*
+            MAX Token Supply (Optional)
             <input
               type="number"
               value={initialSupply}

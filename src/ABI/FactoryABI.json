@@ -201,6 +201,11 @@
 				"internalType": "uint256",
 				"name": "_maxSupply",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_initSupply",
+				"type": "uint256"
 			}
 		],
 		"name": "launchSecureToken",
