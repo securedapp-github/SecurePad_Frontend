@@ -21,7 +21,8 @@ import {
   useProvider
 } from "wagmi";
 
-function Wallet() {
+function Wallet(props) {
+  const {theme}=props
   const CONTRACT_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
 
   const { address } = useAccount();
@@ -206,7 +207,7 @@ function Wallet() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr style={{color:`${theme==='Dark' ? 'white':'black'}`}}>
                   <td>Admin User</td>
                   <td>AdminUser@securedapp.in</td>
                   <td>{address}</td>

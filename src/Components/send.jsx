@@ -1,6 +1,6 @@
 import React from 'react'
-function send() {
- 
+function send(props) {
+ const {theme}=props
   return (
     <div style={{padding:"0 2%"}}>
       <h2 style={{fontWeight:"700",color:"#12D576",paddingLeft:"5%"}}>Airdrop Tokens in One Click</h2>
@@ -24,9 +24,9 @@ function send() {
        
       </div>
       <div className="tokenSettings" style={{width:"45%",backgroundColor:"transparent",border:"0",borderLeft:"1px solid"}}>
-      <h3 style={{color:"white"}}>Select token</h3>
-      <div style={{color:"white"}}>Token*</div>
-       <input type="text" style={{margin:"10px",marginLeft:"0",marginBottom:"10px",height:"50px",backgroundColor:"transparent",border:"1px solid #464646",borderRadius:"7px",width:"100%",color:"white"}}/>
+      <h3 style={{color:`${theme==='Dark' ? 'white':'black'}`}}>Select token</h3>
+      <div style={{color:`${theme==='Dark' ? 'white':'black'}`}}>Token*</div>
+       <input type="text" style={{margin:"10px",marginLeft:"0",marginBottom:"10px",height:"50px",backgroundColor:"transparent",border:"1px solid #464646",borderRadius:"7px",width:"100%",color:`${theme==='Dark' ? 'white':'black'}`}}/>
        <button style={{padding:"2% 7%",backgroundColor:"#12D576",borderRadius:"30px",marginTop:"1%",fontSize:"20px",fontWeight:"400"}}>Continue</button>
       </div>
     </div>

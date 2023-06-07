@@ -1,6 +1,7 @@
 import React from 'react'
 
-function manage() {
+function manage(props) {
+  const {theme}=props
   return (
     
     <div style={{padding:"0 2%"}}>
@@ -24,10 +25,10 @@ function manage() {
         </div>
       </div>
       <div className="tokenSettings" style={{width:"45%",backgroundColor:"transparent",border:"0",borderLeft:"1px solid"}}>
-      <h3 style={{color:"white"}}>Token Sale Contract Address</h3>
-       <input type="text" style={{margin:"10px",marginLeft:"0",marginBottom:"10px",height:"48px",backgroundColor:"transparent",border:"1px solid #464646",borderRadius:"7px",width:"100%",color:"white"}}/>
+      <h3 style={{color:`${theme==='Dark' ? 'white':'black'}`}}>Token Sale Contract Address</h3>
+       <input type="text" style={{margin:"10px",marginLeft:"0",marginBottom:"10px",height:"48px",backgroundColor:"transparent",border:"1px solid #464646",borderRadius:"7px",width:"100%",color:`${theme==='Dark' ? 'white':'black'}`}}/>
        <button style={{padding:"2% 7%",backgroundColor:"#12D576",borderRadius:"30px",marginTop:"1%",fontSize:"20px",fontWeight:"400"}}>Continue</button>
-       <h5 style={{padding:"3% 0",color:"white"}}>Don't have your token yet ? <span style={{color:"#12D576",fontWeight:"700"}}>Create Token</span></h5>
+       <h5 style={{padding:"3% 0",color:`${theme==='Dark' ? 'white':'black'}`}}>Don't have your token yet ? <span style={{color:"#12D576",fontWeight:"700"}}>Create Token</span></h5>
       </div>
     </div>
     </div>

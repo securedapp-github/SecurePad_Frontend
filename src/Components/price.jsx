@@ -1,10 +1,11 @@
 import React from 'react'
 import "../Style/price.css"
-function price() {
+function price(props) {
+  const {theme}=props
   return (
     <div 
-    style={{height:"100%",backgroundImage:"linear-gradient(to right,black,rgb(14, 14, 61))",paddingTop:"4%"}}>
-    <h1 className="head">Our Price</h1>
+    style={{height:"100%",backgroundImage:`${theme==='Dark' ? 'linear-gradient(to right,black,rgb(14, 14, 61))' : 'linear-gradient(to right,#FBFBFB,#bff2d9)'}`,paddingTop:"4%"}}>
+    <h1 className="head" style={{color:`${theme==='Dark' ? 'white':'black'}`,borderBottom:`1px solid ${theme==='Dark' ? 'white':'black'}`}}>Our Price</h1>
      <div className="price-section">  
     <div className="price-section-items">
         <div className="card">

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 
-function Lock() {
-
+function Lock(props) {
+  const {theme}=props
   const [lock, setLock] = useState("");
     
       return (
@@ -30,9 +30,9 @@ function Lock() {
           
         </div>
         <div className="tokenSettings" style={{width:"45%",backgroundColor:"transparent",border:"0",borderLeft:"1px solid"}}>
-        <h5 style={{color:"white"}}> Token contract address*</h5>
+        <h5 style={{color:`${theme==='Dark' ? 'white':'black'}`}}> Token contract address*</h5>
          <input type="text" value={lock} onChange={(e) => setLock(e.target.value)}
-         style={{margin:"10px",marginLeft:"0",marginBottom:"10px",height:"50px",backgroundColor:"transparent",border:"1px solid #464646",borderRadius:"7px",width:"100%",color:"white"}}/>
+         style={{margin:"10px",marginLeft:"0",marginBottom:"10px",height:"50px",backgroundColor:"transparent",border:"1px solid #464646",borderRadius:"7px",width:"100%",color:`${theme==='Dark' ? 'white':'black'}`}}/>
          
          <Link to={`/locktoken/${lock}`} >
          <button style={{padding:"2% 7%",backgroundColor:"#12D576",borderRadius:"30px",marginTop:"1%",fontSize:"20px",fontWeight:"400"}}>Create Lock</button>

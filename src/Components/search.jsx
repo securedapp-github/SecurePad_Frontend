@@ -19,7 +19,7 @@ import {
     useProvider
 } from "wagmi";
 
-const New = ({ onSearch }) => {
+const New = ({ onSearch,theme }) => {
     const [search, setSearch] = useState('');
     const [filterBy, setFilterBy] = useState('');
     const [count, setcount] = useState(0);
@@ -352,7 +352,7 @@ const New = ({ onSearch }) => {
     );
 };
 
-const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token, sale }) => {
+const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token, sale , theme}) => {
     const navigate=useNavigate()
 
     const GoToSaleDetail = async(sale) => {

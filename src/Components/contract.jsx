@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 import '../Style/contract.css'
-function Contract() {
-
+function Contract(props) {
+ const {theme}=props
   const [token, setToken] = useState("");
 
   return (
@@ -29,16 +29,16 @@ function Contract() {
           </div>
         </div>
         <div className="tokenSettings" style={{ width: "45%", backgroundColor: "transparent", border: "0", borderLeft: "1px solid" }}>
-          <h3 style={{ color: "white" }}>Token Address</h3>
+          <h3 style={{ color:`${theme==='Dark' ? 'white':'black'}` }}>Token Address</h3>
           
           <input type="text" value={token}
-            onChange={(e) => setToken(e.target.value)} style={{ margin: "10px", marginLeft: "0", marginBottom: "10px", height: "48px", backgroundColor: "transparent", border: "1px solid #464646", borderRadius: "7px", width: "100%", color: "white" }} />
+            onChange={(e) => setToken(e.target.value)} style={{ margin: "10px", marginLeft: "0", marginBottom: "10px", height: "48px", backgroundColor: "transparent", border: "1px solid #464646", borderRadius: "7px", width: "100%",  color:`${theme==='Dark' ? 'white':'black'}` }} />
           
           <Link to={`/managetoken/${token}`} >
             <Button style={{ padding: "2% 7%", backgroundColor: "#12D576", borderRadius: "30px", marginTop: "1%", fontSize: "20px", fontWeight: "400" }}>Continue</Button>
           </Link>
           <Link to={`/token`} >
-            <h5 style={{ padding: "3% 0", color: "white" }}>Don't have your token yet ? <span style={{ color: "#12D576", fontWeight: "700" }}>Create Token</span></h5>
+            <h5 style={{ padding: "3% 0", color:`${theme==='Dark' ? 'white':'black'}` }}>Don't have your token yet ? <span style={{ color: "#12D576", fontWeight: "700" }}>Create Token</span></h5>
           </Link>
         </div>
       </div>

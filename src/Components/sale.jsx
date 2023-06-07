@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../Style/sale.css"
 import {Link} from 'react-router-dom'
 
-function Sale() {
-
+function Sale(props) {
+  const {theme}=props
   const [sale, setsale] = useState("");
 
 
@@ -31,9 +31,9 @@ function Sale() {
 
     </div>
     <div className="tokenSettings" style={{width:"45%",backgroundColor:"transparent",border:"0",borderLeft:"1px solid"}}>
-    <h3 style={{color:"white"}}>Token Contract Address*</h3>
+    <h3 style={{color:`${theme==='Dark' ? 'white':'black'}`}}>Token Contract Address*</h3>
      <input type="text" value={sale} onChange={(e) => setsale(e.target.value)}
-     style={{margin:"10px",marginLeft:"0",marginBottom:"10px",height:"50px",backgroundColor:"transparent",border:"1px solid #464646",borderRadius:"7px",width:"100%",color:"white"}}/>
+     style={{margin:"10px",marginLeft:"0",marginBottom:"10px",height:"50px",backgroundColor:"transparent",border:"1px solid #464646",borderRadius:"7px",width:"100%",color:`${theme==='Dark' ? 'white':'black'}`}}/>
      
      <Link to={`/saletoken/${sale}`} >
      <button style={{padding:"2% 7%",backgroundColor:"#12D576",borderRadius:"30px",marginTop:"1%",fontSize:"20px",fontWeight:"400"}}>Continue</button>
