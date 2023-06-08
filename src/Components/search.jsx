@@ -360,7 +360,7 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
     }
     
     return (
-        <div onClick={() => {GoToSaleDetail(sale)}} style={{cursor:"pointer",backgroundColor:"rgba(70,70,70,0.4)",width:"25vw",height:"30vw",borderRadius:"2vw"}}>
+        <div onClick={() => {GoToSaleDetail(sale)}} style={{cursor:"pointer",backgroundColor:"rgba(70,70,70,0.4)",width:"25vw",borderRadius:"2vw"}}>
         <div className="card">
             <img src={image} alt={title} className="card-image" />
             <div className="card-content">
@@ -382,6 +382,7 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
                         <span className="Softcap-text">{hard} </span>
 
                     </div>
+                    </div> <div className="box-container">
                     <div className="box box-3">
                         <span className="box-text">Liquidity</span>
                         <span className="Liquidity-text">{liq}%</span>
