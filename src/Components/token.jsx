@@ -81,10 +81,16 @@ function Token(props) {
   const handleKYCChange = () => {
     setiskyc(!iskyc);
   };
+  const blurryDivStyle = {
+    filter: loading? 'blur(5px)':'blur(0px)'
+  };
+
 
   return (
-    <div className="tokenBody" style={{ padding: "2%" }}>
-        {loading && ( <Loader/>)}
+<>
+    {loading && ( <Loader/>)}
+    <div className="tokenBody" style={{ ...blurryDivStyle, padding: "2%" }}>
+      
       <div className="tokenCreate">
         <h2 style={{ fontWeight: "700", color: "#12D576" }}>Create ERC20 Token</h2>
         <h4 style={{ color:`${theme==='Dark' ? 'white':'black'}`, fontWeight: "400" }}>Get started by connecting your wallet</h4>
@@ -299,6 +305,7 @@ function Token(props) {
       </Modal>
 
     </div>
+    </>
   )
 }
 

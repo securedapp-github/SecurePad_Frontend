@@ -10,6 +10,7 @@ import { ethers } from 'ethers';
 import { formatAddress } from '../utils/address';
 import { useNavigate } from 'react-router-dom';
 import { readContract } from '@wagmi/core'
+import Loader from 'utils/loader';
 
 import {
   useAccount,
@@ -28,6 +29,7 @@ function Main() {
 
   const navigate = useNavigate();
   const { TOKEN } = useParams();
+  const [loading, setLoading] = useState(false);
 
   const [modal, setModal] = useState(false)  
   const [modal1, setModal1] = useState(false)
@@ -55,12 +57,21 @@ function Main() {
   });
 
   const readToken = async () => {
+    try {
+      setLoading(true);
     console.log(signerData);
     let [name,symbol,supply] = await TokenContract.getTokenInfo()
     settokenName(  name );
     settokenSymbol ( symbol );
     supply = supply.toString();
     settokenSupply(ethers.utils.formatEther(supply));
+    setLoading(false);
+
+  } catch(e){
+    setLoading(false);
+    console.log("Error", e);
+  }
+
   }
 
   useEffect(() => {
@@ -69,6 +80,8 @@ function Main() {
   }, [signerData, TOKEN]);
 
   const mintToken = async () => {
+    try {
+      setLoading(true);
     let TokenContracts = new ethers.Contract(
       TOKEN,
       TOKENABI,
@@ -79,9 +92,17 @@ function Main() {
     console.log("Token Minted ", receipt)
     setModal(false);
     setmintmodal(true);
+    setLoading(false);
+
+  } catch(e){
+    setLoading(false);
+    console.log("Error", e);
+  }
   }
 
   const burnToken = async () => {
+    try {
+      setLoading(true);
     let TokenContracts = new ethers.Contract(
       TOKEN,
       TOKENABI,
@@ -92,10 +113,23 @@ function Main() {
     console.log("Token Burn ", receipt)
     setModal1(false);
     setburnmodal(true);
+    setLoading(false);
+
+  } catch(e){
+    setLoading(false);
+    console.log("Error", e);
+  }
   }
 
+  const blurryDivStyle = {
+    filter: loading? 'blur(5px)':'blur(0px)'
+  };
+
   return (
-    <div className="main" style={{ padding: "2%", margin: "0 12% 0 15%" }}>
+    <>
+    {loading && ( <Loader/>)}
+
+    <div className="main" style={{ ...blurryDivStyle, padding: "2%", margin: "0 12% 0 15%" }}>
       
       <div className="mainFirstRow" style={{ width: "100%", }}>
 
@@ -382,6 +416,7 @@ function Main() {
       </div>
 
     </div>
+    </>
   )
 }
 

@@ -38,22 +38,22 @@ function DistributeToken(props) {
             let amounts = [];
 
             for (let i = 0; i < csvData.length; i++) {
-                addresses =  [...addresses, csvData[i][0]];
-                amounts =  [...amounts, ethers.utils.parseUnits(Number(csvData[i][1]).toString(), "ether")];
+                addresses = [...addresses, csvData[i][0]];
+                amounts = [...amounts, ethers.utils.parseUnits(Number(csvData[i][1]).toString(), "ether")];
             }
-            console.log("addresses : ",addresses);
-            console.log("amounts : ",amounts);
+            console.log("addresses : ", addresses);
+            console.log("amounts : ", amounts);
 
 
             if (token == '0x0000000000000000000000000000000000000000') {
-               
+
                 let AirdropCONTRACT = new ethers.Contract(
                     AIRDROP_ADDRESS,
                     AIRDROPABI,
                     signerData
                 );
-               
-                const tx = await AirdropCONTRACT.airdropNative(addresses,amounts,{ value: ethers.utils.parseUnits(totalamount.toString(), "ether") });
+
+                const tx = await AirdropCONTRACT.airdropNative(addresses, amounts, { value: ethers.utils.parseUnits(totalamount.toString(), "ether") });
                 const receipt = await tx.wait();
                 if (receipt.status == 1) {
                     alert("Drop Successful toast");
@@ -73,17 +73,17 @@ function DistributeToken(props) {
                     AIRDROPABI,
                     signerData
                 );
-                
+
                 const tx = await TOKENCONTRACT.approve(AIRDROP_ADDRESS, ethers.utils.parseUnits(totalamount.toString(), "ether"));
                 const receipt = await tx.wait();
                 if (receipt.status == 1) {
-                    const tx2 = await AirdropCONTRACT.airdropTokens(token,addresses,amounts);
+                    const tx2 = await AirdropCONTRACT.airdropTokens(token, addresses, amounts);
                     const receipt2 = await tx2.wait()
                     if (receipt2.status == 1) {
                         alert("drop success toast");
                         setLoading(false);
                     }
-                }else{
+                } else {
                     alert("approve failed");
                 }
             }
@@ -104,6 +104,7 @@ function DistributeToken(props) {
     }
 
     const handleFileUpload = (event) => {
+        try {
         const file = event.target.files[0];
         const reader = new FileReader();
 
@@ -122,6 +123,10 @@ function DistributeToken(props) {
         };
 
         reader.readAsText(file);
+    } catch(e){
+        setLoading(false);
+        console.log("Error", e);
+      }
     };
 
     const handleDelete = (index) => {
@@ -129,15 +134,19 @@ function DistributeToken(props) {
         updatedData.splice(index, 1);
         setCSVData(updatedData);
         calculateTotalAmount(updatedData);
-      };
+    };
 
     const calculateTotalAmount = (data) => {
         let total = 0;
         for (let i = 0; i < data.length; i++) {
-          total += parseFloat(data[i][1]);
+            total += parseFloat(data[i][1]);
         }
         settotalamount(total);
     };
+
+    const blurryDivStyle = {
+        filter: loading? 'blur(5px)':'blur(0px)'
+      };
 
     function GetCSV() {
         return (
@@ -166,9 +175,12 @@ function DistributeToken(props) {
                         <h3 style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }}>Select token</h3>
                         <div style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }}>Token</div>
                         <input type="text" value={token} onChange={(e) => settoken(e.target.value)}
-                        style={{ margin: "10px", marginLeft: "0", marginBottom: "10px", height: "50px", backgroundColor: "transparent", border: "1px solid #464646", borderRadius: "7px", width: "100%", color: `${theme === 'Dark' ? 'white' : 'black'}` }} />
+                            style={{ margin: "10px", marginLeft: "0", marginBottom: "10px", height: "50px", backgroundColor: "transparent", border: "1px solid #464646", borderRadius: "7px", width: "100%", color: `${theme === 'Dark' ? 'white' : 'black'}` }} />
 
-                        <div style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }}>Uplaod CSV</div>
+                        <div style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }}>Upload CSV                         <a target="_blank" style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }} href="https://docs.google.com/spreadsheets/d/10zBcQ1lS_10mnFi2NC8xkhlLmPhqAb2Qxz2RGUNI0QA/edit?usp=sharing"> Sample CSV</a>
+                        </div>
+
+
                         <input type="file" accept=".csv" onChange={handleFileUpload} style={{ margin: "10px", marginLeft: "0", marginBottom: "10px", height: "50px", backgroundColor: "transparent", border: "1px solid #464646", borderRadius: "7px", width: "100%", color: `${theme === 'Dark' ? 'white' : 'black'}` }} />
 
                         <button onClick={() => { continueFlow(); }} style={{ padding: "2% 7%", backgroundColor: "#12D576", borderRadius: "30px", marginTop: "1%", fontSize: "20px", fontWeight: "400" }}>Continue</button>
@@ -181,28 +193,35 @@ function DistributeToken(props) {
     }
 
     const getUserBalance = async () => {
-
-        if(token != "0x0000000000000000000000000000000000000000"){
+        try {
+            setLoading(true);
+        if (token != "0x0000000000000000000000000000000000000000") {
             let FundContract = new ethers.Contract(
-              token,
-              TOKENABI,
-              provider
+                token,
+                TOKENABI,
+                provider
             );
             let funds = await FundContract.balanceOf(address);
             funds = ethers.utils.formatEther(funds.toString());
             setbalance(funds);
-            }else{
-              let provider = ethers.getDefaultProvider();
-              let balance = await provider.getBalance(address);
-              balance = ethers.utils.formatEther(balance.toString());
-              setbalance(balance);
-            }
+            setLoading(false);
+        } else {
+            let provider = ethers.getDefaultProvider();
+            let balance = await provider.getBalance(address);
+            balance = ethers.utils.formatEther(balance.toString());
+            setbalance(balance);
+            setLoading(false);
+        }
+    } catch(e){
+        setLoading(false);
+        console.log("Error", e);
+      }
     }
 
     useEffect(() => {
         if (!address || token == "") return;
         getUserBalance();
-    }, [address,token]);
+    }, [address, token]);
 
 
 
@@ -214,7 +233,7 @@ function DistributeToken(props) {
         )}
 
         {isUpload && (
-            <div style={{ padding: "2vw", margin: "0 10vw 0 20vw" }}>
+            <div style={{ ...blurryDivStyle, padding: "2vw", margin: "0 10vw 0 20vw" }}>
                 <div className="saleFirstRow" style={{ display: "flex", flexDirection: "row" }}>
                     <div style={{ paddingTop: "1vw" }}><svg xmlns="http://www.w3.org/2000/svg" height="2vw" width="2vw" style={{ fill: "#12D576" }} viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
                     <div>
@@ -266,7 +285,7 @@ function DistributeToken(props) {
                             <div style={{ paddingTop: "4vw", fontSize: "2vw", fontWeight: "650", color: "#12D576" }}>Summary</div>
                             <div style={{ display: "flex", paddingTop: "2vw", gap: "2vw", fontSize: '1vw', color: "#cccccc" }}>
                                 <div>
-                                <div style={{ paddingTop: "1vw" }}>Token Address</div>
+                                    <div style={{ paddingTop: "1vw" }}>Token Address</div>
                                     <div style={{ paddingTop: "1vw" }}>Total number of addresses</div>
                                     <div style={{ paddingTop: "1vw" }}>Total number of tokens to be sent</div>
                                     <div style={{ paddingTop: "1vw" }}>Total number of transactions needed</div>
@@ -280,7 +299,7 @@ function DistributeToken(props) {
                                     <div style={{ paddingTop: "1vw" }}>{balance}</div>
                                 </div>
                             </div>
-                            <Button onClick={() => {sendToken()}} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "0.5vw 1.5vw", fontSize: "1.25vw", fontWeight: "450" }} variant="">DROP</Button>
+                            <Button onClick={() => { sendToken() }} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "0.5vw 1.5vw", fontSize: "1.25vw", fontWeight: "450" }} variant="">DROP</Button>
                         </div>
                     </div>
                 </div>

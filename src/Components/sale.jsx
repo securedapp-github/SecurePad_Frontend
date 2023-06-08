@@ -6,8 +6,6 @@ function Sale(props) {
   const {theme}=props
   const [sale, setsale] = useState("");
 
-
-  
   return (
     <div style={{padding:"0 2%"}}>
     <h2 style={{fontWeight:"700",color:"#12D576",paddingLeft:"5%"}}>Create STO/ICO Token Sale </h2>
