@@ -152,11 +152,7 @@ function BuySale(props) {
                 const tx = await SaleContract.buyToken(ethers.utils.parseUnits(buyamount.toString(), "ether"), { value: ethers.utils.parseUnits(buyamount.toString(), "ether") });
                 const receipt = await tx.wait();
                 if (receipt.status == 1) {
-                    toast.success('Token purchase successful!' ,
-              
-                    {
-                      autoClose: 5000, // Auto close the toast after 5 seconds
-                    });
+                    toast.success('Token purchase successful!');
 
                 }
 
@@ -173,11 +169,7 @@ function BuySale(props) {
                     const tx2 = await SaleContract.buyToken(ethers.utils.parseUnits(buyamount.toString(), "ether"));
                     const receipt2 = await tx2.wait()
                     if (receipt2.status == 1) {
-                        toast.success('Token purchase successful!' ,
-              
-                        {
-                          autoClose: 5000, // Auto close the toast after 5 seconds
-                        });
+                        toast.success('Token purchase successful!');
                         setLoading(false);
                     }
                 }
@@ -186,8 +178,8 @@ function BuySale(props) {
         } catch (e) {
             setLoading(false);
             console.log("Error", e); 
-            toast.error('An error occurred while purchasing tokens.',
-              
+            toast.error(An error occurred while purchasing tokens.
+              <
               {
                 autoClose: 5000, // Auto close the toast after 5 seconds
               }

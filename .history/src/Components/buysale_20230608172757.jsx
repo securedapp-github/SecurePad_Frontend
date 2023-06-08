@@ -152,11 +152,7 @@ function BuySale(props) {
                 const tx = await SaleContract.buyToken(ethers.utils.parseUnits(buyamount.toString(), "ether"), { value: ethers.utils.parseUnits(buyamount.toString(), "ether") });
                 const receipt = await tx.wait();
                 if (receipt.status == 1) {
-                    toast.success('Token purchase successful!' ,
-              
-                    {
-                      autoClose: 5000, // Auto close the toast after 5 seconds
-                    });
+                    toast.success('Token purchase successful!');
 
                 }
 
@@ -173,11 +169,7 @@ function BuySale(props) {
                     const tx2 = await SaleContract.buyToken(ethers.utils.parseUnits(buyamount.toString(), "ether"));
                     const receipt2 = await tx2.wait()
                     if (receipt2.status == 1) {
-                        toast.success('Token purchase successful!' ,
-              
-                        {
-                          autoClose: 5000, // Auto close the toast after 5 seconds
-                        });
+                        toast.success('Token purchase successful!');
                         setLoading(false);
                     }
                 }
@@ -186,8 +178,39 @@ function BuySale(props) {
         } catch (e) {
             setLoading(false);
             console.log("Error", e); 
-            toast.error('An error occurred while purchasing tokens.',
-              
+            toast.error(<div
+                style={{
+                  background: "transparent", // Background color of the toast
+                  color: "#ffffff", // Text color of the toast
+                  fontSize: "14px", // Font size of the toast message
+                  padding: "8px", // Padding around the toast message
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    borderRadius: "50%", // Make the shape a circle
+                    width: "30px", // Width of the circle
+                    height: "30px", // Height of the circle
+                    background: "transparent", // Background color of the circle
+                    border: "2px solid #ffffff", // Border color of the circle
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginRight: "8px", // Spacing between the circle and the text
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "12px", // Font size of the "i" icon
+                    }}
+                  >
+                    i
+                  </span>
+                </div>
+                An error occurred while purchasing tokens.
+              </div>,
               {
                 autoClose: 5000, // Auto close the toast after 5 seconds
               }
@@ -203,7 +226,7 @@ function BuySale(props) {
         <div>
         <ToastContainer
         position="top-right"
-        style={{ fontSize: "14px", minWidth: "200px" }} />
+        style={{ fontSize: "14px", minWidth: "200px" }} /><?
         
        <div className="tokenSale1" style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw", }}>
             {loading && (<Loader />)}

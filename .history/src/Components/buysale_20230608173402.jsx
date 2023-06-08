@@ -152,11 +152,7 @@ function BuySale(props) {
                 const tx = await SaleContract.buyToken(ethers.utils.parseUnits(buyamount.toString(), "ether"), { value: ethers.utils.parseUnits(buyamount.toString(), "ether") });
                 const receipt = await tx.wait();
                 if (receipt.status == 1) {
-                    toast.success('Token purchase successful!' ,
-              
-                    {
-                      autoClose: 5000, // Auto close the toast after 5 seconds
-                    });
+                    toast.success('Token purchase successful!');
 
                 }
 
