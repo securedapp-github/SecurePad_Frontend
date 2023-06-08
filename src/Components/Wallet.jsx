@@ -153,6 +153,7 @@ function Wallet(props) {
   };
 
   useEffect(() => {
+    console.log('Initializing', address, signerData);
     if (!signerData || !address ) return;
     console.log('i fire once');
     gALL();
