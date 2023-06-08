@@ -175,46 +175,25 @@ function BuySale(props) {
 
         } catch (e) {
             setLoading(false);
-            console.log("Error", e); 
-            toast.error(<div
-                style={{
-                  background: "transparent", // Background color of the toast
-                  color: "#ffffff", // Text color of the toast
-                  fontSize: "14px", // Font size of the toast message
-                  padding: "8px", // Padding around the toast message
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <div
-                  style={{
-                    borderRadius: "50%", // Make the shape a circle
-                    width: "30px", // Width of the circle
-                    height: "30px", // Height of the circle
-                    background: "transparent", // Background color of the circle
-                    border: "2px solid #ffffff", // Border color of the circle
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginRight: "8px", // Spacing between the circle and the text
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "12px", // Font size of the "i" icon
-                    }}
-                  >
-                    i
-                  </span>
-                </div>
-                An error occurred while purchasing tokens.
-              </div>,
-              {
-                autoClose: 5000, // Auto close the toast after 5 seconds
-              }
-            );
-          }
-            
+            console.log("Error", e);
+            toast.error('An error occurred while purchasing tokens.'  ,{
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 3000,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                style: {
+                   // Background color of the toast
+                    color: "#ffffff", // Text color of the toast
+                    fontSize: "14px", // Font size of the toast message
+                    padding: "1px" // Padding around the toast message
+                },
+                bodyStyle: {
+                    padding: "2px" // Padding around the toast body
+                },
+            });
+        }
+        
          
 
     }

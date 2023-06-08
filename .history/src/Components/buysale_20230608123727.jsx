@@ -300,8 +300,8 @@ function BuySale(props) {
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
                         <div>Your Balance</div>
                         <div> {balance} {token} </div>
-                        <div>
-            <ToastContainer />
+                        <div style={{ width: "300px" }}>
+            <ToastContainer style={{ fontSize: "12px", minWidth: "200px" }}/>
             </div>
         
                     </div>

@@ -175,7 +175,7 @@ function BuySale(props) {
 
         } catch (e) {
             setLoading(false);
-            console.log("Error", e); 
+            console.log("Error", e);
             toast.error(<div
                 style={{
                   background: "transparent", // Background color of the toast

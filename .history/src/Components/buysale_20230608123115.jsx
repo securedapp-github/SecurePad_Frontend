@@ -175,7 +175,7 @@ function BuySale(props) {
 
         } catch (e) {
             setLoading(false);
-            console.log("Error", e); 
+            console.log("Error", e);
             toast.error(<div
                 style={{
                   background: "transparent", // Background color of the toast
@@ -201,7 +201,7 @@ function BuySale(props) {
                 >
                   <span
                     style={{
-                      fontSize: "12px", // Font size of the "i" icon
+                      fontSize: "5px", // Font size of the "i" icon
                     }}
                   >
                     i

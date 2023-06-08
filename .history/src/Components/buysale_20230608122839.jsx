@@ -175,10 +175,10 @@ function BuySale(props) {
 
         } catch (e) {
             setLoading(false);
-            console.log("Error", e); 
+            console.log("Error", e);
             toast.error(<div
                 style={{
-                  background: "transparent", // Background color of the toast
+                  background: "#ff0000", // Background color of the toast
                   color: "#ffffff", // Text color of the toast
                   fontSize: "14px", // Font size of the toast message
                   padding: "8px", // Padding around the toast message
@@ -189,8 +189,8 @@ function BuySale(props) {
                 <div
                   style={{
                     borderRadius: "50%", // Make the shape a circle
-                    width: "30px", // Width of the circle
-                    height: "30px", // Height of the circle
+                    width: "12px", // Width of the circle
+                    height: "12px", // Height of the circle
                     background: "transparent", // Background color of the circle
                     border: "2px solid #ffffff", // Border color of the circle
                     display: "flex",

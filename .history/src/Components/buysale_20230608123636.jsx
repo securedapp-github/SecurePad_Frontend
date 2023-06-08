@@ -301,7 +301,7 @@ function BuySale(props) {
                         <div>Your Balance</div>
                         <div> {balance} {token} </div>
                         <div>
-            <ToastContainer />
+            <ToastContainer style={{ fontSize: "12px", minWidth: "200px" }}/>
             </div>
         
                     </div>
