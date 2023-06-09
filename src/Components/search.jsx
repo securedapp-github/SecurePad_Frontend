@@ -288,7 +288,7 @@ const New = ({ onSearch,theme }) => {
                         }}
                     /></div>
 
-                <div className="filter" style={{ marginLeft: '1100px', marginTop: '-60px' }}>
+                <div className="filter" style={{ marginLeft: '55vw', marginTop: '-60px' }}>
                     <select
                         value={filterBy}
                         onChange={(e) => setFilterBy(e.target.value)}
@@ -361,6 +361,7 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
     
     return (
         <div onClick={() => {GoToSaleDetail(sale)}} style={{cursor:"pointer",borderRadius:"1.5vw"}}>
+            <div style={{fontSize:"1.3vw",fontWeight:"700",color:"#12D576",textAlign:"end",paddingRight:"1vw"}}>Sale Live</div>
         <div className="card" style={{borderRadius:"1.5vw",backgroundColor:"rgba(70,70,70,0.4)"}}>
             <img src={image} alt={title} className="card-image" />
             <div style={{display:"flex",justifyContent:"space-between"}}>
