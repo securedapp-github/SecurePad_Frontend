@@ -8,6 +8,8 @@ import LockToken from './lockToken.jsx'
 import Saletoken from './saleToken.jsx'
 import ManageSale from './managesale.jsx'
 import Wallet from './Wallet.jsx'
+import DistributeToken from './distributeToken.jsx'
+
 import {
   useAccount
 } from "wagmi";
@@ -31,6 +33,9 @@ function manageToken(props) {
     }
     if(page=='managesale'){
       return <ManageSale/>
+    }
+    if(page=='distributetoken'){
+      return <DistributeToken/>
     }
   }
   }

@@ -38,7 +38,7 @@ function App() {
       <Route exact path="/pricing" element={<Sidebar page={"pricing"}/>} />
       <Route exact path="/wallet" element={<Sidebar page={"wallet"}/>} />
       <Route exact path="/contract" element={<Sidebar page={"contract"}/>} />
-      <Route exact path="/send" element={<Sidebar page={"send"}/>} />
+      {/* <Route exact path="/send" element={<Sidebar page={"send"}/>} /> */}
       <Route exact path="/search" element={<Sidebar page={"search"}/>} />
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
@@ -49,6 +49,7 @@ function App() {
       <Route exact path="/saletoken/:TOKEN" element={<Managetoken page={"saletoken"}/>} />
       <Route exact path="/managesale/:SALE" element={<Managetoken page={"managesale"}/>} />
       <Route exact path="/buysale/:SALE" element={<Sidebar page={"buysale"}/>} />
+      <Route exact path="/distributetoken" element={<Managetoken page={"distributetoken"}/>} />
 
     </Routes>
     </BrowserRouter>
