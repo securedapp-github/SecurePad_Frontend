@@ -41,12 +41,11 @@
     }
     
     .card {
-      width: 25vw;
+      width: 20vw;
       height: 30vw;
+      border-radius: 2vw;
       transition: transform 0.2s ease-in-out;
       background-color:#12083d ;
-      width:100%;
-      height:100%;
     }
     
    
@@ -58,32 +57,23 @@
     
     .card-image {
       width:100%;
-      border-radius: 20px;
+      height:7vw;
+      border-radius: 1.5vw;
       margin-bottom: -15px;
-      margin-top: -15px;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      padding-top: 14px;
-      margin-left:-1px;
-      position: relative;
       
     }
     
     .card-content {
       display: flex;
       flex-direction: column;
-     background-color: #04101cdc;
      height:100%;
-     /* background-color: #f0f0f0; */
-     margin: -2px;
+     padding:0 1vw;
     }
     
     .card-title {
-      font-size: 17px;
-      margin-top: 25px;
-      padding-top: 0%;
+      font-size: 2vw;
+      padding-top: 1vw;
       text-align: left;
-      margin-left: 10px;
       font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       margin-bottom: -5px ;
       color:antiquewhite
@@ -94,7 +84,6 @@
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #fcfbffd7;
       text-align: left;
-      margin-left: 10px;
       margin-top: -10px ;
     }
     
@@ -104,8 +93,7 @@
       display: block;
       margin-bottom: 5px;
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin-left: 10px;
-      font-size: 13px;
+      font-size: 0.8vw;
       margin-top:-8px;
       font-weight: 600;
       color: antiquewhite;
@@ -130,18 +118,17 @@
     /* Progress bar details */
   
     .progress-bar-container {
-      width: 50%;
-      height: 10px;
+      width: 100%;
+      height: 0.8vw;
       margin-bottom: 2vw;
-      margin-left: 0.2vw;
     }
     
     .progress-bar {
       width: 100%;
       height: 100%;
-      margin-left: 10px;
       border-radius: 10px;
       margin-right: 20px;
+      color: #464646;
     }
     
     .progress-bar::-webkit-progress-value {
@@ -158,23 +145,18 @@
       display: flex;
       flex-direction:row;
       justify-content:space-between;
-      flex-wrap: wrap;  
-      padding:0 0.2vw;
+      flex-wrap: wrap; 
     }
     
     .box {
-      width:45%;
+      width:8vw;
       padding:0.5vw 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: 15px;
-      border-radius:18px;
-      margin-left: 8px;
-    
-  margin-top: 15px;
+      border-radius:5vw;
+      margin-top: 15px;
       border: 2px solid;
-    border-radius: 12px;
     }
     
     .box-text {
@@ -262,8 +244,6 @@
     padding-bottom: 50px; /* Optional: Add spacing below the line */
     margin-bottom: 60px;
     margin-top:-35px;
-    margin-left:10px;
-    margin-right: 15px;
   }
   
   .end{
