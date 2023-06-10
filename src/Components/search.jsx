@@ -36,92 +36,73 @@ const New = ({ onSearch,theme }) => {
     });
    
 
-    const getSales = async () => {
+    const setdata = async(data) => {
+        if (data.length > 0) {
 
-        let [count,] = await FactoryContract.GetAllSales(0, 0);
-        await new Promise(resolve => setTimeout(resolve, 2000)); 
+    setsalesArray([]);
+    for (let i = 0; i < data.length; i++) {
 
-        count = count.toString();
-        setcount(count);
+        let progress = 0;
         let saledetails;
 
-        let [, sales] = await FactoryContract.GetAllSales(count, 0);
-        await new Promise(resolve => setTimeout(resolve, 2000)); 
-
-        console.log(sales);
-        if (sales.length > 0) {
-
-            setsalesArray([]);
-            // for (let i = 0; i < 1; i++) {
-                  for (let i = 0; i < sales.length; i++) {
-                let SaleContract = new ethers.Contract(
-                    sales[i],
-                    SALEABI,
-                    provider
-                );
-                let [tokens, , , , , softCap, hardCap, saleStartTime, saleEndTime, cliff, lockMonths, , Raised] = await SaleContract.getSaleDetails();
-                let progress = 0;
-                await new Promise(resolve => setTimeout(resolve, 2000)); 
-
-                if(Raised.toString() > 0){
-                 progress = Raised.toString() * 100 / hardCap.toString();
-                }
-
-                let TOKENCONTRACT = new ethers.Contract(
-                    tokens,
-                    TOKENABI,
-                    provider
-                );
-                let name = await TOKENCONTRACT.name();
-                await new Promise(resolve => setTimeout(resolve, 2000)); 
-
-                let status;
-
-                saleStartTime = saleStartTime.toString() * 1000;
-                saleEndTime = saleEndTime.toString() * 1000;
-
-                if (saleStartTime > Date.now()) {
-                    const date = new Date(saleStartTime);
-                    const dateTimeString = date.toLocaleString();
-                    status = "Sale Starts at " + dateTimeString;
-                } else if (saleEndTime < Date.now()) {
-                    const date = new Date(saleEndTime);
-                    const dateTimeString = date.toLocaleString(); 
-
-                    status = "Sale Ended at " + dateTimeString;
-                } else {
-                    const date = new Date(saleEndTime);
-                    const dateTimeString = date.toLocaleString(); 
-                    status = "Sale Ends at " + dateTimeString;
-                }
-
-                saledetails = {
-                    'id': i + 1, 
-                    'title': name, 
-                    'description': '',
-                    'image': 'https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg',
-                    'soft': ethers.utils.formatEther(softCap.toString()),
-                    'hard': ethers.utils.formatEther(hardCap.toString()),
-                    'progress': progress,
-                    'liq': 20,
-                    'lock': lockMonths.toString() * 30,
-                    'end': status,
-                    'token': 'BNB',
-                    'sale' : sales[i]
-                };
-                if (i == 0) {
-                    setsalesArray([]);
-                }
-                setsalesArray(prevItems => [...prevItems, saledetails]);
-            }
-
+        if (data[i].raised > 0) {
+            progress = data[i].raised * 100 / data[i].hard;
         }
+
+        let name = data[i].token_name;
+        let status;
+
+        let saleStartTime = data[i].start * 1000;
+        let saleEndTime = data[i].end * 1000;
+
+        if (saleStartTime > Date.now()) {
+            const date = new Date(saleStartTime);
+            const dateTimeString = date.toLocaleString();
+            status = "Sale Starts at " + dateTimeString;
+        } else if (saleEndTime < Date.now()) {
+            const date = new Date(saleEndTime);
+            const dateTimeString = date.toLocaleString();
+
+            status = "Sale Ended at " + dateTimeString;
+        } else {
+            const date = new Date(saleEndTime);
+            const dateTimeString = date.toLocaleString();
+            status = "Sale Ends at " + dateTimeString;
+        }
+
+        saledetails = {
+            'id': i + 1,
+            'title': name,
+            'description': '', //data[i].desc,
+            'image': data[i].image,
+            'soft': data[i].soft,
+            'hard': data[i].hard,
+            'progress': progress,
+            'liq': 20,
+            'lock': data[i].cliff * 30,
+            'end': status,
+            'token': data[i].payment_name,
+            'sale': data[i].sale_address
+        };
+        if (i == 0) {
+            setsalesArray([]);
+        }
+        setsalesArray(prevItems => [...prevItems, saledetails]);
     }
 
+}
+}
+
+const getSales = async () => {
+fetch("https://139-59-5-56.nip.io:3443/getSales")
+// fetch("http://localhost:8000/getSales")        
+.then((res) => res.json())
+.then((data) => setdata(data))           
+}
+
     useEffect(() => {
-        if (!address) return;
         getSales();
-    }, [address]);
+    }, []);
 
 
     const cardsData = [
@@ -288,6 +269,7 @@ const New = ({ onSearch,theme }) => {
                     <div style={{paddingTop:"0.5vw"}}><svg height="1vw" width="1vw" style={{fill:"#ccc"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></div>
                     </div>
 
+                <div className="filter" style={{ marginLeft: '1100px', marginTop: '-60px' }}>
                     <select
                         value={filterBy}
                         onChange={(e) => setFilterBy(e.target.value)}
@@ -322,7 +304,7 @@ const New = ({ onSearch,theme }) => {
                                 <option value="Card 8" style={{ color: 'blue' }}>Card 8</option>
                                 <option value="Card 9" style={{ color: 'blue' }}>Card 9</option> */}
                     </select>
-               </div>
+               </div></div>
 
             <div className="card-container">
                 {salesArray.map((card) => (
@@ -342,34 +324,25 @@ const New = ({ onSearch,theme }) => {
                     />
                 ))}
 
-
             </div>
         </div>
 
-
-    );
-};
+);
+    };
 
 const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token, sale , theme}) => {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     const GoToSaleDetail = async(sale) => {
         navigate('/buySale/'+sale);
     }
+    
     
     return (
         <div onClick={() => {GoToSaleDetail(sale)}} style={{cursor:"pointer",borderRadius:"1.5vw"}}>
             <div style={{fontSize:"1.3vw",fontWeight:"700",color:"#12D576",textAlign:"end",paddingRight:"1vw"}}>Sale Live</div>
         <div className="card" style={{borderRadius:"1.5vw",backgroundColor:"rgba(70,70,70,0.4)"}}>
             <img src={image} alt={title} className="card-image" />
-            <div style={{display:"flex",justifyContent:"space-between"}}>
-            <img src={Coin} style={{ paddingLeft: "2vw",position:"relative",bottom:"0.3vw",width:"5vw",height:"3vw" }} alt="not found" />
-            <div style={{display:"flex",paddingRight:"1.5vw",paddingTop:"1vw",gap:"0.1vw"}}>
-            <div style={{cursor:"pointer",padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>Audit</div>
-            <div style={{cursor:"pointer",padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>KYC+</div>
-            <div style={{cursor:"pointer",padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>Vetted</div>
-            </div>
-            </div>
             <div className="card-content">
                 <h2 className="card-title">{title}</h2>
                 <p className="card-description">{description}</p>
