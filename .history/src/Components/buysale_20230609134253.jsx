@@ -12,8 +12,8 @@ import '../Style/buysale.css'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Countdown from './Countdown.jsx';
-
+function Countdown() {
+  const [countdown, setCountdown] = useState(300);
 import {
     useAccount,
     useConnect,
@@ -139,19 +139,6 @@ function BuySale(props) {
         getSaleInfo();
     }, [address]);
 
-   //for changing the countdown fonts 
-    const containerStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      };
-      
-      const headingStyle = {
-        color: 'white', 
-        textAlign: 'center',
-        fontSize: '20px', 
-    
-      };
 
     const buyToken = async () => {
         try {
@@ -212,9 +199,6 @@ function BuySale(props) {
 
     }
 
-
-    
-
     return (
        
         <div>
@@ -230,12 +214,6 @@ function BuySale(props) {
                     <div style={{ fontSize: "2vw", color: "#646464" }}>
                         Back</div></div>
                        
-                        <div style={containerStyle}>
-                            <h2 style={headingStyle}>Presale starts in</h2>
-                           <Countdown />
-                        </div>
- 
-
 
                 <div style={{ width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "2vw" }}>
                     <img style={{ height: "250px", width: "800px" }} src="https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg" alt="not found" />

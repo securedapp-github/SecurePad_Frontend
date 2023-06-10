@@ -149,8 +149,8 @@ function BuySale(props) {
       const headingStyle = {
         color: 'white', 
         textAlign: 'center',
-        fontSize: '20px', 
-    
+        fontSize: '25px', 
+        fontFamily: 'opensans',
       };
 
     const buyToken = async () => {
@@ -226,14 +226,15 @@ function BuySale(props) {
             {loading && (<Loader />)}
             
             <div>
+            <div style={containerStyle}>
+                            <h2 style={headingStyle}>Presale starts in</h2>
+                           <Countdown />
+                        </div>
                 <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
                     <div style={{ fontSize: "2vw", color: "#646464" }}>
                         Back</div></div>
                        
-                        <div style={containerStyle}>
-                            <h2 style={headingStyle}>Presale starts in</h2>
-                           <Countdown />
-                        </div>
+                        
  
 
 

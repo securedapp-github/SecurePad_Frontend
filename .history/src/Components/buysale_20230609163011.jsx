@@ -149,7 +149,7 @@ function BuySale(props) {
       const headingStyle = {
         color: 'white', 
         textAlign: 'center',
-        fontSize: '20px', 
+        fontSize: '18px', 
     
       };
 

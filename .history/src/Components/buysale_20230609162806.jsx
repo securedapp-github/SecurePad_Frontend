@@ -149,8 +149,8 @@ function BuySale(props) {
       const headingStyle = {
         color: 'white', 
         textAlign: 'center',
-        fontSize: '20px', 
-    
+        fontSize: '1.5v', 
+        fontFamily: 'opensans',
       };
 
     const buyToken = async () => {

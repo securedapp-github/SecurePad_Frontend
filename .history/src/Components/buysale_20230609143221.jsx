@@ -139,7 +139,7 @@ function BuySale(props) {
         getSaleInfo();
     }, [address]);
 
-   //for changing the countdown fonts 
+    
     const containerStyle = {
         display: 'flex',
         flexDirection: 'column',
@@ -147,11 +147,11 @@ function BuySale(props) {
       };
       
       const headingStyle = {
-        color: 'white', 
+        color: 'white', // Change the text color to blue or any other valid CSS color value
         textAlign: 'center',
-        fontSize: '20px', 
-    
-      };
+        fontSize: '25px', // Adjust the font size as desired
+  fontFamily: 'calibra', // Center-align the text
+      }
 
     const buyToken = async () => {
         try {
@@ -231,9 +231,9 @@ function BuySale(props) {
                         Back</div></div>
                        
                         <div style={containerStyle}>
-                            <h2 style={headingStyle}>Presale starts in</h2>
-                           <Countdown />
-                        </div>
+      <h2 style={headingStyle}>Presale starts in</h2>
+      <Countdown />
+    </div>
  
 
 

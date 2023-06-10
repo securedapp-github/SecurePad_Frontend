@@ -150,7 +150,7 @@ function BuySale(props) {
         color: 'white', 
         textAlign: 'center',
         fontSize: '20px', 
-    
+    ,
       };
 
     const buyToken = async () => {
