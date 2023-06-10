@@ -192,10 +192,10 @@ function BuySale(props) {
                 <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
                     <div style={{ fontSize: "2vw", color: "#646464" }}>
                         Back</div></div>
-                <div style={{ width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)",paddingBottom:"3vw", borderRadius: "2vw" }}>
-                    <img style={{ height: "250px", width: "100%" }} src="https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg" alt="not found" />
+                <div style={{ width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)",paddingBottom:"3vw", borderRadius: "3vw" }}>
+                    <img style={{ height: "250px", width: "100%",borderRadius:"3vw",padding:"0.1vw"}} src="https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg" alt="not found" />
                     <br />
-                    <img src={Coin} style={{ paddingLeft: "2vw",position:"relative",bottom:"2vw" }} alt="not found" />
+                    <img src={Coin} style={{ paddingLeft: "4vw",position:"relative",bottom:"2vw" }} alt="not found" />
                     <div style={{ paddingLeft: "1vw", paddingTop: "0.2vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "3vw", fontWeight: "900" }}>MEME ELON DOGE FLOKI</div>
                     <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>All Presale contributors will be eligible for PEPELON #PELO airdrop. </div>
                     <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>https://twitter.com/PELO_Pepelon </div>

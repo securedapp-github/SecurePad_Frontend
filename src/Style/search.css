@@ -2,35 +2,10 @@
     padding: 10px;  
   }
   
-  .filter{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin-left: 1150px;
-    flex-grow: 1;
-    padding: 10px;
-    margin-right: 10px;
-  margin-top: 1%;
+  .search-box:focus{
+    outline:none;
+    border:1px solid transparent;
   }
-  
-    .search{
-      width: min-content;
-      margin-right: 200px;
-      position: relative;
-    }
-    
-  
-  .search-box {
-    width: 100%;
-    box-sizing: border-box;
-    background-color:#66f749;
-    border: none;
-    padding: 8px;
-    outline: none;
-    color: #333; /* Set the text color */
-    caret-color: #333; /* Set the caret color (cursor) */
-  }
-  
   
     .card-container {
       display: flex;
