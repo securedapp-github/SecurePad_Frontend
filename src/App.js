@@ -9,7 +9,7 @@ import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import Managetoken from './Components/manageToken.jsx';
-
+import 'react-tooltip/dist/react-tooltip.css'
 
 const { chains, provider } = configureChains(
   [chain.polygonMumbai, chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
