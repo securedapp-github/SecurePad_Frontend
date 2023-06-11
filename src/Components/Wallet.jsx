@@ -8,6 +8,7 @@ import TOKENABI from "../ABI/TokenABI.json";
 import SALEABI from "../ABI/SaleABI.json";
 import LOCKABI from "../ABI/LockABI.json";
 import { formatAddress } from '../utils/address';
+import Loader from 'utils/loader';
 
 import {
   useAccount,
@@ -31,6 +32,7 @@ function Wallet(props) {
   const [tableRows, setTableRows] = useState([]);
   const { data: signerData } = useSigner();
   const provider = useProvider()
+  const [loading, setLoading] = useState(false);
 
   const [tokenArray, settokenArray] = useState([]);
   const [salesArray, setsalesArray] = useState([]);
@@ -44,12 +46,14 @@ function Wallet(props) {
 
   const getToken = async () => {
     try{
+      setLoading(true);
+
     let tokens = await FactoryContract.GetUserTokens(address);
     console.log("Toekns : ", tokens);
     let tokendetails;
     if (tokens.length > 0) {
         for (let i = 0; i < tokens.length; i++) {
-        await new Promise(resolve => setTimeout(resolve, 2000)); 
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
         let TOKENCONTRACT = new ethers.Contract(
           tokens[i],
           TOKENABI,
@@ -65,19 +69,26 @@ function Wallet(props) {
         settokenArray(prevItems => [...prevItems, tokendetails]);
       }
     }
+    setLoading(false);
+
   } catch(e){
     console.log(e);
+    setLoading(false);
+
   }
   }
 
   const getSales = async () => {
+    try{
+    setLoading(true);
+
     let sales = await FactoryContract.GetUserSales(address);
     console.log("Sales : ", sales);
     let saledetails;
     if (sales.length > 0) {
       setsalesArray([]);
           for (let i = 0; i < sales.length; i++) {
-            await new Promise(resolve => setTimeout(resolve, 2000)); 
+            await new Promise(resolve => setTimeout(resolve, 1000)); 
 
         let SALESCONTRACT = new ethers.Contract(
           sales[i],
@@ -102,17 +113,25 @@ function Wallet(props) {
         setsalesArray(prevItems => [...prevItems, saledetails]);
       }
     }
+    setLoading(false);
+
+  } catch(e){
+    console.log(e);
+    setLoading(false);
+
+  }
   }
 
   const getLocks = async () => {
+    try{
+    setLoading(true);
     let locks = await FactoryContract.GetUserLocks(address);
     console.log("Locks : ", locks);
     let lockdetails;
     if (locks.length > 0) {
       setlocksArray([]);
-      // for (let i = 0; i < 1; i++) {
           for (let i = 0; i < locks.length; i++) {
-            await new Promise(resolve => setTimeout(resolve, 2000)); 
+            await new Promise(resolve => setTimeout(resolve, 1000)); 
 
         let LOCKCONTRACT = new ethers.Contract(
           locks[i],
@@ -140,34 +159,44 @@ function Wallet(props) {
         console.log(locksArray);
       }
     }
+    setLoading(false);
+  } catch(e){
+    console.log(e);
+    setLoading(false);
+
+  }
   }
 
   const gALL = async () => {
     console.log("fetching...");
-  
     await getToken();
-    await new Promise(resolve => setTimeout(resolve, 2000)); 
-    await getSales();
-    await new Promise(resolve => setTimeout(resolve, 2000)); 
-    await getLocks();
   };
 
   useEffect(() => {
-    console.log('Initializing', address, signerData);
-    if (!signerData || !address ) return;
     console.log('i fire once');
     gALL();
-  }, [address]);
+  }, []);
 
+  const blurryDivStyle = {
+    filter: loading? 'blur(5px)':'blur(0px)'
+  };
 
-  const handleButtonClick = (buttonIndex) => {
+  const handleButtonClick = async (buttonIndex) => {
     setActiveButton(buttonIndex);
     if (buttonIndex === 0) {
+      if(tokenArray.length == 0){
+      await getToken();
+      }
       setTableHeaders(["ID", "Token Address", "NAME", "SYMBOL", "MANAGE"]);
     } else if (buttonIndex === 1) {
+      if(salesArray.length == 0){
+      await getSales();
+      }
       setTableHeaders(["ID", "Sale Address", "Token Address", "Payment", "Token	Status", "	MANAGE"]);
     } else if (buttonIndex === 2) {
-      // setTableHeaders(["ID","LOCK ADDRESS","TOKEN	","LOCK TILL","	AMOUNT","	MANAGE"]);
+      if(locksArray.length == 0){
+      await getLocks();
+      }
       setTableHeaders(["ID", "Lock Address","Token Address", "TOKEN NAME", "LOCK TILL","AMOUNT", "MANAGE"]);
     }
   };
@@ -175,8 +204,10 @@ function Wallet(props) {
   return (
     <div>
 
+    {loading && ( <Loader/>)}
+
       {address ? (
-        <section className="walletSection">
+        <section className="walletSection" style={{...blurryDivStyle}}>
           <div className="textContainer">
             <h2 className="headText">User Profile</h2>
           </div>
