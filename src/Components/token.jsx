@@ -212,10 +212,16 @@ function Token(props) {
 
 
         <h2 style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>Security Token
-        <a className="my-anchor-element" data-tooltip-content="Hello World!"><svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"1vw"}} width="1.3vw" height="1.3vw" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
+        <a id="my-anchor-element1"><svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"1vw"}} width="1.3vw" height="1.3vw" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
         <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg></a></h2>
+        </svg></a>
+        <Tooltip anchorSelect="#my-anchor-element1" place="right" clickable>
+              <div style={{fontSize:"0.7vw"}}>
+                <div>Hello World</div>
+              <a href="http://google.com">Read more</a></div>
+        </Tooltip>
+        </h2>
         <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           <label>
             <input
@@ -225,10 +231,15 @@ function Token(props) {
             />
             Has Document
           </label>
-          <a className="my-anchor-element" data-tooltip-content="Hello World!"><svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"1vw"}} width="1.3vw" height="1.3vw" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
+          <a id="my-anchor-element2"><svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"1vw"}} width="1.3vw" height="1.3vw" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
         <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
         </svg></a>
+        <Tooltip anchorSelect="#my-anchor-element2" place="right" clickable>
+              <div style={{fontSize:"0.7vw"}}>
+                <div>Hello World</div>
+              <a href="http://google.com">Read more</a></div>
+        </Tooltip>
         </div>
         {isdocument && (<>
             <input type="text" placeholder="Token Documents Link" value={documents} onChange={(e) => setdocuments(e.target.value)}
@@ -244,10 +255,15 @@ function Token(props) {
             />
             Can be Force Transferred
           </label>
-          <a className="my-anchor-element" data-tooltip-content="Hello World!"><svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"1vw"}} width="1.3vw" height="1.3vw" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
+          <a id="my-anchor-element3"><svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"1vw"}} width="1.3vw" height="1.3vw" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
         <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
         </svg></a>
+        <Tooltip anchorSelect="#my-anchor-element3" place="right" clickable>
+              <div style={{fontSize:"0.7vw"}}>
+                <div>Hello World</div>
+              <a href="http://google.com">Read more</a></div>
+        </Tooltip>
         </div>
 
         <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
@@ -259,19 +275,19 @@ function Token(props) {
             />
             KYC Mandatory
           </label>
-          <a className="my-anchor-element" data-tooltip-content="Hello World!"><svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"1vw"}} width="1.3vw" height="1.3vw" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
+          <a id="my-anchor-element4"><svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"1vw"}} width="1.3vw" height="1.3vw" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
         <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
         </svg></a>
+        <Tooltip anchorSelect="#my-anchor-element4" place="right" clickable>
+              <div style={{fontSize:"0.7vw"}}>
+                <div>Hello World</div>
+              <a href="http://google.com">Read more</a></div>
+        </Tooltip>
         </div>
         <Button type="button" style={{marginLeft:"0.5vw",marginTop:"0.6vw"}} className="createtoken-button" onClick={() => {createToken()}}>
           Create Token
         </Button>
-        <a href="https://google.com" style={{cursor:"pointer",textDecoration:"none"}}><div style={{padding: "2%",color:"white",fontSize:'0.8vw'}}><svg xmlns="http://www.w3.org/2000/svg" style={{marginRight:"0.3vw",fill:"white"}} width="0.8vw" height="0.8vw" className="bi bi-info-circle" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg>Read More</div></a> 
-
       </div>
 
       <Modal
@@ -323,7 +339,6 @@ function Token(props) {
       </Modal>
 
     </div>
-    <Tooltip place="right" anchorSelect=".my-anchor-element" style={{backgroundColor:"rgba(0,0,0,0.4)"}}/>
     </>
   )
 }

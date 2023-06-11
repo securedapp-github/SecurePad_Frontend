@@ -39,8 +39,8 @@ function Main() {
   const [mintmodal, setmintmodal] = useState(false)
   const [burnmodal, setburnmodal] = useState(false)
 
-  const [tokenName, settokenName] = useState("");
-  const [tokenSymbol, settokenSymbol] = useState("");
+  const [tokenName, settokenName] = useState("default");
+  const [tokenSymbol, settokenSymbol] = useState("default");
   const [tokenSupply, settokenSupply] = useState(0);
 
   const [mintUser, setmintUser] = useState("");
@@ -133,8 +133,8 @@ function Main() {
       
       <div className="mainFirstRow" style={{ width: "100%", }}>
 
-        <div style={{ paddingTop: "10px" }}>
-          <Button onClick={() => { navigate(-1)}}>
+        <div style={{ paddingTop: "0.1vw" }}>
+          <Button onClick={() => { navigate(-1)}} style={{background:"transparent",border:"1px solid transparent"}}>
           <svg xmlns="http://www.w3.org/2000/svg" height="35" width="35" style={{ fill: "#12D576" }} viewBox="0 0 448 512">
             <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
             </svg>
@@ -152,14 +152,14 @@ function Main() {
           <Button style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 15px", fontSize: "20px", fontWeight: "400" }} variant="">Verify Token</Button>
           <div style={{ display: "flex", flexDirection: "row", fontSize: "20px", paddingTop: "4%", gap: "30px" }}>
             <div style={{ color: "white" }}>
-              <div style={{ padding: "5px 0" }}>Token Name</div>
-              <div style={{ padding: "5px 0" }}>Token Symbol</div>
-              <div style={{ padding: "5px 0" }}>Token Supply</div>
+              <div style={{ padding: "0.3vw 0" }}>Token Name</div>
+              <div style={{ padding: "0.3vw 0" }}>Token Symbol</div>
+              <div style={{ padding: "0.3vw 0" }}>Token Supply</div>
             </div >
             <div style={{ color: "#525252" }}>
-              <div style={{ padding: "5px 0" }}>{tokenName}</div>
-              <div style={{ padding: "5px 0" }}>{tokenSymbol}</div>
-              <div style={{ padding: "5px 0" }}>{tokenSupply}</div>
+              <div style={{ padding: "0.3vw 0" }}>{tokenName}</div>
+              <div style={{ padding: "0.3vw 0" }}>{tokenSymbol}</div>
+              <div style={{ padding: "0.3vw 0" }}>{tokenSupply}</div>
             </div>
           </div>
           <div style={{ paddingTop: "4%", display: "flex", flexDirection: "row", gap: "20px" }}>

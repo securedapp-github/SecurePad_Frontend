@@ -251,9 +251,9 @@ fetch("https://139-59-5-56.nip.io:3443/getSales")
 
     return (
         <div className="searchpage-container" style={{margin:"1.5vw 0"}}>
-            <div className="search" style={{display:"flex",justifyContent:"space-between",padding:"0 6vw"}}>
-                <div className="search-container" style={{display:"flex",height:"2.5vw",border:"1px solid #ccc",padding:"0 1vw",borderRadius:"2vw"}}>
-                    <div>
+            <div className="search" style={{padding:"0 6vw"}}>
+                <div className="search-container" style={{width:"20%",display:"flex",height:"2.5vw",border:"1px solid #ccc",padding:"0 1vw",borderRadius:"2vw"}}>
+                    <div style={{width:"100%"}}>
                     <input
                         type="text" className="search-box" placeholder="Search..."
                         value={search}
@@ -267,45 +267,7 @@ fetch("https://139-59-5-56.nip.io:3443/getSales")
                     />
                     </div>
                     <div style={{paddingTop:"0.5vw"}}><svg height="1vw" width="1vw" style={{fill:"#ccc"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></div>
-                    </div>
-
-                <div className="filter" style={{ marginLeft: '1100px', marginTop: '-60px' }}>
-                    <select
-                        value={filterBy}
-                        onChange={(e) => setFilterBy(e.target.value)}
-                        style={{
-                            backgroundColor: 'transparent',
-                            border: '1px solid #ccc',
-                            borderRadius: '4px',
-                            marginLeft: '10px',
-                            color: '#ccc',
-                        }}
-
-                    >
-                        <option value="" style={{ color: 'blue' }}>All</option>
-                        {cardsData.map((option, index) => (
-                            <option
-                                key={index}
-                                value={option.title}
-                                style={{ color: 'blue' }}
-                            >
-                                {option.title}
-                            </option>
-                        ))}
-
-                        {/* <option value="" style={{ color: 'blue' }}>All</option>
-                                <option value="MEME ELON DOGE FLOKI" style={{ color: 'blue' }}>MEME ELON DOGE FLOKI</option>
-                                <option value="HCOIN BASE GOT DOWN" style={{ color: 'blue' }}>HCOIN BASE GOT DOWN</option>
-                                <option value="BIT CRYPTO CURRENCY" style={{ color: 'blue' }}>BIT CRYPTO CURRENCY</option>
-                                <option value="Card 4" style={{ color: 'blue' }}>Card 4</option>
-                                <option value="Card 5" style={{ color: 'blue' }}>Card 5</option>
-                                <option value="Card 6" style={{ color: 'blue' }}>Card 6</option>
-                                <option value="Card 7" style={{ color: 'blue' }}>Card 7</option>
-                                <option value="Card 8" style={{ color: 'blue' }}>Card 8</option>
-                                <option value="Card 9" style={{ color: 'blue' }}>Card 9</option> */}
-                    </select>
-               </div></div>
-
+                    </div></div>
             <div className="card-container">
                 {salesArray.map((card) => (
                     <Card
@@ -343,6 +305,14 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
             <div style={{fontSize:"1.3vw",fontWeight:"700",color:"#12D576",textAlign:"end",paddingRight:"1vw"}}>Sale Live</div>
         <div className="card" style={{borderRadius:"1.5vw",backgroundColor:"rgba(70,70,70,0.4)"}}>
             <img src={image} alt={title} className="card-image" />
+            <div style={{display:"flex",justifyContent:"space-between"}}>
+            <img src={Coin} style={{ paddingLeft: "2vw",position:"relative",bottom:"0.3vw",width:"5vw",height:"3vw" }} alt="not found" />
+            <div style={{display:"flex",paddingRight:"1.5vw",paddingTop:"1vw",gap:"0.1vw"}}>
+            <div style={{cursor:"pointer",padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>Audit</div>
+            <div style={{cursor:"pointer",padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>KYC+</div>
+            <div style={{cursor:"pointer",padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>Vetted</div>
+            </div>
+            </div>
             <div className="card-content">
                 <h2 className="card-title">{title}</h2>
                 <p className="card-description">{description}</p>
