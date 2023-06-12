@@ -333,7 +333,7 @@ function Wallet(props) {
                   ))}
 
                   {activeButton == 2 && locksArray.map((row) => (
-                    <tr key={row.id} style={{ color: 'white' }}>
+                    <tr key={row.id}>
                       <td>{row.id}</td>
                       <td>{formatAddress(row.lock)}</td>
                       <td>{formatAddress(row.token)}</td>
