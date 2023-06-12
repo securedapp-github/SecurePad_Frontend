@@ -142,7 +142,7 @@ function ManageSale() {
 
   function handleClick(event) {
     event.preventDefault()
-    navigate('/saletoken')
+    navigate('/saletoken/'+SALE)
   }
 
 

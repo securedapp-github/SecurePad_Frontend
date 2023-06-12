@@ -59,71 +59,73 @@ function BuySale(props) {
     };
 
 
-    const getSaleInfo = async () => {
+    const setdata = async (data) => {
         try {
-            setLoading(true);
-            let SaleContract = new ethers.Contract(
-                SALE,
-                SALEABI,
-                provider
-            );
-            let [tokens, pay, tokenPrice, investorMin, investorMax, softCap, hardCap, saleStartTime, saleEndTime, cliff, lockMonths, whitelistOn, Raised] = await SaleContract.getSaleDetails();
+            if (data.length > 0) {
+                console.log(data);
 
-            if (Raised.toString() > 0) {
-                setprogress(Raised.toString() * 100 / hardCap.toString());
-            }
+                if (data[0].raised > 0) {
+                    setprogress(data[0].raised * 100 / data[0].hard);
+                }
 
-            let p = tokenPrice.toString();
-            let d = countDecimals(p / 10000);
-            let prices = (p * 10 ** d) / 10000;
-            setprice(prices);
-            setdecimal(10 ** d);
+                let p = data[0].price;
+                let d = countDecimals(p / 10000);
+                let prices = (p * 10 ** d) / 10000;
+                setprice(prices);
+                setdecimal(10 ** d);
 
-            setsoft(ethers.utils.formatEther(softCap.toString()));
-            sethard(ethers.utils.formatEther(hardCap.toString()));
-            setpayaddress(pay);
+                setsoft(data[0].soft);
+                sethard(data[0].hard);
+                setpayaddress(data[0].payment_address);
 
-            let TOKENCONTRACT = new ethers.Contract(
-                tokens,
-                TOKENABI,
-                provider
-            );
-            settoken(await TOKENCONTRACT.symbol());
-            let bal = await TOKENCONTRACT.balanceOf(address);
-            bal = ethers.utils.formatEther(bal.toString());
-            setbalance(bal);
-
-            if (pay != '0x0000000000000000000000000000000000000000') {
-                TOKENCONTRACT = new ethers.Contract(
-                    pay,
+                let TOKENCONTRACT = new ethers.Contract(
+                    data[0].token_address,
                     TOKENABI,
                     provider
                 );
-                setpay(await TOKENCONTRACT.symbol());
+
+                settoken(data[0].token_name);
+                let bal = await TOKENCONTRACT.balanceOf(address);
+                bal = ethers.utils.formatEther(bal.toString());
+                setbalance(bal);
+                setpay(data[0].payment_name);
+
+
+                let saleStartTime = data[0].start * 1000;
+                let saleEndTime = data[0].end * 1000;
+
+                if (saleStartTime > Date.now()) {
+                    const date = new Date(saleStartTime);
+                    const dateTimeString = date.toLocaleString();
+                    setstatus("Sale Starts at " + dateTimeString);
+                } else if (saleEndTime < Date.now()) {
+                    const date = new Date(saleEndTime);
+                    const dateTimeString = date.toLocaleString();
+
+                    setstatus("Sale Ended at " + dateTimeString);
+                } else {
+                    const date = new Date(saleEndTime);
+                    const dateTimeString = date.toLocaleString();
+                    setstatus("Sale Ends at " + dateTimeString);
+                }
             }
-            else {
-                setpay("Matic");
-            }
-
-            saleStartTime = saleStartTime.toString() * 1000;
-            saleEndTime = saleEndTime.toString() * 1000;
-
-            if (saleStartTime > Date.now()) {
-                const date = new Date(saleStartTime);
-                const dateTimeString = date.toLocaleString();
-                setstatus("Sale Starts at " + dateTimeString);
-            } else if (saleEndTime < Date.now()) {
-                const date = new Date(saleEndTime);
-                const dateTimeString = date.toLocaleString();
-
-                setstatus("Sale Ended at " + dateTimeString);
-            } else {
-                const date = new Date(saleEndTime);
-                const dateTimeString = date.toLocaleString();
-                setstatus("Sale Ends at " + dateTimeString);
-            }
-
             setLoading(false);
+        }
+        catch (e) {
+            setLoading(false);
+            console.log("Error", e);
+        }
+    }
+
+
+    const getSaleInfo = async () => {
+        try {
+            setLoading(true);
+
+            fetch("https://139-59-5-56.nip.io:3443/getSale?sale=" + SALE)
+                // fetch("http://localhost:8000/getSale?sale="+SALE)        
+                .then((res) => res.json())
+                .then((data) => setdata(data))
 
         } catch (e) {
             setLoading(false);
@@ -132,9 +134,8 @@ function BuySale(props) {
     }
 
     useEffect(() => {
-        if (!address) return;
         getSaleInfo();
-    }, [address]);
+    }, []);
 
     const blurryDivStyle = {
         filter: loading? 'blur(5px)':'blur(0px)'
@@ -233,10 +234,10 @@ function BuySale(props) {
                 <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
                     <div style={{ fontSize: "2vw", color: "#646464" }}>
                         Back</div></div>
-                <div style={{ width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "2vw" }}>
-                    <img style={{ height: "250px", width: "800px" }} src="https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg" alt="not found" />
+                <div style={{ width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)",paddingBottom:"3vw", borderRadius: "2vw" }}>
+                    <img style={{ height: "250px", width: "100%" }} src="https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg" alt="not found" />
                     <br />
-                    <img src={Coin} style={{ paddingLeft: "2vw" }} alt="not found" />
+                    <img src={Coin} style={{ paddingLeft: "2vw",position:"relative",bottom:"2vw" }} alt="not found" />
                     <div style={{ paddingLeft: "1vw", paddingTop: "0.2vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "3vw", fontWeight: "900" }}>MEME ELON DOGE FLOKI</div>
                     <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>All Presale contributors will be eligible for PEPELON #PELO airdrop. </div>
                     <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>https://twitter.com/PELO_Pepelon </div>
@@ -261,14 +262,14 @@ function BuySale(props) {
                     <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
 
                         Cross chain integration in future, i.e Ethereum chain, Binance chain & others. </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
+                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw",fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
                         TAX - 2% (only on Polygon chain.) </div>
 
                 </div>
             </div>
             <div>
 
-                <div style={{ backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "1.3vw", marginTop: "4vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "0.5vw 1.5vw" }}>
+                <div style={{ backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "1.3vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "0.5vw 1.5vw" }}>
                     <div>
                         <span style={{ fontSize: "1.4vw", fontWeight: "700" }}>{status}</span>
 
@@ -284,7 +285,7 @@ function BuySale(props) {
                         {/* Buy */}
                     </div>
                     <div style={{ fontSize: "1.1vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                        <div style={{ border: "2px solid #464646", display: "flex", borderRadius: "1.5vw", padding: "0.3vw 0.5vw" }}>
+                        <div style={{ border: "2px solid #464646", display: "flex", borderRadius: "1.5vw", padding: "0.3vw 0.0vw" }}>
                             <input
                                 value={buyamount}
                                 onChange={(e) => setbuyamount(e.target.value)}

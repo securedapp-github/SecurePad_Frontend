@@ -174,7 +174,7 @@ function SaleToken() {
                   <div style={{ color: "#525252", paddingTop: "1vw" }}>
                     {tokenSymbol}</div>
                   <div style={{ paddingTop: "1vw" }}>
-                    <svg onClick={copyAddress(TOKEN)} width="20" height="22" style={{ paddingRight: "2px" }} viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg onClick={() => {copyAddress(TOKEN)}} width="20" height="22" style={{ paddingRight: "2px" }} viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#12D576" />
                     </svg>  {formatAddress(TOKEN)}</div>
                   <div style={{ color: "#525252", paddingTop: "1vw" }}>
@@ -205,7 +205,7 @@ function SaleToken() {
                     {owner}</div>
                 </div>
               </div>
-              <Button onClick={launchSale} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Create Sale</Button>
+              <Button onClick={() => {launchSale()}} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Create Sale</Button>
               <Modal
                 {...{
                   show: modal3,
@@ -276,7 +276,7 @@ function SaleToken() {
               </>)}
 
               <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "6%" }}>Set Token Price</div>
-              <div style={{ paddingTop: "20px", color: "#cccccc" }}>Price of 1 token in Payment Token [ 1 Sale Token = X Payment Token] </div>
+              <div style={{ paddingTop: "20px", color: "#cccccc" }}>Price per token in Payment Token [ 1 Sale Token = X Payment Token] </div>
               <input type="number" placeholder="e.g. 0.1 if 1 Sale Token = 0.1 Payment Token: Min 0.0001"
                 value={price} onChange={(e) => setprice(e.target.value)}
                 style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
@@ -351,7 +351,7 @@ function SaleToken() {
               <input type="text" placeholder=""
                 value={owner} onChange={(e) => setowner(e.target.value)}
                 style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
-              <Button onClick={handleContinue} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Continue</Button>
+              <Button onClick={() => {handleContinue()}} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Continue</Button>
             </div>
           </div>
         </div>
