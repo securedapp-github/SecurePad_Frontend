@@ -240,8 +240,8 @@ function Wallet(props) {
               </thead>
               <tbody>
                 <tr style={{color:`${theme==='Dark' ? 'white':'black'}`}}>
-                  <td>Admin User</td>
-                  <td>AdminUser@securedapp.in</td>
+                  <td> User342</td>
+                  <td>User342@securedapp.in</td>
                   <td>{address}</td>
                 </tr>
               </tbody>

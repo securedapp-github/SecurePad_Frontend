@@ -6,6 +6,11 @@ import Vector from '../assets/Vector.png'
 import Fox from '../assets/Fox.png'
 import { ethers } from 'ethers';
 import Loader from 'utils/loader';
+import { Tooltip } from 'react-tooltip'
+import Info from './info.jsx';
+import { formatAddress } from '../utils/address';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   useAccount,
@@ -58,16 +63,21 @@ function Token(props) {
 
     console.log(token, symbol, decimals, ethers.utils.parseUnits(initialSupply, "ether").toString(), ethers.utils.parseUnits(maxSupply, "ether").toString());
     const tx = await FactoryContract.launchSecureToken(token, symbol, decimals, ethers.utils.parseUnits(initialSupply, "ether").toString(), ethers.utils.parseUnits(maxSupply, "ether").toString());
-    const receipt = await tx.wait()
+    const receipt = await tx.wait();
+
+    if(receipt.status == 1){
     console.log("Token Launched = ", receipt.logs[0].address)
     setnewToken(receipt.logs[0].address);
-    //  setnewToken("0xA95C52AF59E43C528F24EFAC96A08e000012e0e3");
-    // }
     setModal(true);
+    }else{
+      toast.error('An error occurred while creating token');
+    }
+    //  setnewToken("0xA95C52AF59E43C528F24EFAC96A08e000012e0e3");
     setLoading(false);
   } catch(e){
     setLoading(false);
     console.log("Error", e);
+    toast.error('An error occurred while creating token');
   }
   }
 
@@ -89,6 +99,12 @@ function Token(props) {
   return (
 <>
     {loading && ( <Loader/>)}
+    <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            theme="dark"
+            pauseOnHover
+        />
     <div className="tokenBody" style={{ ...blurryDivStyle, padding: "2%" }}>
       
       <div className="tokenCreate">
@@ -116,13 +132,16 @@ function Token(props) {
         </div>
 
       </div>
+
       <div className="tokenSettings">
         <h2 style={{ color:`${theme==='Dark' ? 'white':'black'}` }}>Token Settings</h2>
 
         <div style={{color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           Token Name
+          
+          <Info infos="Specify the human-readable name of your token" link="https://securedapp.gitbook.io/securedapp-launchpad/token-creation" id="my-anchor-element1" />
+          
           <input
-           
             type="text"
             value={token}
             onChange={(e) => setToken(e.target.value)}
@@ -136,8 +155,10 @@ function Token(props) {
             }}
           ></input>
         </div>
+
         <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           Token Symbol
+          <Info infos="Specify the shorthand symbol that represents token in a shorter format" link="https://securedapp.gitbook.io/securedapp-launchpad/token-creation" id="my-anchor-element2" />
           <input
             type="text"
             value={symbol}
@@ -154,6 +175,7 @@ function Token(props) {
         </div>
         <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           Initial Token Supply to Owner (Optional)
+          <Info infos="Set the initial number of tokens that will be allocated to the token owner" link="https://securedapp.gitbook.io/securedapp-launchpad/token-creation" id="my-anchor-element3" />
           <input
             type="text"
             value={maxSupply}
@@ -172,6 +194,7 @@ function Token(props) {
           <div style={{ padding: "2%" }}>
             {" "}
             MAX Token Supply (Optional)
+            <Info infos="Define the upper limit of the total number of tokens that can ever be minted or created for your token" link="https://securedapp.gitbook.io/securedapp-launchpad/token-creation" id="my-anchor-element4" />
             <input
               type="number"
               value={initialSupply}
@@ -210,7 +233,11 @@ function Token(props) {
         </div>
 
 
-        <h2 style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>Security Token</h2>
+        <h2 style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>Security Token
+        
+        <Info infos="Underlines the fields required for Security Tokens" link="https://securedapp.gitbook.io/securedapp-launchpad/token-creation" id="my-anchor-element5" />
+        
+        </h2>
 
         <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, padding: "2%" }}>
           <label>
@@ -219,7 +246,8 @@ function Token(props) {
               checked={isdocument}
               onChange={handleDocumentChange}
             />
-            Has Document
+            Has Document 
+            <Info infos="Additional information about the token's characteristics and terms inc legal prospectus or offering memorandum" link="https://securedapp.gitbook.io/securedapp-launchpad/token-creation" id="my-anchor-element6" />
           </label>
         </div>
         {isdocument && (<>
@@ -235,6 +263,7 @@ function Token(props) {
               onChange={handleForceChange}
             />
             Can be Force Transferred
+            <Info infos="Allow authorized entities to transfer tokens without the consent of the token holders" link="https://securedapp.gitbook.io/securedapp-launchpad/token-creation" id="my-anchor-element7" />
           </label>
         </div>
 
@@ -246,8 +275,10 @@ function Token(props) {
               onChange={handleKYCChange}
             />
             KYC Mandatory
+            <Info infos="Indicates whether KYC verification is mandatory for token holders" link="https://securedapp.gitbook.io/securedapp-launchpad/token-creation" id="my-anchor-element8" />
           </label>
         </div>
+
           <div style={{padding: "2%"}}></div>
         <Button type="button" className="createtoken-button" onClick={() => {createToken()}}>
           Create Token
@@ -270,7 +301,7 @@ function Token(props) {
         <Modal.Body>
           <div style={{ paddingTop: "8%", textAlign: "center", paddingLeft: "9%", paddingRight: "9%" }}>
             <img src={Vector} alt="not found" />
-            <h5 style={{ fontWeight: "700", paddingTop: "10px" }}>Token created successfully, view it on the block explorer</h5>
+            <h5 style={{ fontWeight: "700", paddingTop: "10px" }}>Token Created Successfully</h5>
           </div>
           <div style={{ padding: "3% 8%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <div>
@@ -281,11 +312,11 @@ function Token(props) {
               <div style={{ color: "#2D5C8F" }}>
                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
-                </svg>{newToken}</div>
+                </svg>{formatAddress(newToken)}</div>
               <div style={{ color: "#2D5C8F", paddingTop: "10%" }}>
                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
-                </svg>{newToken}</div>
+                </svg>{formatAddress(newToken)}</div>
             </div>
           </div>
           <div style={{ textAlign: "center", paddingTop: "5%" }}>

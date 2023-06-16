@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.bfeb69bf.css",
-    "main.js": "/static/js/main.d8afc923.js",
+    "main.css": "/static/css/main.6ed72fc6.css",
+    "main.js": "/static/js/main.7d7904d3.js",
     "static/js/148.bf09d97a.chunk.js": "/static/js/148.bf09d97a.chunk.js",
     "static/js/888.cbaccc87.chunk.js": "/static/js/888.cbaccc87.chunk.js",
     "static/js/624.7e758da2.chunk.js": "/static/js/624.7e758da2.chunk.js",
@@ -38,8 +38,8 @@
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "static/media/Coin.png": "/static/media/Coin.ea32ce002a5097b67b00.png",
     "index.html": "/index.html",
-    "main.bfeb69bf.css.map": "/static/css/main.bfeb69bf.css.map",
-    "main.d8afc923.js.map": "/static/js/main.d8afc923.js.map",
+    "main.6ed72fc6.css.map": "/static/css/main.6ed72fc6.css.map",
+    "main.7d7904d3.js.map": "/static/js/main.7d7904d3.js.map",
     "148.bf09d97a.chunk.js.map": "/static/js/148.bf09d97a.chunk.js.map",
     "888.cbaccc87.chunk.js.map": "/static/js/888.cbaccc87.chunk.js.map",
     "624.7e758da2.chunk.js.map": "/static/js/624.7e758da2.chunk.js.map",
@@ -65,7 +65,7 @@
     "48.b0f2fe7b.chunk.js.map": "/static/js/48.b0f2fe7b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bfeb69bf.css",
-    "static/js/main.d8afc923.js"
+    "static/css/main.6ed72fc6.css",
+    "static/js/main.7d7904d3.js"
   ]
 }
