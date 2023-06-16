@@ -48,7 +48,8 @@ function Main() {
   const [burnValue, setburnValue] = useState(0);
 
   const { data: signerData } = useSigner();
-  const provider = useProvider()
+  const provider = useProvider();
+  
 
   const TokenContract = useContract({
     addressOrName: TOKEN,

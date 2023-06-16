@@ -28,12 +28,14 @@ function BuySale(props) {
 
     const navigate = useNavigate();
     const { SALE } = useParams();
-    const provider = useProvider()
+    const provider = useProvider();
     const { address } = useAccount();
     const [progress, setprogress] = useState(0);
     const [price, setprice] = useState(0);
     const [decimal, setdecimal] = useState(0);
     const [balance, setbalance] = useState(0);
+    const [paybalance, setpaybalance] = useState(0);
+
 
     const [soft, setsoft] = useState(0);
     const [hard, sethard] = useState(0);
@@ -118,6 +120,22 @@ function BuySale(props) {
                 setbalance(bal);
                 setpay(data[0].payment_name);
 
+                if (data[0].payment_address != "0x0000000000000000000000000000000000000000") {
+                    let FundContract = new ethers.Contract(
+                        data[0].payment_address,
+                        TOKENABI,
+                        provider
+                    );
+                    let funds = await FundContract.balanceOf(address);
+                    funds = ethers.utils.formatEther(funds.toString());
+                    setpaybalance(funds);
+                } else {
+                    let balance = await provider.getBalance(address);
+                    balance = ethers.utils.formatEther(balance.toString());
+                    balance = Number(balance).toFixed(2);
+                    setpaybalance(balance);
+                }
+
 
                 let saleStartTime = data[0].start * 1000;
                 let saleEndTime = data[0].end * 1000;
@@ -185,9 +203,7 @@ function BuySale(props) {
                     toast.success('Token Purchased Successfully');
                     setLoading(false);
                 }
-
             } else {
-
                 let TOKENCONTRACT = new ethers.Contract(
                     payaddress,
                     TOKENABI,
@@ -322,11 +338,19 @@ function BuySale(props) {
                 <div style={{ backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "1.3vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
                     <div>
                         <span style={{ fontSize: "1.4vw", fontWeight: "600" }}>{status}</span>
+                    </div>
+                    <div className="progress-bar-container">
+                    {/* <span className="progress-text">Progress {progress}%</span> */}
+                    <progress className="progress-bar"  value={progress} max="100"></progress>
+                    {/* <span className="value-text">{soft}{" " + token} </span>
+        <span className="new-text">{hard}{" " + token}</span> */}
+                </div>
 
-                    </div>
-                    <div style={{ marginTop: "1vw", height: "1vw", borderRadius: "1vw", backgroundColor: "#464646" }}>
-                        <div style={{ height: "1vw", width: "20%", borderRadius: "1vw", backgroundColor: "#12D576" }}></div>
-                    </div>
+                    {/* <div style={{ marginTop: "1vw", height: "1vw", borderRadius: "1vw", backgroundColor: "#464646" }}>
+                        <div style={{ height: "1vw", width: "20%", borderRadius: "1vw", backgroundColor: "#12D576" }}>
+                        </div>
+                    </div> */}
+
                     <div style={{ fontSize: "1.2vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                         <div>{soft}{" " + token}</div>
                         <div>{hard}{" " + token}</div>
@@ -354,8 +378,12 @@ function BuySale(props) {
                         <div> {price} {pay} = {decimal} {token} </div>
                     </div>
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div>Your Balance</div>
-                        <div> {balance} {token} </div>
+                        <div>Your {token} Balance</div>
+                        <div> {balance} </div>
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
+                        <div>Your {pay} Balance</div>
+                        <div> {paybalance} </div>
                     </div>
 
                 </div>
