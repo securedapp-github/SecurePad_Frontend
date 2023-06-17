@@ -307,31 +307,39 @@ function BuySale(props) {
                         </div>
                     </div> <div style={{ paddingLeft: "1vw", paddingTop: "0.2vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "3vw", fontWeight: "900" }}>{token} TOKEN SALE</div>
                     <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>{desc}</div>
-                    {/* <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>https://twitter.com/PELO_Pepelon </div> */}
-                    {/* <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
-                        Memelon Description.</div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
-                        MEME token with USDT rewards & self liqudity mechanism from Bitball Ecosystem — MEMELON.
-                    </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
-                        MEME token launched by Bitball Ecosystem for MEME community via NFTs, hodlers rewards and a defi platform in future.
-                    </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
-                        MEMEs created will be converted into NFTs & Auctioned or rewarded to our community.
-                    </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
-                        Relaunched for for better tokenomics & decentralization. </div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
-                        Liquidity locked till 2024 </div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
-
-                        Promotions & lot of marketing planning. </div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
-
-                        Cross chain integration in future, i.e Ethereum chain, Binance chain & others. </div>
-                    <div style={{ paddingLeft: "1vw", paddingTop: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>
-                        TAX - 2% (only on Polygon chain.) </div> */}
-
+                     <div style={{display:"flex",padding:"1vw",justifyContent:"space-between",color:"white",fontSize:"1vw"}}>
+                        <div style={{width:"50%"}}>
+                                <div style={{padding:"0 0 1.55vw 0",borderBottom:"1px solid #464646"}}>Presale Address</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Token Name</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Sale Type</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Token Symbol</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Token Supply</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Tokens For Presale</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Tokens For Liquidity</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Soft Cap</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Presale Start Time (UTC)</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Presale End Time (UTC)</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Liquidity Percent</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Liquidity Unlock Time (UTC)</div>
+                        </div>
+                        <div style={{width:"50%"}}>
+                        <div style={{paddingBottom:"0.5vw",borderBottom:"1px solid #464646"}}>
+                            <div>0xAB4Ba356C8a54e7B1E72fa03aE491574bFb0a1EF</div>
+                            <div style={{fontSize:"0.7vw"}}>Do not send PLS directly to the presale address!</div>
+                        </div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Fair Launch</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>BadMF</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>BAD</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>251,700,000,000</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>90,000,000,000</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>64,800,000,000</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>70,000,000 PLS</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>2023-06-09 22:30</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>2023-06-17 22:30</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>80%</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>2025-06-16 23:30</div>
+                        </div>
+                     </div>
                 </div>
             </div>
             <div>
@@ -360,13 +368,12 @@ function BuySale(props) {
                         {/* Buy */}
                     </div>
                     <div style={{ fontSize: "1.1vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                        <div style={{ height: "100%", border: "2px solid #464646", display: "flex", borderRadius: "1.5vw", padding: "0.3vw 0.2vw" }}>                            <input
-                            value={buyamount}
+                        <div style={{ height: "100%", border: "2px solid #464646", display: "flex", borderRadius: "1.5vw", padding: "0.3vw 0.2vw" }}><input value={buyamount}
                             onChange={(e) => setbuyamount(e.target.value)}
                             placeholder={'0 ' + pay} style={{ padding: "0", fontWeight: "600", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
                             <div style={{ color: "#12D576", fontWeight: "700", paddingTop: "0.2vw" }}>{pay}</div>
                         </div>
-                        <div onClick={() => { buyToken() }} style={{ backgroundColor: "#464646", height: "100%", padding: "0.5vw 1vw", borderRadius: "1.5vw" }}>                            BUY {' ' + token}
+                        <div onClick={() => { buyToken() }} style={{cursor:"pointer",backgroundColor: "#464646", height: "100%", padding: "0.5vw 1vw", borderRadius: "1.5vw" }}> BUY {' ' + token}
                         </div>
                     </div>
                     <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
