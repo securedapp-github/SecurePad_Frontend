@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.6ed72fc6.css",
-    "main.js": "/static/js/main.7d7904d3.js",
+    "main.css": "/static/css/main.c0b1bf83.css",
+    "main.js": "/static/js/main.4a381964.js",
     "static/js/148.bf09d97a.chunk.js": "/static/js/148.bf09d97a.chunk.js",
     "static/js/888.cbaccc87.chunk.js": "/static/js/888.cbaccc87.chunk.js",
     "static/js/624.7e758da2.chunk.js": "/static/js/624.7e758da2.chunk.js",
@@ -33,13 +33,12 @@
     "static/media/bootstrap-icons.woff?": "/static/media/bootstrap-icons.4753c5ba57962b4d7bf8.woff",
     "static/media/home.png": "/static/media/home.4450d47c23ab8a20a50e.png",
     "static/media/bootstrap-icons.woff2?": "/static/media/bootstrap-icons.6d63d0501e5ed7b79dab.woff2",
-    "static/media/Dodge.png": "/static/media/Dodge.cda5db72d651be9c5963.png",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "static/media/Coin.png": "/static/media/Coin.ea32ce002a5097b67b00.png",
     "index.html": "/index.html",
-    "main.6ed72fc6.css.map": "/static/css/main.6ed72fc6.css.map",
-    "main.7d7904d3.js.map": "/static/js/main.7d7904d3.js.map",
+    "main.c0b1bf83.css.map": "/static/css/main.c0b1bf83.css.map",
+    "main.4a381964.js.map": "/static/js/main.4a381964.js.map",
     "148.bf09d97a.chunk.js.map": "/static/js/148.bf09d97a.chunk.js.map",
     "888.cbaccc87.chunk.js.map": "/static/js/888.cbaccc87.chunk.js.map",
     "624.7e758da2.chunk.js.map": "/static/js/624.7e758da2.chunk.js.map",
@@ -65,7 +64,7 @@
     "48.b0f2fe7b.chunk.js.map": "/static/js/48.b0f2fe7b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6ed72fc6.css",
-    "static/js/main.7d7904d3.js"
+    "static/css/main.c0b1bf83.css",
+    "static/js/main.4a381964.js"
   ]
 }
