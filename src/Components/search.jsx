@@ -44,13 +44,23 @@ const New = ({ onSearch,theme }) => {
 
         let progress = 0;
         let saledetails;
+        let hardcap;
 
         if (data[i].raised > 0) {
             progress = data[i].raised * 100 / data[i].hard;
         }
 
+        if(data[i].hard > 1000000){
+            hardcap = (data[i].hard / 1000000)+ "M";
+        }else if(data[i].hard > 1000){
+            hardcap = (data[i].hard / 1000)+ "K";
+        }else{
+            hardcap = data[i].hard;
+        }
+
         let name = data[i].token_name;
         let status;
+        let topstatus;
 
         let saleStartTime = data[i].start * 1000;
         let saleEndTime = data[i].end * 1000;
@@ -59,15 +69,17 @@ const New = ({ onSearch,theme }) => {
             const date = new Date(saleStartTime);
             const dateTimeString = date.toLocaleString();
             status = "Sale Starts at " + dateTimeString;
+            topstatus = "Upcoming Sale";
         } else if (saleEndTime < Date.now()) {
             const date = new Date(saleEndTime);
             const dateTimeString = date.toLocaleString();
-
             status = "Sale Ended at " + dateTimeString;
+            topstatus = "Sale Ended";
         } else {
             const date = new Date(saleEndTime);
             const dateTimeString = date.toLocaleString();
             status = "Sale Ends at " + dateTimeString;
+            topstatus = "Sale Live";
         }
 
         saledetails = {
@@ -76,7 +88,7 @@ const New = ({ onSearch,theme }) => {
             'description': '', //data[i].desc,
             'image': data[i].image,
             'soft': data[i].soft,
-            'hard': data[i].hard,
+            'hard': hardcap,
             'progress': progress,
             'liq': 20,
             'lock': data[i].cliff * 30,
@@ -86,7 +98,8 @@ const New = ({ onSearch,theme }) => {
             'kyc': data[i].kyc,
             'audit':data[i].audit,
             'vetted':data[i].vetted,
-            'coin_image':data[i].coin_image
+            'coin_image':data[i].coin_image,
+            'topstatus': topstatus
         };
         if (i == 0) {
             setsalesArray([]);
@@ -290,6 +303,7 @@ fetch("https://139-59-5-56.nip.io:3443/getSales")
                         audit={card.audit}
                         vetted={card.vetted}
                         coin_image={card.coin_image}
+                        topstatus={card.topstatus}
                     />
                 ))}
 
@@ -299,7 +313,7 @@ fetch("https://139-59-5-56.nip.io:3443/getSales")
 );
 };
 
-const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token, sale , theme, audit, kyc, vetted, coin_image}) => {
+const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token, sale , theme, audit, kyc, vetted, coin_image, topstatus}) => {
     const navigate=useNavigate()
 
     const GoToSaleDetail = async(sale) => {
@@ -308,7 +322,7 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
     
     return (
         <div onClick={() => {GoToSaleDetail(sale)}} style={{cursor:"pointer",borderRadius:"1.5vw"}}>
-            <div style={{fontSize:"1.3vw",fontWeight:"700",color:"#12D576",textAlign:"end",paddingRight:"1vw"}}>Sale Live</div>
+            <div style={{fontSize:"1.3vw",fontWeight:"700",color:"#12D576",textAlign:"end",paddingRight:"1vw"}}>{topstatus}</div>
         <div className="card" style={{borderRadius:"1.5vw",backgroundColor:"rgba(70,70,70,0.4)"}}>
             <img src={image} alt={title} className="card-image" />
             <div style={{display:"flex",justifyContent:"space-between"}}>
