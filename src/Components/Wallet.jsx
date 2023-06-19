@@ -240,8 +240,8 @@ function Wallet(props) {
               </thead>
               <tbody>
                 <tr style={{color:`${theme==='Dark' ? 'white':'black'}`}}>
-                  <td>Admin User</td>
-                  <td>AdminUser@securedapp.in</td>
+                  <td> User342</td>
+                  <td>User342@securedapp.in</td>
                   <td>{address}</td>
                 </tr>
               </tbody>
@@ -305,7 +305,7 @@ function Wallet(props) {
                 <tbody>
 
                   {activeButton == 0 && tokenArray.map((row) => (
-                    <tr key={row.id}>
+                    <tr key={row.id} style={{ color: 'white' }}>
                       <td>{row.id}</td>
                       <td>{formatAddress(row.token)}</td>
                       <td>{row.name}</td>
@@ -318,7 +318,7 @@ function Wallet(props) {
                     </tr>
                   ))}
                   {activeButton == 1 && salesArray.map((row) => (
-                    <tr key={row.id}>
+                    <tr key={row.id} style={{ color: 'white' }}>
                       <td>{row.id}</td>
                       <td>{formatAddress(row.sale)}</td>
                       <td>{formatAddress(row.token)}</td>
@@ -333,7 +333,7 @@ function Wallet(props) {
                   ))}
 
                   {activeButton == 2 && locksArray.map((row) => (
-                    <tr key={row.id}>
+                    <tr key={row.id} style={{ color: 'white' }}>
                       <td>{row.id}</td>
                       <td>{formatAddress(row.lock)}</td>
                       <td>{formatAddress(row.token)}</td>

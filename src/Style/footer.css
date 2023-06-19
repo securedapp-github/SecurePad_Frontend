@@ -4,6 +4,12 @@ footer {
   padding: 40px 0;
   height: 500px;
 }
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
 
 .footer-content {
   padding: 10px;

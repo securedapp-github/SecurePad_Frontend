@@ -33,6 +33,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route exact path="/" element={<Sidebar page={"home"}/>} />
+      <Route exact path="/home2"/>
       <Route exact path="/token" element={<Sidebar page={"token"}/>} />
       <Route exact path="/contact" element={<Sidebar page={"contact"}/>} />
       <Route exact path="/pricing" element={<Sidebar page={"pricing"}/>} />

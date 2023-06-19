@@ -44,13 +44,23 @@ const New = ({ onSearch,theme }) => {
 
         let progress = 0;
         let saledetails;
+        let hardcap;
 
         if (data[i].raised > 0) {
             progress = data[i].raised * 100 / data[i].hard;
         }
 
+        if(data[i].hard > 1000000){
+            hardcap = (data[i].hard / 1000000)+ "M";
+        }else if(data[i].hard > 1000){
+            hardcap = (data[i].hard / 1000)+ "K";
+        }else{
+            hardcap = data[i].hard;
+        }
+
         let name = data[i].token_name;
         let status;
+        let topstatus;
 
         let saleStartTime = data[i].start * 1000;
         let saleEndTime = data[i].end * 1000;
@@ -59,15 +69,17 @@ const New = ({ onSearch,theme }) => {
             const date = new Date(saleStartTime);
             const dateTimeString = date.toLocaleString();
             status = "Sale Starts at " + dateTimeString;
+            topstatus = "Upcoming Sale";
         } else if (saleEndTime < Date.now()) {
             const date = new Date(saleEndTime);
             const dateTimeString = date.toLocaleString();
-
             status = "Sale Ended at " + dateTimeString;
+            topstatus = "Sale Ended";
         } else {
             const date = new Date(saleEndTime);
             const dateTimeString = date.toLocaleString();
             status = "Sale Ends at " + dateTimeString;
+            topstatus = "Sale Live";
         }
 
         saledetails = {
@@ -76,13 +88,18 @@ const New = ({ onSearch,theme }) => {
             'description': '', //data[i].desc,
             'image': data[i].image,
             'soft': data[i].soft,
-            'hard': data[i].hard,
+            'hard': hardcap,
             'progress': progress,
             'liq': 20,
             'lock': data[i].cliff * 30,
             'end': status,
             'token': data[i].payment_name,
-            'sale': data[i].sale_address
+            'sale': data[i].sale_address,
+            'kyc': data[i].kyc,
+            'audit':data[i].audit,
+            'vetted':data[i].vetted,
+            'coin_image':data[i].coin_image,
+            'topstatus': topstatus
         };
         if (i == 0) {
             setsalesArray([]);
@@ -239,7 +256,7 @@ fetch("https://139-59-5-56.nip.io:3443/getSales")
         setSearch(event.target.value);
     };
 
-    const filteredCards = cardsData.filter((card) =>
+    const filteredCards = salesArray.filter((card) =>
         card.title.toLowerCase().includes(filterBy.toLowerCase())
     );
 
@@ -248,65 +265,25 @@ fetch("https://139-59-5-56.nip.io:3443/getSales")
         card.description.toLowerCase().includes(search.toLowerCase())
     );
 
-
     return (
-        <div className="container">
-            <div className="search">
-                <div className="search-container">
+        <div className="searchpage-container" style={{margin:"1.5vw 0"}}>
+            <div className="search" style={{padding:"0 6vw"}}>
+                <div className="search-container" style={{width:"20%",display:"flex",height:"2.5vw",border:"1px solid #ccc",padding:"0 1vw",borderRadius:"2vw"}}>
+                    <div style={{width:"100%"}}>
                     <input
                         type="text" className="search-box" placeholder="Search..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         style={{
+                            border:"1px solid transparent",
                             backgroundColor: 'transparent',
-                            border: '1px solid #ccc',
-                            borderRadius: '25px',
-                            padding: '8px',
-                            marginBottom: '10px',
-                            marginTop: '20px',
-                            width: '20%',
+                            width: '100%',
                             color: '#ccc'
                         }}
-                    /></div>
-
-                <div className="filter" style={{ marginLeft: '55vw', marginTop: '-60px' }}>
-                    <select
-                        value={filterBy}
-                        onChange={(e) => setFilterBy(e.target.value)}
-                        style={{
-                            backgroundColor: 'transparent',
-                            border: '1px solid #ccc',
-                            borderRadius: '4px',
-                            padding: '8px',
-                            marginLeft: '10px',
-                            color: '#ccc',
-                        }}
-
-                    >
-                        <option value="" style={{ color: 'blue' }}>All</option>
-                        {cardsData.map((option, index) => (
-                            <option
-                                key={index}
-                                value={option.title}
-                                style={{ color: 'blue' }}
-                            >
-                                {option.title}
-                            </option>
-                        ))}
-
-                        {/* <option value="" style={{ color: 'blue' }}>All</option>
-                                <option value="MEME ELON DOGE FLOKI" style={{ color: 'blue' }}>MEME ELON DOGE FLOKI</option>
-                                <option value="HCOIN BASE GOT DOWN" style={{ color: 'blue' }}>HCOIN BASE GOT DOWN</option>
-                                <option value="BIT CRYPTO CURRENCY" style={{ color: 'blue' }}>BIT CRYPTO CURRENCY</option>
-                                <option value="Card 4" style={{ color: 'blue' }}>Card 4</option>
-                                <option value="Card 5" style={{ color: 'blue' }}>Card 5</option>
-                                <option value="Card 6" style={{ color: 'blue' }}>Card 6</option>
-                                <option value="Card 7" style={{ color: 'blue' }}>Card 7</option>
-                                <option value="Card 8" style={{ color: 'blue' }}>Card 8</option>
-                                <option value="Card 9" style={{ color: 'blue' }}>Card 9</option> */}
-                    </select>
-                </div></div>
-
+                    />
+                    </div>
+                    <div style={{paddingTop:"0.5vw"}}><svg height="1vw" width="1vw" style={{fill:"#ccc"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></div>
+                    </div></div>
             <div className="card-container">
                 {salesArray.map((card) => (
                     <Card
@@ -322,18 +299,21 @@ fetch("https://139-59-5-56.nip.io:3443/getSales")
                         end={card.end}
                         token={card.token}
                         sale={card.sale}
+                        kyc={card.kyc}
+                        audit={card.audit}
+                        vetted={card.vetted}
+                        coin_image={card.coin_image}
+                        topstatus={card.topstatus}
                     />
                 ))}
-
 
             </div>
         </div>
 
-
-    );
+);
 };
 
-const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token, sale , theme}) => {
+const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token, sale , theme, audit, kyc, vetted, coin_image, topstatus}) => {
     const navigate=useNavigate()
 
     const GoToSaleDetail = async(sale) => {
@@ -342,14 +322,22 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
     
     return (
         <div onClick={() => {GoToSaleDetail(sale)}} style={{cursor:"pointer",borderRadius:"1.5vw"}}>
-            <div style={{fontSize:"1.3vw",fontWeight:"700",color:"#12D576",textAlign:"end",paddingRight:"1vw"}}>Sale Live</div>
+            <div style={{fontSize:"1.3vw",fontWeight:"700",color:"#12D576",textAlign:"end",paddingRight:"1vw"}}>{topstatus}</div>
         <div className="card" style={{borderRadius:"1.5vw",backgroundColor:"rgba(70,70,70,0.4)"}}>
             <img src={image} alt={title} className="card-image" />
             <div style={{display:"flex",justifyContent:"space-between"}}>
-            <img src={Coin} style={{ paddingLeft: "2vw",position:"relative",bottom:"0.3vw",width:"5vw",height:"3vw" }} alt="not found" />
+            <img src={coin_image} style={{ paddingLeft: "2vw",position:"relative",bottom:"0.3vw",width:"5vw",height:"3vw" }} alt="not found" />
             <div style={{display:"flex",paddingRight:"1.5vw",paddingTop:"1vw",gap:"0.1vw"}}>
-            <div style={{padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>Audit</div>
-            <div style={{padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>KYC+</div>
+
+            {audit != "" && ( 
+            <div onClick={(event) => {event.stopPropagation(); window.open(audit, "_blank");}} style={{cursor:"pointer",padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>Audit</div>
+            )}
+            {kyc != "" && ( 
+            <div onClick={(event) => {event.stopPropagation(); window.open(kyc, "_blank");}} style={{cursor:"pointer",padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>KYC+</div>
+            )}
+            {vetted != "" && ( 
+            <div onClick={(event) => {event.stopPropagation(); window.open(vetted, "_blank");}} style={{cursor:"pointer",padding:"0.3vw 0.5vw",fontWeight:"700",color:'#12D576',border:"1px solid #12D576",borderRadius:"1vw"}}>Vetted</div>
+            )}
             </div>
             </div>
             <div className="card-content">
