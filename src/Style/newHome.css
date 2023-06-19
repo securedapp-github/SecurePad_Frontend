@@ -1,0 +1,63 @@
+.newHome-FAQ{
+    padding:5vw 10vw;
+    color:white;
+    background-color: #13141e;
+    display:flex;
+    justify-content:space-between;
+}
+.newHome-FAQ-heading{
+    font-size:3vw;
+    font-weight:700;
+}
+.newHome-FAQ-note{
+    padding-top:1.3vw;
+    font-size:1.3vw;
+    color:#929397;
+}
+.newHome-FAQ-button{
+    padding-top:2vw;
+    padding-right:4vw;
+}
+.newHome-FAQ-button-1{
+    font-size:1.2vw;
+    font-weight:700;
+    display:flex;
+    justify-content: space-between;
+}
+.newHome-FAQ-button-1 div:hover,.newHome-FAQ-button-2 div:hover,.newHome-FAQ-button-3 div {
+    cursor:pointer;
+}
+.newHome-FAQ-button-2{
+    font-size:1.2vw;
+    font-weight:700;
+    display:flex;
+    justify-content: space-between;
+    padding-top:1vw;
+}
+.newHome-FAQ-button-3{
+    font-size:1.2vw;
+    font-weight:700;
+    display:flex;
+    justify-content: space-between;
+    padding-top:1vw;
+}
+.accordion-button{
+    background-color:#13141e;
+    color:white;
+    font-size:1.2vw;
+    font-weight:700;
+}
+.accordion-button[aria-expanded='true']{
+    background-color:#13141e;
+    color:white;
+    font-size:1.2vw;
+    font-weight:700;
+}
+.accordion-body{
+    background-color: #13141e;
+    color:#c3c3c6;
+    font-size:1vw;
+}
+.accordion-button::after{
+    background-color:white;
+}
