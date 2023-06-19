@@ -35,7 +35,6 @@ function BuySale(props) {
     const [balance, setbalance] = useState(0);
     const [paybalance, setpaybalance] = useState(0);
 
-
     const [soft, setsoft] = useState(0);
     const [hard, sethard] = useState(0);
     const [status, setstatus] = useState('');
@@ -43,6 +42,7 @@ function BuySale(props) {
     const [pay, setpay] = useState('');
     const [payaddress, setpayaddress] = useState('');
     const [loading, setLoading] = useState(false);
+    const [allowed, setallowed] = useState(true);
 
     const [kyc, setkyc] = useState('');
     const [audit, setaudit] = useState('');
@@ -134,22 +134,23 @@ function BuySale(props) {
                     setpaybalance(balance);
                 }
 
-
                 let saleStartTime = data[0].start * 1000;
                 let saleEndTime = data[0].end * 1000;
 
                 if (saleStartTime > Date.now()) {
                     const date = new Date(saleStartTime);
                     const dateTimeString = date.toLocaleString();
+                    setallowed(false);
                     setstatus("Sale Starts at " + dateTimeString);
                 } else if (saleEndTime < Date.now()) {
                     const date = new Date(saleEndTime);
                     const dateTimeString = date.toLocaleString();
-
+                    setallowed(false);
                     setstatus("Sale Ended at " + dateTimeString);
                 } else {
                     const date = new Date(saleEndTime);
                     const dateTimeString = date.toLocaleString();
+                    setallowed(true);
                     setstatus("Sale Ends at " + dateTimeString);
                 }
             }
@@ -277,7 +278,8 @@ function BuySale(props) {
                     <img style={{ height: "250px", width: "100%", borderRadius: "3vw", padding: "0.2vw" }} src={image} alt="not found" />
                     <br />
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <img src={coin} style={{ position: "relative", paddingLeft: "3vw", bottom: "1.8vw" }} alt="not found" />
+                        <img src={coin} style={{ maxWidth: '10vw', maxHeight: '6vw',  position: "relative", paddingLeft: "3vw", bottom: "1.8vw" }} alt="not found" />
+                        
                         <div style={{ paddingTop: "0.2vw" }}>
 
                             {web !== undefined && (
@@ -390,12 +392,17 @@ function BuySale(props) {
                     </div> */}
 
                     <div style={{ fontSize: "1.2vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                       { soft != 0 && ( 
                         <div>{soft}{" " + token}</div>
+                       )}
+                       { soft == 0 && ( 
+                        <div></div>
+                       )}
                         <div>{hard}{" " + token}</div>
+                    
                     </div>
-                    <div style={{ fontSize: "1.1vw", paddingTop: "0.7vw" }}>
-                        {/* Buy */}
-                    </div>
+                    
+                    { allowed && (
                     <div style={{ fontSize: "1.1vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                         <div style={{ height: "100%", border: "2px solid #464646", display: "flex", borderRadius: "1.5vw", padding: "0.3vw 0.2vw" }}>                            <input
                             value={buyamount}
@@ -406,6 +413,8 @@ function BuySale(props) {
                         <div onClick={() => { buyToken() }} style={{ cursor:"pointer", backgroundColor: "#464646", height: "100%", padding: "0.5vw 1vw", borderRadius: "1.5vw" }}>                            BUY {' ' + token}
                         </div>
                     </div>
+                    )}
+
                     <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
                         <div>Expected Token</div>
                         <div>{buyamount * decimal}</div>

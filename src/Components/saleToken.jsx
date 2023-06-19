@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { ethers } from "ethers";
 import { formatAddress } from '../utils/address';
 import Loader from 'utils/loader';
+import { useNavigate } from 'react-router-dom';
 
 import {
   useAccount,
@@ -28,6 +29,7 @@ function SaleToken() {
   const { TOKEN } = useParams();
   const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const [confirmpage, setconfirmpage] = useState(false);
   const { data: signerData } = useSigner();
@@ -144,7 +146,16 @@ function SaleToken() {
       {confirmpage && (
         <div style={{ ...blurryDivStyle, padding: "2%", margin: "0 10vw 0 20vw" }}>
           <div className="saleFirstRow" style={{ display: "flex", flexDirection: "row" }}>
-            <div style={{ paddingTop: "10px" }}><svg xmlns="http://www.w3.org/2000/svg" height="35" width="35" style={{ fill: "#12D576" }} viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
+            
+          <div style={{ paddingTop: "0.1vw" }}>
+          <Button onClick={() => { navigate(-1)}} style={{background:"transparent",border:"1px solid transparent"}}>
+          <svg xmlns="http://www.w3.org/2000/svg" height="35" width="35" style={{ fill: "#12D576" }} viewBox="0 0 448 512">
+            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+          </Button>
+        </div>
+            
+            
             <div style={{ paddingLeft: "20px", width: "75%" }}>
               <div style={{ padding: "0", margin: "0", fontSize: "35px", fontWeight: "700", color: "#12D576" }}>Create Token Sale</div>
               <div style={{ color: "#cccccc" }}>Step 2 of 2: Confirm Token Sale Details</div>
@@ -253,7 +264,15 @@ function SaleToken() {
       {!confirmpage && (
         <div style={{ ...blurryDivStyle, padding: "2%", margin: "0 10vw 0 20vw" }}>
           <div className="saleFirstRow" style={{ display: "flex", flexDirection: "row" }}>
-            <div style={{ paddingTop: "10px" }}><svg xmlns="http://www.w3.org/2000/svg" height="35" width="35" style={{ fill: "#12D576" }} viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
+            
+          <div style={{ paddingTop: "0.1vw" }}>
+          <Button onClick={() => { navigate(-1)}} style={{background:"transparent",border:"1px solid transparent"}}>
+          <svg xmlns="http://www.w3.org/2000/svg" height="35" width="35" style={{ fill: "#12D576" }} viewBox="0 0 448 512">
+            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+          </Button>
+        </div>
+                    
             <div style={{ paddingLeft: "20px", width: "65%" }}>
               <div style={{ padding: "0", margin: "0", fontSize: "35px", fontWeight: "700", color: "#12D576" }}>Create Token Sale</div>
               <div style={{ color: "#cccccc" }}>Step 1 of 2: Configure your token sale</div>

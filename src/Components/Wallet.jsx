@@ -9,6 +9,8 @@ import SALEABI from "../ABI/SaleABI.json";
 import LOCKABI from "../ABI/LockABI.json";
 import { formatAddress } from '../utils/address';
 import Loader from 'utils/loader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   useAccount,
@@ -21,6 +23,7 @@ import {
   useWaitForTransaction,
   useProvider
 } from "wagmi";
+import { Button } from "react-bootstrap";
 
 function Wallet(props) {
   const {theme}=props
@@ -201,8 +204,19 @@ function Wallet(props) {
     }
   };
 
+  const copyAddress = (copytext) => {
+    navigator.clipboard.writeText(copytext);
+    toast('Address Copied');
+  };
+
   return (
     <div>
+      <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            theme="dark"
+            pauseOnHover
+        />
 
     {loading && ( <Loader/>)}
 
@@ -228,21 +242,21 @@ function Wallet(props) {
               <thead>
                 <tr>
                   <th scope="col" className="custom-th">
-                    Name
+                    Wallet
                   </th>
                   <th scope="col" className="custom-th">
                     Email
                   </th>
                   <th scope="col" className="custom-th">
-                    Wallet
+                    KYC
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr style={{color:`${theme==='Dark' ? 'white':'black'}`}}>
-                  <td> User342</td>
-                  <td>User342@securedapp.in</td>
-                  <td>{address}</td>
+                  <td onClick={() => {copyAddress(address)}} >{formatAddress(address)}</td>
+                  <td><Button onClick={() => {toast('Coming Soom');}}>Verify</Button></td>
+                  <td><Button onClick={() => {toast('Coming Soom');}}>Initiate</Button></td>
                 </tr>
               </tbody>
             </table>
@@ -307,7 +321,7 @@ function Wallet(props) {
                   {activeButton == 0 && tokenArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
                       <td>{row.id}</td>
-                      <td>{formatAddress(row.token)}</td>
+                      <td onClick={() => {copyAddress(row.token)}}>{formatAddress(row.token)}</td>
                       <td>{row.name}</td>
                       <td>{row.symbol}</td>
                       <td>
@@ -320,9 +334,9 @@ function Wallet(props) {
                   {activeButton == 1 && salesArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
                       <td>{row.id}</td>
-                      <td>{formatAddress(row.sale)}</td>
-                      <td>{formatAddress(row.token)}</td>
-                      <td>{formatAddress(row.payment)}</td>
+                      <td onClick={() => {copyAddress(row.sale)}}>{formatAddress(row.sale)}</td>
+                      <td onClick={() => {copyAddress(row.token)}}>{formatAddress(row.token)}</td>
+                      <td onClick={() => {copyAddress(row.payment)}}>{formatAddress(row.payment)}</td>
                       <td>{row.status}</td>
                       <td>
                         <Link to={`/managesale/${row.sale}`} >
@@ -335,8 +349,8 @@ function Wallet(props) {
                   {activeButton == 2 && locksArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
                       <td>{row.id}</td>
-                      <td>{formatAddress(row.lock)}</td>
-                      <td>{formatAddress(row.token)}</td>
+                      <td onClick={() => {copyAddress(row.lock)}}>{formatAddress(row.lock)}</td>
+                      <td onClick={() => {copyAddress(row.token)}}>{formatAddress(row.token)}</td>
                       <td>{row.name}</td>
                       <td>{row.duration}</td>
                       <td>{row.amount}</td>

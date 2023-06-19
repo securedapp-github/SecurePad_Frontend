@@ -47,6 +47,8 @@ function App() {
       <Route exact path="/locktoken/:TOKEN" element={<Sidebar page={"locktoken"}/>} />
       <Route exact path="/managelock/:LOCK" element={<Sidebar page={"managelock"}/>} />
       <Route exact path="/saletoken/:TOKEN" element={<Managetoken page={"saletoken"}/>} />
+      <Route exact path="/editsale/:SALE" element={<Managetoken page={"editsale"}/>} />
+
       <Route exact path="/managesale/:SALE" element={<Managetoken page={"managesale"}/>} />
       <Route exact path="/buysale/:SALE" element={<Sidebar page={"buysale"}/>} />
       <Route exact path="/distributetoken" element={<Managetoken page={"distributetoken"}/>} />

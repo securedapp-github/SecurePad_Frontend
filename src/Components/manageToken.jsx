@@ -9,6 +9,7 @@ import Saletoken from './saleToken.jsx'
 import ManageSale from './managesale.jsx'
 import Wallet from './Wallet.jsx'
 import DistributeToken from './distributeToken.jsx'
+import EditSale from './editSale.jsx'
 
 import {
   useAccount
@@ -30,6 +31,9 @@ function manageToken(props) {
     }
     if(page=='saletoken'){
       return <Saletoken/>
+    }
+    if(page=='editsale'){
+      return <EditSale/>
     }
     if(page=='managesale'){
       return <ManageSale/>
