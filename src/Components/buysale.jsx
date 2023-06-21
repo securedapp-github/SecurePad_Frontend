@@ -28,6 +28,7 @@ function BuySale(props) {
     const navigate = useNavigate();
     const { SALE } = useParams();
     const provider = useProvider();
+
     const { address } = useAccount();
     const [progress, setprogress] = useState(0);
     const [price, setprice] = useState(0);
@@ -55,8 +56,6 @@ function BuySale(props) {
     const [git, setgit] = useState('');
     const [tel, settel] = useState('');
     const [dis, setdis] = useState('');
-
-
 
 
     const [buyamount, setbuyamount] = useState(0);
@@ -186,20 +185,27 @@ function BuySale(props) {
         filter: loading ? 'blur(5px)' : 'blur(0px)'
     };
 
-    const updateRaisedDB = async (sale, amount) => {
+    const updateRaisedDB = async (amount, txnhash) => {
 
-        fetch('https://139-59-5-56.nip.io:3443/updatePurchase', {
-        // fetch('http://127.0.0.1:8000/updatePurchase', {
+        const { chainId } = await provider.getNetwork()
+       
+        fetch('https://139-59-5-56.nip.io:3443/updateActivity', {
+        // fetch('http://127.0.0.1:8000/updateActivity', {
          method: 'POST',
          body: JSON.stringify({
-            salecontract: sale,
-            saleamount: amount,
+            user: address,
+            event: 1,
+            eventname: token,
+            hash: txnhash,
+            data: amount+","+buyamount+","+pay,
+            chain: chainId,
+            address: SALE
          }),
          headers: {
             'Content-type': 'application/json',
          },
       })
-         .then((res) => {res.json()})
+         .then((res) => {})
          .then((data) => {
             toast.success('Token Purchased Successfully');
             setLoading(false);
@@ -214,6 +220,9 @@ function BuySale(props) {
 
     const buyToken = async () => {
         try {
+            // updateRaisedDB(buyamount * decimal, "0x0ec5ef23ef82c771916e110d5b510d7927904fe7dfa19664d842f3bcb5cf8ac3");
+            // return;
+            
             setLoading(true);
             let SaleContract = new ethers.Contract(
                 SALE,
@@ -226,7 +235,7 @@ function BuySale(props) {
                 const receipt = await tx.wait();
                 if (receipt.status == 1) {
                     console.log("Updating Purchased Amount of "+ buyamount * decimal);
-                    updateRaisedDB(SALE, buyamount * decimal);
+                    updateRaisedDB(buyamount * decimal, receipt.transactionHash);
                 }
             } else {
                 let TOKENCONTRACT = new ethers.Contract(
@@ -245,7 +254,7 @@ function BuySale(props) {
                     const receipt2 = await tx2.wait()
                     if (receipt2.status == 1 ) {
                         console.log("Token Alloted successfully, Updating DB");
-                        updateRaisedDB(SALE, buyamount * decimal);
+                        updateRaisedDB(buyamount * decimal, receipt2.transactionHash);
                     }
                 }
             }
