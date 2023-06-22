@@ -10,9 +10,11 @@ import PancakeSwap from '../assets/PancakeSwap.png'
 import Gate from '../assets/Gate.png'
 import Bybit from '../assets/BYBIT.png'
 import VideoSource from '../assets/mixkit-animation-of-futuristic-devices-99786.mp4'
+import Space from '../assets/space.webp'
 
 function NewHome() {
     const [accord,setAccord]=useState([true,false,false,false,false,false,false,false,false,false])
+
     function handleClick(e){
         let alp=e.target.id
         let ko=[false,false,false,false,false,false,false,false,false,false]
@@ -140,21 +142,49 @@ function NewHome() {
                 <div>
                     <div style={{display:"flex",gap:'0.5vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>IGO Launchpad Home</div>
+                    <div style={{fontSize:'0.7vw'}}>Learn more about the way the IGOs 
+                    </div><div style={{fontSize:'0.7vw'}}>
+                    work at seedify, and how to join 
+                    </div><div style={{fontSize:'0.7vw'}}>them</div>
+                    </div>
                     </div>
                     <div style={{display:"flex",gap:'0.5vw',paddingTop:"2vw"}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 512 512"><path d="M512 80c0 18-14.3 34.6-38.4 48c-29.1 16.1-72.5 27.5-122.3 30.9c-3.7-1.8-7.4-3.5-11.3-5C300.6 137.4 248.2 128 192 128c-8.3 0-16.4 .2-24.5 .6l-1.1-.6C142.3 114.6 128 98 128 80c0-44.2 86-80 192-80S512 35.8 512 80zM160.7 161.1c10.2-.7 20.7-1.1 31.3-1.1c62.2 0 117.4 12.3 152.5 31.4C369.3 204.9 384 221.7 384 240c0 4-.7 7.9-2.1 11.7c-4.6 13.2-17 25.3-35 35.5c0 0 0 0 0 0c-.1 .1-.3 .1-.4 .2l0 0 0 0c-.3 .2-.6 .3-.9 .5c-35 19.4-90.8 32-153.6 32c-59.6 0-112.9-11.3-148.2-29.1c-1.9-.9-3.7-1.9-5.5-2.9C14.3 274.6 0 258 0 240c0-34.8 53.4-64.5 128-75.4c10.5-1.5 21.4-2.7 32.7-3.5zM416 240c0-21.9-10.6-39.9-24.1-53.4c28.3-4.4 54.2-11.4 76.2-20.5c16.3-6.8 31.5-15.2 43.9-25.5V176c0 19.3-16.5 37.1-43.8 50.9c-14.6 7.4-32.4 13.7-52.4 18.5c.1-1.8 .2-3.5 .2-5.3zm-32 96c0 18-14.3 34.6-38.4 48c-1.8 1-3.6 1.9-5.5 2.9C304.9 404.7 251.6 416 192 416c-62.8 0-118.6-12.6-153.6-32C14.3 370.6 0 354 0 336V300.6c12.5 10.3 27.6 18.7 43.9 25.5C83.4 342.6 135.8 352 192 352s108.6-9.4 148.1-25.9c7.8-3.2 15.3-6.9 22.4-10.9c6.1-3.4 11.8-7.2 17.2-11.2c1.5-1.1 2.9-2.3 4.3-3.4V304v5.7V336zm32 0V304 278.1c19-4.2 36.5-9.5 52.1-16c16.3-6.8 31.5-15.2 43.9-25.5V272c0 10.5-5 21-14.9 30.9c-16.3 16.3-45 29.7-81.3 38.4c.1-1.7 .2-3.5 .2-5.3zM192 448c56.2 0 108.6-9.4 148.1-25.9c16.3-6.8 31.5-15.2 43.9-25.5V432c0 44.2-86 80-192 80S0 476.2 0 432V396.6c12.5 10.3 27.6 18.7 43.9 25.5C83.4 438.6 135.8 448 192 448z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Claim</div>
+                    <div style={{fontSize:'0.7vw'}}>Browse the available claims and see</div>
+                    <div style={{fontSize:'0.7vw'}}>ones you are eligible for</div>
+                    </div>
                     </div>
                 </div>
                 <div>
                 <div style={{display:"flex",gap:'0.5vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 512 512"><path d="M320 96H192L144.6 24.9C137.5 14.2 145.1 0 157.9 0H354.1c12.8 0 20.4 14.2 13.3 24.9L320 96zM192 128H320c3.8 2.5 8.1 5.3 13 8.4C389.7 172.7 512 250.9 512 416c0 53-43 96-96 96H96c-53 0-96-43-96-96C0 250.9 122.3 172.7 179 136.4l0 0 0 0c4.8-3.1 9.2-5.9 13-8.4zm84 88c0-11-9-20-20-20s-20 9-20 20v14c-7.6 1.7-15.2 4.4-22.2 8.5c-13.9 8.3-25.9 22.8-25.8 43.9c.1 20.3 12 33.1 24.7 40.7c11 6.6 24.7 10.8 35.6 14l1.7 .5c12.6 3.8 21.8 6.8 28 10.7c5.1 3.2 5.8 5.4 5.9 8.2c.1 5-1.8 8-5.9 10.5c-5 3.1-12.9 5-21.4 4.7c-11.1-.4-21.5-3.9-35.1-8.5c-2.3-.8-4.7-1.6-7.2-2.4c-10.5-3.5-21.8 2.2-25.3 12.6s2.2 21.8 12.6 25.3c1.9 .6 4 1.3 6.1 2.1l0 0 0 0c8.3 2.9 17.9 6.2 28.2 8.4V424c0 11 9 20 20 20s20-9 20-20V410.2c8-1.7 16-4.5 23.2-9c14.3-8.9 25.1-24.1 24.8-45c-.3-20.3-11.7-33.4-24.6-41.6c-11.5-7.2-25.9-11.6-37.1-15l0 0-.7-.2c-12.8-3.9-21.9-6.7-28.3-10.5c-5.2-3.1-5.3-4.9-5.3-6.7c0-3.7 1.4-6.5 6.2-9.3c5.4-3.2 13.6-5.1 21.5-5c9.6 .1 20.2 2.2 31.2 5.2c10.7 2.8 21.6-3.5 24.5-14.2s-3.5-21.6-14.2-24.5c-6.5-1.7-13.7-3.4-21.1-4.7V216z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Purchase SFUND</div>
+                    <div style={{fontSize:'0.7vw'}}>Acquire our main token and reap the</div>
+                    <div style={{fontSize:'0.7vw'}}>reward of its utility in our</div>
+                    <div style={{fontSize:'0.7vw'}}>ecosystem</div>
+                    </div>
                     </div>
                     <div style={{display:"flex",gap:'0.5vw',paddingTop:'2vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 576 512"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Guides</div> 
+                    <div style={{fontSize:'0.7vw'}}>Explore our documentation and help</div>
+                    <div style={{fontSize:'0.7vw'}}>articles to guide your quest at</div>
+                    <div style={{fontSize:'0.7vw'}}>seedify</div>
+                    </div>
+                    </div>
+                </div>
+                <div style={{marginLeft:'10vw',borderLeft:'0.156vw solid #9ea9a9',paddingLeft:'4vw'}}>
+                    <div>
+                        <img src={Space} alt="" />
+                        <div style={{cursor:'pointer',fontSize:'1.2vw',fontWeight:'500'}}>Introducing SNFTs</div>
+                        <div style={{cursor:'pointer',fontSize:'0.9vw'}}>Learn more about our newest product</div>
+                        <div style={{cursor:'pointer',fontSize:'1.2vw',fontWeight:'500',paddingTop:'0.2vw'}}>Read More</div>
                     </div>
                 </div>
             </div>
@@ -162,21 +192,49 @@ function NewHome() {
             <div>
                     <div style={{display:"flex",gap:'0.5vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>IGO Launchpad Home</div>
+                    <div style={{fontSize:'0.7vw'}}>Learn more about the way the IGOs 
+                    </div><div style={{fontSize:'0.7vw'}}>
+                    work at seedify, and how to join 
+                    </div><div style={{fontSize:'0.7vw'}}>them</div>
+                    </div>
                     </div>
                     <div style={{display:"flex",gap:'0.5vw',paddingTop:"2vw"}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 512 512"><path d="M512 80c0 18-14.3 34.6-38.4 48c-29.1 16.1-72.5 27.5-122.3 30.9c-3.7-1.8-7.4-3.5-11.3-5C300.6 137.4 248.2 128 192 128c-8.3 0-16.4 .2-24.5 .6l-1.1-.6C142.3 114.6 128 98 128 80c0-44.2 86-80 192-80S512 35.8 512 80zM160.7 161.1c10.2-.7 20.7-1.1 31.3-1.1c62.2 0 117.4 12.3 152.5 31.4C369.3 204.9 384 221.7 384 240c0 4-.7 7.9-2.1 11.7c-4.6 13.2-17 25.3-35 35.5c0 0 0 0 0 0c-.1 .1-.3 .1-.4 .2l0 0 0 0c-.3 .2-.6 .3-.9 .5c-35 19.4-90.8 32-153.6 32c-59.6 0-112.9-11.3-148.2-29.1c-1.9-.9-3.7-1.9-5.5-2.9C14.3 274.6 0 258 0 240c0-34.8 53.4-64.5 128-75.4c10.5-1.5 21.4-2.7 32.7-3.5zM416 240c0-21.9-10.6-39.9-24.1-53.4c28.3-4.4 54.2-11.4 76.2-20.5c16.3-6.8 31.5-15.2 43.9-25.5V176c0 19.3-16.5 37.1-43.8 50.9c-14.6 7.4-32.4 13.7-52.4 18.5c.1-1.8 .2-3.5 .2-5.3zm-32 96c0 18-14.3 34.6-38.4 48c-1.8 1-3.6 1.9-5.5 2.9C304.9 404.7 251.6 416 192 416c-62.8 0-118.6-12.6-153.6-32C14.3 370.6 0 354 0 336V300.6c12.5 10.3 27.6 18.7 43.9 25.5C83.4 342.6 135.8 352 192 352s108.6-9.4 148.1-25.9c7.8-3.2 15.3-6.9 22.4-10.9c6.1-3.4 11.8-7.2 17.2-11.2c1.5-1.1 2.9-2.3 4.3-3.4V304v5.7V336zm32 0V304 278.1c19-4.2 36.5-9.5 52.1-16c16.3-6.8 31.5-15.2 43.9-25.5V272c0 10.5-5 21-14.9 30.9c-16.3 16.3-45 29.7-81.3 38.4c.1-1.7 .2-3.5 .2-5.3zM192 448c56.2 0 108.6-9.4 148.1-25.9c16.3-6.8 31.5-15.2 43.9-25.5V432c0 44.2-86 80-192 80S0 476.2 0 432V396.6c12.5 10.3 27.6 18.7 43.9 25.5C83.4 438.6 135.8 448 192 448z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Claim</div>
+                    <div style={{fontSize:'0.7vw'}}>Browse the available claims and see</div>
+                    <div style={{fontSize:'0.7vw'}}>ones you are eligible for</div>
+                    </div>
                     </div>
                 </div>
                 <div>
                 <div style={{display:"flex",gap:'0.5vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 512 512"><path d="M320 96H192L144.6 24.9C137.5 14.2 145.1 0 157.9 0H354.1c12.8 0 20.4 14.2 13.3 24.9L320 96zM192 128H320c3.8 2.5 8.1 5.3 13 8.4C389.7 172.7 512 250.9 512 416c0 53-43 96-96 96H96c-53 0-96-43-96-96C0 250.9 122.3 172.7 179 136.4l0 0 0 0c4.8-3.1 9.2-5.9 13-8.4zm84 88c0-11-9-20-20-20s-20 9-20 20v14c-7.6 1.7-15.2 4.4-22.2 8.5c-13.9 8.3-25.9 22.8-25.8 43.9c.1 20.3 12 33.1 24.7 40.7c11 6.6 24.7 10.8 35.6 14l1.7 .5c12.6 3.8 21.8 6.8 28 10.7c5.1 3.2 5.8 5.4 5.9 8.2c.1 5-1.8 8-5.9 10.5c-5 3.1-12.9 5-21.4 4.7c-11.1-.4-21.5-3.9-35.1-8.5c-2.3-.8-4.7-1.6-7.2-2.4c-10.5-3.5-21.8 2.2-25.3 12.6s2.2 21.8 12.6 25.3c1.9 .6 4 1.3 6.1 2.1l0 0 0 0c8.3 2.9 17.9 6.2 28.2 8.4V424c0 11 9 20 20 20s20-9 20-20V410.2c8-1.7 16-4.5 23.2-9c14.3-8.9 25.1-24.1 24.8-45c-.3-20.3-11.7-33.4-24.6-41.6c-11.5-7.2-25.9-11.6-37.1-15l0 0-.7-.2c-12.8-3.9-21.9-6.7-28.3-10.5c-5.2-3.1-5.3-4.9-5.3-6.7c0-3.7 1.4-6.5 6.2-9.3c5.4-3.2 13.6-5.1 21.5-5c9.6 .1 20.2 2.2 31.2 5.2c10.7 2.8 21.6-3.5 24.5-14.2s-3.5-21.6-14.2-24.5c-6.5-1.7-13.7-3.4-21.1-4.7V216z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Purchase SFUND</div>
+                    <div style={{fontSize:'0.7vw'}}>Acquire our main token and reap the</div>
+                    <div style={{fontSize:'0.7vw'}}>reward of its utility in our</div>
+                    <div style={{fontSize:'0.7vw'}}>ecosystem</div>
+                    </div>
                     </div>
                     <div style={{display:"flex",gap:'0.5vw',paddingTop:'2vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 576 512"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Guides</div> 
+                    <div style={{fontSize:'0.7vw'}}>Explore our documentation and help</div>
+                    <div style={{fontSize:'0.7vw'}}>articles to guide your quest at</div>
+                    <div style={{fontSize:'0.7vw'}}>seedify</div>
+                    </div>
+                    </div>
+                </div>
+                <div style={{marginLeft:'10vw',borderLeft:'0.156vw solid #9ea9a9',paddingLeft:'4vw'}}>
+                    <div>
+                        <img src={Space} alt="" />
+                        <div style={{cursor:'pointer',fontSize:'1.2vw',fontWeight:'500'}}>Introducing SNFTs</div>
+                        <div style={{cursor:'pointer',fontSize:'0.9vw'}}>Learn more about our newest product</div>
+                        <div style={{cursor:'pointer',fontSize:'1.2vw',fontWeight:'500',paddingTop:'0.2vw'}}>Read More</div>
                     </div>
                 </div>
             </div>
@@ -184,27 +242,60 @@ function NewHome() {
             <div>
                     <div style={{display:"flex",gap:'0.5vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg"  width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 640 512"><path d="M544 248v3.3l69.7-69.7c21.9-21.9 21.9-57.3 0-79.2L535.6 24.4c-21.9-21.9-57.3-21.9-79.2 0L416.3 64.5c-2.7-.3-5.5-.5-8.3-.5H296c-37.1 0-67.6 28-71.6 64H224V248c0 22.1 17.9 40 40 40s40-17.9 40-40V176c0 0 0-.1 0-.1V160l16 0 136 0c0 0 0 0 .1 0H464c44.2 0 80 35.8 80 80v8zM336 192v56c0 39.8-32.2 72-72 72s-72-32.2-72-72V129.4c-35.9 6.2-65.8 32.3-76 68.2L99.5 255.2 26.3 328.4c-21.9 21.9-21.9 57.3 0 79.2l78.1 78.1c21.9 21.9 57.3 21.9 79.2 0l37.7-37.7c.9 0 1.8 .1 2.7 .1H384c26.5 0 48-21.5 48-48c0-5.6-1-11-2.7-16H432c26.5 0 48-21.5 48-48c0-12.8-5-24.4-13.2-33c25.7-5 45.1-27.6 45.2-54.8v-.4c-.1-30.8-25.1-55.8-56-55.8c0 0 0 0 0 0l-120 0z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Stake SFUNDS</div>
+                    <div style={{fontSize:'0.7vw'}}>Explore our documentation and help</div>
+                    <div style={{fontSize:'0.7vw'}}>articles to guide your quest at</div>
+                    <div style={{fontSize:'0.7vw'}}>seedify</div>
+                    </div>
                     </div>
                     <div style={{display:"flex",gap:'0.5vw',paddingTop:"2vw"}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 640 512"><path d="M96 64c0-35.3 28.7-64 64-64H266.3c26.2 0 49.7 15.9 59.4 40.2L373.7 160H480V126.2c0-24.8 5.8-49.3 16.9-71.6l2.5-5c7.9-15.8 27.1-22.2 42.9-14.3s22.2 27.1 14.3 42.9l-2.5 5c-6.7 13.3-10.1 28-10.1 42.9V160h56c22.1 0 40 17.9 40 40v45.4c0 16.5-8.5 31.9-22.6 40.7l-43.3 27.1c-14.2-5.9-29.8-9.2-46.1-9.2c-39.3 0-74.1 18.9-96 48H352c0 17.7-14.3 32-32 32h-8.2c-1.7 4.8-3.7 9.5-5.8 14.1l5.8 5.8c12.5 12.5 12.5 32.8 0 45.3l-22.6 22.6c-12.5 12.5-32.8 12.5-45.3 0l-5.8-5.8c-4.6 2.2-9.3 4.1-14.1 5.8V480c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32v-8.2c-4.8-1.7-9.5-3.7-14.1-5.8l-5.8 5.8c-12.5 12.5-32.8 12.5-45.3 0L40.2 449.1c-12.5-12.5-12.5-32.8 0-45.3l5.8-5.8c-2.2-4.6-4.1-9.3-5.8-14.1H32c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32h8.2c1.7-4.8 3.7-9.5 5.8-14.1l-5.8-5.8c-12.5-12.5-12.5-32.8 0-45.3l22.6-22.6c9-9 21.9-11.5 33.1-7.6V192 160 64zm170.3 0H160v96h32H304.7L266.3 64zM176 256a80 80 0 1 0 0 160 80 80 0 1 0 0-160zM528 448a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm0 64c-48.6 0-88-39.4-88-88c0-29.8 14.8-56.1 37.4-72c14.3-10.1 31.8-16 50.6-16c2.7 0 5.3 .1 7.9 .3c44.9 4 80.1 41.7 80.1 87.7c0 48.6-39.4 88-88 88z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Farm SFUNDS</div>
+                    <div style={{fontSize:'0.7vw'}}>Explore our documentation and help</div>
+                    <div style={{fontSize:'0.7vw'}}>articles to guide your quest at</div>
+                    <div style={{fontSize:'0.7vw'}}>seedify</div>
+                    </div>
                     </div>
                 </div>
                 <div>
                 <div style={{display:"flex",gap:'0.5vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg"  width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 640 512"><path d="M544 248v3.3l69.7-69.7c21.9-21.9 21.9-57.3 0-79.2L535.6 24.4c-21.9-21.9-57.3-21.9-79.2 0L416.3 64.5c-2.7-.3-5.5-.5-8.3-.5H296c-37.1 0-67.6 28-71.6 64H224V248c0 22.1 17.9 40 40 40s40-17.9 40-40V176c0 0 0-.1 0-.1V160l16 0 136 0c0 0 0 0 .1 0H464c44.2 0 80 35.8 80 80v8zM336 192v56c0 39.8-32.2 72-72 72s-72-32.2-72-72V129.4c-35.9 6.2-65.8 32.3-76 68.2L99.5 255.2 26.3 328.4c-21.9 21.9-21.9 57.3 0 79.2l78.1 78.1c21.9 21.9 57.3 21.9 79.2 0l37.7-37.7c.9 0 1.8 .1 2.7 .1H384c26.5 0 48-21.5 48-48c0-5.6-1-11-2.7-16H432c26.5 0 48-21.5 48-48c0-12.8-5-24.4-13.2-33c25.7-5 45.1-27.6 45.2-54.8v-.4c-.1-30.8-25.1-55.8-56-55.8c0 0 0 0 0 0l-120 0z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Stake SNNFTS</div>
+                    <div style={{fontSize:'0.7vw'}}>Explore our documentation and help</div>
+                    <div style={{fontSize:'0.7vw'}}>articles to guide your quest at</div>
+                    <div style={{fontSize:'0.7vw'}}>seedify</div>
+                    </div>
                     </div>
                     <div style={{display:"flex",gap:'0.5vw',paddingTop:'2vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 640 512"><path d="M96 64c0-35.3 28.7-64 64-64H266.3c26.2 0 49.7 15.9 59.4 40.2L373.7 160H480V126.2c0-24.8 5.8-49.3 16.9-71.6l2.5-5c7.9-15.8 27.1-22.2 42.9-14.3s22.2 27.1 14.3 42.9l-2.5 5c-6.7 13.3-10.1 28-10.1 42.9V160h56c22.1 0 40 17.9 40 40v45.4c0 16.5-8.5 31.9-22.6 40.7l-43.3 27.1c-14.2-5.9-29.8-9.2-46.1-9.2c-39.3 0-74.1 18.9-96 48H352c0 17.7-14.3 32-32 32h-8.2c-1.7 4.8-3.7 9.5-5.8 14.1l5.8 5.8c12.5 12.5 12.5 32.8 0 45.3l-22.6 22.6c-12.5 12.5-32.8 12.5-45.3 0l-5.8-5.8c-4.6 2.2-9.3 4.1-14.1 5.8V480c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32v-8.2c-4.8-1.7-9.5-3.7-14.1-5.8l-5.8 5.8c-12.5 12.5-32.8 12.5-45.3 0L40.2 449.1c-12.5-12.5-12.5-32.8 0-45.3l5.8-5.8c-2.2-4.6-4.1-9.3-5.8-14.1H32c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32h8.2c1.7-4.8 3.7-9.5 5.8-14.1l-5.8-5.8c-12.5-12.5-12.5-32.8 0-45.3l22.6-22.6c9-9 21.9-11.5 33.1-7.6V192 160 64zm170.3 0H160v96h32H304.7L266.3 64zM176 256a80 80 0 1 0 0 160 80 80 0 1 0 0-160zM528 448a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm0 64c-48.6 0-88-39.4-88-88c0-29.8 14.8-56.1 37.4-72c14.3-10.1 31.8-16 50.6-16c2.7 0 5.3 .1 7.9 .3c44.9 4 80.1 41.7 80.1 87.7c0 48.6-39.4 88-88 88z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Farm SNFTS</div> 
+                    <div style={{fontSize:'0.7vw'}}>Explore our documentation and help</div>
+                    <div style={{fontSize:'0.7vw'}}>articles to guide your quest at</div>
+                    <div style={{fontSize:'0.7vw'}}>seedify</div>
+                    </div>
                     </div>
                 </div>
                 <div>
                 <div style={{display:"flex",gap:'0.5vw'}}>
                         <div><svg xmlns="http://www.w3.org/2000/svg" width='1.1vw' height='1.1vw' style={{fill:"white"}} viewBox="0 0 576 512"><path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></div>
+                    <div>
                     <div style={{fontSize:"1.1vw",fontWeight:"550"}}>Guides</div>
+                    <div style={{fontSize:'0.7vw'}}>Explore our documentation and help</div>
+                    <div style={{fontSize:'0.7vw'}}>articles to guide your quest at</div>
+                    <div style={{fontSize:'0.7vw'}}>seedify</div>
+                    </div>
+                    </div>
+                </div>
+                <div style={{width:'25%',marginLeft:'10vw',borderLeft:'0.156vw solid #9ea9a9',paddingLeft:'4vw'}}>
+                    <div>
+                        <img src={Space} alt="" />
+                        <div style={{cursor:'pointer',fontSize:'1.2vw',fontWeight:'500'}}>Introducing SNFTs</div>
+                        <div style={{cursor:'pointer',fontSize:'0.9vw'}}>Learn more about our newest product</div>
+                        <div style={{cursor:'pointer',fontSize:'1.2vw',fontWeight:'500',paddingTop:'0.2vw'}}>Read More</div>
                     </div>
                 </div>
             </div>

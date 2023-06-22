@@ -99,3 +99,16 @@
 .iekbcc0.ju367va.ju367v1n{
     padding-top:3px;
 }
+@media only screen and (max-width:600px){
+    #comp_name{
+        display:none;
+    }
+}
+@media only screen and (max-width:453px){
+    #themeicon{
+        position:absolute;
+        display:flex;
+        top:-5vw;
+        left:21vw;
+    }
+}

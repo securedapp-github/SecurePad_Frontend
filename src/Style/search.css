@@ -16,13 +16,12 @@
   }
   
   .card {
-    width: 20vw;
-    height: 30vw;
+    width: 384px;
+    height: 576px;
     border-radius: 2vw;
     transition: transform 0.2s ease-in-out;
     background-color:#12083d ;
   }
-  
  
   
 
@@ -119,18 +118,18 @@
    .box-container {
     display: flex;
     flex-direction:row;
-    justify-content:space-between;
+    justify-content:space-around;
     flex-wrap: wrap; 
   }
   
   .box {
     width:8vw;
-    padding:0.5vw 0;
+    padding:0.5vw 1.5vw;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius:5vw;
-    margin-top: 15px;
+    margin-top: 0.78125vw;
     border: 2px solid;
   }
   
@@ -244,4 +243,58 @@
   font-size: 28px; /* Adjust the font size as needed */
   margin-right: 10px; /* Adjust the spacing between icons as needed */
   color:#ffffff;
+}
+@media only screen and (max-width:1780px){
+  .box{
+    width: 10vw !important;
+  }
+}
+@media only screen and (max-width:1270px){
+  .box{
+    width:15vw !important;
+  }
+  .card-image{
+    height:10vw !important;
+  }
+  .audit{
+    padding-top: 3vw !important;
+  }
+  .audit div{
+    height:3vw !important;
+  }
+}
+@media only screen and (max-width:1000px){
+  .audit div{
+    height:3.5vw !important;
+  }
+  .search-container{
+    height:4vw !important;
+  }
+}
+@media only screen and (max-width:976px){
+  .card-coin-img{
+    width:8vw !important;
+    height:6vw !important;
+  }
+}
+
+@media only screen and (max-width:750px){
+  .audit{
+    padding-top: 3vw !important;
+  }
+  .audit div{
+    height:5vw !important;
+  }
+  .box{
+    width:25vw !important;
+  }
+  .card{
+    width:270px !important;
+  }
+  .search-container{
+    height:6vw !important;
+  }
+  .card-image{
+    height:15vw !important;
+  }
 }
