@@ -1,5 +1,5 @@
 import '@rainbow-me/rainbowkit/styles.css';
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { getDefaultWallets, RainbowKitProvider, connectorsForWallets, wallet } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -16,10 +16,23 @@ const { chains, provider } = configureChains(
   [  publicProvider(), alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" })]
 ); 
 
-const { connectors } = getDefaultWallets({
-  appName: "SecureDApp_Launchpad",
-  chains
-});
+// const { connectors } = getDefaultWallets({
+//   appName: "SecureDApp_Launchpad",
+//   chains
+// });
+
+const connectors = connectorsForWallets([
+  {
+    groupName: 'Recommended',
+    wallets: [
+      wallet.metaMask({ chains }),
+      wallet.rainbow({ chains }),
+      wallet.argent({ chains }),
+      wallet.ledger({ chains })
+    ],
+  },
+]);
+
 const wagmiClient = createClient({
   autoConnect: true,
   connectors,

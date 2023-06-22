@@ -36,10 +36,15 @@ function BuySale(props) {
     const [balance, setbalance] = useState(0);
     const [paybalance, setpaybalance] = useState(0);
 
+    const [start, setstart] = useState();
+    const [end, setend] = useState();
+
     const [soft, setsoft] = useState(0);
     const [hard, sethard] = useState(0);
     const [status, setstatus] = useState('');
     const [token, settoken] = useState('');
+    const [tokenAddress, settokenAddress] = useState('');
+
     const [pay, setpay] = useState('');
     const [payaddress, setpayaddress] = useState('');
     const [loading, setLoading] = useState(false);
@@ -73,6 +78,43 @@ function BuySale(props) {
         return 0;
     };
 
+    const addTokenMetamask = async() => {
+        const tokenAddress1 = tokenAddress;
+        const tokenSymbol = token;
+        const tokenDecimals = 18;
+        // const tokenImage = 'http://placekitten.com/200/300';
+        
+        try {
+
+            if(window.ethereum){
+                    const accounts = await window.ethereum.request({
+                        method: "eth_requestAccounts",
+                    });
+                    console.log(accounts)           
+                }
+
+        const wasAdded = await window.ethereum.request({
+            method: 'wallet_watchAsset',
+            params: {
+            type: 'ERC20', // Initially only supports ERC20, but eventually more!
+            options: {
+                address: tokenAddress1, // The address that the token is at.
+                symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+                decimals: tokenDecimals, // The number of decimals in the token
+                // image: tokenImage, // A string url of the token logo
+            },
+            },
+        });
+        
+        if (wasAdded) {
+            toast.success('Token Added Successfully');
+        } else {
+            toast.error('Error In adding token');
+        }
+        } catch (error) {
+        console.log(error);
+        }
+    }
 
     const setdata = async (data) => {
         try {
@@ -110,7 +152,7 @@ function BuySale(props) {
                     TOKENABI,
                     provider
                 );
-
+                settokenAddress(data[0].token_address);
                 settoken(data[0].token_name);
                 let bal = await TOKENCONTRACT.balanceOf(address);
                 bal = ethers.utils.formatEther(bal.toString());
@@ -135,22 +177,26 @@ function BuySale(props) {
 
                 let saleStartTime = data[0].start * 1000;
                 let saleEndTime = data[0].end * 1000;
+                const date1 = new Date(saleStartTime);
+                const dateTimeString1 = date1.toLocaleString();
+                const date2 = new Date(saleEndTime);
+                const dateTimeString2 = date2.toLocaleString();
+
+                setstart(dateTimeString1);
+                setend(dateTimeString2);
 
                 if (saleStartTime > Date.now()) {
-                    const date = new Date(saleStartTime);
-                    const dateTimeString = date.toLocaleString();
+                    
                     setallowed(false);
-                    setstatus("Sale Starts at " + dateTimeString);
+                    setstatus("Sale Starts at " + dateTimeString1);
                 } else if (saleEndTime < Date.now()) {
-                    const date = new Date(saleEndTime);
-                    const dateTimeString = date.toLocaleString();
+                    
                     setallowed(false);
-                    setstatus("Sale Ended at " + dateTimeString);
+                    setstatus("Sale Ended at " + dateTimeString2);
                 } else {
-                    const date = new Date(saleEndTime);
-                    const dateTimeString = date.toLocaleString();
+        
                     setallowed(true);
-                    setstatus("Sale Ends at " + dateTimeString);
+                    setstatus("Sale Ends at " + dateTimeString2);
                 }
             }
             setLoading(false);
@@ -347,35 +393,27 @@ function BuySale(props) {
                     
                     <div style={{display:"flex",padding:"1vw",justifyContent:"space-between",color:"white",fontSize:"1vw"}}>
                         <div style={{width:"50%"}}>
-                                <div style={{padding:"0 0 1.55vw 0",borderBottom:"1px solid #464646"}}>Presale Address</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Sale Address</div>
+
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Token Name</div>
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Sale Type</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Token Symbol</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Token Supply</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Tokens For Presale</div>
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Tokens For Liquidity</div>
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Soft Cap</div>
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Presale Start Time (UTC)</div>
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Presale End Time (UTC)</div>
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Liquidity Percent</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Liquidity Unlock Time (UTC)</div>
                         </div>
                         <div style={{width:"50%"}}>
-                        <div style={{paddingBottom:"0.5vw",borderBottom:"1px solid #464646"}}>
-                            <div>0xAB4Ba356C8a54e7B1E72fa03aE491574bFb0a1EF</div>
-                            <div style={{fontSize:"0.7vw"}}>Do not send PLS directly to the presale address!</div>
-                        </div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Fair Launch</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>BadMF</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>BAD</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>251,700,000,000</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>90,000,000,000</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>64,800,000,000</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>70,000,000 PLS</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>2023-06-09 22:30</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>2023-06-17 22:30</div>
+                       
+                        <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>{SALE}</div>
+
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>{token}</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Hard Capped</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>{hard}</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>{soft}</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>{start}</div>
+                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>{end}</div>
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>80%</div>
-                                <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>2025-06-16 23:30</div>
                         </div>
                      </div>
 
@@ -441,6 +479,8 @@ function BuySale(props) {
                         <div>Your {pay} Balance</div>
                         <div> {paybalance} </div>
                     </div>
+                    <Button onClick={() => {addTokenMetamask();}}>Add {token} To MetaMask
+                    </Button>
 
                 </div>
             </div>
