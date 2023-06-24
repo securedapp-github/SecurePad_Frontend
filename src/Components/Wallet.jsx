@@ -9,6 +9,8 @@ import SALEABI from "../ABI/SaleABI.json";
 import LOCKABI from "../ABI/LockABI.json";
 import { formatAddress } from '../utils/address';
 import Loader from 'utils/loader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   useAccount,
@@ -21,9 +23,10 @@ import {
   useWaitForTransaction,
   useProvider
 } from "wagmi";
+import { Button } from "react-bootstrap";
 
 function Wallet(props) {
-  const {theme}=props
+  const { theme } = props
   const CONTRACT_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
 
   const { address } = useAccount();
@@ -34,6 +37,7 @@ function Wallet(props) {
   const provider = useProvider()
   const [loading, setLoading] = useState(false);
 
+  const [historyArray, sethistoryArray] = useState([]);
   const [tokenArray, settokenArray] = useState([]);
   const [salesArray, setsalesArray] = useState([]);
   const [locksArray, setlocksArray] = useState([]);
@@ -44,132 +48,168 @@ function Wallet(props) {
     signerOrProvider: provider
   });
 
+  const getHistory = async () => {
+    setLoading(true);
+    fetch("https://139-59-5-56.nip.io:3443/getActivity?user=" + address)
+    // fetch("http://localhost:8000/getActivity?user=" + address)
+      .then((res) => res.json())
+      .then((data) => setHistory(data))
+  }
+
+  const setHistory = async (data) => {
+    try {
+      console.log(data);
+      let historydetails = [];
+      if (data.length > 0) {
+        
+        for (let i = 0; i < data.length; i++) {
+          let event;
+          if (i == 0) {
+            sethistoryArray([]);
+          }
+
+          if (data[i].event_type == 1) {
+            event = "Sale Purchase";            
+          }
+
+          historydetails[i] = { 'id': i + 1, 'activity': event, 'entity': data[i].event_name, 'time': data[i].created_on };
+          console.log(historydetails[i]);
+          sethistoryArray(prevItems => [...prevItems, historydetails[i]]);
+        }
+      }
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+    }
+  }
+
   const getToken = async () => {
-    try{
+    try {
       setLoading(true);
 
-    let tokens = await FactoryContract.GetUserTokens(address);
-    console.log("Toekns : ", tokens);
-    let tokendetails;
-    if (tokens.length > 0) {
+      let tokens = await FactoryContract.GetUserTokens(address);
+      console.log("Toekns : ", tokens);
+      let tokendetails;
+      if (tokens.length > 0) {
         for (let i = 0; i < tokens.length; i++) {
-        await new Promise(resolve => setTimeout(resolve, 1000)); 
-        let TOKENCONTRACT = new ethers.Contract(
-          tokens[i],
-          TOKENABI,
-          provider
-        );
-        let [name,symbol,] = await TOKENCONTRACT.getTokenInfo()
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          let TOKENCONTRACT = new ethers.Contract(
+            tokens[i],
+            TOKENABI,
+            provider
+          );
+          let [name, symbol,] = await TOKENCONTRACT.getTokenInfo()
 
-        tokendetails = { 'id': i + 1, 'token': tokens[i], 'name': name, 'symbol': symbol };
-        
-        if(i == 0){
-          settokenArray([]);
+          tokendetails = { 'id': i + 1, 'token': tokens[i], 'name': name, 'symbol': symbol };
+
+          if (i == 0) {
+            settokenArray([]);
+          }
+          settokenArray(prevItems => [...prevItems, tokendetails]);
         }
-        settokenArray(prevItems => [...prevItems, tokendetails]);
       }
+      setLoading(false);
+
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+
     }
-    setLoading(false);
-
-  } catch(e){
-    console.log(e);
-    setLoading(false);
-
-  }
   }
 
   const getSales = async () => {
-    try{
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    let sales = await FactoryContract.GetUserSales(address);
-    console.log("Sales : ", sales);
-    let saledetails;
-    if (sales.length > 0) {
-      setsalesArray([]);
-          for (let i = 0; i < sales.length; i++) {
-            await new Promise(resolve => setTimeout(resolve, 1000)); 
+      let sales = await FactoryContract.GetUserSales(address);
+      console.log("Sales : ", sales);
+      let saledetails;
+      if (sales.length > 0) {
+        setsalesArray([]);
+        for (let i = 0; i < sales.length; i++) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
 
-        let SALESCONTRACT = new ethers.Contract(
-          sales[i],
-          SALEABI,
-          provider
-        );
-        let [tokens, pay, , , , , , saleStartTime, saleEndTime, , , , ] 
-        = await SALESCONTRACT.getSaleDetails();
+          let SALESCONTRACT = new ethers.Contract(
+            sales[i],
+            SALEABI,
+            provider
+          );
+          let [tokens, pay, , , , , , saleStartTime, saleEndTime, , , ,]
+            = await SALESCONTRACT.getSaleDetails();
           let status;
-        if(saleStartTime > Date.now()){
-          status = "Upcoming"
-        }else if(saleEndTime < Date.now()){
-          status = "Completed"
-        }else{
-          status = "Ongoing"
+          if (saleStartTime > Date.now()) {
+            status = "Upcoming"
+          } else if (saleEndTime < Date.now()) {
+            status = "Completed"
+          } else {
+            status = "Ongoing"
+          }
+
+          saledetails = { 'id': i + 1, 'sale': sales[i], 'token': tokens, 'payment': pay, 'status': status };
+          if (i == 0) {
+            setsalesArray([]);
+          }
+          setsalesArray(prevItems => [...prevItems, saledetails]);
         }
-        
-        saledetails = { 'id': i + 1, 'sale': sales[i], 'token': tokens, 'payment': pay, 'status':status };
-        if(i == 0){
-          setsalesArray([]);
-        }
-        setsalesArray(prevItems => [...prevItems, saledetails]);
       }
+      setLoading(false);
+
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+
     }
-    setLoading(false);
-
-  } catch(e){
-    console.log(e);
-    setLoading(false);
-
-  }
   }
 
   const getLocks = async () => {
-    try{
-    setLoading(true);
-    let locks = await FactoryContract.GetUserLocks(address);
-    console.log("Locks : ", locks);
-    let lockdetails;
-    if (locks.length > 0) {
-      setlocksArray([]);
-          for (let i = 0; i < locks.length; i++) {
-            await new Promise(resolve => setTimeout(resolve, 1000)); 
+    try {
+      setLoading(true);
+      let locks = await FactoryContract.GetUserLocks(address);
+      console.log("Locks : ", locks);
+      let lockdetails;
+      if (locks.length > 0) {
+        setlocksArray([]);
+        for (let i = 0; i < locks.length; i++) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
 
-        let LOCKCONTRACT = new ethers.Contract(
-          locks[i],
-          LOCKABI,
-          provider
-        );
-        let token = await LOCKCONTRACT.token();
-        let duration = await LOCKCONTRACT.lockDuration();
-        let amount = await LOCKCONTRACT.amount();
-        amount = amount.toNumber();
+          let LOCKCONTRACT = new ethers.Contract(
+            locks[i],
+            LOCKABI,
+            provider
+          );
+          let token = await LOCKCONTRACT.token();
+          let duration = await LOCKCONTRACT.lockDuration();
+          let amount = await LOCKCONTRACT.amount();
+          amount = amount.toNumber();
 
-        let TOKENCONTRACT = new ethers.Contract(
-          token,
-          TOKENABI,
-          provider
-        );
-        let name = await TOKENCONTRACT.name();  
+          let TOKENCONTRACT = new ethers.Contract(
+            token,
+            TOKENABI,
+            provider
+          );
+          let name = await TOKENCONTRACT.name();
 
-        lockdetails = { 'id': i + 1, 'lock': locks[i], 'token': token, 'name': name, 'locktill': duration, 'amount': amount };
-        if(i == 0){
-          setlocksArray([]);
+          lockdetails = { 'id': i + 1, 'lock': locks[i], 'token': token, 'name': name, 'locktill': duration, 'amount': amount };
+          if (i == 0) {
+            setlocksArray([]);
+          }
+          setlocksArray(prevItems => [...prevItems, lockdetails]);
+          console.log(lockdetails);
+          console.log(locksArray);
         }
-        setlocksArray(prevItems => [...prevItems, lockdetails]);
-        console.log(lockdetails);
-        console.log(locksArray);
       }
-    }
-    setLoading(false);
-  } catch(e){
-    console.log(e);
-    setLoading(false);
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
 
-  }
+    }
   }
 
   const gALL = async () => {
     console.log("fetching...");
-    await getToken();
+    await getHistory();
   };
 
   useEffect(() => {
@@ -178,77 +218,94 @@ function Wallet(props) {
   }, []);
 
   const blurryDivStyle = {
-    filter: loading? 'blur(5px)':'blur(0px)'
+    filter: loading ? 'blur(5px)' : 'blur(0px)'
   };
 
   const handleButtonClick = async (buttonIndex) => {
     setActiveButton(buttonIndex);
-    if (buttonIndex === 0) {
-      if(tokenArray.length == 0){
-      await getToken();
+    if (buttonIndex === 3) {
+      if (historyArray.length == 0) {
+        await getHistory();
+      }
+      setTableHeaders(["ID", "Activity", "Entity", "Time"]);
+    } else if (buttonIndex === 0) {
+      if (tokenArray.length == 0) {
+        await getToken();
       }
       setTableHeaders(["ID", "Token Address", "NAME", "SYMBOL", "MANAGE"]);
     } else if (buttonIndex === 1) {
-      if(salesArray.length == 0){
-      await getSales();
+      if (salesArray.length == 0) {
+        await getSales();
       }
       setTableHeaders(["ID", "Sale Address", "Token Address", "Payment", "Token	Status", "	MANAGE"]);
     } else if (buttonIndex === 2) {
-      if(locksArray.length == 0){
-      await getLocks();
+      if (locksArray.length == 0) {
+        await getLocks();
       }
-      setTableHeaders(["ID", "Lock Address","Token Address", "TOKEN NAME", "LOCK TILL","AMOUNT", "MANAGE"]);
+      setTableHeaders(["ID", "Lock Address", "Token Address", "TOKEN NAME", "LOCK TILL", "AMOUNT", "MANAGE"]);
     }
+  };
+
+  const copyAddress = (copytext) => {
+    navigator.clipboard.writeText(copytext);
+    toast('Address Copied');
   };
 
   return (
     <div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        theme="dark"
+        pauseOnHover
+      />
 
-    {loading && ( <Loader/>)}
+      {loading && (<Loader />)}
 
       {address ? (
-        <section className="walletSection" style={{...blurryDivStyle}}>
+        <section className="walletSection" style={{ ...blurryDivStyle }}>
           <div className="textContainer">
             <h2 className="headText">User Profile</h2>
           </div>
-          {/* <div className="tokenTable">
-         <table className="table">
-           <thead className="tableHead">
-             <div className="divi">
-               <th className="thead">Name</th>
-               <th className="thead">Email</th>
-               <th className="thead">Wallet</th>
-             </div>
-           </thead>
-           <tbody></tbody>
-         </table>
-       </div> */}
           <div className="table-container">
             <table className="custom-table">
               <thead>
                 <tr>
                   <th scope="col" className="custom-th">
-                    Name
+                    Wallet
                   </th>
                   <th scope="col" className="custom-th">
                     Email
                   </th>
                   <th scope="col" className="custom-th">
-                    Wallet
+                    KYC
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr style={{color:`${theme==='Dark' ? 'white':'black'}`}}>
-                  <td> User342</td>
-                  <td>User342@securedapp.in</td>
-                  <td>{address}</td>
+                <tr style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }}>
+                  <td onClick={() => { copyAddress(address) }} >{formatAddress(address)}</td>
+                  <td><Button onClick={() => { toast('Coming Soom'); }}>Verify</Button></td>
+                  <td><Button onClick={() => { toast('Coming Soom'); }}>Initiate</Button></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div className="dynamicTable">
             <div className="button-div">
+              <button
+                onClick={() => handleButtonClick(3)}
+                style={{
+                  backgroundColor: activeButton === 3 ? "#12D576" : "transparent",
+                  color: activeButton === 3 ? "black" : "gray",
+                  borderRadius: "10px",
+                  marginRight: "5px",
+                  fontSize: "18px",
+                  padding: "5px 13px",
+                }}
+              >
+                Get History
+              </button>
               <button
                 onClick={() => handleButtonClick(0)}
                 style={{
@@ -307,7 +364,7 @@ function Wallet(props) {
                   {activeButton == 0 && tokenArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
                       <td>{row.id}</td>
-                      <td>{formatAddress(row.token)}</td>
+                      <td onClick={() => { copyAddress(row.token) }}>{formatAddress(row.token)}</td>
                       <td>{row.name}</td>
                       <td>{row.symbol}</td>
                       <td>
@@ -320,9 +377,9 @@ function Wallet(props) {
                   {activeButton == 1 && salesArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
                       <td>{row.id}</td>
-                      <td>{formatAddress(row.sale)}</td>
-                      <td>{formatAddress(row.token)}</td>
-                      <td>{formatAddress(row.payment)}</td>
+                      <td onClick={() => { copyAddress(row.sale) }}>{formatAddress(row.sale)}</td>
+                      <td onClick={() => { copyAddress(row.token) }}>{formatAddress(row.token)}</td>
+                      <td onClick={() => { copyAddress(row.payment) }}>{formatAddress(row.payment)}</td>
                       <td>{row.status}</td>
                       <td>
                         <Link to={`/managesale/${row.sale}`} >
@@ -335,8 +392,8 @@ function Wallet(props) {
                   {activeButton == 2 && locksArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
                       <td>{row.id}</td>
-                      <td>{formatAddress(row.lock)}</td>
-                      <td>{formatAddress(row.token)}</td>
+                      <td onClick={() => { copyAddress(row.lock) }}>{formatAddress(row.lock)}</td>
+                      <td onClick={() => { copyAddress(row.token) }}>{formatAddress(row.token)}</td>
                       <td>{row.name}</td>
                       <td>{row.duration}</td>
                       <td>{row.amount}</td>
@@ -348,6 +405,14 @@ function Wallet(props) {
                     </tr>
                   ))}
 
+                  {activeButton == 3 && historyArray.map((row) => (
+                    <tr key={row.id} style={{ color: 'white' }}>
+                      <td>{row.id}</td>
+                      <td>{row.activity}</td>
+                      <td>{row.entity}</td>
+                      <td>{row.time}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             )}
