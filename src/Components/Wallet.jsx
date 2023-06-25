@@ -147,9 +147,9 @@ function Wallet(props) {
           let [tokens, pay, , , , , , saleStartTime, saleEndTime, , , ,]
             = await SALESCONTRACT.getSaleDetails();
           let status;
-          if (saleStartTime > Date.now()) {
+          if (saleStartTime * 1000 > Date.now()) {
             status = "Upcoming"
-          } else if (saleEndTime < Date.now()) {
+          } else if (saleEndTime * 1000 < Date.now()) {
             status = "Completed"
           } else {
             status = "Ongoing"
@@ -245,7 +245,7 @@ function Wallet(props) {
       if (salesArray.length == 0) {
         await getSales();
       }
-      setTableHeaders(["ID", "Sale Address", "Token Address", "Payment", "Token	Status", "	MANAGE"]);
+      setTableHeaders(["ID", "Sale Address", "Token Address", "Payment", "Sale Status", "	MANAGE"]);
     } else if (buttonIndex === 2) {
       if (locksArray.length == 0) {
         await getLocks();

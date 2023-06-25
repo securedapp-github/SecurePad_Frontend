@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import "../Style/token.css"
@@ -6,7 +6,6 @@ import Vector from '../assets/Vector.png'
 import Fox from '../assets/Fox.png'
 import { ethers } from 'ethers';
 import Loader from 'utils/loader';
-import { Tooltip } from 'react-tooltip'
 import Info from './info.jsx';
 import { formatAddress } from '../utils/address';
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,14 +13,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import {
   useAccount,
-  useConnect,
   useContract,
-  useContractRead,
-  useContractWrite,
-  useNetwork,
   useSigner,
-  useProvider,
-  useWaitForTransaction,
+  useProvider
 } from "wagmi";
 import FACTORYABI from "../ABI/FactoryABI.json";
 

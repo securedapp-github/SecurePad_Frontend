@@ -5,6 +5,9 @@ import '../Style/saletoken.css'
 import { useParams } from "react-router-dom";
 import { ethers } from "ethers";
 import { formatAddress } from '../utils/address';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from 'utils/loader';
 
 import {
   useAccount,
@@ -24,6 +27,8 @@ import SALEABI from "../ABI/SaleABI.json";
 // import Sale from './sale';
 
 function ManageSale() {
+
+  const [loading, setLoading] = useState(false);
 
   const { SALE } = useParams();
   const { data: signerData } = useSigner();
@@ -116,8 +121,13 @@ function ManageSale() {
 
   }
 
+  const blurryDivStyle = {
+    filter: loading? 'blur(5px)':'blur(0px)'
+  };
 
   const sendTokenToSale = async () => {
+    try{
+      setLoading(true);
 
     let TokenContract = new ethers.Contract(
       token,
@@ -128,8 +138,17 @@ function ManageSale() {
   const tx = await TokenContract.transfer(SALE, ethers.utils.parseUnits(sendtoken.toString(),"ether"));
     const receipt = await tx.wait();
     if(receipt.status == 1){
-      alert("Token Transferred");
+      toast.success('Token Transferred Successfully');
+      setLoading(false);
     }
+    setLoading(false);
+
+} catch(e){
+  setLoading(false);
+  toast.error('An error occurred while token trasnfer');
+  console.log("Error", e);
+}
+
   }
 
   useEffect(() => {
@@ -148,7 +167,16 @@ function ManageSale() {
 
 
   return (
-    <div style={{ padding: "2%", margin: "0 10vw 0 20vw" }}>
+<>
+<ToastContainer
+            position="top-center"
+            autoClose={5000}
+            theme="dark"
+            pauseOnHover
+        />
+    {loading && ( <Loader/>)}
+
+    <div style={{ padding: "2%", margin: "0 10vw 0 20vw", ...blurryDivStyle }}>
       <div className="saleFirstRow" style={{ display: "flex", flexDirection: "row" }}>
        
        
@@ -276,6 +304,7 @@ function ManageSale() {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

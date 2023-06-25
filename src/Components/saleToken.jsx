@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Modal } from 'react-bootstrap'
 import Vector from '../assets/Vector.png'
-import Fox from '../assets/Fox.png'
 import { Link } from 'react-router-dom'
 import { ethers } from "ethers";
 import { formatAddress } from '../utils/address';
@@ -11,13 +10,8 @@ import { useNavigate } from 'react-router-dom';
 
 import {
   useAccount,
-  useConnect,
   useContract,
-  useContractRead,
-  useContractWrite,
-  useNetwork,
   useSigner,
-  useWaitForTransaction,
   useProvider
 } from "wagmi";
 
