@@ -9,6 +9,7 @@ import { ethers } from "ethers";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Link} from 'react-router-dom'
+import '../Style/buysale.css'
 
 import {
     useAccount,
@@ -28,7 +29,7 @@ function BuySale(props) {
     const navigate = useNavigate();
     const { SALE } = useParams();
     const provider = useProvider();
-
+    const DB_LINK = process.env.REACT_APP_DB;
     const { address } = useAccount();
     const [progress, setprogress] = useState(0);
     const [price, setprice] = useState(0);
@@ -212,8 +213,7 @@ function BuySale(props) {
         try {
             setLoading(true);
 
-            fetch("https://139-59-5-56.nip.io:3443/getSale?sale=" + SALE)
-                // fetch("http://localhost:8000/getSale?sale="+SALE)        
+            fetch(DB_LINK + "getSale?sale=" + SALE)       
                 .then((res) => res.json())
                 .then((data) => setdata(data))
 
@@ -223,9 +223,9 @@ function BuySale(props) {
         }
     }
 
-    useEffect(() => {
-        getSaleInfo();
-    }, []);
+    useEffect(() => {	
+        if (typeof (address) != 'undefined') getSaleInfo();	
+    }, [address]);
 
     const blurryDivStyle = {
         filter: loading ? 'blur(5px)' : 'blur(0px)'
@@ -235,8 +235,7 @@ function BuySale(props) {
 
         const { chainId } = await provider.getNetwork()
        
-        fetch('https://139-59-5-56.nip.io:3443/updateActivity', {
-        // fetch('http://127.0.0.1:8000/updateActivity', {
+        fetch(DB_LINK + 'updateActivity', {
          method: 'POST',
          body: JSON.stringify({
             user: address,
@@ -323,21 +322,22 @@ function BuySale(props) {
             pauseOnHover
         />
 
-        <div className="tokenSale1" style={{ ...blurryDivStyle, display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw", }}>
-
-        <div style={{width:"60%"}}>
-                <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
+        <div className="tokenSale1" style={{ ...blurryDivStyle, display: "flex",flexWrap:'wrap', flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw", }}>
+            <div className='main-body' style={{width:"60%"}}>
+                <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div className='buysale-back' style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
                     <div style={{ fontSize: "2vw", color: "#646464" }}>
                         Back</div></div>
                 <div style={{ paddingBottom: "2vw", width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw" }}>
-                    <img style={{ height: "250px", width: "100%", borderRadius: "3vw", padding: "0.2vw" }} src={image} alt="not found" />
+                    <img style={{width: "100%", borderRadius: "3vw", padding: "0.2vw" }} className="body-image" src={image} alt="not found" />
                     <br />
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
+
                         <img src={coin} style={{ maxWidth: '10vw', maxHeight: '6vw',  position: "relative", paddingLeft: "3vw", bottom: "1.8vw" }} alt="not found" />
                         
-                        <div style={{ paddingTop: "0.2vw" }}>
+                        <div className='buysale-social' style={{ paddingTop: "0.2vw" }}>
 
                             {web !== undefined && (
+
                                 <svg onClick={(event) => { window.open(web, "_blank"); }} xmlns="http://www.w3.org/2000/svg" width="1.3vw" height="1.3vw" style={{ cursor:"pointer", fill: "#12D576", margin: "0.4vw" }} className="bi bi-globe" viewBox="0 0 16 16">
                                     <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z" />
                                 </svg>
@@ -372,6 +372,7 @@ function BuySale(props) {
                             {kyc != "" && (
                                 <Link onClick={(event) => { window.open(kyc, "_blank"); }} style={{textDecoration:"none",color:'white', display: "flex", gap: "0.2vw", border: "1px solid white", padding: "0.2vw 0.5vw", borderRadius: "2vw", height: "2.7vw" }}>
                                     <div><svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" style={{ fill: "#12D576" }} fill="currentColor" className="bi bi-shield-check" viewBox="0 0 16 16">
+
                                         <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
                                         <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
                                     </svg></div>
@@ -379,6 +380,7 @@ function BuySale(props) {
                                 </Link>
                             )}
                             {vetted != "" && (
+
                                 <Link onClick={(event) => { window.open(vetted, "_blank"); }} style={{textDecoration:"none",color:'white', display: "flex", gap: "0.2vw", border: "1px solid white", padding: "0.2vw 0.5vw", borderRadius: "2vw", height: "2.7vw" }}>
                                     <div><svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" style={{ fill: "#12D576" }} fill="currentColor" className="bi bi-shield-check" viewBox="0 0 16 16">
                                         <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
@@ -389,9 +391,9 @@ function BuySale(props) {
                             )}
                         </div>
                     </div> <div style={{ paddingLeft: "1vw", paddingTop: "0.2vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "3vw", fontWeight: "900" }}>{token} TOKEN SALE</div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>{desc}</div>
+                    <div className='buysale-desc' style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>{desc}</div>
                     
-                    <div style={{display:"flex",padding:"1vw",justifyContent:"space-between",color:"white",fontSize:"1vw"}}>
+                    <div className="buysale-sale" style={{display:"flex",padding:"1vw",justifyContent:"space-between",color:"white",fontSize:"1vw"}}>
                         <div style={{width:"50%"}}>
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Sale Address</div>
 
@@ -416,15 +418,13 @@ function BuySale(props) {
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>80%</div>
                         </div>
                      </div>
-
-
                 </div>
             </div>
             <div>
 
                 <div style={{ backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "1.3vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
                     <div>
-                        <span style={{ fontSize: "1.4vw", fontWeight: "600" }}>{status}</span>
+                        <span style={{ fontSize: "1.5vw", fontWeight: "600" }}>{status}</span>
                     </div>
                     <div className="progress-bar-container">
                     {/* <span className="progress-text">Progress {progress}%</span> */}
@@ -451,35 +451,34 @@ function BuySale(props) {
                     
                     { allowed && (
                     <div style={{ fontSize: "1.1vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                        <div style={{ height: "100%", border: "2px solid #464646", display: "flex", borderRadius: "1.5vw", padding: "0.3vw 0.2vw" }}>                            <input
-                            value={buyamount}
+                        <div className='buysale-input' style={{border: "2px solid #464646", display: "flex", borderRadius: "3vw", padding: "0.3vw 0.2vw" }}><input value={buyamount}
                             onChange={(e) => setbuyamount(e.target.value)}
-                            placeholder={'0 ' + pay} style={{ padding: "0", fontWeight: "600", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
+                            placeholder={'0 ' + pay} style={{ marginBottom:'0',padding: "0", fontWeight: "600", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
                             <div style={{ color: "#12D576", fontWeight: "700", paddingTop: "0.2vw" }}>{pay}</div>
                         </div>
-                        <div onClick={() => { buyToken() }} style={{ cursor:"pointer", backgroundColor: "#464646", height: "100%", padding: "0.5vw 1vw", borderRadius: "1.5vw" }}>                            BUY {' ' + token}
+                        <div onClick={() => { buyToken() }} style={{cursor:"pointer",backgroundColor: "#464646", height: "100%", padding: "0.5vw 1vw", borderRadius: "1.5vw" }}> BUY {' ' + token}
                         </div>
                     </div>
                     )}
 
                     <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
-                        <div>Expected Token</div>
-                        <div>{buyamount * decimal}</div>
+                        <div className="expected-token">Expected Token</div>
+                        <div className="expected-token">{buyamount * decimal}</div>
                     </div>
 
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div>Sale Rate</div>
-                        <div> {price} {pay} = {decimal} {token} </div>
+                        <div className="expected-token">Sale Rate</div>
+                        <div className="expected-token"> {price} {pay} = {decimal} {token} </div>
                     </div>
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div>Your {token} Balance</div>
-                        <div> {balance} </div>
+                        <div className="expected-token">Your {token} Balance</div>
+                        <div className="expected-token"> {balance} </div>
                     </div>
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div>Your {pay} Balance</div>
-                        <div> {paybalance} </div>
+                        <div className="expected-token">Your {pay} Balance</div>
+                        <div className="expected-token"> {paybalance} </div>
                     </div>
-                    <Button onClick={() => {addTokenMetamask();}}>Add {token} To MetaMask
+                    <Button className="expected-token" onClick={() => {addTokenMetamask();}}>Add {token} To MetaMask
                     </Button>
 
                 </div>

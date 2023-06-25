@@ -20,6 +20,7 @@ import {
   useContractWrite,
   useNetwork,
   useSigner,
+  useProvider,
   useWaitForTransaction,
 } from "wagmi";
 import FACTORYABI from "../ABI/FactoryABI.json";
@@ -39,6 +40,9 @@ function Token(props) {
   const [isforce, setisforce] = useState(false);
   const [isdocument, setisdocument] = useState(false);
   const [loading, setLoading] = useState(false);
+  const provider = useProvider();
+  const DB_LINK = process.env.REACT_APP_DB;
+  const { address } = useAccount();
 
   const { data: signerData } = useSigner();
 
@@ -47,6 +51,76 @@ function Token(props) {
     contractInterface: FACTORYABI,
     signerOrProvider: signerData,
   });
+
+const addTokenMetamask = async() => {
+    const tokenAddress1 = newToken;
+    const tokenSymbol = symbol;
+    const tokenDecimals = 18;
+    // const tokenImage = 'http://placekitten.com/200/300';
+    
+    try {
+
+        if(window.ethereum){
+                const accounts = await window.ethereum.request({
+                    method: "eth_requestAccounts",
+                });
+                console.log(accounts)           
+            }
+
+    const wasAdded = await window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+        type: 'ERC20', // Initially only supports ERC20, but eventually more!
+        options: {
+            address: tokenAddress1, // The address that the token is at.
+            symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+            decimals: tokenDecimals, // The number of decimals in the token
+            // image: tokenImage, // A string url of the token logo
+        },
+        },
+    });
+    
+    if (wasAdded) {
+        toast.success('Token Added Successfully');
+    } else {
+        toast.error('Error In adding token');
+    }
+    } catch (error) {
+    console.log(error);
+    }
+}
+
+  const updateDB = async (tokennew, txnhash) => {
+
+    const { chainId } = await provider.getNetwork()
+   
+    fetch(DB_LINK +'updateActivity', {
+     method: 'POST',
+     body: JSON.stringify({
+        user: address,
+        event: 2,
+        eventname: token,
+        hash: txnhash,
+        data: "",
+        chain: chainId,
+        address: tokennew
+     }),
+     headers: {
+        'Content-type': 'application/json',
+     },
+  })
+     .then((res) => {})
+     .then((data) => {
+        // toast.success('Token Purchased Successfully');
+        // setLoading(false);
+        // setTimeout(function(){window.location.reload(true);}, 5000);
+     })
+     .catch((err) => {
+        console.log(err.message);
+        // setLoading(false);
+     });
+
+}
 
   const createToken = async () => {
     try {
@@ -66,6 +140,7 @@ function Token(props) {
     const receipt = await tx.wait();
 
     if(receipt.status == 1){
+    await updateDB(receipt.logs[0].address, receipt.transactionHash);
     console.log("Token Launched = ", receipt.logs[0].address)
     setnewToken(receipt.logs[0].address);
     setModal(true);
@@ -320,7 +395,7 @@ function Token(props) {
             </div>
           </div>
           <div style={{ textAlign: "center", paddingTop: "5%" }}>
-            <Button onClick={() => { setModal(false) }} style={{ backgroundColor: "black",color:"white", padding: "7px 40px", fontSize: "20px", fontWeight: "450" }} variant="">
+            <Button onClick={() => { addTokenMetamask(); }} style={{ backgroundColor: "black",color:"white", padding: "7px 40px", fontSize: "20px", fontWeight: "450" }} variant="">
               <img src={Fox} alt="" />
               Add to Metamask</Button>
             <br />

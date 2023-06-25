@@ -30,6 +30,8 @@ function SaleToken() {
   const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const DB_LINK = process.env.REACT_APP_DB;
+  const { address } = useAccount();
 
   const [confirmpage, setconfirmpage] = useState(false);
   const { data: signerData } = useSigner();
@@ -68,6 +70,33 @@ function SaleToken() {
     signerOrProvider: signerData,
   });
 
+  const updateDB = async (salenew, txnhash) => {
+    const { chainId } = await provider.getNetwork()
+   
+    fetch(DB_LINK +'updateActivity', {
+     method: 'POST',
+     body: JSON.stringify({
+        user: address,
+        event: 3,
+        eventname: tokenName,
+        hash: txnhash,
+        data: "",
+        chain: chainId,
+        address: salenew
+     }),
+     headers: {
+        'Content-type': 'application/json',
+     },
+  })
+     .then((res) => {})
+     .then((data) => {
+     })
+     .catch((err) => {
+        console.log(err.message);
+     });
+
+}
+
   const readTokenDetails = async () => {
     try {
       setLoading(true);
@@ -102,9 +131,10 @@ function SaleToken() {
       const receipt = await tx.wait()
       console.log("Sale Created = ", receipt.logs[0].address)
       setsale(receipt.logs[0].address);
-      // setsale("0xa603352e96beb06a0d217C59Ee0CcA161312E309");
 
       if (receipt.status == 1) {
+        await updateDB(receipt.logs[0].address, receipt.transactionHash);
+
         setModal3(true);
       }
       setLoading(false);
@@ -116,7 +146,6 @@ function SaleToken() {
 
 
   function handleContinue(event) {
-    event.preventDefault()
     setconfirmpage(true);
   }
 
@@ -274,7 +303,7 @@ function SaleToken() {
         </div>
                     
             <div style={{ paddingLeft: "20px", width: "65%" }}>
-              <div style={{ padding: "0", margin: "0", fontSize: "35px", fontWeight: "700", color: "#12D576" }}>Create Token Sale</div>
+              <div style={{ padding: "0", margin: "0", fontSize: "28px", fontWeight: "700", color: "#12D576" }}>Create Token Sale: ({tokenSymbol}) {tokenName} </div>
               <div style={{ color: "#cccccc" }}>Step 1 of 2: Configure your token sale</div>
               <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "6%" }}>Select payment token</div>
 

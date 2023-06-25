@@ -28,6 +28,7 @@ import { Button } from "react-bootstrap";
 function Wallet(props) {
   const { theme } = props
   const CONTRACT_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
+  const DB_LINK = process.env.REACT_APP_DB;
 
   const { address } = useAccount();
   const [activeButton, setActiveButton] = useState(null);
@@ -50,15 +51,13 @@ function Wallet(props) {
 
   const getHistory = async () => {
     setLoading(true);
-    fetch("https://139-59-5-56.nip.io:3443/getActivity?user=" + address)
-    // fetch("http://localhost:8000/getActivity?user=" + address)
+    fetch(DB_LINK + "getActivity?user=" + address)
       .then((res) => res.json())
       .then((data) => setHistory(data))
   }
 
   const setHistory = async (data) => {
     try {
-      console.log(data);
       let historydetails = [];
       if (data.length > 0) {
         
@@ -70,6 +69,16 @@ function Wallet(props) {
 
           if (data[i].event_type == 1) {
             event = "Sale Purchase";            
+          }else if (data[i].event_type == 2) {
+            event = "Token Creation";            
+          }else if (data[i].event_type == 3) {
+            event = "Sale Creation";            
+          }else if (data[i].event_type == 4) {
+            event = "Lock Creation";            
+          }else if (data[i].event_type == 5) {
+            event = "Airdrop Token";            
+          }else if (data[i].event_type == 6) {
+            event = "Staking Pool Creation";            
           }
 
           historydetails[i] = { 'id': i + 1, 'activity': event, 'entity': data[i].event_name, 'time': data[i].created_on };
@@ -213,9 +222,8 @@ function Wallet(props) {
   };
 
   useEffect(() => {
-    console.log('i fire once');
-    gALL();
-  }, []);
+    if(typeof(address) != 'undefined') gALL();
+  }, [address]);
 
   const blurryDivStyle = {
     filter: loading ? 'blur(5px)' : 'blur(0px)'

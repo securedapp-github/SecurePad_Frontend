@@ -2,27 +2,23 @@
   padding: 10px;  
 }
 
-.search-box:focus{
-  outline:none;
-  border:1px solid transparent;
-}
-
   .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content:left;
+    gap:2vw;
+    padding-left:4vw;
     margin-top: 20px;
     border-radius: 200px;
   }
   
   .card {
-    width: 20vw;
-    height: 30vw;
+    width: 384px;
+    height: 576px;
     border-radius: 2vw;
     transition: transform 0.2s ease-in-out;
     background-color:#12083d ;
   }
-  
  
   
 
@@ -119,18 +115,18 @@
    .box-container {
     display: flex;
     flex-direction:row;
-    justify-content:space-between;
+    justify-content:space-around;
     flex-wrap: wrap; 
   }
   
   .box {
     width:8vw;
-    padding:0.5vw 0;
+    padding:0.5vw 1.5vw;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius:5vw;
-    margin-top: 15px;
+    margin-top: 0.78125vw;
     border: 2px solid;
   }
   
@@ -244,4 +240,162 @@
   font-size: 28px; /* Adjust the font size as needed */
   margin-right: 10px; /* Adjust the spacing between icons as needed */
   color:#ffffff;
+}
+@media only screen and (max-width:1780px){
+  .box{
+    width: 10vw !important;
+  }
+  .note{
+    bottom:3vw !important;
+  }
+}
+@media only screen and (max-width:1500px){
+  .note{
+    bottom:3.5vw !important;
+  }
+  .end{
+    font-size:17px !important;
+  }
+  .progress-text{
+    font-size:17px !important;
+  }
+}
+@media only screen and (max-width:1270px){
+  
+  .box{
+    width:15vw !important;
+  }
+  .card-image{
+    height:10vw !important;
+  }
+  .audit{
+    padding-top: 3vw !important;
+  }
+  .audit div{
+    height:3vw !important;
+  }
+  .note{
+    bottom:4.3vw !important;
+  }
+  .note svg{
+    width:2.5vw !important;
+    height:2.5vw !important;
+  }
+  .coin-image{
+    width:7vw !important;
+    height:5vw !important;
+  }
+  .status{
+    font-size:23px !important;
+  }
+}
+@media only screen and (max-width:1000px){
+  .card-title{
+    font-size: 20px !important;
+  }
+  .status{
+    font-size:20px !important;
+  }
+  .audit div{
+    height:3.5vw !important;
+  }
+  .search-container{
+    height:4vw !important;
+  }
+  .note{
+    bottom:6vw !important;
+  }
+  .note svg{
+    width:3vw !important;
+    height:3vw !important;
+  }
+}
+@media only screen and (max-width:976px){
+  .card-coin-img{
+    width:8vw !important;
+    height:6vw !important;
+  }
+}
+@media only screen and (max-width:850px){
+  .card-coin-img{
+    width:10vw !important;
+    height:8vw !important;
+  }
+  .note{
+    bottom:7.2vw !important;
+  }
+  .note svg{
+    width:4vw !important;
+    height:4vw !important;
+  }
+}
+
+@media only screen and (max-width:750px){
+  .audit{
+    padding-top: 3vw !important;
+  }
+  .audit div{
+    height:5vw !important;
+  }
+  .box{
+    width:25vw !important;
+  }
+  .card{
+    width:270px !important;
+  }
+  .search-container{
+    height:6vw !important;
+  }
+  .card-image{
+    height:15vw !important;
+  }
+  .audit{
+    padding-top:3vw !important;
+  }
+  .coin-image{
+    width:9vw !important;
+    height:7vw !important;
+  }
+}
+@media only screen and (max-width:700px){
+  .note{
+    bottom:8vw !important;
+  }
+}
+@media only screen and (max-width:610px){
+  .note{
+    bottom:10vw !important;
+  }
+  .end{
+    font-size: 15px !important;
+  }
+  .progress-text{
+    font-size:15px !important;
+  }
+}
+@media only screen and (max-width:500px){
+  .note{
+    bottom:12vw !important;
+  }
+  .audit{
+    padding-top: 5vw !important;
+  }
+  .note svg{
+    width:10vw !important;
+  }
+  .coin-image{
+    width:11vw !important;
+    height:9vw !important;
+  }
+  .audit div{
+    font-size:12px !important;
+  }
+}
+@media only screen and (max-width:404px){
+  .note{
+    bottom:15vw !important;
+  }
+  .box{
+    width:30vw !important;
+  }
 }

@@ -10,6 +10,7 @@ import ManageSale from './managesale.jsx'
 import Wallet from './Wallet.jsx'
 import DistributeToken from './distributeToken.jsx'
 import EditSale from './editSale.jsx'
+import Error from './error.jsx'
 
 import {
   useAccount
@@ -20,6 +21,10 @@ function manageToken(props) {
   function ManageToken(){
 
     const { address } = useAccount();
+
+    if(page=='error'){
+      return <Error/>
+    }
     if (typeof address == 'undefined') {
       return <Wallet />
     } else {

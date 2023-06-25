@@ -122,9 +122,7 @@ function EditSale() {
   }
 
   useEffect(() => {
-   
-    readSaleDetails();
-    
+     readSaleDetails();
   }, []);
 
   const updateSale = async () => {

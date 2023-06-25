@@ -1,0 +1,140 @@
+.body-image{
+    height: 250px 
+}
+@media only screen and (max-width:1333px){
+    .body-image{
+        height:150px !important;
+    }
+    .buysale-social svg{
+        width:1.6vw !important;
+        height:1.6vw !important;
+    }
+}
+@media only screen and (max-width:1200px){
+    .buysale-back{
+        padding-top:0.3vw !important;
+    }
+}
+@media only screen and (max-width:1000px){
+    .buysale-back{
+        padding-top:0.1vw !important;
+    }
+}
+
+
+@media only screen and (max-width:830px){
+    .body-image{
+        height:120px !important;
+    }
+    .expected-token{
+        font-size:15px !important;
+    }
+    .buysale-social svg{
+        width:1.9vw !important;
+        height:1.9vw !important;
+    }
+}
+@media only screen and (max-width:800px){
+    .buysale-back{
+        padding-top:0vw !important;
+        position:relative;
+        bottom:2px;
+    }
+    
+}
+@media only screen and (max-width:768px){
+    .buysale-input{
+        height:50% !important;
+    }
+}
+@media only screen and (max-width:736px){
+    .main-body{
+        width:100% !important;
+    }
+    .buysale-desc{
+        font-size:12px !important;
+    }
+    .buysale-sale{
+        font-size:12px !important;
+    }
+}
+@media only screen and (max-width:700px){
+    .buysale-back{
+        padding-top:0vw !important;
+        position:relative !important;
+        bottom:3px !important;
+    }
+    
+}
+@media only screen and (max-width:650px){
+    .body-image{
+        height:100px !important;
+    }
+    .expected-token{
+        font-size:12px !important;
+    }
+    .buysale-desc{
+        font-size:10px !important;
+    }
+    .buysale-sale{
+        font-size:10px !important;
+    }
+    .buysale-social svg{
+        width:2.1vw !important;
+        height:2.1vw !important;
+    }
+    .buysale-back{
+        padding-top:0vw !important;
+        position:relative !important;
+        bottom:4px !important;
+    }
+    
+}
+@media only screen and (max-width:600px){
+    .buysale-back{
+        padding-top:0vw !important;
+        position:relative !important;
+        bottom:5px !important;
+    }
+    
+}
+@media only screen and (max-width:550px){
+    .buysale-back{
+        padding-top:0vw !important;
+        position:relative !important;
+        bottom:6px !important;
+    }
+    
+}
+@media only screen and (max-width:500px){
+    .body-image{
+        height:80px !important;
+    }
+    .buysale-desc{
+        font-size:8px !important;
+    }
+    .buysale-sale{
+        font-size:8px !important;
+    }
+    .buysale-social svg{
+        width:2.7vw !important;
+        height:2.7vw !important;
+    }
+    .buysale-social{
+        position:relative;
+        bottom:4px;
+    }
+    .buysale-back{
+        padding-top:0vw !important;
+        position:relative !important;
+        bottom:7px !important;
+    }
+}
+@media only screen and (max-width:450px){
+    .buysale-back{
+        padding-top:0vw !important;
+        position:relative !important;
+        bottom:8px !important;
+    }
+    
+}

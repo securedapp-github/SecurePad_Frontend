@@ -9,6 +9,8 @@ import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import Managetoken from './Components/manageToken.jsx';
+import { Navigate } from 'react-router-dom';
+import NewHome from './Components/newHome.jsx';
 
 
 const { chains, provider } = configureChains(
@@ -45,6 +47,7 @@ function App() {
     <RainbowKitProvider chains={chains}>
     <BrowserRouter>
     <Routes>
+    <Route exact path="/home" element={<NewHome/>} />
       <Route exact path="/" element={<Sidebar page={"home"}/>} />
       <Route exact path="/token" element={<Sidebar page={"token"}/>} />
       <Route exact path="/contact" element={<Sidebar page={"contact"}/>} />
@@ -61,10 +64,10 @@ function App() {
       <Route exact path="/managelock/:LOCK" element={<Sidebar page={"managelock"}/>} />
       <Route exact path="/saletoken/:TOKEN" element={<Managetoken page={"saletoken"}/>} />
       <Route exact path="/editsale/:SALE" element={<Managetoken page={"editsale"}/>} />
-
       <Route exact path="/managesale/:SALE" element={<Managetoken page={"managesale"}/>} />
       <Route exact path="/buysale/:SALE" element={<Sidebar page={"buysale"}/>} />
       <Route exact path="/distributetoken" element={<Managetoken page={"distributetoken"}/>} />
+      <Route path="*" element={<Managetoken page={"error"}/>} />
 
     </Routes>
     </BrowserRouter>
