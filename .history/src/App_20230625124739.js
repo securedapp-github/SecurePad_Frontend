@@ -9,7 +9,6 @@ import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import Managetoken from './Components/manageToken.jsx';
-import { Navigate } from 'react-router-dom';
 
 
 const { chains, provider } = configureChains(
@@ -52,8 +51,7 @@ function App() {
       <Route exact path="/buysale/:SALE" element={<Sidebar page={"buysale"}/>} />
       <Route exact path="/distributetoken" element={<Managetoken page={"distributetoken"}/>} />
 
-   {/* Catch-all route for handling unexpected routes */}
-   <Route path="*" element={<Navigate to="/contact" />} />
+   
    
     </Routes>
    </BrowserRouter>

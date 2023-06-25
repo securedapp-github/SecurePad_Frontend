@@ -53,7 +53,7 @@ function App() {
       <Route exact path="/distributetoken" element={<Managetoken page={"distributetoken"}/>} />
 
    {/* Catch-all route for handling unexpected routes */}
-   <Route path="*" element={<Navigate to="/contact" />} />
+   <Route path="*" element={<Navigate to="/404" />} />
    
     </Routes>
    </BrowserRouter>
