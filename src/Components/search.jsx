@@ -365,21 +365,21 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
 
     return (
         <div onClick={() => { GoToSaleDetail(sale) }} style={{ cursor: "pointer", borderRadius: "1.5vw" }}>
-            <div style={{ fontSize: "1.3vw", fontWeight: "700", color: "#12D576", textAlign: "end", paddingRight: "1vw" }}>{topstatus}</div>
+            <div className="status"style={{ fontSize: "1.3vw", fontWeight: "700", color: "#12D576", textAlign: "end", paddingRight: "1vw" }}>{topstatus}</div>
             <div className="card" style={{ borderRadius: "1.5vw", backgroundColor: "rgba(70,70,70,0.4)" }}>
                 <img src={image} alt={title} className="card-image" />
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <img src={coin_image} style={{ paddingLeft: "2vw", position: "relative", bottom: "0.3vw", width: "5vw", height: "3vw" }} alt="not found" />
-                    <div style={{ display: "flex", paddingRight: "1.5vw", paddingTop: "1vw", gap: "0.1vw" }}>
+                    <img src={coin_image} className='coin-image' style={{ paddingLeft: "2vw", position: "relative", bottom: "0.3vw", width: "5vw", height: "3vw" }} alt="not found" />
+                    <div style={{ display: "flex", paddingRight: "1.5vw", paddingTop: "2vw", gap: "0.1vw" }} className="audit">
 
                         {audit != "" && (
-                            <div onClick={(event) => { event.stopPropagation(); window.open(audit, "_blank"); }} style={{ cursor: "pointer", padding: "0.3vw 0.5vw", fontWeight: "700", color: '#12D576', border: "1px solid #12D576", borderRadius: "1vw" }}>Audit</div>
+                            <div onClick={(event) => { event.stopPropagation(); window.open(audit, "_blank"); }} style={{ cursor: "pointer", padding: "0.3vw 0.5vw", fontWeight: "700", color: '#12D576', border: "1px solid #12D576", borderRadius: "5vw" }}>Audit</div>
                         )}
                         {kyc != "" && (
-                            <div onClick={(event) => { event.stopPropagation(); window.open(kyc, "_blank"); }} style={{ cursor: "pointer", padding: "0.3vw 0.5vw", fontWeight: "700", color: '#12D576', border: "1px solid #12D576", borderRadius: "1vw" }}>KYC+</div>
+                            <div onClick={(event) => { event.stopPropagation(); window.open(kyc, "_blank"); }} style={{ cursor: "pointer", padding: "0.3vw 0.5vw", fontWeight: "700", color: '#12D576', border: "1px solid #12D576", borderRadius: "5vw" }}>KYC+</div>
                         )}
                         {vetted != "" && (
-                            <div onClick={(event) => { event.stopPropagation(); window.open(vetted, "_blank"); }} style={{ cursor: "pointer", padding: "0.3vw 0.5vw", fontWeight: "700", color: '#12D576', border: "1px solid #12D576", borderRadius: "1vw" }}>Vetted</div>
+                            <div onClick={(event) => { event.stopPropagation(); window.open(vetted, "_blank"); }} style={{ cursor: "pointer", padding: "0.3vw 0.5vw", fontWeight: "700", color: '#12D576', border: "1px solid #12D576", borderRadius: "5vw" }}>Vetted</div>
                         )}
                     </div>
                 </div>
@@ -393,7 +393,7 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
 >>>>>>> a03b1a4281b32790c4b32fcc2e41e259b33382ea
         <span className="new-text">10BNB</span> */}
                     </div>
-                    <div className="box-container">
+                    <div className="box-container" style={{paddingTop:"15px"}}>
                         <div className="box box-1" style={{ fontSize: "0.6vw" }}>
                             <span className="box-text">Softcap</span>
                             <span className="Softcap-text">{soft} </span>
@@ -417,7 +417,7 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
                     <div className="line"> </div>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <div className="end" style={{ fontSize: "0.8vw", width: "50%" }}>{end}</div>
-                        <div style={{ dispaly: "flex", position: "relative", bottom: "2.5vw" }}>
+                        <div className='note' style={{ dispaly: "flex", position: "relative", bottom: "2.5vw" }}>
                             <svg height="2vw" width="2vw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z" /></svg>
                             <svg height="2vw" width="2vw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" /></svg>
                         </div>

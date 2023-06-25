@@ -9,6 +9,7 @@ import { ethers } from "ethers";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Link} from 'react-router-dom'
+import '../Style/buysale.css'
 import Coin from '../assets/Coin.png'
 
 import {
@@ -324,19 +325,19 @@ function BuySale(props) {
             pauseOnHover
         />
 
-        <div className="tokenSale1" style={{ ...blurryDivStyle, display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw", }}>
-            <div style={{width:"60%"}}>
-                <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
+        <div className="tokenSale1" style={{ ...blurryDivStyle, display: "flex",flexWrap:'wrap', flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw", }}>
+            <div className='main-body' style={{width:"60%"}}>
+                <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div className='buysale-back' style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
                     <div style={{ fontSize: "2vw", color: "#646464" }}>
                         Back</div></div>
                 <div style={{ paddingBottom: "2vw", width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw" }}>
-                    <img style={{ height: "250px", width: "100%", borderRadius: "3vw", padding: "0.2vw" }} src={image} alt="not found" />
+                    <img style={{width: "100%", borderRadius: "3vw", padding: "0.2vw" }} className="body-image" src={image} alt="not found" />
                     <br />
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
 
                         <img src={coin} style={{ maxWidth: '10vw', maxHeight: '6vw',  position: "relative", paddingLeft: "3vw", bottom: "1.8vw" }} alt="not found" />
                         
-                        <div style={{ paddingTop: "0.2vw" }}>
+                        <div className='buysale-social' style={{ paddingTop: "0.2vw" }}>
 
                             {web !== undefined && (
 
@@ -393,9 +394,9 @@ function BuySale(props) {
                             )}
                         </div>
                     </div> <div style={{ paddingLeft: "1vw", paddingTop: "0.2vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "3vw", fontWeight: "900" }}>{token} TOKEN SALE</div>
-                    <div style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>{desc}</div>
+                    <div className='buysale-desc' style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>{desc}</div>
                     
-                    <div style={{display:"flex",padding:"1vw",justifyContent:"space-between",color:"white",fontSize:"1vw"}}>
+                    <div className="buysale-sale" style={{display:"flex",padding:"1vw",justifyContent:"space-between",color:"white",fontSize:"1vw"}}>
                         <div style={{width:"50%"}}>
                                 <div style={{padding:"0.8vw 0",borderBottom:"1px solid #464646"}}>Sale Address</div>
 
@@ -426,7 +427,7 @@ function BuySale(props) {
 
                 <div style={{ backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "1.3vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
                     <div>
-                        <span style={{ fontSize: "1.4vw", fontWeight: "600" }}>{status}</span>
+                        <span style={{ fontSize: "1.5vw", fontWeight: "600" }}>{status}</span>
                     </div>
                     <div className="progress-bar-container">
                     {/* <span className="progress-text">Progress {progress}%</span> */}
@@ -453,9 +454,9 @@ function BuySale(props) {
                     
                     { allowed && (
                     <div style={{ fontSize: "1.1vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                        <div style={{ height: "100%", border: "2px solid #464646", display: "flex", borderRadius: "1.5vw", padding: "0.3vw 0.2vw" }}><input value={buyamount}
+                        <div className='buysale-input' style={{border: "2px solid #464646", display: "flex", borderRadius: "3vw", padding: "0.3vw 0.2vw" }}><input value={buyamount}
                             onChange={(e) => setbuyamount(e.target.value)}
-                            placeholder={'0 ' + pay} style={{ padding: "0", fontWeight: "600", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
+                            placeholder={'0 ' + pay} style={{ marginBottom:'0',padding: "0", fontWeight: "600", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
                             <div style={{ color: "#12D576", fontWeight: "700", paddingTop: "0.2vw" }}>{pay}</div>
                         </div>
                         <div onClick={() => { buyToken() }} style={{cursor:"pointer",backgroundColor: "#464646", height: "100%", padding: "0.5vw 1vw", borderRadius: "1.5vw" }}> BUY {' ' + token}
@@ -464,23 +465,23 @@ function BuySale(props) {
                     )}
 
                     <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
-                        <div>Expected Token</div>
-                        <div>{buyamount * decimal}</div>
+                        <div className="expected-token">Expected Token</div>
+                        <div className="expected-token">{buyamount * decimal}</div>
                     </div>
 
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div>Sale Rate</div>
-                        <div> {price} {pay} = {decimal} {token} </div>
+                        <div className="expected-token">Sale Rate</div>
+                        <div className="expected-token"> {price} {pay} = {decimal} {token} </div>
                     </div>
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div>Your {token} Balance</div>
-                        <div> {balance} </div>
+                        <div className="expected-token">Your {token} Balance</div>
+                        <div className="expected-token"> {balance} </div>
                     </div>
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div>Your {pay} Balance</div>
-                        <div> {paybalance} </div>
+                        <div className="expected-token">Your {pay} Balance</div>
+                        <div className="expected-token"> {paybalance} </div>
                     </div>
-                    <Button onClick={() => {addTokenMetamask();}}>Add {token} To MetaMask
+                    <Button className="expected-token" onClick={() => {addTokenMetamask();}}>Add {token} To MetaMask
                     </Button>
 
                 </div>
