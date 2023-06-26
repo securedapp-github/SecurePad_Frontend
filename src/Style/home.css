@@ -33,7 +33,7 @@ width:35vw;
         width:45vw;
     }
     .home{
-        flex-wrap:wrap;
+        flex-wrap:wrap-reverse;
     }
 }
 @media only screen and (max-width:770px){
