@@ -12,8 +12,6 @@ const New = ({ theme }) => {
     const [salesArray, setsalesArray] = useState([]);
     const { address } = useAccount();
 
-    const CONTRACT_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
-
     const setdata = async (data) => {
         if (data.length > 0) {
 

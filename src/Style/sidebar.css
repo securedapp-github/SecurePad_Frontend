@@ -13,11 +13,7 @@
     padding-left:0;
 }
 
-@media only screen and (max-width:700px){
-    .sidebar{
-        padding:5px 0 !important;
-    }
-}
+
 .sideNavButton{
     padding:20px;
     padding-right:20px;
@@ -85,17 +81,41 @@
     background-color:#12D576 !important;
     border-radius:20px;
 } */
-@media only screen and (max-width:452px){
-.navBrand{
-    display:none;
+@media only screen and (max-width:1298px){
+    #comp_name{
+        display:none !important;
+    }
 }
-.riht{
-    left:0;
+
+@media only screen and (max-width:945px){
+    #contact{
+        display: none;
+    }
 }
-.dropdown{
-    margin:0 !important;
-}
-}
+
+@media only screen and (max-width:700px){
+    #sales,#pricing{
+      padding:0 !important;
+    }
+    #bars{
+      display:block !important;
+      position:relative !important;
+      left:10px !important;
+      top:50px !important;
+      z-index:2 !important;
+    }
+    #sidebar1{
+      display:none !important;
+    }
+    .themeic{
+        display:none !important;
+    }
+    .offcanvas{
+        width:35% !important;
+        background-color:#101010 !important;
+    }
+  }
+
 @media only screen and (min-width:648px){
     .iekbcc0.ju367va.ju367v1n:hover{
         background-color:#12D576 !important;
@@ -111,10 +131,17 @@
     }
 }
 @media only screen and (max-width:453px){
-    #themeicon{
-        position:absolute;
-        display:flex;
-        top:-5vw;
-        left:21vw;
+    #bars{
+        top:20px !important;
+        left:20px !important;
+    }
+    .navBrand{
+        display:none;
+    }
+    .riht{
+        left:0;
+    }
+    .dropdown{
+        margin:0 !important;
     }
 }
