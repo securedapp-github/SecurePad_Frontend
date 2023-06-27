@@ -116,11 +116,15 @@ ThemeIcon();
   return (
     <div className="mainpage">
            <Offcanvas show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
+        <Offcanvas.Header>
           <Offcanvas.Title>
           <div onClick={Toggle} id='themeicon' style={{cursor:"pointer",color:`${theme==='Dark' ? '#12D576':'black'}`,fontSize:"23px",fontWeight:"400",padding:"0 1.5vw",border:`1px solid ${theme==='Dark' ? '#12D576':'black'}`,borderRadius:"1.5vw"}}>{theme}
-          <ThemeIcon/>
+          <ThemeIcon/>   
           </div>
+          <Link to="/search"  id='sales1'> <div style={{marginTop:'10px',cursor:"pointer",color:`${theme==='Dark' ? '#12D576':'black'}`,fontSize:"23px",fontWeight:"400",padding:"0 1.5vw",border:`1px solid ${theme==='Dark' ? '#12D576':'black'}`,borderRadius:"1.5vw"}}>Sales</div>
+          </Link>
+          <Link to="/pricing"  id='pricing1'><div style={{marginTop:'10px',cursor:"pointer",color:`${theme==='Dark' ? '#12D576':'black'}`,fontSize:"23px",fontWeight:"400",padding:"0 1.5vw",border:`1px solid ${theme==='Dark' ? '#12D576':'black'}`,borderRadius:"1.5vw"}}>Pricing</div>
+          </Link>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
@@ -156,7 +160,7 @@ ThemeIcon();
       </div>
       <div className="dashboard" style={{ overflow: "auto",backgroundImage:`${theme==='Dark' ? 'linear-gradient(to right,black,rgb(14, 14, 61))' : 'linear-gradient(to right,#FBFBFB,#bff2d9)'}`}} >
       <div id='bars' style={{display:'none'}} onClick={handleShow}>
-      <svg xmlns="http://www.w3.org/2000/svg" width='5vw' height='5vw'  style={{fill:'white'}} viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg"   style={{fill:'white'}} viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
       </div>
         <div className="navbar" style={{ color:`${theme==='Dark' ? 'whitesmoke':'black'}`, fontWeight: "700" }}>
           <div className="navBrand" style={{ position: "absolute", left: "2%",display:"flex",gap:"1vw" }}><div id='comp_name'><span style={{ color: "#12D576", fontSize: "20px", fontWeight: "700" }}>Token Launchpad</span><span style={{ fontSize: "20px", fontWeight: "400" }}> by SecureDApp</span></div>

@@ -19,6 +19,19 @@
     .buysale-back{
         padding-top:0.1vw !important;
     }
+    .auditLink,.kycLink,.vettedLink{
+        height:28.5px !important;
+        font-size:15px !important;
+        padding:0 3px !important;
+    }
+    .auditLink svg,.kycLink svg,.vettedLink svg{
+        height:11px !important;
+        width:11px !important;
+    }
+    .buysale-social svg{
+        width:16px !important;
+        height:16px !important;
+    }
 }
 
 
@@ -42,22 +55,59 @@
     }
     
 }
-@media only screen and (max-width:768px){
-    .buysale-input{
-        height:50% !important;
-    }
-}
-@media only screen and (max-width:736px){
+
+@media only screen and (max-width:769px){
     .main-body{
-        width:100% !important;
+        width:351px !important;
+        height:488.5px !important;
     }
     .buysale-desc{
-        font-size:12px !important;
+        font-size:15px !important;
     }
     .buysale-sale{
-        font-size:12px !important;
+        font-size:15px !important;
     }
 }
+
+@media only screen and (max-width:756px){
+    .tokenSale1{
+        justify-content: center !important;
+    }
+    .buysection{
+        margin-top:10vw !important;
+        width:351px !important;
+    }
+    .buysection-status{
+        font-size:15px !important;
+    }
+    .buysection-soft{
+        font-size:15px !important;
+    }
+    .buysection-input{
+        font-size:12px !important;
+    }
+    .buysection-input input{
+        font-size:12px !important;
+        width:180px !important;
+    }
+    .buysale-social svg{
+        width:16px !important;
+        height:16px !important;
+    }
+    .buysale-head{
+        padding-top:15px !important;
+        font-size:18px !important;
+    }
+    .buysale-back1{
+        font-size: 15px !important;
+    }
+    .buysale-back svg{
+        width:15px !important;
+        height:15px !important;
+    }
+
+}
+
 @media only screen and (max-width:700px){
     .buysale-back{
         padding-top:0vw !important;
@@ -70,19 +120,6 @@
     .body-image{
         height:100px !important;
     }
-    .expected-token{
-        font-size:12px !important;
-    }
-    .buysale-desc{
-        font-size:10px !important;
-    }
-    .buysale-sale{
-        font-size:10px !important;
-    }
-    .buysale-social svg{
-        width:2.1vw !important;
-        height:2.1vw !important;
-    }
     .buysale-back{
         padding-top:0vw !important;
         position:relative !important;
@@ -91,39 +128,18 @@
     
 }
 @media only screen and (max-width:600px){
-    .buysale-back{
-        padding-top:0vw !important;
-        position:relative !important;
-        bottom:5px !important;
+    .buysale-back svg{
+        margin-top:4px !important;
     }
     
 }
 @media only screen and (max-width:550px){
-    .buysale-back{
-        padding-top:0vw !important;
-        position:relative !important;
-        bottom:6px !important;
-    }
+    .buysale-back svg{
+        margin-top:6px !important;
+    }   
     
 }
 @media only screen and (max-width:500px){
-    .body-image{
-        height:80px !important;
-    }
-    .buysale-desc{
-        font-size:8px !important;
-    }
-    .buysale-sale{
-        font-size:8px !important;
-    }
-    .buysale-social svg{
-        width:2.7vw !important;
-        height:2.7vw !important;
-    }
-    .buysale-social{
-        position:relative;
-        bottom:4px;
-    }
     .buysale-back{
         padding-top:0vw !important;
         position:relative !important;
@@ -131,10 +147,8 @@
     }
 }
 @media only screen and (max-width:450px){
-    .buysale-back{
-        padding-top:0vw !important;
-        position:relative !important;
-        bottom:8px !important;
+    .buysale-back svg{
+        margin-top:10px !important;
     }
     
 }
