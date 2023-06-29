@@ -27,13 +27,13 @@ function Contact(props) {
           <p style={{ textAlign: 'left', marginBottom: '1.5vw', color: `${theme === 'Dark' ? 'white' : 'rgba(255, 255, 255, 0.8)'}` }}>
             Telegram:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
             <FontAwesomeIcon icon={faLink} style={{ color: 'skyblue', marginRight: '0.9vw' }} />
-            <a href="https://t.me/your-telegram" style={{ color: 'skyblue', textDecoration: 'none' }}>your-telegram</a>
+            <a href="https://t.me/your-telegram">your-telegram</a>
           </p>
           <hr style={{ borderTop: '2px solid #f2f2f2', margin: '1.5vw 1vw', width: '100%', marginLeft: '1%' }} />
           <p style={{ textAlign: 'left', marginBottom: '1.5vw', color: `${theme === 'Dark' ? 'white' : 'rgba(255, 255, 255, 0.8)'}` }}>
             Documentation: &nbsp; 
             <FontAwesomeIcon icon={faLink} style={{ color: 'skyblue', marginRight: '0.9vw' }} />
-            <a href="https://example.com/documentation" style={{ color: 'skyblue', textDecoration: 'none' }}>Documentation</a>
+            <a href="https://example.com/documentation">Documentation</a>
           </p>
           <hr style={{ borderTop: '2px solid #f2f2f2', margin: '1.5vw 1.5vw', width: '100%', marginLeft: '1%' }} />
         </div>
