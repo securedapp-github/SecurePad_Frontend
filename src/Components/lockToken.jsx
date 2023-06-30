@@ -144,7 +144,7 @@ function LockToken() {
     useEffect(() => {
       if (!signerData) return;
       readTokenDetails();
-    }, [signerData, TOKEN]);
+    }, [signerData, TOKEN, address]);
 
 
     function Mains() {

@@ -9,7 +9,7 @@ import Huobi from '../assets/Huobi.png'
 import PancakeSwap from '../assets/PancakeSwap.png'
 import Gate from '../assets/Gate.png'
 import Bybit from '../assets/BYBIT.png'
-import VideoSource from '../assets/mixkit-animation-of-futuristic-devices-99786.mp4'
+// import VideoSource from '../assets/mixkit-animation-of-futuristic-devices-99786.mp4'
 import Space from '../assets/space.webp'
 
 function NewHome() {

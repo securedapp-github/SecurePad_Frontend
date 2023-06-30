@@ -172,12 +172,13 @@ function DistributeToken(props) {
 
                     </div>
                     <div className="tokenSettings" style={{ width: "45%", backgroundColor: "transparent", border: "0", borderLeft: "1px solid" }}>
-                        <h3 style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }}>Select token</h3>
-                        <div style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }}>Token</div>
+                        <h3 style={{ color: `${theme === 'Dark' ? 'black' : 'white'}` }}>Select token</h3>
+                        <div style={{ color: `${theme === 'Dark' ? 'black' : 'white'}` }}>Token</div>
                         <input type="text" value={token} onChange={(e) => settoken(e.target.value)}
                             style={{ margin: "10px", marginLeft: "0", marginBottom: "10px", height: "50px", backgroundColor: "transparent", border: "1px solid #464646", borderRadius: "7px", width: "100%", color: `${theme === 'Dark' ? 'white' : 'black'}` }} />
 
-                        <div style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }}>Upload CSV                         <a target="_blank" style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }} href="https://docs.google.com/spreadsheets/d/10zBcQ1lS_10mnFi2NC8xkhlLmPhqAb2Qxz2RGUNI0QA/edit?usp=sharing"> Sample CSV</a>
+                        <div style={{ color: `${theme === 'Dark' ? 'black' : 'white'}` }}>Upload CSV                         
+                        <a target="_blank" style={{ color: `${theme === 'Dark' ? 'black' : 'white'}` }} href="https://docs.google.com/spreadsheets/d/10zBcQ1lS_10mnFi2NC8xkhlLmPhqAb2Qxz2RGUNI0QA/edit?usp=sharing">( Sample CSV )</a>
                         </div>
 
 
@@ -219,7 +220,7 @@ function DistributeToken(props) {
     }
 
     useEffect(() => {
-        if (!address || token == "") return;
+        if(typeof(address) == 'undefined' || token == "") return;
         getUserBalance();
     }, [address, token]);
 

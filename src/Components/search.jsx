@@ -1,40 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../Style/search.css" // Import the CSS file for styling
-import FACTORYABI from "../ABI/FactoryABI.json";
-import SALEABI from "../ABI/SaleABI.json";
-import TOKENABI from "../ABI/TokenABI.json";
 import { useNavigate } from 'react-router-dom'
-import Coin from '../assets/Coin.png';
-import { ethers } from "ethers";
 
 import {
-    useAccount,
-    useConnect,
-    useContract,
-    useContractRead,
-    useContractWrite,
-    useNetwork,
-    useSigner,
-    useWaitForTransaction,
-    useProvider
+    useAccount
 } from "wagmi";
 
-const New = ({ onSearch, theme }) => {
-    const [search, setSearch] = useState('');
-    const [filterBy, setFilterBy] = useState('');
-    const [count, setcount] = useState(0);
+const New = ({ theme }) => {
+    const DB_LINK = process.env.REACT_APP_DB;
+
     const [salesArray, setsalesArray] = useState([]);
-
-    const provider = useProvider()
     const { address } = useAccount();
-
-    const CONTRACT_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
-    const FactoryContract = useContract({
-        addressOrName: CONTRACT_ADDRESS,
-        contractInterface: FACTORYABI,
-        signerOrProvider: provider
-    });
-
 
     const setdata = async (data) => {
         if (data.length > 0) {
@@ -111,180 +87,19 @@ const New = ({ onSearch, theme }) => {
     }
 
     const getSales = async () => {
-        fetch("https://139-59-5-56.nip.io:3443/getSales")
-            // fetch("http://localhost:8000/getSales")        
+            fetch(DB_LINK + "getSales")        
             .then((res) => res.json())
             .then((data) => setdata(data))
     }
 
     useEffect(() => {
         getSales();
-    }, []);
+    }, [address]);
 
-
-    const cardsData = [
-        {
-            id: 1,
-            title: 'MEME ELON DOGE FLOKI',
-            description: '',
-            image: 'https://blog.kleros.io/content/images/size/w2000/2019/12/header-2nd-sale-1.jpg',
-            soft: 100,
-            hard: 10000,
-            progress: 30,
-            liq: 20,
-            lock: 180,
-            end: 12345678,
-            token: 'BNB'
-        },
-        {
-            id: 2,
-            title: 'HCOIN BASE GOT DOWN',
-            description: 'Fair Launch-Max:No Limit',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmQszkA2eZvidYBvosFsipj56hj9G3CW9e4ovl8j9KWOyXKS_aB06F_-hsyISer7yePo&usqp=CAU',
-            soft: 100,
-            hard: 10000,
-            progress: 30,
-            liq: 20,
-            lock: 180,
-            end: 12345678,
-            token: 'BNB'
-        },
-        {
-            id: 3,
-            title: 'BIT CRYPTO CURRENCY',
-            description: 'Fair Launch-Max:No Limit',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmQszkA2eZvidYBvosFsipj56hj9G3CW9e4ovl8j9KWOyXKS_aB06F_-hsyISer7yePo&usqp=CAU',
-            soft: 100,
-            hard: 10000,
-            progress: 30,
-            liq: 20,
-            lock: 180,
-            end: 12345678,
-            token: 'BNB'
-        },
-        {
-            id: 4,
-            title: 'Card 4',
-            description: 'This is the description of Card 4.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmQszkA2eZvidYBvosFsipj56hj9G3CW9e4ovl8j9KWOyXKS_aB06F_-hsyISer7yePo&usqp=CAU',
-            soft: 100,
-            hard: 10000,
-            progress: 30,
-            liq: 20,
-            lock: 180,
-            end: 12345678,
-            token: 'BNB'
-        },
-        {
-            id: 5,
-            title: 'Card 5',
-            description: 'This is the description of Card 5.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmQszkA2eZvidYBvosFsipj56hj9G3CW9e4ovl8j9KWOyXKS_aB06F_-hsyISer7yePo&usqp=CAU',
-            soft: 100,
-            hard: 10000,
-            progress: 30,
-            liq: 20,
-            lock: 180,
-            end: 12345678,
-            token: 'BNB'
-        },
-        {
-            id: 6,
-            title: 'Card 6',
-            description: 'This is the description of Card 6.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmQszkA2eZvidYBvosFsipj56hj9G3CW9e4ovl8j9KWOyXKS_aB06F_-hsyISer7yePo&usqp=CAU',
-            soft: 100,
-            hard: 10000,
-            progress: 30,
-            liq: 20,
-            lock: 180,
-            end: 12345678,
-            token: 'BNB'
-        },
-
-        {
-            id: 7,
-            title: 'Card 7',
-            description: 'This is the description of Card 7.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmQszkA2eZvidYBvosFsipj56hj9G3CW9e4ovl8j9KWOyXKS_aB06F_-hsyISer7yePo&usqp=CAU',
-            soft: 100,
-            hard: 10000,
-            progress: 30,
-            liq: 20,
-            lock: 180,
-            end: 12345678,
-            token: 'BNB'
-        },
-        {
-            id: 8,
-            title: 'Card 8',
-            description: 'This is the description of Card 8.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmQszkA2eZvidYBvosFsipj56hj9G3CW9e4ovl8j9KWOyXKS_aB06F_-hsyISer7yePo&usqp=CAU',
-            soft: 100,
-            hard: 10000,
-            progress: 30,
-            liq: 20,
-            lock: 180,
-            end: 12345678,
-            token: 'BNB'
-        },
-        {
-            id: 9,
-            title: 'Card 9',
-            description: 'This is the description of Card 9.',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmQszkA2eZvidYBvosFsipj56hj9G3CW9e4ovl8j9KWOyXKS_aB06F_-hsyISer7yePo&usqp=CAU',
-            soft: 100,
-            hard: 10000,
-            progress: 30,
-            liq: 20,
-            lock: 180,
-            end: 12345678,
-            token: 'BNB'
-        },
-    ];
-
-
-
-
-    // Filter the cards based on the filterBy value
-
-    // const handleFilterChange = (event) => {
-    //     setFilterBy(event.target.value);
-    // };
-
-    // const handleSearchChange = (event) => {
-    //     setSearch(event.target.value);
-    // };
-
-    // const filteredCards = salesArray.filter((card) =>
-    //     card.title.toLowerCase().includes(filterBy.toLowerCase())
-    // );
-
-    // const searchedCards = filteredCards.filter((card) =>
-    //     card.title.toLowerCase().includes(search.toLowerCase()) ||
-    //     card.description.toLowerCase().includes(search.toLowerCase())
-    // );
 
     return (
         <div className="searchpage-container" style={{ margin: "1.5vw 0" }}>
-            {/* <div className="search" style={{ padding: "0 6vw" }}>
-                <div className="search-container" style={{ width: "20%", display: "flex", height: "2.5vw", border: "1px solid #ccc", padding: "0 1vw", borderRadius: "2vw" }}>
-                    <div style={{ width: "100%" }}>
-                        <input
-                            type="text" className="search-box" placeholder="Search..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            style={{
-                                border: "1px solid transparent",
-                                backgroundColor: 'transparent',
-                                width: '100%',
-                                color: '#ccc'
-                            }}
-                        />
-                    </div>
-                    <div style={{ paddingTop: "0.5vw" }}><svg height="1vw" width="1vw" style={{ fill: "#ccc" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg></div>
-                </div>
-                </div> */}
+           
             <div className="card-container">
                 {salesArray.map((card) => (
                     <Card
@@ -355,6 +170,7 @@ const New = ({ onSearch, theme }) => {
 
     );
 };
+
 
 const Card = ({ title, description, image, soft, hard, progress, liq, lock, end, token, sale, theme, audit, kyc, vetted, coin_image, topstatus }) => {
     const navigate = useNavigate()
@@ -436,3 +252,4 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
 
 
 export default New;
+

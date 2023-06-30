@@ -30,7 +30,7 @@ function BuySale(props) {
     const navigate = useNavigate();
     const { SALE } = useParams();
     const provider = useProvider();
-
+    const DB_LINK = process.env.REACT_APP_DB;
     const { address } = useAccount();
     const [progress, setprogress] = useState(0);
     const [price, setprice] = useState(0);
@@ -214,8 +214,7 @@ function BuySale(props) {
         try {
             setLoading(true);
 
-            fetch("https://139-59-5-56.nip.io:3443/getSale?sale=" + SALE)
-                // fetch("http://localhost:8000/getSale?sale="+SALE)        
+            fetch(DB_LINK + "getSale?sale=" + SALE)       
                 .then((res) => res.json())
                 .then((data) => setdata(data))
 
@@ -225,9 +224,9 @@ function BuySale(props) {
         }
     }
 
-    useEffect(() => {
-        getSaleInfo();
-    }, []);
+    useEffect(() => {	
+        if (typeof (address) != 'undefined') getSaleInfo();	
+    }, [address]);
 
     const blurryDivStyle = {
         filter: loading ? 'blur(5px)' : 'blur(0px)'
@@ -237,8 +236,7 @@ function BuySale(props) {
 
         const { chainId } = await provider.getNetwork()
        
-        fetch('https://139-59-5-56.nip.io:3443/updateActivity', {
-        // fetch('http://127.0.0.1:8000/updateActivity', {
+        fetch(DB_LINK + 'updateActivity', {
          method: 'POST',
          body: JSON.stringify({
             user: address,
