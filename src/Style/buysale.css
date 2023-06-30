@@ -59,7 +59,6 @@
 @media only screen and (max-width:769px){
     .main-body{
         width:351px !important;
-        height:488.5px !important;
     }
     .buysale-desc{
         font-size:15px !important;
@@ -74,7 +73,6 @@
         justify-content: center !important;
     }
     .buysection{
-        margin-top:10vw !important;
         width:351px !important;
     }
     .buysection-status{

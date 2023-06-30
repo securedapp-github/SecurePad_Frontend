@@ -15,9 +15,15 @@ import Lock from './lock.jsx'
 import Home from './home.jsx'
 import Manage from './manage.jsx'
 import Search from './search.jsx'
-import LockToken from './lockToken.jsx'
 import ManageLock from './manageLock.jsx'
 import BuySale from './buysale.jsx'
+import Mains from './main.jsx'
+import LockToken from './lockToken.jsx'
+import Saletoken from './saleToken.jsx'
+import ManageSale from './managesale.jsx'
+import DistributeToken from './distributeToken.jsx'
+import EditSale from './editSale.jsx'
+import Error from './error.jsx'
 import {useLocation} from 'react-router-dom'
 import { Offcanvas } from "react-bootstrap";
 
@@ -41,6 +47,7 @@ function Sidebar(props) {
   function Main() {
     const { address } = useAccount();
     if (page == "home") return <Home />
+    if(page== "error")return <Error/>
     if (typeof address == 'undefined') {
       return <Wallet />
     } else {
@@ -57,6 +64,24 @@ function Sidebar(props) {
       if (page == "locktoken") return <LockToken />
       if (page == "managelock") return <ManageLock />
       if (page == "buysale") return <BuySale theme={theme}/>
+      if(page=='managetoken'){
+        return <Mains theme={theme}/>
+      }
+      if(page=='locktoken'){
+        return <LockToken theme={theme}/>
+      }
+      if(page=='saletoken'){
+        return <Saletoken theme={theme}/>
+      }
+      if(page=='editsale'){
+        return <EditSale theme={theme}/>
+      }
+      if(page=='managesale'){
+        return <ManageSale theme={theme}/>
+      }
+      if(page=='distributetoken'){
+        return <DistributeToken theme={theme}/>
+      }
     }
   }
   function Toggle(){
