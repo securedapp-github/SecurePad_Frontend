@@ -6,8 +6,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content:left;
+    margin:0 auto;
     gap:2vw;
-    padding-left:4vw;
     margin-top: 20px;
     border-radius: 200px;
   }
@@ -253,7 +253,17 @@
 }
 @media only screen and (max-width:1752px){
   .card{
-    width:300px !important;
+    width:360px !important;
+  }
+}
+@media only screen and (max-width:1649px){
+  .card{
+    width:330px !important;
+  }
+}
+@media only screen and (max-width:1521px){
+  .card{
+    width:310px !important;
   }
 }
 @media only screen and (max-width:1500px){
@@ -267,9 +277,17 @@
     font-size:17px !important;
   }
 }
+@media only screen and (max-width:1436px){
+  .card{
+    width:300px !important;
+  }
+}
 @media only screen and (max-width:1393px){
   .card{
-    width:325px !important;
+    width:300px !important;
+  }
+  .card-container{
+    width:83% !important;
   }
 }
 @media only screen and (max-width:1270px){
@@ -297,16 +315,33 @@
     font-size:23px !important;
   }
 }
+@media only screen and (max-width:1254px){
+  .card-container{
+    width:90% !important;
+  }
+}
+@media only screen and (max-width:1199px){
+  .card-container{
+    width:95% !important;
+  }
+}
 @media only screen and (max-width:1129px){
   .card{
     width:300px !important;
   }
 }
-@media only screen and (max-width:1050px){
-  .card{
-    width:325px !important;
+
+@media only screen and (max-width:1102px){
+  .card-container{
+    width:100% !important;
   }
 }
+@media only screen and (max-width:1050px){
+  .card-container{
+    width:70% !important;
+  }
+}
+
 @media only screen and (max-width:1000px){
   .card-title{
     font-size: 20px !important;
@@ -328,10 +363,20 @@
     height:3vw !important;
   }
 }
+@media only screen and (max-width:995px){
+  .card-container{
+    width:80% !important;
+  }
+}
 @media only screen and (max-width:976px){
   .card-coin-img{
     width:8vw !important;
     height:6vw !important;
+  }
+}
+@media only screen and (max-width:1199px){
+  .card-container{
+    width:90% !important;
   }
 }
 @media only screen and (max-width:850px){
@@ -345,6 +390,11 @@
   .note svg{
     width:4vw !important;
     height:4vw !important;
+  }
+}
+@media only screen and (max-width:1199px){
+  .card-container{
+    width:100% !important;
   }
 }
 @media only screen and (max-width:773px){
@@ -377,10 +427,14 @@
     height:7vw !important;
   }
 }
-
-@media only screen and (max-width:650px){
-  .card{
-    width:325px !important;
+@media only screen and (max-width:701px){
+  .card-container{
+    width:85% !important;
+  }
+}
+@media only screen and (max-width:653px){
+  .card-container{
+    width:96% !important;
   }
 }
 @media only screen and (max-width:610px){
@@ -395,6 +449,11 @@
   }
   .card-image{
     height:20vw !important;
+  }
+}
+@media only screen and (max-width:577px){
+  .card-container{
+    justify-content: center !important;
   }
 }
 @media only screen and (max-width:500px){
@@ -414,12 +473,12 @@
   .audit div{
     font-size:12px !important;
   }
-  .card{
-    width:300px !important;
-  }
 }
 @media only screen and (max-width:404px){
   .note{
     bottom:15vw !important;
+  }
+  .card{
+    width:250px !important;
   }
 }
