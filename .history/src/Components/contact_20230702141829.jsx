@@ -16,7 +16,7 @@ function Contact(props) {
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '42vh' }}>
         <div style={{ marginTop: '2vw', textAlign: 'center', backgroundColor: `${theme === 'Dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`, padding: '2vw', borderRadius: '10px',boxSizing: 'inherit' }}>
 
-        <h1 className="head contact" style={{ color: `${theme === 'Dark' ? 'white' : 'black'}`,padding: '10px auto', background: 'transparent', padding: '10px', borderRadius: '16px',display: 'inline-block' }}>Contact Us</h1>
+        <h1 className="head contact" style={{ color: `${theme === 'Dark' ? 'white' : 'black'}`,padding: '10px auto', background: 'transparent', padding: '10px', //borderRadius: '16px', border: `2px solid ${theme === 'Dark' ? 'lightgreen' : 'green'}`,display: 'inline-block' 
 
 
 

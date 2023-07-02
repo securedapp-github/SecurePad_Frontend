@@ -87,21 +87,4 @@ textarea{
 
 h1.contact {
     border-bottom: none;
-    font-size: 25px;
-    font-family: Roboto,Arial, Helvetica, sans-serif;
-    line-height: 34px;
-    margin-bottom: 31px;
   }
-
-  p.contact-text {
-    font-weight: bold;
-    font-size: 17px; /* Adjust the font-size value as desired */
-    font-family: Roboto,Arial, Helvetica, sans-serif;
-  }
-  
-  a.contact-link {
-    font-size: 14px; /* Adjust the font-size value as desired */
-    font-weight: 600;
-    line-height: 24px;
-  }
-  

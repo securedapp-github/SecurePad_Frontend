@@ -85,23 +85,42 @@ textarea{
 }    
 }
 
-h1.contact {
-    border-bottom: none;
-    font-size: 25px;
-    font-family: Roboto,Arial, Helvetica, sans-serif;
-    line-height: 34px;
-    margin-bottom: 31px;
-  }
-
-  p.contact-text {
-    font-weight: bold;
-    font-size: 17px; /* Adjust the font-size value as desired */
-    font-family: Roboto,Arial, Helvetica, sans-serif;
+.contactContainer {
+    /* ... existing styles ... */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh; /* Increase the height of the transparent box */
+    padding-top: 5vh; /* Adjust the padding as needed */
+    padding-bottom: 5vh; /* Adjust the padding as needed */
   }
   
-  a.contact-link {
-    font-size: 14px; /* Adjust the font-size value as desired */
-    font-weight: 600;
-    line-height: 24px;
+  .contactContainer > div {
+    /* ... existing styles ... */
+    margin-top: 2vw;
+    text-align: center;
+    padding: 2vw;
+    border-radius: 10px;
+    width: 70%; /* Adjust the width as needed */
+  }
+  
+  .contactContainer hr {
+    /* ... existing styles ... */
+    margin: 1.5vw 1vw;
+    width: 100%;
+    margin-left: 0; /* Remove the left margin to center the line */
+  }
+  
+  .contactContainer p {
+    /* ... existing styles ... */
+    text-align: left;
+    margin-bottom: 1.5vw;
+    color: white; /* Update the color to white */
+  }
+  
+  .contactContainer p a {
+    /* ... existing styles ... */
+    color: skyblue;
+    text-decoration: none;
   }
   

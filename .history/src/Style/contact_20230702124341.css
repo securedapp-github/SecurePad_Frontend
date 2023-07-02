@@ -87,10 +87,10 @@ textarea{
 
 h1.contact {
     border-bottom: none;
-    font-size: 25px;
+    font-size: 30px;
     font-family: Roboto,Arial, Helvetica, sans-serif;
     line-height: 34px;
-    margin-bottom: 31px;
+    margin-bottom: 25px;
   }
 
   p.contact-text {
@@ -100,8 +100,9 @@ h1.contact {
   }
   
   a.contact-link {
+    font-weight: normal;
     font-size: 14px; /* Adjust the font-size value as desired */
-    font-weight: 600;
+    font-weight: 500;
     line-height: 24px;
   }
   

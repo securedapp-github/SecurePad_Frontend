@@ -7,16 +7,16 @@ function Contact(props) {
   const { theme } = props;
 
   return (
-    <div  style={{ backgroundImage: `${theme === 'Dark' ? 'linear-gradient(to right, black, rgb(1, 30, 81))' : 'linear-gradient(to right, #FBFBFB, #bff2d9)'}`,  backgroundSize: 'cover', backgroundPosition: 'center',
+    <div  style={{ backgroundImage: `${theme === 'Dark' ? 'linear-gradient(to right, black, rgb(1, 14, 61))' : 'linear-gradient(to right, #FBFBFB, #bff2d9)'}`,  backgroundSize: 'cover', backgroundPosition: 'center',
     padding: '3vw', display: 'flex',justifyContent: 'center',
     alignItems: 'center',
    }}>
       
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '42vh' }}>
-        <div style={{ marginTop: '2vw', textAlign: 'center', backgroundColor: `${theme === 'Dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`, padding: '2vw', borderRadius: '10px',boxSizing: 'inherit' }}>
+        <div style={{ marginTop: '2vw', textAlign: 'center', backgroundColor: `${theme === 'Dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`, padding: '2vw', borderRadius: '10px',boxSizing: 'inherit', width: '50%' }}>
 
-        <h1 className="head contact" style={{ color: `${theme === 'Dark' ? 'white' : 'black'}`,padding: '10px auto', background: 'transparent', padding: '10px', borderRadius: '16px',display: 'inline-block' }}>Contact Us</h1>
+        <h1 className="head contact" style={{ color: `${theme === 'Dark' ? 'white' : 'black'}`,padding: '10px auto', background: 'transparent', padding: '10px 1px', borderRadius: '16px', border: `2px solid ${theme === 'Dark' ? 'lightgreen' : 'green'}` }}>Contact Us</h1>
 
 
 
