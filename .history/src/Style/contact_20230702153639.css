@@ -1,4 +1,4 @@
-/*
+
 .name{
 display:flex;
 flex-direction: row;
@@ -84,8 +84,7 @@ textarea{
     width:50%;
 }    
 }
-*/
-
+//
 h1.contact {
     border-bottom: none;
     font-size: 25px;

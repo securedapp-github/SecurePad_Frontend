@@ -50,13 +50,10 @@ function Contact(props) {
             <a href="https://example.com/documentation" className={`contact-link ${theme === 'Dark' ? 'dark-link' : 'light-link'}`}>Documentation</a>
 
          </p>
-
+         
         </div>
-
       </div>
-
     </div>
-    
   );
 }
 

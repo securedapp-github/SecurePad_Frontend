@@ -1,4 +1,4 @@
-/*
+
 .name{
 display:flex;
 flex-direction: row;
@@ -84,7 +84,6 @@ textarea{
     width:50%;
 }    
 }
-*/
 
 h1.contact {
     border-bottom: none;
@@ -181,34 +180,7 @@ h1.contact {
     color: white;
   }
 
-  .light-icon {
-    color: lightgreen;
-  }
   
-  .dark-icon {
-    color: lightgreen;
-  }
-
-  .light-link {
-    color: lightgreen;
-  }
-
-  .dark-link {
-    color: lightgreen;
-    margin-left: 1vw;
-  }
-
-  
-  .light-divider {
-    border-top: 2px solid white;
-  }
-
-  .dark-divider {
-    border-top: 2px solid #f2f2f2;
-    margin: 1.5vw 1vw;
-    width: 100%;
-    margin-left: 1%;
-  }
 
   
   

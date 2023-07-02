@@ -45,18 +45,13 @@ function Contact(props) {
          <p className={`contact-text ${theme === 'Dark' ? 'dark-text' : 'light-text'}`}>
 
             Documentation: &nbsp;
-
+            
             <FontAwesomeIcon icon={faLink} className={`contact-icon ${theme === 'Dark' ? 'dark-icon' : 'light-icon'}`} />
             <a href="https://example.com/documentation" className={`contact-link ${theme === 'Dark' ? 'dark-link' : 'light-link'}`}>Documentation</a>
-
          </p>
-
         </div>
-
       </div>
-
     </div>
-    
   );
 }
 

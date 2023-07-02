@@ -1,4 +1,4 @@
-/*
+
 .name{
 display:flex;
 flex-direction: row;
@@ -84,7 +84,6 @@ textarea{
     width:50%;
 }    
 }
-*/
 
 h1.contact {
     border-bottom: none;
@@ -115,11 +114,11 @@ h1.contact {
     align-items: center;
   }
   
-  .dark-theme {
+  .dark-theme.contact-container {
     background-image: linear-gradient(to right, black, rgb(1, 30, 81));
   }
   
-  .light-theme {
+  .light-theme.contact-container{
     background-image: linear-gradient(to right, #FBFBFB, #bff2d9);
   }
   
@@ -137,77 +136,13 @@ h1.contact {
     border-radius: 10px;
     box-sizing: inherit;
   }
-
-  .dark-bg {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-  }
-
-  .light-bg {
+  
+  .dark-theme .contact-content{
     background-color: rgba(0, 0, 0, 0.1);
-    color: black;
-  }
-
-  .head.contact {
-    padding: 10px auto;
-    background: transparent;
-    padding: 10px;
-    border-radius: 16px;
-    display: inline-block;
-  }
-
-  .light-text {
-    color: black;
-  }
-
-  .dark-text {
-    color: white;
-  }
-
-  .contact-text {
-    text-align: left;
-    margin-bottom: 1.5vw;
   }
   
-  .contact-link {
-    text-decoration: none;
-  }
-
-  .light-text {
-    color: black;
-  }
-
-  .dark-text {
-    color: white;
-  }
-
-  .light-icon {
-    color: lightgreen;
-  }
-  
-  .dark-icon {
-    color: lightgreen;
-  }
-
-  .light-link {
-    color: lightgreen;
-  }
-
-  .dark-link {
-    color: lightgreen;
-    margin-left: 1vw;
-  }
-
-  
-  .light-divider {
-    border-top: 2px solid white;
-  }
-
-  .dark-divider {
-    border-top: 2px solid #f2f2f2;
-    margin: 1.5vw 1vw;
-    width: 100%;
-    margin-left: 1%;
+  .light-theme .contact-content {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   

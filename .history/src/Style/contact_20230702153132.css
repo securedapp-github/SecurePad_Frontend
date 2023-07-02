@@ -1,4 +1,4 @@
-/*
+
 .name{
 display:flex;
 flex-direction: row;
@@ -84,7 +84,6 @@ textarea{
     width:50%;
 }    
 }
-*/
 
 h1.contact {
     border-bottom: none;
@@ -195,7 +194,7 @@ h1.contact {
 
   .dark-link {
     color: lightgreen;
-    margin-left: 1vw;
+    
   }
 
   

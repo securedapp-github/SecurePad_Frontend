@@ -1,4 +1,4 @@
-/*
+
 .name{
 display:flex;
 flex-direction: row;
@@ -84,7 +84,6 @@ textarea{
     width:50%;
 }    
 }
-*/
 
 h1.contact {
     border-bottom: none;
@@ -195,7 +194,6 @@ h1.contact {
 
   .dark-link {
     color: lightgreen;
-    margin-left: 1vw;
   }
 
   
@@ -206,8 +204,7 @@ h1.contact {
   .dark-divider {
     border-top: 2px solid #f2f2f2;
     margin: 1.5vw 1vw;
-    width: 100%;
-    margin-left: 1%;
+    width:100 
   }
 
   
