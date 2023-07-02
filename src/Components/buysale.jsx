@@ -38,6 +38,7 @@ function BuySale(props) {
     const [release, setrelease] = useState(0);
     const [releasedate, setreleasedate] = useState([]);
     const [releaseamount, setreleaseamount] = useState([]);
+    const [isclaim, setisclaim] = useState(false);
 
     const [soft, setsoft] = useState(0);
     const [hard, sethard] = useState(0);
@@ -205,10 +206,10 @@ function BuySale(props) {
                 }
             }
             setLoading(false);
+            let dateTimeString = [];
 
             if (data[0].cliff > 0 || data[0].lockmonth > 0) {
                 let enddate = data[0].end * 1000;
-                let dateTimeString = [];
                 for (let i = 0; i < data[0].lockmonth; i++) {
                     dateTimeString[i] = new Date(enddate - (data[0].cliff * 70000 * 86400) + (i * 30000 * 86400));
                     setreleasedate(prevItems => [...prevItems, dateTimeString[i]]);
@@ -217,7 +218,6 @@ function BuySale(props) {
 
             // if (data[0].cliff > 0 || data[0].lockmonth > 0) {
             //     let enddate = data[0].end * 1000;
-            //     let dateTimeString = [];
             //     for (let i = 0; i < data[0].lockmonth; i++) {
             //         dateTimeString[i] = new Date(enddate + (data[0].cliff * 30000 * 86400) + (i * 30000 * 86400));
             //         setreleasedate(prevItems => [...prevItems, dateTimeString[i]]);
@@ -237,8 +237,10 @@ function BuySale(props) {
                 for (let i = 0; i < vesting.length; i++) {
                     bal[i] = ethers.utils.formatEther(vesting[i].toString());
                     bal[i] = Number(bal[i]).toFixed(2);
-                    // bal[0] =0;
-                    // console.log(bal[i]);
+
+                    if (bal[i] > 0 && dateTimeString[i] < currentDate) {
+                        setisclaim(true);
+                    }
                     setreleaseamount(prevItems => [...prevItems, bal[i]]);
                 }
             }
@@ -401,7 +403,7 @@ function BuySale(props) {
             const receipt = await tx.wait();
             if (receipt.status == 1) {
                 console.log("Claimed Onchain, updating DB ");
-                updateClaimedDB( 2000, receipt.transactionHash);
+                updateClaimedDB(2000, receipt.transactionHash);
             }
         } catch (e) {
             console.log("Error", e);
@@ -597,10 +599,57 @@ function BuySale(props) {
 
                         <div>
                             <table style={{ borderCollapse: 'collapse' }}>
-                                <tbody>
-                                    {releasedate.map((date, index) => {
-                                        const hasPassed = date < currentDate;
 
+
+
+                              
+                            <tbody>
+    <tr>
+        <th>Release</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+    </tr>
+    {releasedate.map((date, index) => {
+        const hasPassed = date < currentDate;
+
+        return (
+            <tr key={index} style={{ marginBottom: '10px' }}>
+                <td style={{ fontWeight: 'bold', padding: '5px' }}>
+                    Release {index + 1}
+                </td>
+                <td style={{ padding: '5px' }}>
+                    {date.toLocaleDateString()}
+                </td>
+                <td style={{ padding: '5px' }}>
+                    {releaseamount[index]}
+                </td>
+                <td style={{ padding: '5px' }}>
+                    {releaseamount[index] > 0 && hasPassed ? (
+                        "Claimable"
+                    ) : (
+                        <span style={{ fontWeight: 'bold', color: hasPassed ? 'blue' : 'gray' }}>
+                            {hasPassed ? '-' : releaseamount[index] > 0 && 'Upcoming Claim'}
+                        </span>
+                    )}
+                </td>
+            </tr>
+        );
+    })}
+
+    {isclaim && (
+        <Button style={{ background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
+            Claim 
+        </Button>
+    )}
+</tbody>
+
+
+                                {/* <tbody>
+                                    {
+                                    releasedate.map((date, index) => {
+                                        const hasPassed = date < currentDate;
+               
                                         return (
                                             <tr key={index} style={{ marginBottom: '10px' }}>
                                                 <td style={{ fontWeight: 'bold', padding: '5px' }}>
@@ -608,9 +657,7 @@ function BuySale(props) {
                                                 </td>
                                                 <td style={{ padding: '5px' }}>
                                                     {releaseamount[index] > 0 && hasPassed ? (
-                                                        <Button style={{ background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
-                                                            Claim
-                                                        </Button>
+                                                        "Claimable"
                                                     ) : (
                                                         <span style={{ fontWeight: 'bold', color: hasPassed ? 'blue' : 'gray' }}>
                                                             {hasPassed ? '-' : releaseamount[index] > 0 && 'Upcoming Claim'}
@@ -620,53 +667,16 @@ function BuySale(props) {
                                             </tr>
                                         );
                                     })}
-                                </tbody>
+
+                                    { isclaim && ( <Button style={{ background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
+                                      Claim 
+                                     </Button> )}
+                                </tbody> */}
+
+
+
                             </table>
                         </div>
-
-
-
-                        {/* <div>
-                            {releasedate.map((date, index) => {
-                                const hasPassed = date < currentDate;
-                                // const latest = (currentDate - date) < 30000 * 86400;
-                                // const isLastRow = index === (releasedate.length - 1); // Check if it's the last row
-
-                                return (
-                                    <div key={index}>
-                                        <p>
-                                            Release {index + 1}: {date.toLocaleDateString()} Amount: {releaseamount[index]}
-                                            {releaseamount[index] > 0 && hasPassed ? (
-                                                <Button className="expected-token" style={{ marginTop: '3vw' }} onClick={() => { claimToken(); }}>
-                                                    Claim Now
-                                                </Button>
-                                            ) : (
-                                                hasPassed ?
-                                                    (
-                                                        <Button className="expected-token" style={{ marginTop: '3vw' }} onClick={() => { claimToken(); }}>
-                                                            Claimed
-                                                        </Button>
-                                                    ) : (
-                                                        <Button className="expected-token" style={{ marginTop: '3vw' }} onClick={() => { claimToken(); }}>
-                                                            Upcoming Claim
-                                                        </Button>
-                                                    )
-                                            )}
-                                        </p>
-                                    </div>
-                                );
-                            })}
-                        </div> */}
-
-
-
-
-
-
-
-
-
-
 
                     </div>
                 </div>
