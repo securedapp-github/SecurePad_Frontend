@@ -138,6 +138,7 @@ function ManageSale() {
   const tx = await TokenContract.transfer(SALE, ethers.utils.parseUnits(sendtoken.toString(),"ether"));
     const receipt = await tx.wait();
     if(receipt.status == 1){
+      setTimeout(function () { window.location.reload(true); }, 5000);
       toast.success('Token Transferred Successfully');
       setLoading(false);
     }

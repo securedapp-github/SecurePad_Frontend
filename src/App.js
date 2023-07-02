@@ -8,8 +8,6 @@ import './App.css'
 import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import Managetoken from './Components/manageToken.jsx';
-import { Navigate } from 'react-router-dom';
 import NewHome from './Components/newHome.jsx';
 
 
@@ -59,15 +57,15 @@ function App() {
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
       <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />
-      <Route exact path="/managetoken/:TOKEN" element={<Managetoken page={"managetoken"}/>} />
+      <Route exact path="/managetoken/:TOKEN" element={<Sidebar page={"managetoken"}/>} />
       <Route exact path="/locktoken/:TOKEN" element={<Sidebar page={"locktoken"}/>} />
       <Route exact path="/managelock/:LOCK" element={<Sidebar page={"managelock"}/>} />
-      <Route exact path="/saletoken/:TOKEN" element={<Managetoken page={"saletoken"}/>} />
-      <Route exact path="/editsale/:SALE" element={<Managetoken page={"editsale"}/>} />
-      <Route exact path="/managesale/:SALE" element={<Managetoken page={"managesale"}/>} />
+      <Route exact path="/saletoken/:TOKEN" element={<Sidebar page={"saletoken"}/>} />
+      <Route exact path="/editsale/:SALE" element={<Sidebar page={"editsale"}/>} />
+      <Route exact path="/managesale/:SALE" element={<Sidebar page={"managesale"}/>} />
       <Route exact path="/buysale/:SALE" element={<Sidebar page={"buysale"}/>} />
-      <Route exact path="/distributetoken" element={<Managetoken page={"distributetoken"}/>} />
-      <Route path="*" element={<Managetoken page={"error"}/>} />
+      <Route exact path="/distributetoken" element={<Sidebar page={"distributetoken"}/>} />
+      <Route path="*" element={<Sidebar page={"error"}/>} />
 
     </Routes>
     </BrowserRouter>

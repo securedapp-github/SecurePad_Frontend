@@ -4,6 +4,8 @@ import Loader from 'utils/loader';
 import TOKENABI from "../ABI/TokenABI.json";
 import AIRDROPABI from "../ABI/AirdropABI.json";
 import { ethers } from "ethers";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
     useAccount,
@@ -56,7 +58,7 @@ function DistributeToken(props) {
                 const tx = await AirdropCONTRACT.airdropNative(addresses, amounts, { value: ethers.utils.parseUnits(totalamount.toString(), "ether") });
                 const receipt = await tx.wait();
                 if (receipt.status == 1) {
-                    alert("Drop Successful toast");
+                    toast.success('Airdrop Successfully');
                     setLoading(false);
                 }
 
@@ -77,19 +79,23 @@ function DistributeToken(props) {
                 const tx = await TOKENCONTRACT.approve(AIRDROP_ADDRESS, ethers.utils.parseUnits(totalamount.toString(), "ether"));
                 const receipt = await tx.wait();
                 if (receipt.status == 1) {
+                    toast.success('Approve Successfully');
                     const tx2 = await AirdropCONTRACT.airdropTokens(token, addresses, amounts);
                     const receipt2 = await tx2.wait()
                     if (receipt2.status == 1) {
-                        alert("drop success toast");
+                        toast.success('Airdrop Successfully');
                         setLoading(false);
+                    }else {
+                        toast.error("Airdrop Failed");
                     }
                 } else {
-                    alert("approve failed");
+                    toast.error("Approve Failed");
                 }
             }
 
         } catch (e) {
             setLoading(false);
+            toast.error('An error occurred while dropping tokens');
             console.log("Error", e);
         }
 
@@ -175,7 +181,7 @@ function DistributeToken(props) {
                         <h3 style={{ color: `${theme === 'Dark' ? 'black' : 'white'}` }}>Select token</h3>
                         <div style={{ color: `${theme === 'Dark' ? 'black' : 'white'}` }}>Token</div>
                         <input type="text" value={token} onChange={(e) => settoken(e.target.value)}
-                            style={{ margin: "10px", marginLeft: "0", marginBottom: "10px", height: "50px", backgroundColor: "transparent", border: "1px solid #464646", borderRadius: "7px", width: "100%", color: `${theme === 'Dark' ? 'white' : 'black'}` }} />
+                            style={{ margin: "10px", marginLeft: "0", marginBottom: "10px", height: "50px", backgroundColor: "transparent", border: "1px solid #464646", borderRadius: "7px", width: "100%", color: `${theme === 'Dark' ? 'black' : 'white'}` }} />
 
                         <div style={{ color: `${theme === 'Dark' ? 'black' : 'white'}` }}>Upload CSV                         
                         <a target="_blank" style={{ color: `${theme === 'Dark' ? 'black' : 'white'}` }} href="https://docs.google.com/spreadsheets/d/10zBcQ1lS_10mnFi2NC8xkhlLmPhqAb2Qxz2RGUNI0QA/edit?usp=sharing">( Sample CSV )</a>
@@ -227,6 +233,12 @@ function DistributeToken(props) {
 
 
     return (<>
+        <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            theme="dark"
+            pauseOnHover
+        />
         {loading && (<Loader />)}
 
         {!isUpload && (
@@ -267,18 +279,7 @@ function DistributeToken(props) {
                                     </table>
                                 )}
 
-                                {/* <div>
-                                    <div style={{ fontWeight: "700" }}>Address</div>
-                                    <div style={{ paddingTop: "1vw" }}>0xC61E6A1C7AA4F35e76D3a6fDBC16675f013f3c63</div>
-                                </div>
-                                <div style={{ paddingLeft: "1vw" }}>
-                                    <div style={{ fontWeight: "700" }}>Amount</div>
-                                    <div style={{ paddingTop: "1vw" }}>USDTTEST 123.0</div>
-                                </div>
-                                <div style={{ paddingLeft: "1vw" }}>
-                                    <div >Edit</div>
-                                    <div style={{ paddingTop: "1vw", color: "#fe2b29" }}><svg height="1vw" width="1vw" style={{ fill: "#fe2b29" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" /></svg>Remove</div>
-                                </div> */}
+                              
                             </div>
 
 
@@ -296,11 +297,11 @@ function DistributeToken(props) {
                                     <div style={{ paddingTop: "1vw" }}>{token}</div>
                                     <div style={{ paddingTop: "1vw" }}>{csvData.length}</div>
                                     <div style={{ paddingTop: "1vw" }}>{totalamount}</div>
-                                    <div style={{ paddingTop: "1vw" }}>1 Native & 2 ERC20 </div>
+                                    <div style={{ paddingTop: "1vw" }}>1 For Native Coin & 2 For Tokens </div>
                                     <div style={{ paddingTop: "1vw" }}>{balance}</div>
                                 </div>
                             </div>
-                            <Button onClick={() => { sendToken() }} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "0.5vw 1.5vw", fontSize: "1.25vw", fontWeight: "450" }} variant="">DROP</Button>
+                            <Button onClick={() => { sendToken() }} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "0.5vw 1.5vw", fontSize: "1.25vw", fontWeight: "450" }} variant="">AIRDROP</Button>
                         </div>
                     </div>
                 </div>
