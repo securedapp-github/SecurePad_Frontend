@@ -69,6 +69,8 @@ function Wallet(props) {
 
           if (data[i].event_type == 1) {
             event = "Sale Purchase";            
+          }else if (data[i].event_type == 12) {
+            event = "Token Claimed";            
           }else if (data[i].event_type == 2) {
             event = "Token Creation";            
           }else if (data[i].event_type == 3) {

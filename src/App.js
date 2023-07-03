@@ -8,7 +8,6 @@ import './App.css'
 import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import { Navigate } from 'react-router-dom';
 import NewHome from './Components/newHome.jsx';
 
 
