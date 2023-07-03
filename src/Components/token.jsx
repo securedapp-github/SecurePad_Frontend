@@ -127,28 +127,47 @@ function Token(props) {
         token,
         symbol,
         decimals,
+        "intial sup",
         ethers.utils.parseUnits(initialSupply, "ether").toString(),
-        ethers.utils.parseUnits(maxSupply, "ether").toString()
-      );
-      const tx = await FactoryContract.launchSecureToken(
-        token,
-        symbol,
-        decimals,
-        ethers.utils.parseUnits(initialSupply, "ether").toString(),
-        ethers.utils.parseUnits(maxSupply, "ether").toString()
-      );
-      const receipt = await tx.wait();
 
-      if (receipt.status == 1) {
-        await updateDB(receipt.logs[0].address, receipt.transactionHash);
-        console.log("Token Launched = ", receipt.logs[0].address);
-        setnewToken(receipt.logs[0].address);
-        setModal(true);
+        ethers.utils.parseUnits(maxSupply, "ether").toString()
+      );
+      console.log(
+        token.length > 0,
+        symbol.length > 0,
+        decimals.length > 0,
+        ethers.utils.parseUnits(initialSupply, "ether").toString().length > 0,
+        ethers.utils.parseUnits(maxSupply, "ether").toString().length > 0
+      );
+      if (
+        token.length > 0 &&
+        symbol.length > 0 &&
+        ethers.utils.parseUnits(initialSupply, "ether").toString().length > 0 &&
+        ethers.utils.parseUnits(maxSupply, "ether").toString().length > 0
+      ) {
+        const tx = await FactoryContract.launchSecureToken(
+          token,
+          symbol,
+          decimals,
+          ethers.utils.parseUnits(initialSupply, "ether").toString(),
+          ethers.utils.parseUnits(maxSupply, "ether").toString()
+        );
+        const receipt = await tx.wait();
+
+        if (receipt.status === 1) {
+          await updateDB(receipt.logs[0].address, receipt.transactionHash);
+          console.log("Token Launched = ", receipt.logs[0].address);
+          setnewToken(receipt.logs[0].address);
+          setModal(true);
+        } else {
+          toast.error("An error occurred while creating token");
+        }
+        //  setnewToken("0xA95C52AF59E43C528F24EFAC96A08e000012e0e3");
+        setLoading(false);
       } else {
-        toast.error("An error occurred while creating token");
+        setLoading(false);
+        toast.error("All the fields are required");
       }
-      //  setnewToken("0xA95C52AF59E43C528F24EFAC96A08e000012e0e3");
-      setLoading(false);
     } catch (e) {
       setLoading(false);
       console.log("Error", e);
@@ -371,6 +390,14 @@ function Token(props) {
               type="text"
               value={maxSupply}
               onChange={(e) => setmaxSupply(e.target.value)}
+              onKeyPress={(e) => {
+                const keyCode = e.which || e.keyCode;
+                const isValidKey = keyCode >= 48 && keyCode <= 57;
+
+                if (!isValidKey) {
+                  e.preventDefault();
+                }
+              }}
               style={{
                 height: "48px",
                 color: `${theme === "Dark" ? "white" : "black"}`,
@@ -378,6 +405,7 @@ function Token(props) {
                 backgroundColor: "#2D5C8F1C",
                 border: "1px solid #464646",
                 borderRadius: "7px",
+                paddingLeft: "5px",
               }}
             ></input>
           </div>
@@ -586,6 +614,7 @@ function Token(props) {
                   }}
                   onClick={() => {
                     navigator.clipboard.writeText(newToken);
+                    toast.success("Address copied successfully");
                   }}
                 >
                   <svg
@@ -613,6 +642,7 @@ function Token(props) {
                   }}
                   onClick={() => {
                     navigator.clipboard.writeText(newToken);
+                    toast.success("Address copied successfully");
                   }}
                 >
                   <svg
