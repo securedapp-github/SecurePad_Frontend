@@ -1,6 +1,13 @@
 .body-image{
     height: 250px 
 }
+table{
+    width:100%;
+    text-align: center;
+}
+td,th{
+    border:2px solid #464646 !important;
+}
 @media only screen and (max-width:1333px){
     .body-image{
         height:150px !important;
@@ -16,6 +23,9 @@
     }
 }
 @media only screen and (max-width:1000px){
+    .tokenSale1{
+        justify-content: center !important;
+    }
     .buysale-back{
         padding-top:0.1vw !important;
     }
@@ -69,9 +79,6 @@
 }
 
 @media only screen and (max-width:756px){
-    .tokenSale1{
-        justify-content: center !important;
-    }
     .buysection{
         width:351px !important;
     }

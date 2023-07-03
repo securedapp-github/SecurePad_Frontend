@@ -9,7 +9,6 @@ import Token from './token.jsx'
 import Contract from './contract.jsx'
 // import Send from './send.jsx'
 import Sale from './sale.jsx'
-import { Dropdown } from 'react-bootstrap'
 import Logo from '../assets/logo.png'
 import Lock from './lock.jsx'
 import Home from './home.jsx'
@@ -32,6 +31,15 @@ import {
 } from "wagmi";
 
 function Sidebar(props) {
+  const [back,setBack]=useState('#12D576')
+  useEffect(()=>{
+    console.log(back)
+    let alp=document.getElementsByClassName('iekbcc0 ju367va ju367v1n')[0]
+    if(back==='#12D576')alp.addEventListener('hover',()=>{
+      alp.style.backgroundColor='#12D576'
+    })
+    else alp.style.backgroundColor='transparent'
+  },[back])
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const [theme,setTheme]=useState('Dark')
@@ -46,6 +54,9 @@ function Sidebar(props) {
   const location=useLocation()
   function Main() {
     const { address } = useAccount();
+    if(typeof address !== 'undefined'){
+      setBack('transparent')
+    }
     if (page == "home") return <Home />
     if(page== "error")return <Error/>
     if (typeof address == 'undefined') {
