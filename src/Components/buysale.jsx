@@ -592,7 +592,7 @@ function BuySale(props) {
                     <div style={{ textAlign: 'center', backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw", marginTop: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
 
                         <div style={{ paddingBottom:'1vw',display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
-                            <div className="expected-token" style={{width:'100%',textAlign:'center',fontSize:'25px',fontWeight:'500'}}> Vesting Release Schedule</div>
+                            <div className="expected-token" style={{width:'100%',textAlign:'center',fontSize:'35px',fontWeight:'500'}}> Vesting Release Schedule</div>
                         </div>
 
 
@@ -615,7 +615,7 @@ function BuySale(props) {
         return (
             <tr key={index} style={{ marginBottom: '10px' }}>
                 <td style={{ fontWeight: 'bold', padding: '5px' }}>
-                    Release {index + 1}
+                     {index + 1}
                 </td>
                 <td style={{ padding: '5px' }}>
                     {date.toLocaleDateString()}
@@ -637,42 +637,12 @@ function BuySale(props) {
     })}
 
     {isclaim && (
-        <Button style={{ background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
+        <Button style={{ marginLeft: '250%', marginTop: '15%', background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
             Claim 
         </Button>
+        
     )}
 </tbody>
-
-
-                                {/* <tbody>
-                                    {
-                                    releasedate.map((date, index) => {
-                                        const hasPassed = date < currentDate;
-               
-                                        return (
-                                            <tr key={index} style={{ marginBottom: '10px' }}>
-                                                <td style={{ fontWeight: 'bold', padding: '5px' }}>
-                                                    Release {index + 1}: {date.toLocaleDateString()} | Amount: {releaseamount[index]}
-                                                </td>
-                                                <td style={{ padding: '5px' }}>
-                                                    {releaseamount[index] > 0 && hasPassed ? (
-                                                        "Claimable"
-                                                    ) : (
-                                                        <span style={{ fontWeight: 'bold', color: hasPassed ? 'blue' : 'gray' }}>
-                                                            {hasPassed ? '-' : releaseamount[index] > 0 && 'Upcoming Claim'}
-                                                        </span>
-                                                    )}
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-
-                                    { isclaim && ( <Button style={{ background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
-                                      Claim 
-                                     </Button> )}
-                                </tbody> */}
-
-
 
                             </table>
                         </div>
