@@ -35,7 +35,7 @@ function Contract(props) {
             onChange={(e) => setToken(e.target.value)} style={{ margin: "10px", marginLeft: "0", marginBottom: "10px", height: "48px", backgroundColor: "transparent", border: "1px solid #464646", borderRadius: "7px", width: "100%",  color:`${theme==='Dark' ? 'white':'black'}` }} />
           
           <Link to={`/managetoken/${token}`} >
-            <Button style={{ padding: "2% 7%", backgroundColor: "#12D576", borderRadius: "30px", marginTop: "1%", fontSize: "20px", fontWeight: "400" }}>Continue</Button>
+            <Button style={{border:'1px solid transparent',padding: "2% 7%", backgroundColor: "#12D576", borderRadius: "30px", marginTop: "1%", fontSize: "20px", fontWeight: "400" }}>Continue</Button>
           </Link>
           <Link to={`/token`} >
             <h5 style={{ padding: "3% 0", color:`${theme==='Dark' ? 'white':'black'}` }}>Don't have your token yet ? <span style={{ color: "#12D576", fontWeight: "700" }}>Create Token</span></h5>

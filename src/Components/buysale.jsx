@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
 import '../Style/buysale.css'
+import Coin from '../assets/Coin.png'
 
 import {
     useAccount,
@@ -423,13 +424,13 @@ function BuySale(props) {
             pauseOnHover
         />
 
-        <div className="tokenSale1" style={{ ...blurryDivStyle, display: "flex", flexWrap: 'wrap', flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw", }}>
+        <div className="tokenSale1" style={{ ...blurryDivStyle, display: "flex", flexWrap: 'wrap', flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw",gap:'0.2vw' }}>
 
             <div className='main-body' style={{ width: "60%" }}>
                 <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div className='buysale-back' style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
                     <div className="buysale-back1" style={{ fontSize: "2vw", color: "#646464" }}>
                         Back</div></div>
-                <div style={{ paddingBottom: "2vw", width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw" }}>
+                <div style={{ paddingBottom: "4.5vw", width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw" }}>
                     <img style={{ width: "100%", borderRadius: "3vw", padding: "0.2vw" }} className="body-image" src={image} alt="not found" />
                     <br />
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -522,7 +523,7 @@ function BuySale(props) {
                     </div>
                 </div>
             </div>
-
+            <div>
             <div className="buysection">
                 <div style={{ textAlign: 'center', backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
                     <div>
@@ -585,15 +586,13 @@ function BuySale(props) {
 
                 </div>
             </div>
-
-
             {((cliff > 0 || release > 0)) && (
                 <div className="claimsection">
 
-                    <div style={{ textAlign: 'center', backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
+                    <div style={{ textAlign: 'center', backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw", marginTop: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
 
-                        <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
-                            <div className="expected-token"> Vesting Release Schedule</div>
+                        <div style={{ paddingBottom:'1vw',display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
+                            <div className="expected-token" style={{width:'100%',textAlign:'center',fontSize:'35px',fontWeight:'500'}}> Vesting Release Schedule</div>
                         </div>
 
 
@@ -616,7 +615,7 @@ function BuySale(props) {
         return (
             <tr key={index} style={{ marginBottom: '10px' }}>
                 <td style={{ fontWeight: 'bold', padding: '5px' }}>
-                    Release {index + 1}
+                     {index + 1}
                 </td>
                 <td style={{ padding: '5px' }}>
                     {date.toLocaleDateString()}
@@ -638,42 +637,12 @@ function BuySale(props) {
     })}
 
     {isclaim && (
-        <Button style={{ background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
+        <Button style={{ marginLeft: '250%', marginTop: '15%', background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
             Claim 
         </Button>
+        
     )}
 </tbody>
-
-
-                                {/* <tbody>
-                                    {
-                                    releasedate.map((date, index) => {
-                                        const hasPassed = date < currentDate;
-               
-                                        return (
-                                            <tr key={index} style={{ marginBottom: '10px' }}>
-                                                <td style={{ fontWeight: 'bold', padding: '5px' }}>
-                                                    Release {index + 1}: {date.toLocaleDateString()} | Amount: {releaseamount[index]}
-                                                </td>
-                                                <td style={{ padding: '5px' }}>
-                                                    {releaseamount[index] > 0 && hasPassed ? (
-                                                        "Claimable"
-                                                    ) : (
-                                                        <span style={{ fontWeight: 'bold', color: hasPassed ? 'blue' : 'gray' }}>
-                                                            {hasPassed ? '-' : releaseamount[index] > 0 && 'Upcoming Claim'}
-                                                        </span>
-                                                    )}
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-
-                                    { isclaim && ( <Button style={{ background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
-                                      Claim 
-                                     </Button> )}
-                                </tbody> */}
-
-
 
                             </table>
                         </div>
@@ -681,7 +650,7 @@ function BuySale(props) {
                     </div>
                 </div>
             )}
-
+</div>
         </div>
     </>
     )
