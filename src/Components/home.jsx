@@ -19,7 +19,7 @@ function home() {
   </button> */}
       </div>
       <div style={{paddingRight:"14%"}}>
-<img src={Home} alt="not found"  id="home_img" />
+      <img src={Home} alt="not found"  id="home_img" />
       </div>
     </div>
     

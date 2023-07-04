@@ -45,7 +45,7 @@ function App() {
     <RainbowKitProvider chains={chains}>
     <BrowserRouter>
     <Routes>
-      <Route exact path="/home" element={<NewHome/>} />
+    <Route exact path="/home" element={<NewHome/>} />
       <Route exact path="/" element={<Sidebar page={"home"}/>} />
       <Route exact path="/token" element={<Sidebar page={"token"}/>} />
       <Route exact path="/contact" element={<Sidebar page={"contact"}/>} />

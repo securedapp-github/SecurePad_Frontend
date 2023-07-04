@@ -1,29 +1,63 @@
-import React from 'react'
-import '../Style/contact.css'
-function contact(props) {
-  const {theme}=props
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
+import '../Style/contact.css';
+
+function Contact(props) {
+  const { theme } = props;
+
   return (
-    
-    <div className='contact-body' style={{backgroundImage:`${theme==='Dark' ? 'linear-gradient(to right,black,rgb(14, 14, 61))' : 'linear-gradient(to right,#FBFBFB,#bff2d9)'}`,padding:"2vw 20vw"}}>
-    <h1 className="head" style={{color:`${theme==='Dark' ? 'white':'black'}`,borderBottom:`1px solid ${theme==='Dark' ? 'white':'black'}`}} >Contact Us</h1>
-    <form method="post" style={{padding:"0 2%"}} action="">
-    <div className="name">
-    <input type="text" id="firstname" placeholder="First Name" />
-    <input type="text" id="lastname" placeholder="Last Name" />
+    <div className={`contact-container ${theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
+
+      <div className="center-container">
+
+        <div className={`contact-content ${theme === 'Dark' ? 'dark-bg' : 'light-bg'}`}>
+
+          <h1 className={`head contact ${theme === 'Dark' ? 'dark-text' : 'light-text'}`}>Contact Us </h1>
+
+          <p className={`contact-text ${theme === 'Dark' ? 'dark-text' : 'light-text'}`}>
+
+            Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <FontAwesomeIcon icon={faEnvelope} className={`contact-icon ${theme === 'Dark' ? 'dark-icon' : 'light-icon'}`} />
+
+            <a target="_blank" href="mailto:himanshu@securedapp.in" className={`contact-link ${theme === 'Dark' ? 'dark-link' : 'light-link'}`}>   himanshu@securedapp.in</a>
+          </p>
+          <hr className={`contact-divider ${theme === 'Dark' ? 'dark-divider' : 'light-divider'}`} />
+
+          <p className={`contact-text ${theme === 'Dark' ? 'dark-text' : 'light-text'}`}>
+
+            Twitter:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <FontAwesomeIcon icon={faLink} className={`contact-icon ${theme === 'Dark' ? 'dark-icon' : 'light-icon'}`} />
+            <a target="_blank" href="https://twitter.com/Secure_DApp" className={`contact-link ${theme === 'Dark' ? 'dark-link' : 'light-link'}`}>   Twitter</a>
+          </p>
+
+          <hr className={`contact-divider ${theme === 'Dark' ? 'dark-divider' : 'light-divider'}`} />
+          <p className={`contact-text ${theme === 'Dark' ? 'dark-text' : 'light-text'}`}>
+
+            Telegram:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <FontAwesomeIcon icon={faLink} className={`contact-icon ${theme === 'Dark' ? 'dark-icon' : 'light-icon'}`} />
+            <a target="_blank" href="https://t.me/secureDApp" className={`contact-link ${theme === 'Dark' ? 'dark-link' : 'light-link'}`}>    Telegram</a>
+          </p>
+          <hr className={`contact-divider ${theme === 'Dark' ? 'dark-divider' : 'light-divider'}`} />
+          <p className={`contact-text ${theme === 'Dark' ? 'dark-text' : 'light-text'}`}>
+
+            Documentation: &nbsp;
+
+            <FontAwesomeIcon icon={faLink} className={`contact-icon ${theme === 'Dark' ? 'dark-icon' : 'light-icon'}`} />
+            <a target="_blank" href="https://securedapp.gitbook.io/securedapp-launchpad/" className={`contact-link ${theme === 'Dark' ? 'dark-link' : 'light-link'}`}>    Documentation</a>
+
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
-    <div className="mail">    
-    <input type="email" id="email" placeholder="Email Address"/>
-    <input type="number" id="phone" placeholder="Phone Number"/>
-    </div>
-    <div style={{padding: "2% 0",margin:"0 auto"}} >
-    <textarea name="mensaje" id="mensaje" style={{margin:"0 auto"}}  cols="250" rows="10" placeholder="Leave us a message."></textarea>
-    <div style={{padding: "1% 0",margin:"0 auto"}}>
-    <input type="submit"   value="Send"/>
-    </div>
-    </div>
-    </form>
-    </div>
-  )
+
+  );
 }
 
-export default contact
+export default Contact;
