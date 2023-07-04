@@ -190,9 +190,15 @@ function Wallet(props) {
             provider
           );
           let token = await LOCKCONTRACT.token();
-          let duration = await LOCKCONTRACT.lockDuration();
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          let duration = await LOCKCONTRACT.lockCliff();
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
           let amount = await LOCKCONTRACT.amount();
-          amount = amount.toNumber();
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          amount = ethers.utils.formatEther(amount.toString());
 
           let TOKENCONTRACT = new ethers.Contract(
             token,
