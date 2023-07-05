@@ -262,7 +262,7 @@ const addTokenMetamask = async() => {
         <div style={{ color:`${theme==='Dark' ? 'white':'black'}`, display: "flex", flexDirection: "row" }}>
           <div style={{ padding: "2%" }}>
             {" "}
-            MAX Token Supply (Optional)
+            MAX Token Supply 
             <Info infos="Define the upper limit of the total number of tokens that can ever be minted or created for your token" link="https://securedapp.gitbook.io/securedapp-launchpad/token-creation" id="my-anchor-element4" />
             <input
               type="number"

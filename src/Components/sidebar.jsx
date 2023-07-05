@@ -124,8 +124,9 @@ ThemeIcon();
   function NavIcons() {
       return (
       <>
-        <Link to="/search" className="rihtLink" id='sales'> <div style={{ fontWeight: "400", padding: "10px", fontSize: "20px",color:`${theme==='Dark' ? 'white':'black'}` }}>Sales</div>
+        <Link to="/search" className="rihtLink" id='sales'> <div style={{ fontWeight: "400", padding: "10px", fontSize: "20px",color:`${theme==='Dark' ? 'white':'black'}` }}>PreSales</div>
         </Link>
+
         <Link to="/pricing" className="rihtLink" id='pricing'><div style={{ fontWeight: "400", padding: "10px", fontSize: "20px",color:`${theme==='Dark' ? 'white':'black'}` }}>Pricing</div>
         </Link>
         <Link to="/contact" className="rihtLink" id='contact'><div style={{ fontWeight: "400", padding: "10px",color:`${theme==='Dark' ? 'white':'black'}`, fontSize: "20px", paddingRight: "25px" }}>Contact</div>
