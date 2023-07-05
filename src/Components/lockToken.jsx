@@ -209,22 +209,22 @@ function LockToken() {
       <div style={{ fontSize: "30px", fontWeight: "700", color: "#12D576" }}>{tokenName}</div>
       <div style={{ fontSize: "20px", color: "white", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
         <div>
-          <div style={{ paddingTop: "5%", paddingBottom: "5%" }}>Token address</div>
-          <div style={{ paddingTop: "5%", paddingBottom: "5%" }}>Total Token Supply</div>
-          <div style={{ paddingTop: "5%", paddingBottom: "5%" }}>Wallet Token Balance</div>
+          <div style={{ paddingTop: "1vw", paddingBottom: "1vw" }}>Token address</div>
+          <div style={{ paddingTop: "1vw", paddingBottom: "1vw" }}>Total Token Supply</div>
+          <div style={{ paddingTop: "1vw", paddingBottom: "1vw" }}>Wallet Token Balance</div>
 
-          <Button onClick={launchTokenContract} style={{ fontSize: "20px", backgroundColor: "#12D576", border: "#12D576", color: "black", fontWeight: "400", padding: "5% 10%" }}>Create Locker</Button>
+          <Button onClick={launchTokenContract} style={{ fontSize: "20px", backgroundColor: "#12D576", border: "#12D576", color: "black", fontWeight: "400", padding: "1vw 2vw" }}>Create Locker</Button>
         </div>
         <div>
-          <div onClick={() => {copyAddress(TOKEN)}} style={{ paddingTop: "5%", paddingBottom: "5%" }}>
+          <div onClick={() => {copyAddress(TOKEN)}} style={{ paddingTop: "1vw", paddingBottom: "1vw" }}>
             <svg width="20" height="22" style={{ paddingRight: "2px" }} viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#12D576" />
             </svg>{formatAddress(TOKEN)}</div>
 
-          <div style={{ color: "#525252", paddingTop: "5%", paddingBottom: "5%" }}>
+          <div style={{ color: "#525252", paddingTop: "1vw", paddingBottom: "1vw" }}>
             {tokenSupply}</div>
 
-          <div style={{ color: "#525252", paddingTop: "5%", paddingBottom: "5%" }}>
+          <div style={{ color: "#525252", paddingTop: "1vw", paddingBottom: "1vw" }}>
             {balance}</div>
         </div>
       </div>
@@ -245,34 +245,34 @@ function LockToken() {
       <div style={{ fontSize: "20px", color: "white", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
         <div>
           <div >Token Address</div>
-          <div style={{ paddingTop: "10%" }}>Lock Address</div>
-          <div style={{ paddingTop: "10%" }}>Total Token Supply</div>
-          <div style={{ paddingTop: "10%", paddingBottom: "10%" }}>Total Locked Token</div>
-          <div style={{ paddingTop: "10%", paddingBottom: "10%" }}>Tokens to be locked</div>
-          <div style={{ paddingTop: "10%", paddingBottom: "10%" }}>Lock Months</div>
-          <div style={{ paddingTop: "10%", paddingBottom: "10%" }}>Vested Release Months</div>
+          <div style={{ paddingTop: "2vw" }}>Lock Address</div>
+          <div style={{ paddingTop: "2vw" }}>Total Token Supply</div>
+          <div style={{ paddingTop: "2vw", paddingBottom: "2vw" }}>Total Locked Token</div>
+          <div style={{ paddingTop: "2vw", paddingBottom: "2vw" }}>Tokens to be locked</div>
+          <div style={{ paddingTop: "2vw", paddingBottom: "2vw" }}>Lock Months</div>
+          <div style={{ paddingTop: "2vw", paddingBottom: "2vw" }}>Vested Release Months</div>
         </div>
         <div>
           <div onClick={() => {copyAddress(TOKEN)}}>
             <svg width="20" height="22" style={{ paddingRight: "2px" }} viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#12D576" />
             </svg>{formatAddress(TOKEN)}</div>
-          <div onClick={() => {copyAddress(lock)}} style={{ paddingTop: "10%" }}>
+          <div onClick={() => {copyAddress(lock)}} style={{ paddingTop: "2vw" }}>
             <svg width="20" height="22" style={{ paddingRight: "2px" }} viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#12D576" />
             </svg>{formatAddress(lock)}</div>
-          <div style={{ color: "#525252", paddingTop: "10%" }}>
+          <div style={{ color: "#525252", paddingTop: "2vw" }}>
             {tokenSupply}</div>
-          <div style={{ color: "#525252", paddingTop: "10%" }}>
+          <div style={{ color: "#525252", paddingTop: "2vw", paddingBottom: "2vw" }}>
             0.0</div>
-          <div style={{ color: "#525252", paddingTop: "10%" }}>
-            <input value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter Amount" type="number" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494" }} />
+          <div style={{ color: "#525252",marginTop: "2vw", marginBottom: "2vw", }}>
+            <input className="locktoken1" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter Amount" type="number" style={{ width: "100%", height: "50px", borderRadius: "5px",  border: "1px solid #949494" }} />
           </div>
-          <div style={{ color: "#525252", paddingTop: "10%" }}>
-            <input value={time} onChange={(e) => setTime(e.target.value)} type="number" placeholder="0" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
+          <div style={{ color: "#525252", marginTop: "2vw", marginBottom: "2vw",}}>
+            <input className="locktoken1" value={time} onChange={(e) => setTime(e.target.value)} type="number" placeholder="0" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
           </div>
-          <div style={{ color: "#525252", paddingTop: "10%" }}>
-            <input value={release} onChange={(e) => setRelease(e.target.value)} placeholder="Enter Months" type="number" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494" }} />
+          <div style={{ color: "#525252",marginTop: "2vw", marginBottom: "2vw",}}>
+            <input className="locktoken1" value={release} onChange={(e) => setRelease(e.target.value)} placeholder="Enter Months" type="number" style={{ width: "100%", height: "50px", borderRadius: "5px",  border: "1px solid #949494" }} />
           </div>
         </div>
       </div>
@@ -301,11 +301,11 @@ function LockToken() {
       <div style={{ fontSize: "20px", color: "white", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
         <div>
           <div >Token Address</div>
-          <div style={{ paddingTop: "10%" }}>Lock Address</div>
-          <div style={{ paddingTop: "10%" }}>Total Token Supply</div>
-          <div style={{ paddingTop: "10%", paddingBottom: "10%" }}>Total Locked Token</div>
-          <div style={{ paddingTop: "10%", paddingBottom: "10%" }}>ReLock with more Token</div>
-          <div style={{ paddingTop: "10%", paddingBottom: "10%" }}>Lock Months</div>
+          <div style={{ paddingTop: "2vw" }}>Lock Address</div>
+          <div style={{ paddingTop: "2vw" }}>Total Token Supply</div>
+          <div style={{ paddingTop: "2vw", paddingBottom: "2vw" }}>Total Locked Token</div>
+          <div style={{ paddingTop: "2vw", paddingBottom: "2vw" }}>ReLock with more Token</div>
+          <div style={{ paddingTop: "2vw", paddingBottom: "2vw" }}>Lock Months</div>
 
         </div>
         <div>
@@ -313,18 +313,18 @@ function LockToken() {
             <svg width="20" height="22" style={{ paddingRight: "2px" }} viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#12D576" />
             </svg>{formatAddress(TOKEN)}</div>
-          <div onClick={() => {copyAddress(lock)}} style={{ paddingTop: "10%" }}>
+          <div onClick={() => {copyAddress(lock)}} style={{ paddingTop: "2vw" }}>
             <svg width="20" height="22" style={{ paddingRight: "2px" }} viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#12D576" />
             </svg>{formatAddress(lock)}</div>
-          <div style={{ color: "#525252", paddingTop: "10%" }}>
+          <div style={{ color: "#525252", paddingTop: "2vw" }}>
             {tokenSupply}</div>
-          <div style={{ color: "#525252", paddingTop: "10%" }}>
+          <div style={{ color: "#525252", paddingTop: "2vw" }}>
             {amount}</div>
-            <div style={{ color: "#525252", paddingTop: "10%" }}>
+            <div style={{ color: "#525252", paddingTop: "2vw" }}>
             <input value={newtoken} onChange={(e) => setnewtoken(e.target.value)} type="number" placeholder="0" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
             </div>
-            <div style={{ color: "#525252", paddingTop: "10%" }}>
+            <div style={{ color: "#525252", paddingTop: "2vw" }}>
             <input value={newtime} onChange={(e) => setNewtime(e.target.value)} type="number" placeholder="0" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
             </div>
         </div>
@@ -365,7 +365,7 @@ function LockToken() {
                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
                 </svg>{formatAddress(TOKEN)}</div>
-              <div onClick={() => {copyAddress(lock)}} style={{ color: "#2D5C8F", paddingTop: "10%" }}>
+              <div onClick={() => {copyAddress(lock)}} style={{ color: "#2D5C8F", paddingTop: "2vw" }}>
                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
                 </svg>{formatAddress(lock)}</div>
@@ -395,7 +395,7 @@ function LockToken() {
 
       <div className="locktoken" style={{ ...blurryDivStyle, padding: "2%", margin: "0 12% 0 15%" }}>
         <div className="lockTokenFirstRow" style={{ width: "100%" }}><div style={{ paddingTop: "10px" }}><svg xmlns="http://www.w3.org/2000/svg" height="35" width="35" style={{ fill: "#12D576" }} viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
-          <div style={{ paddingLeft: "20px", width: "70%" }}>
+          <div className="lockTokenFirstRow_1" style={{ paddingLeft: "20px", width: "70%" }}>
             <div style={{ padding: "0", margin: "0", fontSize: "35px", fontWeight: "700", color: "#12D576" }}>Lock Token</div>
             <div onClick={() => {copyAddress(TOKEN)}} style={{ fontSize: "25px", color: "white", fontWeight: "300", paddingBottom: "6%" }}>
               {formatAddress(TOKEN)}

@@ -307,7 +307,7 @@ function Wallet(props) {
               </tbody>
             </table>
           </div>
-          <div className="dynamicTable">
+          <div className="dynamicTable" style={{overflow:'auto'}}>
             <div className="button-div">
               <button
                 onClick={() => handleButtonClick(3)}
