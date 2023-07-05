@@ -7,7 +7,6 @@ import Contact from './contact.jsx'
 import Price from './price.jsx'
 import Token from './token.jsx'
 import Contract from './contract.jsx'
-// import Send from './send.jsx'
 import Sale from './sale.jsx'
 import Logo from '../assets/logo.png'
 import Lock from './lock.jsx'
@@ -67,7 +66,6 @@ function Sidebar(props) {
       if (page == "wallet") return <Wallet theme={theme}/>
       if (page == "token") return <Token theme={theme}/>
       if (page == "contract") return <Contract theme={theme}/>
-      // if (page == "send") return <Send theme={theme}/>
       if (page == "sale") return <Sale theme={theme}/>
       if (page == "lock") return <Lock theme={theme}/>
       if (page == 'manage') return <Manage theme={theme}/>

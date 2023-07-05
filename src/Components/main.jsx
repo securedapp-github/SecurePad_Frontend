@@ -32,14 +32,16 @@ function Main() {
   const navigate = useNavigate();
   const { TOKEN } = useParams();
   const [loading, setLoading] = useState(false);
+  const { address } = useAccount();
 
-  const [modal, setModal] = useState(false)  
-  const [modal1, setModal1] = useState(false)
-  const [modal2, setModal2] = useState(false)
-  const [modal3, setModal3] = useState(false)
+  const [modal, setModal] = useState(false)   // For mint
+  const [modal1, setModal1] = useState(false) // For burn
+  const [modal2, setModal2] = useState(false) // For owner change
+  const [modal3, setModal3] = useState(false) // For renounce ownership
   const [modal4, setModal4] = useState(false)
   const [mintmodal, setmintmodal] = useState(false)
   const [burnmodal, setburnmodal] = useState(false)
+  const [changeownermodal, setchangeownermodal] = useState(false)
 
   const [tokenName, settokenName] = useState("");
   const [tokenSymbol, settokenSymbol] = useState("");
@@ -63,7 +65,6 @@ function Main() {
     const tokenAddress1 = TOKEN;
     const tokenSymbol1 = tokenSymbol;
     const tokenDecimals = 18;
-    // const tokenImage = 'http://placekitten.com/200/300';
     
     try {
 
@@ -77,12 +78,11 @@ function Main() {
     const wasAdded = await window.ethereum.request({
         method: 'wallet_watchAsset',
         params: {
-        type: 'ERC20', // Initially only supports ERC20, but eventually more!
+        type: 'ERC20', 
         options: {
             address: tokenAddress1, // The address that the token is at.
             symbol: tokenSymbol1, // A ticker symbol or shorthand, up to 5 chars.
             decimals: tokenDecimals, // The number of decimals in the token
-            // image: tokenImage, // A string url of the token logo
         },
         },
     });
@@ -162,6 +162,79 @@ function Main() {
   }
   }
 
+  const comingsoon = async () => {
+    toast("Coming Soon");
+  }
+
+  const changeOwner = async () => {
+    try {
+    setLoading(true);
+    let TokenContracts = new ethers.Contract(
+      TOKEN,
+      TOKENABI,
+      signerData
+    );
+    const tx = await TokenContracts.pause();
+    const receipt = await tx.wait();
+    console.log("Token Burn ", receipt)
+    
+    if(receipt.status == 1){
+    setLoading(false);
+    toast.success('Token Paused Successfully');
+    }
+    setLoading(false);
+  } catch(e){
+    setLoading(false);
+    console.log("Error", e);
+  }
+  }
+
+  const renounceOwnership = async () => {
+    try {
+    setLoading(true);
+    let TokenContracts = new ethers.Contract(
+      TOKEN,
+      TOKENABI,
+      signerData
+    );
+    const tx = await TokenContracts.renounceRole("0x0000000000000000000000000000000000000000000000000000000000000000",address);
+    const receipt = await tx.wait();
+    console.log("Receipt ", receipt)
+    
+    if(receipt.status == 1){
+    setLoading(false);
+    toast.success('Ownership Renounced Successfully');
+    }
+    setLoading(false);
+  } catch(e){
+    setLoading(false);
+    console.log("Error", e);
+  }
+  }
+
+  const pauseToken = async () => {
+    try {
+    setLoading(true);
+    let TokenContracts = new ethers.Contract(
+      TOKEN,
+      TOKENABI,
+      signerData
+    );
+    const tx = await TokenContracts.pause();
+    const receipt = await tx.wait();
+    console.log("Token Burn ", receipt)
+    
+    if(receipt.status == 1){
+    setLoading(false);
+    toast.success('Token Paused Successfully');
+    }
+    setLoading(false);
+  } catch(e){
+    setLoading(false);
+    console.log("Error", e);
+  }
+  }
+
   const blurryDivStyle = {
     filter: loading? 'blur(5px)':'blur(0px)'
   };
@@ -211,22 +284,22 @@ function Main() {
             </div>
           </div>
           <div className='main_3' style={{ paddingTop: "4%", display: "flex",flexWrap:'wrap',flexDirection: "row", gap: "20px" }}>
-            <Button onClick={() => setModal(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 75px", fontSize: "20px", fontWeight: "450" }} variant="">Mint</Button>
-            <Button onClick={() => setModal1(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 75px", fontSize: "20px", fontWeight: "450" }} variant="">Burn</Button>
-            <Button onClick={() => setModal2(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Change Owner</Button>
-            <Button onClick={() => setModal3(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Renounce Ownership</Button>
+            <Button onClick={() => setModal(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 80px", fontSize: "20px", fontWeight: "450" }} variant="">Mint</Button>
+            <Button onClick={() => setModal1(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 80px", fontSize: "20px", fontWeight: "450" }} variant="">Burn</Button>
+            <Button onClick={() => renounceOwnership()} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 115px", fontSize: "20px", fontWeight: "450" }} variant="">Renounce Ownership</Button>
           </div>
           <div className='main_4' style={{ paddingTop: "2%", display: "flex",flexWrap:'wrap',flexDirection: "row", gap: "20px" }}>
-            <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 20px", fontSize: "20px", fontWeight: "450" }} variant="">Blacklist Address</Button>
-            <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 70px", fontSize: "20px", fontWeight: "450" }} variant="">Pause</Button>
-            <Button style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 105px", fontSize: "20px", fontWeight: "450" }} variant="">Add Liquidity pool to DEX</Button>
+            <Button onClick={() => {comingsoon()}} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 20px", fontSize: "20px", fontWeight: "450" }} variant="">Blacklist Address</Button>
+            <Button onClick={() => {pauseToken()}} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 70px", fontSize: "20px", fontWeight: "450" }} variant="">Pause</Button>
+            <Button onClick={() => {comingsoon()}} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 105px", fontSize: "20px", fontWeight: "450" }} variant="">Add Liquidity pool to DEX</Button>
           </div>
           <div className='main_5' style={{ paddingTop: "2%", display: "flex",flexWrap:'wrap',flexDirection: "row", gap: "20px" }}>
-            <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 30px", fontSize: "20px", fontWeight: "450" }} variant="">Edit asset documentation</Button>
-            <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Change token per address limit</Button>
-            <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Force transaction</Button>
+            <Button onClick={() => {comingsoon()}} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 30px", fontSize: "20px", fontWeight: "450" }} variant="">Edit asset documentation</Button>
+            <Button onClick={() => {comingsoon()}} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Change token per address limit</Button>
+            <Button onClick={() => {comingsoon()}} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Force transaction</Button>
           </div>
         </div>
+
         <Modal
           {...{
             show: modal,
@@ -254,7 +327,6 @@ function Main() {
           </Modal.Body>
         </Modal>
 
-
         <Modal
           {...{
             show: modal1,
@@ -275,52 +347,6 @@ function Main() {
             <div style={{ width: "100%", paddingTop: "15%", display: "flex", flexDirection: "row", jsutifyContent: "space-between", gap: "52%" }}>
               <Button onClick={() => { setModal1(false) }} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Cancel</Button>
               <Button onClick={() => {burnToken()}} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Submit</Button>
-            </div>
-          </Modal.Body>
-        </Modal>
-        <Modal
-          {...{
-            show: modal2,
-            onHide: () => setModal2(false)
-          }}
-          size="md"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-          </Modal.Header>
-          <Modal.Body>
-            <h4 style={{ fontWeight: "700" }}>Burn</h4>
-            <div >Test  -  current token supply 10,000.00</div>
-            <div style={{ paddingTop: "30px" }}>Specify new owner below.</div>
-            <div style={{ paddingTop: "20px" }}>Quantity</div>
-            <input placeholder="Enter owner address" type="text" style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494" }} />
-            <div style={{ width: "100%", paddingTop: "15%", display: "flex", flexDirection: "row", jsutifyContent: "space-between", gap: "52%" }}>
-              <Button onClick={() => { setModal2(false) }} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Cancel</Button>
-              <Button onClick={() => { setModal4(true); setModal2(false) }} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Submit</Button>
-            </div>
-          </Modal.Body>
-        </Modal>
-        <Modal
-          {...{
-            show: modal3,
-            onHide: () => setModal3(false)
-          }}
-          size="md"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-          </Modal.Header>
-          <Modal.Body>
-            <div style={{ paddingTop: "8%", textAlign: "center" }}>
-              <img src={Group} alt="not found" />
-              <h4 style={{ fontWeight: "700" }}>Are you sure?</h4>
-            </div>
-            <div style={{ padding: "10% 12%" }}>If you renounce ownership , you will lose the ability to manage the token.</div>
-            <div style={{ width: "100%", paddingTop: "15%", display: "flex", flexDirection: "row", jsutifyContent: "space-between", gap: "52%" }}>
-              <Button onClick={() => { setModal3(false) }} style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Cancel</Button>
-              <Button onClick={() => { setModal4(true); setModal3(false) }} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Confirm</Button>
             </div>
           </Modal.Body>
         </Modal>

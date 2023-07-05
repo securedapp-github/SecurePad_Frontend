@@ -52,7 +52,6 @@ function App() {
       <Route exact path="/pricing" element={<Sidebar page={"pricing"}/>} />
       <Route exact path="/wallet" element={<Sidebar page={"wallet"}/>} />
       <Route exact path="/contract" element={<Sidebar page={"contract"}/>} />
-      {/* <Route exact path="/send" element={<Sidebar page={"send"}/>} /> */}
       <Route exact path="/search" element={<Sidebar page={"search"}/>} />
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
