@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
 import '../Style/buysale.css'
-import Coin from '../assets/Coin.png'
+import { formatAddress } from '../utils/address';
 
 import {
     useAccount,
@@ -65,10 +65,8 @@ function BuySale(props) {
     const [dis, setdis] = useState('');
     const currentDate = new Date(); // Current date
 
-
     const [buyamount, setbuyamount] = useState(0);
     const { data: signerData } = useSigner();
-
 
     function Change(e) {
         e.preventDefault()
@@ -251,8 +249,6 @@ function BuySale(props) {
             console.log("Error", e);
         }
     }
-
-
 
     const getSaleInfo = async () => {
         try {
@@ -510,7 +506,7 @@ function BuySale(props) {
                         </div>
                         <div style={{ width: "50%" }}>
 
-                            <div style={{ padding: "0.8vw 0", borderBottom: "1px solid #464646", overflow: 'auto' }}>{SALE}</div>
+                            <div style={{ padding: "0.8vw 0", borderBottom: "1px solid #464646", overflow: 'auto' }}>{formatAddress(SALE)}</div>
 
                             <div style={{ padding: "0.8vw 0", borderBottom: "1px solid #464646" }}>{token}</div>
                             <div style={{ padding: "0.8vw 0", borderBottom: "1px solid #464646" }}>Hard Capped</div>
@@ -592,7 +588,7 @@ function BuySale(props) {
                     <div style={{ textAlign: 'center', backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw", marginTop: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
 
                         <div style={{ paddingBottom:'1vw',display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
-                            <div className="expected-token" style={{width:'100%',textAlign:'center',fontSize:'35px',fontWeight:'500'}}> Vesting Release Schedule</div>
+                            <div className="expected-token" style={{width:'100%',textAlign:'center',fontSize:'25px',fontWeight:'500'}}> Vesting Release Schedule</div>
                         </div>
 
 
