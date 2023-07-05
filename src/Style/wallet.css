@@ -45,6 +45,9 @@
     text-align: left;
     color: #fff;
   }
+  .custom-table th, .custom-table td{
+    border:1px solid transparent !important;
+  }
   
   /* .custom-th {
     padding: 8px 16px;
