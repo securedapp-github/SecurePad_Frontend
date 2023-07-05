@@ -181,7 +181,7 @@ function Main() {
       
       <div className="mainFirstRow" style={{ width: "100%", }}>
 
-      <div style={{ paddingTop: "0.1vw" }}>
+      <div className='main_1' style={{ paddingTop: "0.1vw" }}>
           <Button onClick={() => { navigate(-1)}} style={{background:"transparent",border:"1px solid transparent"}}>
           <svg xmlns="http://www.w3.org/2000/svg" height="35" width="35" style={{ fill: "#12D576" }} viewBox="0 0 448 512">
             <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
@@ -189,7 +189,7 @@ function Main() {
           </Button>
         </div>
         
-        <div style={{ paddingLeft: "20px" }}>
+        <div className='main_2' style={{ paddingLeft: "20px" }}>
           <div style={{ padding: "0", margin: "0", fontSize: "35px", fontWeight: "700", color: "#12D576" }}>Manage Token</div>
           <div style={{ fontSize: "25px", color: "white", fontWeight: "300" }}>
             {formatAddress(TOKEN)}
@@ -210,18 +210,18 @@ function Main() {
               <div style={{ padding: "5px 0" }}>{tokenSupply}</div>
             </div>
           </div>
-          <div style={{ paddingTop: "4%", display: "flex", flexDirection: "row", gap: "20px" }}>
+          <div className='main_3' style={{ paddingTop: "4%", display: "flex",flexWrap:'wrap',flexDirection: "row", gap: "20px" }}>
             <Button onClick={() => setModal(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 75px", fontSize: "20px", fontWeight: "450" }} variant="">Mint</Button>
             <Button onClick={() => setModal1(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 75px", fontSize: "20px", fontWeight: "450" }} variant="">Burn</Button>
             <Button onClick={() => setModal2(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Change Owner</Button>
             <Button onClick={() => setModal3(true)} style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Renounce Ownership</Button>
           </div>
-          <div style={{ paddingTop: "2%", display: "flex", flexDirection: "row", gap: "20px" }}>
+          <div className='main_4' style={{ paddingTop: "2%", display: "flex",flexWrap:'wrap',flexDirection: "row", gap: "20px" }}>
             <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 20px", fontSize: "20px", fontWeight: "450" }} variant="">Blacklist Address</Button>
             <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 70px", fontSize: "20px", fontWeight: "450" }} variant="">Pause</Button>
             <Button style={{ backgroundColor: "#12D576", border: "#12D576", padding: "7px 105px", fontSize: "20px", fontWeight: "450" }} variant="">Add Liquidity pool to DEX</Button>
           </div>
-          <div style={{ paddingTop: "2%", display: "flex", flexDirection: "row", gap: "20px" }}>
+          <div className='main_5' style={{ paddingTop: "2%", display: "flex",flexWrap:'wrap',flexDirection: "row", gap: "20px" }}>
             <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 30px", fontSize: "20px", fontWeight: "450" }} variant="">Edit asset documentation</Button>
             <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Change token per address limit</Button>
             <Button style={{ backgroundColor: "transparent", color: "#12D576", border: "2px solid #12D576", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Force transaction</Button>

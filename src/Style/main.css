@@ -2,3 +2,29 @@
     display:flex;
     flex-direction:row;
 }
+@media only screen and (max-width:1472px){
+    .main{
+        margin:0 !important;
+    }
+}
+@media only screen and (max-width:1088px){
+    .main_1 button{
+        padding-right:0 !important;
+    }
+    
+    .main_2{
+        padding-left:0 !important;
+    }
+}
+
+@media only screen and (max-width:1060px){
+    .main_2 button{
+        padding-left:20px !important;
+        padding-right:20px !important;
+    }
+}
+@media only screen and (max-width:606px){
+    .main_3,.main_4,.main_5{
+    padding-top:20px !important;
+    }
+}
