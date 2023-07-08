@@ -4,14 +4,14 @@ import '../Style/home.css'
 import Home from '../assets/home.png'
 function home() {
   return (
-    <div className="home">
-      <div style={{paddingTop:"1vw",paddingLeft:"6vw",paddingRight:"8vw"}}>
-        <div id="unleash" style={{fontWeight:"700",color:"#12D576"}}>
-          <div>Unleash Your Token's Full</div>
-          <div>Potential</div>
+    <div className="home" style={{marginTop:'4%'}}>
+      <div style={{paddingTop:"1vw"}}>
+        <div id="unleash" style={{fontWeight:"700",color:"#12D576",fontSize:'3vw'}}>
+          <div>Empowering Your Token</div>
+          <div>to Its Fullest</div>
            </div>
-        <div id='unleash_para' style={{color:"#949494",paddingTop:"4%"}}>
-        Welcome to our Token Launchpad, your gateway to blockchain success! We offer end-to-end services for token creation, sale, locking, staking, and airdrops on multiple chains. Empower your project with our streamlined solutions and unleash the full potential of decentralized innovation.
+        <div id='unleash_para' style={{color:"#949494",paddingTop:"4%",fontSize:'1.3vw'}}>
+        Unleash decentralized innovation with our Token Launchpad! We provide end-to-end services for token creation, sales, locking, staking, and airdrops on multiple chains. Strengthen your project and tap into the blockchain's full potential with our efficient solutions.
           </div>
           
   {/* <button style={{padding:"2% 8%",marginTop:"6%",backgroundColor:"#12D576",borderRadius:"25px",fontSize:"20px",fontWeight:"400"}}>

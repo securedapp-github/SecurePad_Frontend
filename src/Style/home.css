@@ -1,6 +1,7 @@
 .home{
     display:flex;
     flex-direction:row;
+    padding-left:6vw;
 }
 #unleash{
     font-size:2.5vw;
