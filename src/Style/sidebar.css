@@ -21,7 +21,7 @@
     bottom:2vw;
     left:4vw;
     border-radius: 1.16vw;
-    width:5vw;
+    width:90px;
     border:1px solid grey;
     z-index:2;
     transition:0.25s ease-in;
@@ -43,14 +43,18 @@
 }
 .expanded{
     padding:0.75vw;
+    cursor:pointer;
 }
 
 .expanded_1:hover{
     background:#2E3238;
+    border-radius:5px;
+    margin:0 5px;
 }
 a{
     text-decoration: none !important;
 }
+
 
 .sideNavButton{
     padding:20px;
@@ -125,9 +129,40 @@ a{
     background-color:#12D576 !important;
     border-radius:20px;
 } */
+@media only screen and (max-width:2158px){
+    .dashboard{
+        padding-left:151px !important;
+    }
+}
 @media only screen and (max-width:1298px){
     #comp_name{
         display:none !important;
+    }
+}
+@media only screen and (max-width:1218px){
+    svg{
+        width:18px !important;
+        height:18px !important;
+    }
+    #logo_1{
+        width:39px !important;
+        height:39px !important;
+    }
+    #sidebar1{
+        left:10px !important;
+    }
+    #arrow1,#arrow2{
+        width:25px !important;
+        height:25px !important;
+    }
+    .expanded-1{
+        font-size:12.18px !important;
+    }
+    .expanded_3{
+        font-size:18.27px !important;
+    }
+    .dashboard{
+        padding-left: 85.26px !important;
     }
 }
 
@@ -154,7 +189,7 @@ a{
       display:block !important;
       position:relative !important;
       left:10px !important;
-      top:6vw !important;
+      top:9.5vw !important;
       z-index:2 !important;
       width:5vw;
       height:5vw;
@@ -168,6 +203,9 @@ a{
     .offcanvas{
         width:125px !important;
         background-color: #101010;
+    }
+    .dashboard{
+        padding-left:15px !important;
     }
   }
 
