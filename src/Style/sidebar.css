@@ -79,8 +79,7 @@ a{
     position:relative;
     right:5%;
     display:flex;
-    padding-left:3vw;
-    gap:2vw;
+    padding-left: 1vw;
     flex-direction:row;
     justify-content:space-between;
    
