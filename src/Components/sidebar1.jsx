@@ -82,7 +82,7 @@ export function Side1({theme}){
             <div className='expanded-1 expanded_3' style={{fontWeight:'700',fontSize:'1.5vw',paddingTop:'0.6vw'}}>SecureDApp</div>
             </div>
             </Link>
-            <div style={{paddingTop:'1.62vw',display:'flex',flexDirection:'column'}}>
+            <div style={{paddingTop:'1.62vw',display:'flex',flexDirection:'column',height:'70%',justifyContent:'space-between'}}>
                 <Link to='/'>
                 <div className='expanded' onClick={()=>{
                     setCol([true,false,false,false,false,false,false,false,false,false,false])
@@ -222,7 +222,7 @@ export function Side1({theme}){
                 <div className='expanded-1' style={{color:col[9] ? '#12D576':'white'}}>DEX Launch</div>
                 </div>
             </div>
-            <div className='expanded' style={{marginTop:'4vw',marginBottom:'2vw'}} onClick={()=>{
+            <div className='expanded' style={{marginTop:'4vw'}} onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,false,false,true])
                 }}>
             <svg style={{width:'100%',margin:'0 auto',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
