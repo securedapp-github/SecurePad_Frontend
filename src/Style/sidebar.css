@@ -22,7 +22,7 @@
     bottom:1.5vw;
     left:2vw;
     border-radius: 1.16vw;
-    width:110px;
+    width:80px;
     border:1px solid grey;
     z-index:2;
     transition:0.25s ease-in;
@@ -72,7 +72,7 @@ a{
 }
 .navbar{
     width:100%;
-    padding:3vw 1vw 3vw 3vw!important;
+    padding:3vw 3vw 3vw 3vw!important;
     border-radius:1.16vw;
 }
 .riht{

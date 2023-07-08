@@ -19,7 +19,7 @@ function Arrow(){
             setExpand(false)
         }
         else{
-            k1.style.width="5vw";
+            k1.style.width="80px";
             for(let i=0;i<k2.length;++i){
                 k2[i].style.display='none'
                 k2[i].previousElementSibling.style.width='100%'
