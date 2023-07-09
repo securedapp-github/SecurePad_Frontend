@@ -3,12 +3,28 @@
     flex-direction:row;
     height:100%;
 }
+#sidebar2{
+ transform:translate(-100vw) ;
+ overflow-y:auto;
+ transition:0.25s ease-in-out;
+ display:none;
+}
 .sidebar{
     display:flex;
+    font-family: 'Poppins';
     flex-direction:column;
     background-color:#000 !important;
     flex-wrap: wrap;
-    padding-left:5px 20px;
+    padding-left:0;
+    position:absolute;
+    top:1.5vw;
+    bottom:1.5vw;
+    left:2vw;
+    border-radius: 1.16vw;
+    padding:15px 15px 15px 17px;
+    border:1px solid grey;
+    z-index:2;
+    transition:0.5s ease-in;
 }
 #sidebar1{
     display:flex;
@@ -22,10 +38,10 @@
     bottom:1.5vw;
     left:2vw;
     border-radius: 1.16vw;
-    width:80px;
+    padding:15px 15px 15px 17px;
     border:1px solid grey;
     z-index:2;
-    transition:0.25s ease-in;
+    transition:0.5s ease-in;
 }
 #arrow2{
     display:none;
@@ -33,7 +49,11 @@
 .expanded-1{
     display:none;
     color:white;
-    width:10vw;
+    font-size:1vw;
+    font-weight: 600;
+}
+.expanded-2{
+    color:white;
     font-size:1vw;
     font-weight: 600;
 }
@@ -151,6 +171,9 @@ a{
         width:39px !important;
         height:39px !important;
     }
+    #logo_2{
+        height:48.75px !important;
+    }
     #sidebar1{
         left:10px !important;
     }
@@ -158,7 +181,7 @@ a{
         width:25px !important;
         height:25px !important;
     }
-    .expanded-1{
+    .expanded-1,.expanded-2{
         font-size:12.18px !important;
     }
     .expanded_3{
@@ -193,12 +216,15 @@ a{
       position:relative !important;
       left:10px !important;
       top:9.5vw !important;
-      z-index:2 !important;
+      z-index:1 !important;
       width:5vw;
       height:5vw;
     }
     #sidebar1{
       display:none !important;
+    }
+    #sidebar2{
+      display:block !important;
     }
     .themeic{
         display:none !important;
@@ -219,8 +245,11 @@ a{
 }
 @media only screen and (max-width:453px){
     #bars{
-        width:23px !important;
-        height:23px !important;
+        top:3.5vw !important;
+    }
+    #bars svg{
+        width:30px !important;
+        height:30px !important;
     }
     .navBrand{
         display:none;
@@ -234,5 +263,9 @@ a{
     #sales1,#pricing1{
         display:block !important;
         text-decoration:none !important;
+    }
+    .riht{
+        position:absolute !important;
+        right:1.5vw !important;
     }
 }
