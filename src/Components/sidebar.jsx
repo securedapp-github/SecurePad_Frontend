@@ -172,7 +172,7 @@ ThemeIcon();
             </Link>
             <div style={{paddingTop:'1.62vw',display:'flex',flexDirection:'column',height:'70%',justifyContent:'space-between'}}>
                 <Link to='/'>
-                <div className='expanded' onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([true,false,false,false,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -185,7 +185,7 @@ ThemeIcon();
                 </div>
                 </Link>
                 <Link to='/wallet'>
-                <div className='expanded'  onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([false,true,false,false,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -198,7 +198,7 @@ ThemeIcon();
                 </div>
                 </Link>
                 <Link to='/token'>
-                <div className='expanded' onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,true,false,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -211,7 +211,7 @@ ThemeIcon();
                 </div>
                 </Link>
                 <Link to='/manage'>
-                <div className='expanded' onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,false,true,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -229,7 +229,7 @@ ThemeIcon();
                 </div>
                 </Link>
                 <Link to='/contract'>
-                <div className='expanded' onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,false,false,true,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -241,7 +241,7 @@ ThemeIcon();
                 <div className='expanded-2' style={{color:col[4] ? '#12D576':'white'}}>AirDrop Tokens</div>
                 </div> 
                 </Link>
-                <div className='expanded' onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,false,false,false,true,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -253,7 +253,7 @@ ThemeIcon();
                 <div className='expanded-2' style={{color:col[5] ? '#12D576':'white'}}>Create STO/ICO</div>
                 </div>
                 <Link to='/sale'>
-                <div className='expanded' onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,false,false,false,false,true,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -266,7 +266,7 @@ ThemeIcon();
                 </div>
                 </Link>
                 <Link to='/lock'>
-                <div className='expanded' onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,false,false,false,false,false,true,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -278,7 +278,7 @@ ThemeIcon();
                 <div className='expanded-2' style={{color:col[7] ? '#12D576':'white'}}>Token Locker</div>
                 </div>
                 </Link>
-                <div className='expanded' onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,true,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -294,7 +294,7 @@ ThemeIcon();
                 </svg>
                 <div className='expanded-2' style={{color:col[8] ? '#12D576':'white'}}>Staking Pools</div>
                 </div>
-                <div className='expanded' onClick={()=>{
+                <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,false,true,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -310,7 +310,7 @@ ThemeIcon();
                 <div className='expanded-2' style={{color:col[9] ? '#12D576':'white'}}>DEX Launch</div>
                 </div>
                 <Link to='/pricing'>
-                <div className='expanded' id='price_logo' style={{display:'none'}} onClick={()=>{
+                <div className='expanded'  id='price_logo' style={{display:'none',marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,false,false,true,false,false])
                 }}>
                 <svg width='1.5vw' height='1.5vw' style={{width:'100%',marginRight:'2px',fill:'transparent',fill:`${col[10] ? '#12D576':'white'}`}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
@@ -318,7 +318,7 @@ ThemeIcon();
                 </div>
                 </Link>
                 <Link to='/search'>
-                <div className='expanded' id='sale_logo' style={{display:'none'}} onClick={()=>{
+                <div className='expanded' id='sale_logo' style={{display:'none',marginTop:'15px'}} onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,false,false,false,true,false])
                 }}>
                 <svg width='1.5vw' height='1.5vw' style={{width:'100%',marginRight:'2px',fill:'transparent',fill:`${col[11] ? '#12D576':'white'}`}} version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296.41 296.41" xmlnsXlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 296.41 296.41">
@@ -331,7 +331,7 @@ ThemeIcon();
                 <div className='expanded-2' style={{color:col[11] ? '#12D576':'white'}}>Presales</div>
                 </div>
                 </Link>
-            <div className='expanded'  onClick={()=>{
+            <div className='expanded' style={{marginTop:'15px'}}  onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,false,false,false,false,true])
                 }}>
             <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
