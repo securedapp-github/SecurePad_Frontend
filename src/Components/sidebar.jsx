@@ -39,7 +39,7 @@ function Sidebar(props) {
     })
   },[])
   const [expand1,setExpand1]=useState(false)
-  const [col,setCol]=useState([false,false,false,false,false,false,false,false,false,false])
+  const [col,setCol]=useState([false,false,false,false,false,false,false,false,false,false,false,false])
   const [show, setShow] = useState(false);
   const [theme,setTheme]=useState('Dark')
   const handleShow = () => {
@@ -309,16 +309,38 @@ ThemeIcon();
                 </svg>
                 <div className='expanded-2' style={{color:col[9] ? '#12D576':'white'}}>DEX Launch</div>
                 </div>
-            </div>
-            <div className='expanded' style={{marginTop:'4vw'}} onClick={()=>{
-                    setCol([false,false,false,false,false,false,false,false,false,false,true])
+                <Link to='/pricing'>
+                <div className='expanded' id='price_logo' style={{display:'none'}} onClick={()=>{
+                    setCol([false,false,false,false,false,false,false,false,false,false,true,false,false])
+                }}>
+                <svg width='1.5vw' height='1.5vw' style={{width:'100%',marginRight:'2px',fill:'transparent',fill:`${col[10] ? '#12D576':'white'}`}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                <div className='expanded-2' style={{color:col[10] ? '#12D576':'white'}}>Pricing</div>
+                </div>
+                </Link>
+                <Link to='/search'>
+                <div className='expanded' id='sale_logo' style={{display:'none'}} onClick={()=>{
+                    setCol([false,false,false,false,false,false,false,false,false,false,false,true,false])
+                }}>
+                <svg width='1.5vw' height='1.5vw' style={{width:'100%',marginRight:'2px',fill:'transparent',fill:`${col[11] ? '#12D576':'white'}`}} version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296.41 296.41" xmlnsXlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 296.41 296.41">
+                <g>
+                  <path d="m268.115,109.241l-.007-48.16-45.821-14.862-28.274-39.001-45.808,14.944-45.809-14.943-28.273,39-45.821,14.862-.007,48.161-28.295,38.963 28.296,38.964 .006,48.16 45.821,14.862 28.274,39.001 45.808-14.944 45.809,14.943 28.273-39 45.821-14.862 .007-48.161 28.295-38.963-28.295-38.964zm-171.548,25.239c-4.941-4.971-7.695-11.228-7.695-18.772v-6.753c0-7.602 2.739-13.903 7.651-18.903 4.913-4.999 12.041-7.498 21.106-7.498 9.18,0 16.095,2.499 21.006,7.498 4.913,5 7.237,11.302 7.237,18.903v6.753c0,7.603-2.254,13.874-7.167,18.813-4.912,4.943-11.94,7.412-21.003,7.412-9.122,0.001-16.193-2.484-21.135-7.453zm26.026,68.062l-13.77-6.93 62.363-99.814 13.772,6.93-62.365,99.814zm84.279-14.997c0,7.66-2.392,13.961-7.275,18.902-4.883,4.941-11.83,7.409-20.894,7.409-9.121,0-16.257-2.483-21.258-7.454-4.997-4.97-7.573-11.256-7.573-18.857v-6.754c0-7.543 2.573-13.815 7.544-18.815 4.969-5.001 12.031-7.499 21.093-7.499 9.18,0 16.183,2.487 21.066,7.454 4.883,4.972 7.297,11.258 7.297,18.86v6.754z"/>
+                  <path d="m124.645,122.965c1.608-1.947 2.227-4.373 2.227-7.279v-6.711c0-2.903-0.635-5.357-2.272-7.362-1.639-2.005-3.884-3.008-6.924-3.008-2.981,0-5.504,1.003-7.14,3.008-1.637,2.005-2.664,4.459-2.664,7.362v6.711c0,2.906 1.074,5.332 2.71,7.279 1.637,1.945 4.041,2.918 7.142,2.918 2.981-1.42109e-14 5.312-0.973 6.921-2.918z"/>
+                  <path d="m178.554,170.527c-3.041,0-5.485,1.005-7.12,3.008-1.641,2.005-2.562,4.432-2.562,7.278v6.708c0,2.792 1.039,5.201 2.912,7.236 1.871,2.033 4.203,3.048 6.893,3.048 3.625,0 6.03-0.899 7.318-2.702 1.284-1.8 1.877-4.327 1.877-7.582v-6.708c0-2.847-0.755-5.273-2.422-7.278-1.667-2.003-3.915-3.008-6.896-3.008z"/>
+                </g>
+              </svg>
+                <div className='expanded-2' style={{color:col[11] ? '#12D576':'white'}}>Presales</div>
+                </div>
+                </Link>
+            <div className='expanded'  onClick={()=>{
+                    setCol([false,false,false,false,false,false,false,false,false,false,false,false,true])
                 }}>
             <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="paperclip">
-            <path id="Vector" d="M21.44 11.0499L12.25 20.2399C11.1242 21.3658 9.59723 21.9983 8.00505 21.9983C6.41286 21.9983 4.88589 21.3658 3.76005 20.2399C2.6342 19.1141 2.00171 17.5871 2.00171 15.9949C2.00171 14.4027 2.6342 12.8758 3.76005 11.7499L12.95 2.55992C13.7006 1.80936 14.7186 1.3877 15.78 1.3877C16.8415 1.3877 17.8595 1.80936 18.61 2.55992C19.3606 3.31048 19.7823 4.32846 19.7823 5.38992C19.7823 6.45138 19.3606 7.46936 18.61 8.21992L9.41005 17.4099C9.03476 17.7852 8.52577 17.996 7.99505 17.996C7.46432 17.996 6.95533 17.7852 6.58005 17.4099C6.20476 17.0346 5.99393 16.5256 5.99393 15.9949C5.99393 15.4642 6.20476 14.9552 6.58005 14.5799L15.07 6.09992" stroke={col[10] ? '#12D576':'#F2F2F2'} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="Vector" d="M21.44 11.0499L12.25 20.2399C11.1242 21.3658 9.59723 21.9983 8.00505 21.9983C6.41286 21.9983 4.88589 21.3658 3.76005 20.2399C2.6342 19.1141 2.00171 17.5871 2.00171 15.9949C2.00171 14.4027 2.6342 12.8758 3.76005 11.7499L12.95 2.55992C13.7006 1.80936 14.7186 1.3877 15.78 1.3877C16.8415 1.3877 17.8595 1.80936 18.61 2.55992C19.3606 3.31048 19.7823 4.32846 19.7823 5.38992C19.7823 6.45138 19.3606 7.46936 18.61 8.21992L9.41005 17.4099C9.03476 17.7852 8.52577 17.996 7.99505 17.996C7.46432 17.996 6.95533 17.7852 6.58005 17.4099C6.20476 17.0346 5.99393 16.5256 5.99393 15.9949C5.99393 15.4642 6.20476 14.9552 6.58005 14.5799L15.07 6.09992" stroke={col[12] ? '#12D576':'#F2F2F2'} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </g>
             </svg>
-            <div className='expanded-2' style={{color:col[10] ? '#12D576':'white'}}>Docs</div>
+            <div className='expanded-2' style={{color:col[12] ? '#12D576':'white'}}>Docs</div>
+            </div>
             </div>
         </div>
       <Side1 theme={theme}/>

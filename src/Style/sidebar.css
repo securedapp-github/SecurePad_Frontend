@@ -243,7 +243,7 @@ a{
         display:none;
     }
 }
-@media only screen and (max-width:453px){
+@media only screen and (max-width:500px){
     #bars{
         top:3.5vw !important;
     }
@@ -267,5 +267,8 @@ a{
     .riht{
         position:absolute !important;
         right:1.5vw !important;
+    }
+    #price_logo,#sale_logo{
+        display:flex !important;
     }
 }
