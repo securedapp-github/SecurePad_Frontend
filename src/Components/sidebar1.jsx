@@ -11,11 +11,19 @@ export function Side1({theme}){
             let k2=document.getElementsByClassName('expanded-1')
             let k3=document.getElementsByClassName('expanded')
             if(expand){
-                setTimeout(()=>{for(let i=0;i<k2.length;++i){
+                // setTimeout(()=>{for(let i=0;i<k2.length;++i){
+                //     k2[i].style.display='block'
+                //     k2[i].previousElementSibling.style.width='20%'
+                //     if(i!==k2.length-1 && k3[i])k3[i].classList.add('expanded_1')
+                // }},25)
+
+                for(let i=0;i<k2.length;++i){
                     k2[i].style.display='block'
                     k2[i].previousElementSibling.style.width='20%'
                     if(i!==k2.length-1 && k3[i])k3[i].classList.add('expanded_1')
-                }},250)
+                }
+
+
                 setExpand(false)
             }
             else{
