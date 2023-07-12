@@ -1,6 +1,7 @@
 .home{
     display:flex;
     flex-direction:row;
+    padding-left:3vw;
 }
 #unleash{
     font-size:2.5vw;
@@ -24,13 +25,14 @@ width:35vw;
 }
 @media  only screen and (max-width:1000px) {
     #unleash{
-        font-size:4.5vw;
+        font-size:4.5vw !important;
     }
     #unleash_para{
-        font-size:2.5vw;
+        font-size:2.5vw !important;
+        padding-right:5vw !important;
     }
     #home_img{
-        width:45vw;
+        width:100% !important;
     }
     .home{
         flex-wrap:wrap-reverse;
@@ -45,5 +47,13 @@ width:35vw;
     }
     #home_img{
         width:55vw;
+    }
+}
+@media only screen and (max-width:700px){
+    #unleash{
+        font-size:6.5vw !important;
+    }
+    #unleash_para{
+        font-size:4.5vw !important;
     }
 }
