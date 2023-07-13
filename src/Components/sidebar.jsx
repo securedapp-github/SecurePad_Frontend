@@ -120,12 +120,18 @@ ThemeIcon();
   function NavIcons() {
       return (
       <>
-        <Link to="/search" className="rihtLink" id='sales'> <div style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>PreSales</div>
+        <Link to="/search" className="rihtLink" id='sales'> <div onClick={()=>{
+                    setCol([false,false,false,false,false,false,false,false,false,false,false])
+                }} style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>PreSales</div>
         </Link>
 
-        <Link to="/pricing" className="rihtLink" id='pricing'><div style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>Pricing</div>
+        <Link to="/pricing" className="rihtLink" id='pricing'><div onClick={()=>{
+                    setCol([false,false,false,false,false,false,false,false,false,false,false])
+                }} style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>Pricing</div>
         </Link>
-        <Link to="/contact" className="rihtLink" id='contact'><div style={{ fontWeight: "400", padding: "10px",color:`${theme==='Dark' ? 'white':'black'}`, fontSize: "18px", paddingRight: "25px" }}>Contact</div>
+        <Link to="/contact" className="rihtLink" id='contact'><div onClick={()=>{
+                    setCol([false,false,false,false,false,false,false,false,false,false,false])
+                }} style={{ fontWeight: "400", padding: "10px",color:`${theme==='Dark' ? 'white':'black'}`, fontSize: "18px", paddingRight: "25px" }}>Contact</div>
         </Link> 
         <ConnectButton showBalance={false} />
         </>)
