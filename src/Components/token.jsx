@@ -142,6 +142,8 @@ const addTokenMetamask = async() => {
       toast.error('An error occurred while creating token');
     }
     //  setnewToken("0xA95C52AF59E43C528F24EFAC96A08e000012e0e3");
+    //  setModal(true);
+
     setLoading(false);
   } catch(e){
     setLoading(false);
@@ -162,6 +164,11 @@ const addTokenMetamask = async() => {
   };
   const blurryDivStyle = {
     filter: loading? 'blur(5px)':'blur(0px)'
+  };
+  
+  const copyAddress = (copytext) => {
+    navigator.clipboard.writeText(copytext);
+    toast('Address Copied');
   };
 
 
@@ -375,17 +382,17 @@ const addTokenMetamask = async() => {
           <div style={{ padding: "3% 8%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <div>
               <div >Token Address</div>
-              <div style={{ paddingTop: "30%" }}>Token Link</div>
+              {/* <div style={{ paddingTop: "30%" }}>Token Link</div> */}
             </div>
             <div>
-              <div style={{ color: "#2D5C8F" }}>
+              <div onClick={() => {copyAddress(newToken)}}  style={{ color: "#2D5C8F" }}>
                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
                 </svg>{formatAddress(newToken)}</div>
-              <div style={{ color: "#2D5C8F", paddingTop: "10%" }}>
+              {/* <div style={{ color: "#2D5C8F", paddingTop: "10%" }}>
                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
-                </svg>{formatAddress(newToken)}</div>
+                </svg>{formatAddress(newToken)}</div> */}
             </div>
           </div>
           <div style={{ textAlign: "center", paddingTop: "5%" }}>

@@ -73,6 +73,14 @@ function Wallet(props) {
             event = "Token Claimed";            
           }else if (data[i].event_type == 2) {
             event = "Token Creation";            
+          }else if (data[i].event_type == 21) {
+            event = "Mint Token";            
+          }else if (data[i].event_type == 22) {
+            event = "Burn Token";            
+          }else if (data[i].event_type == 2) {
+            event = "Token Creation";            
+          }else if (data[i].event_type == 2) {
+            event = "Token Creation";            
           }else if (data[i].event_type == 3) {
             event = "Sale Creation";            
           }else if (data[i].event_type == 4) {
@@ -83,7 +91,9 @@ function Wallet(props) {
             event = "Staking Pool Creation";            
           }
 
-          historydetails[i] = { 'id': i + 1, 'activity': event, 'entity': data[i].event_name, 'time': data[i].created_on };
+          data[i].data = (data[i].data =="")?"-":data[i].data;
+
+          historydetails[i] = { 'id': i + 1, 'activity': event, 'entity': data[i].event_name, 'data': data[i].data, 'time': data[i].created_on };
           console.log(historydetails[i]);
           sethistoryArray(prevItems => [...prevItems, historydetails[i]]);
         }
@@ -243,7 +253,7 @@ function Wallet(props) {
       if (historyArray.length == 0) {
         await getHistory();
       }
-      setTableHeaders(["ID", "Activity", "Entity", "Time"]);
+      setTableHeaders(["ID", "Activity", "Entity Name","Details", "Time"]);
     } else if (buttonIndex === 0) {
       if (tokenArray.length == 0) {
         await getToken();
@@ -426,6 +436,7 @@ function Wallet(props) {
                       <td>{row.id}</td>
                       <td>{row.activity}</td>
                       <td>{row.entity}</td>
+                      <td>{row.data}</td>
                       <td>{row.time}</td>
                     </tr>
                   ))}
