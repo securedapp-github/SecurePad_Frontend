@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
 import '../Style/buysale.css'
 import { formatAddress } from '../utils/address';
+import Shield from '../assets/Shield.png'
 
 import {
     useAccount,
@@ -423,29 +424,29 @@ function BuySale(props) {
         <div className="tokenSale1" style={{ ...blurryDivStyle, display: "flex", flexWrap: 'wrap', flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw",gap:'0.2vw' }}>
 
             <div className='main-body' style={{ width: "60%" }}>
-                <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div className='buysale-back' style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
+                <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div className='buysale-back' style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512" style={{fill:'#00FF83'}}><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
                     <div className="buysale-back1" style={{ fontSize: "2vw", color: "#646464" }}>
-                        Back</div></div>
-                <div style={{ paddingBottom: "4.5vw", width: "100%", marginTop: "3vw", backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw" }}>
-                    <img style={{ width: "100%", borderRadius: "3vw", padding: "0.2vw" }} className="body-image" src={image} alt="not found" />
+                        Go Back</div></div>
+                <div style={{ paddingBottom: "4.5vw",border:'3px solid #00FF83',width: "100%", marginTop: "3vw", backgroundColor: "#000", borderRadius: "1vw" }}>
+                    <img style={{ width: "100%", borderRadius: "inherit"}} className="body-image" src={image} alt="not found" />
                     <br />
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
 
                         <img src={coin} className="coin" style={{ maxWidth: '10vw', maxHeight: '6vw', position: "relative", paddingLeft: "3vw", bottom: "1.8vw" }} alt="not found" />
 
-                        <div className='buysale-social' style={{ paddingTop: "0.2vw" }}>
+                        <div className='buysale-social' style={{ paddingTop: "1vw" }}>
 
                             {web !== undefined && (
 
-                                <svg onClick={(event) => { window.open(web, "_blank"); }} xmlns="http://www.w3.org/2000/svg" width="1.3vw" height="1.3vw" style={{ cursor: "pointer", fill: "#12D576", margin: "0.4vw" }} className="bi bi-globe" viewBox="0 0 16 16">
+                                <svg onClick={(event) => { window.open(web, "_blank"); }} xmlns="http://www.w3.org/2000/svg" width="1.3vw" height="1.3vw" style={{ cursor: "pointer", fill: "white", margin: "0.4vw" }} className="bi bi-globe" viewBox="0 0 16 16">
                                     <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z" />
                                 </svg>
                             )} {twi !== undefined && (
-                                <svg onClick={(event) => { window.open(twi, "_blank"); }} xmlns="http://www.w3.org/2000/svg" width="1.3vw" height="1.3vw" style={{ cursor: "pointer", fill: "#12D576", margin: "0.4vw" }} className="bi bi-twitter" viewBox="0 0 16 16">
+                                <svg onClick={(event) => { window.open(twi, "_blank"); }} xmlns="http://www.w3.org/2000/svg" width="1.3vw" height="1.3vw" style={{ cursor: "pointer", fill: "white", margin: "0.4vw" }} className="bi bi-twitter" viewBox="0 0 16 16">
                                     <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
                                 </svg>
                             )}{git !== undefined && (
-                                <svg onClick={(event) => { window.open(git, "_blank"); }} xmlns="http://www.w3.org/2000/svg" width="1.3vw" height="1.3vw" style={{ cursor: "pointer", fill: "#12D576", margin: "0.4vw" }} className="bi bi-github" viewBox="0 0 16 16">
+                                <svg onClick={(event) => { window.open(git, "_blank"); }} xmlns="http://www.w3.org/2000/svg" width="1.3vw" height="1.3vw" style={{ cursor: "pointer", fill: "white", margin: "0.4vw" }} className="bi bi-github" viewBox="0 0 16 16">
                                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
                                 </svg>
                             )} {tel !== undefined && (
@@ -453,39 +454,44 @@ function BuySale(props) {
                                     <path d="M7.99549 0.5C6.51213 0.5 5.06208 0.939867 3.82871 1.76398C2.59534 2.58809 1.63405 3.75943 1.06639 5.12987C0.498733 6.50032 0.350208 8.00832 0.639597 9.46318C0.928986 10.918 1.64329 12.2544 2.69219 13.3033C3.74108 14.3522 5.07745 15.0665 6.53231 15.3559C7.98717 15.6453 9.49517 15.4968 10.8656 14.9291C12.2361 14.3614 13.4074 13.4001 14.2315 12.1668C15.0556 10.9334 15.4955 9.48336 15.4955 8C15.4955 7.01509 15.3015 6.03982 14.9246 5.12987C14.5477 4.21993 13.9952 3.39314 13.2988 2.6967C12.6023 2.00026 11.7756 1.44781 10.8656 1.0709C9.95567 0.693993 8.9804 0.5 7.99549 0.5ZM10.3805 11.864C10.3525 11.9341 10.3098 11.9973 10.2554 12.0495C10.2009 12.1018 10.1359 12.1417 10.0647 12.1667C9.99353 12.1917 9.91781 12.2012 9.84266 12.1945C9.7675 12.1879 9.69465 12.1652 9.62899 12.128L7.59274 10.5455L6.28624 11.7515C6.25591 11.7739 6.22044 11.7883 6.1831 11.7934C6.14575 11.7985 6.10771 11.7942 6.07249 11.7808L6.32299 9.539L6.33049 9.54575L6.33574 9.5015C6.33574 9.5015 9.99949 6.1655 10.1487 6.02375C10.3002 5.882 10.25 5.85125 10.25 5.85125C10.259 5.67875 9.97924 5.85125 9.97924 5.85125L5.12449 8.97425L3.10324 8.28575C3.10324 8.28575 2.79274 8.17475 2.76349 7.9295C2.73274 7.6865 3.11299 7.5545 3.11299 7.5545L11.1507 4.361C11.1507 4.361 11.8115 4.067 11.8115 4.5545L10.3805 11.864Z" fill="#12D576" />
                                 </svg>
                             )} {dis !== undefined && (
-                                <svg onClick={(event) => { window.open(dis, "_blank"); }} xmlns="http://www.w3.org/2000/svg" width="1.3vw" height="1.3vw" style={{ cursor: "pointer", fill: "#12D576", margin: "0.4vw" }} className="bi bi-discord" viewBox="0 0 16 16">
+                                <svg onClick={(event) => { window.open(dis, "_blank"); }} xmlns="http://www.w3.org/2000/svg" width="1.3vw" height="1.3vw" style={{ cursor: "pointer", fill: "white", margin: "0.4vw" }} className="bi bi-discord" viewBox="0 0 16 16">
                                     <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />
                                 </svg>
                             )}
                         </div>
-                        <div style={{ display: "flex", gap: "2px", color: "white", paddingRight: "3vw", fontSize: "1.3vw" }}>
+                        <div id='audit_kyc' style={{ display: "flex", gap: "8px",paddingTop:'1vw', color: "white", paddingRight: "3vw", fontSize: "1.3vw" }}>
                             {audit != "" && (
-                                <Link className='auditLink' onClick={(event) => { window.open(audit, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid white", padding: "0.2vw 0.5vw", borderRadius: "5vw", height: "2.7vw" }}>
-                                    <div><svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" style={{ fill: "#12D576" }} fill="currentColor" className="bi bi-shield-check" viewBox="0 0 16 16">
-                                        <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
-                                        <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                    </svg></div>
-                                    <div>Audit</div>
+                                <Link className='auditLink' onClick={(event) => { window.open(audit, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid #00FF83", padding: "0.2vw 0.5vw", borderRadius: "10px", height: "2.7vw",backgroundColor:'#001F10' }}>
+                                    <div >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.4vw" height="1.4vw" style={{fill:'#00FF83',margin:'auto 0'}} fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
+                                    <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                                    <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                    </svg>
+                                    </div>
+                                    <div style={{margin:'auto 0'}}>Audit</div>
                                 </Link>
                             )}
                             {kyc != "" && (
-                                <Link className='kycLink' onClick={(event) => { window.open(kyc, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid white", padding: "0.2vw 0.5vw", borderRadius: "5vw", height: "2.7vw" }}>
-                                    <div><svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" style={{ fill: "#12D576" }} fill="currentColor" className="bi bi-shield-check" viewBox="0 0 16 16">
-
-                                        <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
-                                        <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                    </svg></div>
-                                    <div>KYC+</div>
+                                <Link className='kycLink' onClick={(event) => { window.open(kyc, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid #00FF83", padding: "0.2vw 0.5vw", borderRadius: "10px", height: "2.7vw",backgroundColor:'#001F10'  }}>
+                                    <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.4vw" height="1.4vw" style={{fill:'#00FF83',margin:'auto 0'}} fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
+                                    <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                                    <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                    </svg>    
+                                    </div>
+                                    <div style={{margin:'auto 0'}}>KYC+</div>
                                 </Link>
                             )}
                             {vetted != "" && (
 
-                                <Link className='vettedLink' onClick={(event) => { window.open(vetted, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid white", padding: "0.2vw 0.5vw", borderRadius: "5vw", height: "2.7vw" }}>
-                                    <div><svg xmlns="http://www.w3.org/2000/svg" width="1.1vw" height="1.1vw" style={{ fill: "#12D576" }} fill="currentColor" className="bi bi-shield-check" viewBox="0 0 16 16">
-                                        <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
-                                        <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                    </svg></div>
-                                    <div>Vetted</div>
+                                <Link className='vettedLink' onClick={(event) => { window.open(vetted, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid #00FF83", padding: "0.2vw 0.5vw", borderRadius: "10px", height: "2.7vw",backgroundColor:'#001F10'  }}>
+                                    <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.4vw" height="1.4vw" style={{fill:'#00FF83',margin:'auto 0'}} fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
+                                    <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                                    <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                    </svg>   
+                                    </div>
+                                    <div style={{margin:'auto 0'}}>Vetted</div>
                                 </Link>
                             )}
                         </div>
@@ -519,9 +525,9 @@ function BuySale(props) {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="buysection-parent">
             <div className="buysection">
-                <div style={{ textAlign: 'center', backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
+                <div style={{ textAlign: 'center',border:'3px solid #00FF83', backgroundColor: "#000", borderRadius: "1vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
                     <div>
                         <span className='buysection-status' style={{ fontSize: "1.5vw", paddingBottom: '3vw', fontWeight: "600" }}>{status}</span>
                     </div>
@@ -537,7 +543,7 @@ function BuySale(props) {
                         </div>
                     </div> */}
 
-                    <div className='buysection-soft' style={{ fontSize: "1.2vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                    <div className='buysection-soft' style={{ fontSize: "1vw",fontWeight:'400', display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                         {soft != 0 && (
                             <div>{soft}{" " + token}</div>
                         )}
@@ -550,12 +556,12 @@ function BuySale(props) {
 
                     {allowed && (
                         <div className="buysection-input" style={{ margin: '3px 0', fontSize: "1.1vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                            <div className='buysale-input' style={{ border: "2px solid #464646", display: "flex", borderRadius: "7vw", padding: "0.3vw 10px" }}><input value={buyamount}
+                            <div className='buysale-input' style={{ border: "2px solid #464646", display: "flex", borderRadius: "10px", padding: "0.3vw 10px" }}><input value={buyamount}
                                 onChange={(e) => setbuyamount(e.target.value)}
                                 placeholder={'0 ' + pay} style={{ marginBottom: '0', padding: "0", fontWeight: "600", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
-                                <div style={{ color: "#12D576", fontWeight: "700", margin: 'auto 0' }}>{pay}</div>
+                                <div style={{ color: "#00FF83", fontWeight: "700", margin: 'auto 0' }}>{pay}</div>
                             </div>
-                            <div className='buysale-button' onClick={() => { buyToken() }} style={{ cursor: "pointer", backgroundColor: "#12D576", padding: "9.6px 15px", borderRadius: "7vw" }}> BUY {' ' + token}
+                            <div className='buysale-button' onClick={() => { buyToken() }} style={{ cursor: "pointer", backgroundColor: "#00783D",border:'1px solid #00FF83', padding: "9.6px 20px", borderRadius: "10px" }}> BUY {' ' + token}
                             </div>
                         </div>
                     )}
@@ -577,7 +583,7 @@ function BuySale(props) {
                         <div className="expected-token">Your {pay} Balance</div>
                         <div className="expected-token"> {paybalance} </div>
                     </div>
-                    <Button className="expected-token" style={{ marginTop: '3vw' }} onClick={() => { addTokenMetamask(); }}>Add {token} To MetaMask
+                    <Button className="expected-token" style={{border:'1px solid #00954C',backgroundColor:'#00954C',marginTop: '1vw',padding:'10px 25px' }} onClick={() => { addTokenMetamask(); }}>Add {token} To MetaMask
                     </Button>
 
                 </div>

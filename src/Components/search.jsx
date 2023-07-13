@@ -180,22 +180,25 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
     }
 
     return (
-        <div onClick={() => { GoToSaleDetail(sale) }} style={{ cursor: "pointer", borderRadius: "1.5vw" }}>
-            <div className="status"style={{ fontSize: "1.3vw", fontWeight: "700", color: "#12D576", textAlign: "end", paddingRight: "1vw" }}>{topstatus}</div>
-            <div className="card" style={{ borderRadius: "1.5vw", backgroundColor: "rgba(70,70,70,0.4)" }}>
+        <div onClick={() => { GoToSaleDetail(sale) }} style={{ cursor: "pointer" }}>
+            <div style={{display:'flex',gap:'5px',width:'100%',justifyContent:'right'}}>
+                <svg  id='indicator' style={{marginTop:'12px',fill:`${topstatus=='Sale Live'?'#00FF83': `${topstatus=='Sale Upcoming'?'#00A3FF':'red'}`}`}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path width='8px' height='8px' d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>
+            <div className="status"style={{ fontSize: "20px", fontWeight: "700", color: "white", paddingRight: "19.2px" }}>{topstatus}</div>
+            </div>
+            <div className="card" style={{backgroundColor: "rgba(70,70,70,0.4)" }}>
                 <img src={image} alt={title} className="card-image" />
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <img src={coin_image} className='coin-image' style={{ paddingLeft: "2vw", position: "relative", bottom: "0.3vw", width: "5vw", height: "3vw" }} alt="not found" />
-                    <div style={{ display: "flex", paddingRight: "1.5vw", paddingTop: "2vw", gap: "0.1vw" }} className="audit">
+                    <img src={coin_image} className='coin-image' style={{ paddingLeft: "38.4px", position: "relative", bottom: "5.8px", width: "96px", height: "57.6px" }} alt="not found" />
+                    <div style={{ display: "flex", paddingRight: "29px", paddingTop: "38.5px", gap: "10px" }} className="audit">
 
                         {audit != "" && (
-                            <div onClick={(event) => { event.stopPropagation(); window.open(audit, "_blank"); }} style={{ cursor: "pointer", padding: "0.3vw 0.5vw", fontWeight: "700", color: '#12D576', border: "1px solid #12D576", borderRadius: "5vw" }}>Audit</div>
+                            <div onClick={(event) => { event.stopPropagation(); window.open(audit, "_blank"); }} style={{ cursor: "pointer",background:'#009A4E', padding: "2px 10px",fontSize:'12px', fontWeight: "400", color: 'white', border: "1px solid #00FF83", borderRadius: "8px" }}>Audit</div>
                         )}
                         {kyc != "" && (
-                            <div onClick={(event) => { event.stopPropagation(); window.open(kyc, "_blank"); }} style={{ cursor: "pointer", padding: "0.3vw 0.5vw", fontWeight: "700", color: '#12D576', border: "1px solid #12D576", borderRadius: "5vw" }}>KYC+</div>
+                            <div onClick={(event) => { event.stopPropagation(); window.open(kyc, "_blank"); }} style={{ cursor: "pointer",background:'#009A4E', padding: "2px 10px",fontSize:'12px', fontWeight: "400", color: 'white', border: "1px solid #00FF83", borderRadius: "8px" }}>KYC+</div>
                         )}
                         {vetted != "" && (
-                            <div onClick={(event) => { event.stopPropagation(); window.open(vetted, "_blank"); }} style={{ cursor: "pointer", padding: "0.3vw 0.5vw", fontWeight: "700", color: '#12D576', border: "1px solid #12D576", borderRadius: "5vw" }}>Vetted</div>
+                            <div onClick={(event) => { event.stopPropagation(); window.open(vetted, "_blank"); }} style={{ cursor: "pointer",background:'#009A4E', padding: "2px 10px",fontSize:'12px', fontWeight: "400", color: 'white', border: "1px solid #00FF83", borderRadius: "8px" }}>Vetted</div>
                         )}
                     </div>
                 </div>
@@ -210,21 +213,21 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
         <span className="new-text">10BNB</span> */}
                     </div>
                     <div className="box-container" style={{paddingTop:"15px"}}>
-                        <div className="box box-1" style={{ fontSize: "0.6vw" }}>
+                        <div className="box box-1" style={{ fontSize: "12px" }}>
                             <span className="box-text">Softcap</span>
                             <span className="Softcap-text">{soft} </span>
                         </div>
-                        <div className="box box-2" style={{ fontSize: "0.6vw" }}>
+                        <div className="box box-2" style={{ fontSize: "12px" }}>
                             <span className="box-text">Hardcap</span>
                             <span className="Softcap-text">{hard} </span>
 
                         </div>
                     </div> <div className="box-container">
-                        <div className="box box-3" style={{ fontSize: "0.6vw" }}>
+                        <div className="box box-3" style={{ fontSize: "12px" }}>
                             <span className="box-text">Liquidity</span>
                             <span className="Liquidity-text">{liq}%</span>
                         </div>
-                        <div className="box box-4" style={{ fontSize: "0.6vw" }}>
+                        <div className="box box-4" style={{ fontSize: "12px" }}>
                             <span className="box-text">Locked</span>
                             <span className="Locked-text">{lock} Days  </span>
                         </div>
@@ -232,10 +235,10 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
                     </div>
                     <div className="line"> </div>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <div className="end" style={{ fontSize: "0.8vw", width: "50%" }}>{end}</div>
-                        <div className='note' style={{ dispaly: "flex", position: "relative", bottom: "2.5vw" }}>
-                            <svg height="2vw" width="2vw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z" /></svg>
-                            <svg height="2vw" width="2vw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" /></svg>
+                        <div className="end" style={{ fontSize: "14px", width: "50%" }}>{end}</div>
+                        <div className='note' style={{position: "relative", bottom: "38.5px" }}>
+                        <svg width='25px' height='25px' style={{fill:'white'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/></svg>
+                        <svg width='25px' height='25px' style={{fill:'white'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>
                         </div>
                     </div>
                     <div>

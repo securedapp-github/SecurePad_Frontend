@@ -16,6 +16,9 @@ td,th{
         width:1.6vw !important;
         height:1.6vw !important;
     }
+    #audit_kyc img{
+        width:18px !important
+    }
 }
 @media only screen and (max-width:1200px){
     .buysale-back{
@@ -67,8 +70,11 @@ td,th{
 }
 
 @media only screen and (max-width:769px){
+    .tokenSale1{
+        padding:1vw 0 !important; 
+    }
     .main-body{
-        width:351px !important;
+        width:400px !important;
     }
     .buysale-desc{
         font-size:15px !important;
@@ -79,8 +85,8 @@ td,th{
 }
 
 @media only screen and (max-width:756px){
-    .buysection{
-        width:351px !important;
+    .buysection-parent{
+        width:400px !important;
     }
     .buysection-status{
         font-size:15px !important;
@@ -154,6 +160,18 @@ td,th{
 @media only screen and (max-width:450px){
     .buysale-back svg{
         margin-top:10px !important;
+    }
+    
+}
+@media only screen and (max-width:400px){
+    .buysale-sale{
+        font-size: 12px !important;
+    }
+    .buysection-parent{
+        width:98% !important;
+    }
+    .main-body{
+        width:98% !important;
     }
     
 }
