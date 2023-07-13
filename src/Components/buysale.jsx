@@ -591,7 +591,7 @@ function BuySale(props) {
             {((cliff > 0 || release > 0)) && (
                 <div className="claimsection">
 
-                    <div style={{ textAlign: 'center', backgroundColor: "rgba(70,70,70,0.4)", borderRadius: "3vw", marginTop: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
+                    <div style={{ textAlign: 'center', backgroundColor: "#000",border:'3px solid #00FF83', borderRadius: "1vw", marginTop: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
 
                         <div style={{ paddingBottom:'1vw',display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
                             <div className="expected-token" style={{width:'100%',textAlign:'center',fontSize:'25px',fontWeight:'500'}}> Vesting Release Schedule</div>
