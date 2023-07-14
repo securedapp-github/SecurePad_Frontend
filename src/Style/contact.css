@@ -119,9 +119,9 @@ h1.contact {
     align-items: center;
   }
   
-  .dark-theme {
+  /* .dark-theme {
     background-image: linear-gradient(to right, black, rgb(1, 30, 81));
-  }
+  } */
   
   .light-theme {
     background-image: linear-gradient(to right, #FBFBFB, #bff2d9);

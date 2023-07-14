@@ -157,7 +157,7 @@ a{
         padding-left:151px !important;
     }
 }
-@media only screen and (max-width:1298px){
+@media only screen and (max-width:1100px){
     #comp_name{
         display:none !important;
     }
@@ -234,7 +234,10 @@ a{
         background-color: #101010;
     }
     .dashboard{
-        padding-left:15px !important;
+        padding-left:0px !important;
+    }
+    .home{
+        padding-left: 15px !important;
     }
   }
 

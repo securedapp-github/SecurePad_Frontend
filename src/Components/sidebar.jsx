@@ -120,12 +120,18 @@ ThemeIcon();
   function NavIcons() {
       return (
       <>
-        <Link to="/search" className="rihtLink" id='sales'> <div style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>PreSales</div>
+        <Link to="/search" className="rihtLink" id='sales'> <div onClick={()=>{
+                    setCol([false,false,false,false,false,false,false,false,false,false,false,false,false])
+                }} style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>PreSales</div>
         </Link>
 
-        <Link to="/pricing" className="rihtLink" id='pricing'><div style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>Pricing</div>
+        <Link to="/pricing" className="rihtLink" id='pricing'><div onClick={()=>{
+                    setCol([false,false,false,false,false,false,false,false,false,false,false,false,false])
+                }} style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>Pricing</div>
         </Link>
-        <Link to="/contact" className="rihtLink" id='contact'><div style={{ fontWeight: "400", padding: "10px",color:`${theme==='Dark' ? 'white':'black'}`, fontSize: "18px", paddingRight: "25px" }}>Contact</div>
+        <Link to="/contact" className="rihtLink" id='contact'><div onClick={()=>{
+                    setCol([false,false,false,false,false,false,false,false,false,false,false,false,false])
+                }} style={{ fontWeight: "400", padding: "10px",color:`${theme==='Dark' ? 'white':'black'}`, fontSize: "18px", paddingRight: "25px" }}>Contact</div>
         </Link> 
         <ConnectButton showBalance={false} />
         </>)
@@ -156,7 +162,7 @@ ThemeIcon();
           </Link> */}
         <div className="sidebar" id='sidebar2' style={{backgroundColor:`${theme==='Dark' ? '#101010':'whitesmoke'}`}}>
             <Link to='/'><div style={{paddingTop:'1.389vw'}} className='expanded_2' onClick={()=>{
-                    setCol([false,false,false,false,false,false,false,false,false,false,false])
+                    setCol([false,false,false,false,false,false,false,false,false,false,false,false,false])
                 }}>
             <svg id='logo_1' style={{width:'100%',marginRight:'2px'}} width="3.2vw" height="3.2vw" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <rect x="0.5" width="55" height="55" fill="url(#pattern0)"/>
@@ -173,7 +179,7 @@ ThemeIcon();
             <div style={{paddingTop:'1.62vw',display:'flex',flexDirection:'column',height:'70%',justifyContent:'space-between'}}>
                 <Link to='/'>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([true,false,false,false,false,false,false,false,false,false,false])
+                    setCol([true,false,false,false,false,false,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="24px/icon/home">
@@ -200,7 +206,7 @@ ThemeIcon();
                 </Link>
                 <Link to='/wallet'>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([false,true,false,false,false,false,false,false,false,false,false])
+                    setCol([false,true,false,false,false,false,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="24px/icon/user">
@@ -213,7 +219,7 @@ ThemeIcon();
                 </Link>
                 <Link to='/token'>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([false,false,true,false,false,false,false,false,false,false,false])
+                    setCol([false,false,true,false,false,false,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="24px/icon/credit-card">
@@ -226,7 +232,7 @@ ThemeIcon();
                 </Link>
                 <Link to='/manage'>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([false,false,false,true,false,false,false,false,false,false,false])
+                    setCol([false,false,false,true,false,false,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_342_1547)">
@@ -244,7 +250,7 @@ ThemeIcon();
                 </Link>
                 <Link to='/contract'>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([false,false,false,false,true,false,false,false,false,false,false])
+                    setCol([false,false,false,false,true,false,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="send">
@@ -256,7 +262,7 @@ ThemeIcon();
                 </div> 
                 </Link>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([false,false,false,false,false,true,false,false,false,false,false])
+                    setCol([false,false,false,false,false,true,false,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="dollar-sign">
@@ -268,7 +274,7 @@ ThemeIcon();
                 </div>
                 <Link to='/sale'>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([false,false,false,false,false,false,true,false,false,false,false])
+                    setCol([false,false,false,false,false,false,true,false,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="tag">
@@ -281,7 +287,7 @@ ThemeIcon();
                 </Link>
                 <Link to='/lock'>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([false,false,false,false,false,false,false,true,false,false,false])
+                    setCol([false,false,false,false,false,false,false,true,false,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="lock">
@@ -293,7 +299,7 @@ ThemeIcon();
                 </div>
                 </Link>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([false,false,false,false,false,false,false,false,true,false,false])
+                    setCol([false,false,false,false,false,false,false,false,true,false,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="life-buoy">
@@ -309,7 +315,7 @@ ThemeIcon();
                 <div className='expanded-2' style={{color:col[8] ? '#12D576':'white'}}>Staking Pools</div>
                 </div>
                 <div className='expanded' style={{marginTop:'15px'}} onClick={()=>{
-                    setCol([false,false,false,false,false,false,false,false,false,true,false])
+                    setCol([false,false,false,false,false,false,false,false,false,true,false,false,false])
                 }}>
                 <svg style={{width:'100%',marginRight:'2px',fill:'transparent'}} width="1.5vw" height="1.5vw" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="rocket" clip-path="url(#clip0_342_1576)">

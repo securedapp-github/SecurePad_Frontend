@@ -5,19 +5,22 @@
   .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
-    margin:0 auto;
+    justify-content:space-evenly;
     gap:2vw;
+    padding:0 2vw;
     margin-top: 20px;
-    border-radius: 200px;
   }
   
+  #indicator{
+    width:8px !important;
+    height:8px !important;
+  }
   .card {
-    width: 384px;
-    height: 576px;
-    border-radius: 2vw;
+    width: 360px;
+    border-radius: 15px !important;
     transition: transform 0.2s ease-in-out;
-    background-color:#12083d ;
+    background-color:#000 !important;
+    border:1px solid #00FF83 !important;
   }
  
   
@@ -28,8 +31,8 @@
   
   .card-image {
     width:100%;
-    height:7vw;
-    border-radius: 1.5vw;
+    height:140px;
+    border-radius: inherit;
     margin-bottom: -15px;
     
   }
@@ -38,12 +41,12 @@
     display: flex;
     flex-direction: column;
    height:100%;
-   padding:0 1vw;
+   padding:0 19.2px;
   }
   
   .card-title {
-    font-size: 2vw;
-    padding-top: 1vw;
+    font-size: 38.5px;
+    padding-top: 19.2px;
     text-align: left;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-bottom: -5px ;
@@ -64,7 +67,7 @@
     display: block;
     margin-bottom: 5px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 0.8vw;
+    font-size: 14px;
     margin-top:-8px;
     font-weight: 600;
     color: antiquewhite;
@@ -90,24 +93,25 @@
 
   .progress-bar-container {
     width: 100%;
-    height: 0.8vw;
-    margin-bottom: 1vw;
+    height: 15.5px;
+    margin-bottom: 19.2px;
   }
   
   .progress-bar {
     width: 100%;
-    height: 100%;
+    height: 80%;
     border-radius: 10px;
     margin-right: 20px;
     color: #464646;
   }
   
   .progress-bar::-webkit-progress-value {
-    background-color: #11e615fe; /* Customize the color of the progress bar */
+    border-radius: inherit !important;
+    background:linear-gradient(90deg, #00EC79 0%, #00D9F5 100%) !important; /* Customize the color of the progress bar */
   }
   
   .progress-bar::-webkit-progress-bar {
-    background-color: #f0f0f0; /* Customize the background color of the progress bar */
+    background-color: #767676; /* Customize the background color of the progress bar */
   }
 
 /* box details for softcap */
@@ -120,39 +124,38 @@
   }
   
   .box {
-    width:50%;
-    padding:0.5vw 0vw;
+    width:47%;
+    padding:10px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius:5vw;
-    margin-top: 0.78125vw;
+    border-radius:15px;
+    margin-top: 15px;
     border: 2px solid;
   }
   
   .box-text {
     color: #3516d3;
     border-radius: 25px;
-    border-color: #000000;
   }
   
   .box-1 {
-    background-color: #85858d5e;
+    border-color: #00FF83 !important;
     
   }
   
   .box-2 {
-    background-color: #85858d5e;
+    border-color: #00FF83 !important;
     
   }
   
   .box-3 {
-    background-color: #85858d5e;
+    border-color: #00FF83 !important;
     
   }
 
   .box-4 {
-    background-color: #85858d5e;
+    border-color: #00FF83 !important;
   }
   
   .box-1 .box-text {
@@ -241,244 +244,7 @@
   margin-right: 10px; /* Adjust the spacing between icons as needed */
   color:#ffffff;
 }
-@media only screen and (max-width:1824px){
-  .card-container{
-    padding-left: 0.3vw !important;
-  }
-}
-@media only screen and (max-width:1780px){
-  .note{
-    bottom:3vw !important;
-  }
-}
-@media only screen and (max-width:1752px){
-  .card{
-    width:360px !important;
-  }
-}
-@media only screen and (max-width:1649px){
-  .card{
-    width:330px !important;
-  }
-}
-@media only screen and (max-width:1521px){
-  .card{
-    width:310px !important;
-  }
-}
-@media only screen and (max-width:1500px){
-  .note{
-    bottom:3.5vw !important;
-  }
-  .end{
-    font-size:17px !important;
-  }
-  .progress-text{
-    font-size:17px !important;
-  }
-}
-@media only screen and (max-width:1436px){
-  .card{
-    width:300px !important;
-  }
-}
-@media only screen and (max-width:1393px){
-  .card{
-    width:300px !important;
-  }
-  .card-container{
-    width:83% !important;
-  }
-}
-@media only screen and (max-width:1270px){
-  .card-image{
-    height:10vw !important;
-  }
-  .audit{
-    padding-top: 3vw !important;
-  }
-  .audit div{
-    height:3vw !important;
-  }
-  .note{
-    bottom:4.3vw !important;
-  }
-  .note svg{
-    width:2.5vw !important;
-    height:2.5vw !important;
-  }
-  .coin-image{
-    width:7vw !important;
-    height:5vw !important;
-  }
-  .status{
-    font-size:23px !important;
-  }
-}
-@media only screen and (max-width:1254px){
-  .card-container{
-    width:90% !important;
-  }
-}
-@media only screen and (max-width:1199px){
-  .card-container{
-    width:95% !important;
-  }
-}
-@media only screen and (max-width:1129px){
-  .card{
-    width:300px !important;
-  }
-}
-
-@media only screen and (max-width:1102px){
-  .card-container{
-    width:100% !important;
-  }
-}
-@media only screen and (max-width:1050px){
-  .card-container{
-    width:70% !important;
-  }
-}
-
-@media only screen and (max-width:1000px){
-  .card-title{
-    font-size: 20px !important;
-  }
-  .status{
-    font-size:20px !important;
-  }
-  .audit div{
-    height:3.5vw !important;
-  }
-  .search-container{
-    height:4vw !important;
-  }
-  .note{
-    bottom:6vw !important;
-  }
-  .note svg{
-    width:3vw !important;
-    height:3vw !important;
-  }
-}
-@media only screen and (max-width:995px){
-  .card-container{
-    width:80% !important;
-  }
-}
-@media only screen and (max-width:976px){
-  .card-coin-img{
-    width:8vw !important;
-    height:6vw !important;
-  }
-}
-@media only screen and (max-width:1199px){
-  .card-container{
-    width:90% !important;
-  }
-}
-@media only screen and (max-width:850px){
-  .card-coin-img{
-    width:10vw !important;
-    height:8vw !important;
-  }
-  .note{
-    bottom:7.2vw !important;
-  }
-  .note svg{
-    width:4vw !important;
-    height:4vw !important;
-  }
-}
-@media only screen and (max-width:1199px){
-  .card-container{
-    width:100% !important;
-  }
-}
-@media only screen and (max-width:773px){
-  .card{
-    width:300px !important;
-  }
-}
-
-@media only screen and (max-width:750px){
-  .audit{
-    padding-top: 3vw !important;
-  }
-  .audit div{
-    height:5vw !important;
-  }
-  .card{
-    width:270px !important;
-  }
-  .search-container{
-    height:6vw !important;
-  }
-  .card-image{
-    height:15vw !important;
-  }
-  .audit{
-    padding-top:3vw !important;
-  }
-  .coin-image{
-    width:9vw !important;
-    height:7vw !important;
-  }
-}
-@media only screen and (max-width:701px){
-  .card-container{
-    width:85% !important;
-  }
-}
-@media only screen and (max-width:653px){
-  .card-container{
-    width:96% !important;
-  }
-}
-@media only screen and (max-width:610px){
-  .note{
-    bottom:10vw !important;
-  }
-  .end{
-    font-size: 15px !important;
-  }
-  .progress-text{
-    font-size:15px !important;
-  }
-  .card-image{
-    height:20vw !important;
-  }
-}
-@media only screen and (max-width:577px){
-  .card-container{
-    justify-content: center !important;
-  }
-}
-@media only screen and (max-width:500px){
-  .note{
-    bottom:12vw !important;
-  }
-  .audit{
-    padding-top: 5vw !important;
-  }
-  .note svg{
-    width:10vw !important;
-  }
-  .coin-image{
-    width:11vw !important;
-    height:9vw !important;
-  }
-  .audit div{
-    font-size:12px !important;
-  }
-}
-@media only screen and (max-width:404px){
-  .note{
-    bottom:15vw !important;
-  }
-  .card{
-    width:250px !important;
-  }
+.note{
+  display: flex !important;
+  gap:15px !important;
 }
