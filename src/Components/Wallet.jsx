@@ -73,14 +73,6 @@ function Wallet(props) {
             event = "Token Claimed";            
           }else if (data[i].event_type == 2) {
             event = "Token Creation";            
-          }else if (data[i].event_type == 21) {
-            event = "Mint Token";            
-          }else if (data[i].event_type == 22) {
-            event = "Burn Token";            
-          }else if (data[i].event_type == 2) {
-            event = "Token Creation";            
-          }else if (data[i].event_type == 2) {
-            event = "Token Creation";            
           }else if (data[i].event_type == 3) {
             event = "Sale Creation";            
           }else if (data[i].event_type == 4) {
@@ -91,9 +83,7 @@ function Wallet(props) {
             event = "Staking Pool Creation";            
           }
 
-          data[i].data = (data[i].data =="")?"-":data[i].data;
-
-          historydetails[i] = { 'id': i + 1, 'activity': event, 'entity': data[i].event_name, 'data': data[i].data, 'time': data[i].created_on };
+          historydetails[i] = { 'id': i + 1, 'activity': event, 'entity': data[i].event_name, 'time': data[i].created_on };
           console.log(historydetails[i]);
           sethistoryArray(prevItems => [...prevItems, historydetails[i]]);
         }
@@ -253,7 +243,7 @@ function Wallet(props) {
       if (historyArray.length == 0) {
         await getHistory();
       }
-      setTableHeaders(["ID", "Activity", "Entity Name","Details", "Time"]);
+      setTableHeaders(["ID", "Activity", "Entity", "Time"]);
     } else if (buttonIndex === 0) {
       if (tokenArray.length == 0) {
         await getToken();
@@ -277,6 +267,13 @@ function Wallet(props) {
     toast('Address Copied');
   };
 
+  let style_obj = {
+    borderRadius: "10px",
+    marginRight: "5px",
+    fontSize: "18px",
+    padding: "5px 13px",
+  }
+
   return (
     <div>
       <ToastContainer
@@ -291,83 +288,78 @@ function Wallet(props) {
       {address ? (
         <section className="walletSection" style={{ ...blurryDivStyle }}>
           <div className="textContainer">
-            <h2 className="headText">User Profile</h2>
+            <h2 className="headText" >User Profile</h2>
           </div>
           <div className="table-container">
             <table className="custom-table">
               <thead>
                 <tr>
                   <th scope="col" className="custom-th">
-                    Wallet
+                    <div className="inner">Wallet</div>
                   </th>
                   <th scope="col" className="custom-th">
-                    Email
+                  <div className="inner-m">Email<span></span><span></span></div>
                   </th>
                   <th scope="col" className="custom-th">
-                    KYC
+                  <div className="inner-l">KYC</div>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr style={{ color: `${theme === 'Dark' ? 'white' : 'black'}` }}>
                   <td onClick={() => { copyAddress(address) }} >{formatAddress(address)}</td>
-                  <td><Button onClick={() => { toast('Coming Soom'); }}>Verify</Button></td>
-                  <td><Button onClick={() => { toast('Coming Soom'); }}>Initiate</Button></td>
+                  <td >< button className="N_button" onClick={() => { toast('Coming Soom'); }}>Verify</button></td>
+                  <td>< button className="N_button" onClick={() => { toast('Coming Soom'); }}>Initiate</button></td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div className="dynamicTable" style={{overflow:'auto'}}>
+          <div className="dynamicTable" style={{overflow:'auto',padding: '19px'}}>
             <div className="button-div">
-              <button
+              <button className='wallet_btn'
                 onClick={() => handleButtonClick(3)}
                 style={{
-                  backgroundColor: activeButton === 3 ? "#12D576" : "transparent",
-                  color: activeButton === 3 ? "black" : "gray",
-                  borderRadius: "10px",
-                  marginRight: "5px",
-                  fontSize: "18px",
-                  padding: "5px 13px",
+                  backgroundColor: activeButton === 3 ? "#009c4f" : "",
+                  color: activeButton === 3 ? "white" : "#a8a8a8",
+                  borderColor: activeButton === 3 ? "#8080802e" : "#01a158",
+                  boxShadow: activeButton === 3 ? '0px 0px 20px 8px #009c4fab' : '',
+                  ...style_obj
                 }}
               >
                 Get History
               </button>
-              <button
+              <button className='wallet_btn'
                 onClick={() => handleButtonClick(0)}
                 style={{
-                  backgroundColor: activeButton === 0 ? "#12D576" : "transparent",
-                  color: activeButton === 0 ? "black" : "gray",
-                  borderRadius: "10px",
-                  marginRight: "5px",
-                  fontSize: "18px",
-                  padding: "5px 13px",
+                  backgroundColor: activeButton === 0 ? "#12D576" : "",
+                  color: activeButton === 0 ? "white" : "",
+                  borderColor: activeButton === 0 ? "#8080802e" : "",
+                  boxShadow: activeButton === 0 ? '0px 0px 20px 8px #009c4fab' : '',
+                  ...style_obj
                 }}
               >
                 Get Tokens
               </button>
-              <button
+              <button className='wallet_btn'
                 onClick={() => handleButtonClick(1)}
                 style={{
-                  backgroundColor: activeButton === 1 ? "#12D576" : "transparent",
-                  color: activeButton === 1 ? "black" : "gray",
-                  borderRadius: "10px",
-                  marginRight: "5px",
-
-                  fontSize: "18px",
-                  padding: "5px 13px",
+                  backgroundColor: activeButton === 1 ? "#12D576" : "",
+                  color: activeButton === 1 ? "white" : "",
+                  borderColor: activeButton === 1 ? "#8080802e" : "",
+                  boxShadow: activeButton === 1 ? '0px 0px 20px 8px #009c4fab' : '',
+                  ...style_obj
                 }}
               >
                 Get Sales
               </button>
-              <button
+              <button className='wallet_btn'
                 onClick={() => handleButtonClick(2)}
                 style={{
-                  backgroundColor: activeButton === 2 ? "#12D576" : "transparent",
-                  color: activeButton === 2 ? "black" : "gray",
-                  borderRadius: "10px",
-                  marginRight: "5px",
-                  padding: "5px 13px",
-                  fontSize: "18px",
+                  backgroundColor: activeButton === 2 ? "#12D576" : "",
+                  color: activeButton === 2 ? "white" : "",
+                  borderColor: activeButton === 2 ? "#8080802e" : "",
+                  boxShadow: activeButton === 2 ? '0px 0px 20px 8px #009c4fab' : '',
+                  ...style_obj
                 }}
               >
                 Get Locks
@@ -380,64 +372,72 @@ function Wallet(props) {
                   <tr>
                     {tableHeaders.map((header, index) => (
                       <th className="custom-th" key={index}>
+                        <div className={`${index === 0 ? 'inners2' : index === tableHeaders.length - 1 ? 'inner-ls2' : 'inner-ms2'}`}>
+                        {index > 0  ? <span></span>  : null}
+                        {index > 0  ? <span></span>  : null}
                         {header}
+                        </div>
                       </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-
+                  <tr>
+                      <td><div class="td_data">hello<span></span></div></td>{/* sample data for testing..! */}
+                      <td><div class="td_data">hello<span></span></div></td>{/* sample data for testing..! */}
+                      <td><div class="td_data">hello<span></span></div></td>{/* sample data for testing..! */}
+                      <td><div class="td_data">hello<span></span></div></td>{/* sample data for testing..! */}
+                  </tr>
                   {activeButton == 0 && tokenArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
-                      <td>{row.id}</td>
-                      <td onClick={() => { copyAddress(row.token) }}>{formatAddress(row.token)}</td>
-                      <td>{row.name}</td>
-                      <td>{row.symbol}</td>
-                      <td>
+                      <td><div class="td_data">{row.id}</div></td>
+                      <td onClick={() => { copyAddress(row.token) }}><div class="td_data">{formatAddress(row.token)}<span></span></div></td>
+                      <td><div class="td_data">{row.name}<span></span></div></td>
+                      <td><div class="td_data">{row.symbol}<span></span></div></td>
+                      <td><div class="td_data">
                         <Link to={`/managetoken/${row.token}`} >
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS69qJSL7Xd7OV7FOJNW9-HBjjWNDEAq5OW6A&usqp=CAU" alt="Google Logo" width="20px" height="20px" />
                         </Link>
-                      </td>
+                        <span></span></div></td>
                     </tr>
                   ))}
                   {activeButton == 1 && salesArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
-                      <td>{row.id}</td>
-                      <td onClick={() => { copyAddress(row.sale) }}>{formatAddress(row.sale)}</td>
-                      <td onClick={() => { copyAddress(row.token) }}>{formatAddress(row.token)}</td>
-                      <td onClick={() => { copyAddress(row.payment) }}>{formatAddress(row.payment)}</td>
-                      <td>{row.status}</td>
-                      <td>
+                      <td><div class="td_data">{row.id}<span></span></div></td>
+                      <td onClick={() => { copyAddress(row.sale) }}><div class="td_data">{formatAddress(row.sale)}<span></span></div></td>
+                      <td onClick={() => { copyAddress(row.token) }}><div class="td_data">{formatAddress(row.token)}<span></span></div></td>
+                      <td onClick={() => { copyAddress(row.payment) }}><div class="td_data">{formatAddress(row.payment)}<span></span></div></td>
+                      <td><div class="td_data">{row.status}<span></span></div></td>
+                      <td><div class="td_data">
                         <Link to={`/managesale/${row.sale}`} >
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS69qJSL7Xd7OV7FOJNW9-HBjjWNDEAq5OW6A&usqp=CAU" alt="Google Logo" width="20px" height="20px" />
                         </Link>
-                      </td>
+                        <span></span></div></td>
                     </tr>
                   ))}
 
                   {activeButton == 2 && locksArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
-                      <td>{row.id}</td>
-                      <td onClick={() => { copyAddress(row.lock) }}>{formatAddress(row.lock)}</td>
-                      <td onClick={() => { copyAddress(row.token) }}>{formatAddress(row.token)}</td>
-                      <td>{row.name}</td>
-                      <td>{row.duration}</td>
-                      <td>{row.amount}</td>
-                      <td>
+                      <td><div class="td_data">{row.id}<span></span></div></td>
+                      <td onClick={() => { copyAddress(row.lock) }}><div class="td_data">{formatAddress(row.lock)}<span></span></div></td>
+                      <td onClick={() => { copyAddress(row.token) }}><div class="td_data">{formatAddress(row.token)}<span></span></div></td>
+                      <td><div class="td_data">{row.name}<span></span></div></td>
+                      <td><div class="td_data">{row.duration}<span></span></div></td>
+                      <td><div class="td_data">{row.amount}<span></span></div></td>
+                      <td><div class="td_data">
                         <Link to={`/managelock/${row.lock}`} >
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS69qJSL7Xd7OV7FOJNW9-HBjjWNDEAq5OW6A&usqp=CAU" alt="Google Logo" width="20px" height="20px" />
                         </Link>
-                      </td>
+                        <span></span></div></td>
                     </tr>
                   ))}
 
                   {activeButton == 3 && historyArray.map((row) => (
                     <tr key={row.id} style={{ color: 'white' }}>
-                      <td>{row.id}</td>
-                      <td>{row.activity}</td>
-                      <td>{row.entity}</td>
-                      <td>{row.data}</td>
-                      <td>{row.time}</td>
+                      <td><div class="td_data">{row.id}<span></span></div></td>
+                      <td><div class="td_data">{row.activity}<span></span></div></td>
+                      <td><div class="td_data">{row.entity}<span></span></div></td>
+                      <td><div class="td_data">{row.time}<span></span></div></td>
                     </tr>
                   ))}
                 </tbody>
