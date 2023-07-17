@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
 import '../Style/buysale.css'
 import { formatAddress } from '../utils/address';
-import Shield from '../assets/Shield.png'
 
 import {
     useAccount,

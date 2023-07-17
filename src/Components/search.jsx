@@ -182,8 +182,8 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
     return (
         <div onClick={() => { GoToSaleDetail(sale) }} style={{ cursor: "pointer" }}>
             <div style={{display:'flex',gap:'5px',width:'100%',justifyContent:'right'}}>
-                <svg  id='indicator' style={{marginTop:'12px',fill:`${topstatus=='Sale Live'?'#00FF83': `${topstatus=='Sale Upcoming'?'#00A3FF':'red'}`}`}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path width='8px' height='8px' d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>
-            <div className="status"style={{ fontSize: "20px", fontWeight: "700", color: "white", paddingRight: "19.2px" }}>{topstatus}</div>
+                <svg  id='indicator' style={{marginTop:'10px',fill:`${topstatus=='Sale Live'?'#00FF83': `${topstatus=='Sale Upcoming'?'#00A3FF':'red'}`}`}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path width='8px' height='8px' d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>
+            <div className="status"style={{ fontSize: "17px", fontWeight: "700", color: "white", paddingRight: "19.2px" }}>{topstatus}</div>
             </div>
             <div className="card" style={{backgroundColor: "rgba(70,70,70,0.4)" }}>
                 <img src={image} alt={title} className="card-image" />
