@@ -308,7 +308,7 @@ margin-left: 90px;
 
 @media screen and (max-width: 768px) {
   
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 320px) {
     .container {
       align-items: center;
       justify-content: center;
@@ -375,5 +375,3 @@ margin-left: 90px;
     }
   }
 }
-
-

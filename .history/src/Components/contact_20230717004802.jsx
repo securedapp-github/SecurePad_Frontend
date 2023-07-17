@@ -2,20 +2,44 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faTelegram } from '@fortawesome/free-brands-svg-icons';
-
 import Img from '../assets/Illustration.png';
 import mail from '../assets/mail.png';
 import twitter from '../assets/twitter.png';
 import send from '../assets/send.png';
 import paperclip from '../assets/paperclip.png';
+import axios from 'axios';
 import '../Style/contact.css';
 
 function Contact(props) {
   const { theme } = props;
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleNameChange = (e) => {
     setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post('/api/send-email', { name, email, message })
+      .then(response => {
+        console.log(response.data);
+        // Optionally, show a success message or redirect to a thank you page
+      })
+      .catch(error => {
+        console.error(error);
+        // Handle error response
+      });
   };
 
   return (

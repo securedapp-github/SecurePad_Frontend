@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faTelegram } from '@fortawesome/free-brands-svg-icons';
-
 import Img from '../assets/Illustration.png';
 import mail from '../assets/mail.png';
 import twitter from '../assets/twitter.png';
@@ -13,10 +12,23 @@ import '../Style/contact.css';
 function Contact(props) {
   const { theme } = props;
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
   return (
     <div className="container">

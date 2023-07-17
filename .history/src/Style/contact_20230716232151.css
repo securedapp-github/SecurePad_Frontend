@@ -1,0 +1,44 @@
+
+@media screen and (max-width: 320px) {
+  .container {
+    align-items: center;
+  }
+  
+  .box-container {
+    width: auto;
+    height: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .inner-container {
+    width: auto;
+    height: auto;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+  }
+  
+  .centered-image {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .text-container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    text-align: center;
+  }
+  
+  .input-box,
+  .input2-box,
+  .input3-box {
+    width: 90%;
+    margin: 10px 0;
+  }
+  
+  .submit-button {
+    margin-left: 0;
+  }
+}

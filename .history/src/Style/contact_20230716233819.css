@@ -148,9 +148,9 @@ textarea{
   }
   
   .new-container {
-  border: 1px solid #02180;
-  background-color:black;
-  padding: 10px; 
+  border: 1px solid black;
+  background-color: black;
+  padding: 10px; /* Add padding as desired */
   margin-top: 30px; 
   width: 290px; 
   height: 290px;
@@ -307,8 +307,10 @@ margin-left: 90px;
 
 
 @media screen and (max-width: 768px) {
-  
-  @media screen and (max-width: 400px) {
+  /* Existing media query code for screens up to 768px width */
+
+  /* Mobile view code for screens up to 320px width */
+  @media screen and (max-width: 320px) {
     .container {
       align-items: center;
       justify-content: center;
@@ -317,7 +319,7 @@ margin-left: 90px;
     .box-container {
       width: auto;
       height: auto;
-      margin-left: -16px;
+      margin-left: 0;
       margin-right: 0;
       justify-content: center;
       align-items: center;
@@ -328,28 +330,11 @@ margin-left: 90px;
       height: auto;
       margin-left: 0;
       margin-right: 0;
-      margin-top: 1px;
-    }
-
-    .center-container {
-      margin-left: 0;
-      margin-right: 7px;
-      margin-top: 1px;
-    }
-    
-    .image-container {
-      margin-left:-1px;
-      margin-right:8px;
-      margin-top: 1px;
-    }
-    .new-container {
-      margin-left:-1px;
-      margin-right:8px;
-      margin-top: 5px;
+      margin-top: 10px;
     }
   
     .centered-image {
-      margin-left: 20px;
+      margin-left: 10px;
       margin-right: 0;
       justify-content: center;
     }
@@ -375,5 +360,3 @@ margin-left: 90px;
     }
   }
 }
-
-

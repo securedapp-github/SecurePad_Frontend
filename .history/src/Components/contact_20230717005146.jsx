@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faTelegram } from '@fortawesome/free-brands-svg-icons';
-
 import Img from '../assets/Illustration.png';
 import mail from '../assets/mail.png';
 import twitter from '../assets/twitter.png';
