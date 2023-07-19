@@ -169,7 +169,7 @@ a{
     }
     #logo_1{
         width:39px !important;
-        height:39px !important;
+        height:33px !important;
     }
     #logo_2{
         height:48.75px !important;
@@ -254,9 +254,9 @@ a{
         width:30px !important;
         height:30px !important;
     }
-    .navBrand{
+    /* .navBrand{
         display:none;
-    }
+    } */
     .dropdown{
         margin:0 !important;
     }
@@ -273,5 +273,31 @@ a{
     }
     #price_logo,#sale_logo{
         display:flex !important;
+    }
+    
+}
+@media (min-width: 100px) and (max-width: 500px){
+    #logo_img{
+        width: 68px !important;
+        margin-left: 36px;
+        height: 60px !important;
+    }
+    #bars svg {
+        width: 36px !important;
+        margin-top: 18px;
+        height: 49px !important;
+    }
+}
+@media (min-width: 500px) and (max-width: 700px){
+    #logo_img{
+        width: 53px !important;
+        height: 46px !important;
+        margin-top: -8px;
+        margin-left: 49px !important;
+    }
+    #bars svg {
+        width: 36px !important;
+        margin-top: -16px;
+        height: 49px !important;
     }
 }

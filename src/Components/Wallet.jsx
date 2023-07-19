@@ -422,7 +422,7 @@ function Wallet(props) {
           </div>) }
 
 
-          <div className="dynamicTable" style={{ overflow: 'auto', padding: '19px' }}>
+          <div className="dynamicTable" style={{ overflow: 'auto', padding: '31px' }}>
             <div className="button-div">
               <button className='wallet_btn'
                 onClick={() => handleButtonClick(3)}

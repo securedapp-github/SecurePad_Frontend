@@ -75,7 +75,7 @@ export function Side1({theme}){
             <Link to='/'><div style={{paddingTop:'1.389vw'}} className='expanded_2' onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,false,false,false])
                 }}>
-                    {expand ? <img id='logo_1' src={Logo} style={{width:'3.2vw',height:'3.2vw'}} alt="" />:<img id='logo_2' src={CLogo} style={{width:'100%',height:'4vw'}} alt="" />}
+                    {expand ? <img id='logo_1' src="https://github.com/NagiPragalathan/GeeksforGeeks_files/blob/main/Screenshot_2023-07-17_134527-removebg-preview.png?raw=true" style={{width:'3.2vw',height:'3.2vw'}} alt="" />:<img id='logo_2' src="https://github.com/NagiPragalathan/GeeksforGeeks_files/blob/main/image-removebg-preview%20(7).png?raw=true" style={{width:'100%',height:'4vw'}} alt="" />}
                          </div>
             </Link>
             <div style={{paddingTop:'1.62vw',display:'flex',flexDirection:'column',height:'70%',justifyContent:'space-between'}}>
