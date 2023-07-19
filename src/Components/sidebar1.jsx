@@ -2,6 +2,8 @@ import React,{useEffect,useState} from 'react'
 import {Link,useNavigate} from 'react-router-dom'
 import Logo from '../assets/logo.png'
 import CLogo from '../assets/Company-logo-dark.png'
+import Icon from '../assets/logo_img.png'
+import Banner from '../assets/logo_img1.png'
 
 
 export function Side1({theme}){
@@ -75,7 +77,7 @@ export function Side1({theme}){
             <Link to='/'><div style={{paddingTop:'1.389vw'}} className='expanded_2' onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,false,false,false])
                 }}>
-                    {expand ? <img id='logo_1' src="https://github.com/NagiPragalathan/GeeksforGeeks_files/blob/main/Screenshot_2023-07-17_134527-removebg-preview.png?raw=true" style={{width:'3.2vw',height:'3.2vw'}} alt="" />:<img id='logo_2' src="https://github.com/NagiPragalathan/GeeksforGeeks_files/blob/main/image-removebg-preview%20(7).png?raw=true" style={{width:'100%',height:'4vw'}} alt="" />}
+                    {expand ? <img id='logo_1' src={Icon} style={{width:'3.2vw',height:'3.2vw'}} alt="" />:<img id='logo_2' src={Banner} style={{width:'100%',height:'4vw'}} alt="" />}
                          </div>
             </Link>
             <div style={{paddingTop:'1.62vw',display:'flex',flexDirection:'column',height:'70%',justifyContent:'space-between'}}>
