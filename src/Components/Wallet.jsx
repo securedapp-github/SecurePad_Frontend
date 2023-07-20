@@ -14,16 +14,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import {
   useAccount,
-  useConnect,
   useContract,
-  useContractRead,
-  useContractWrite,
-  useNetwork,
-  useSigner,
-  useWaitForTransaction,
   useProvider
 } from "wagmi";
-import { Button } from "react-bootstrap";
 
 function Wallet(props) {
   const { theme } = props
@@ -33,8 +26,6 @@ function Wallet(props) {
   const { address } = useAccount();
   const [activeButton, setActiveButton] = useState(null);
   const [tableHeaders, setTableHeaders] = useState([]);
-  const [tableRows, setTableRows] = useState([]);
-  const { data: signerData } = useSigner();
   const provider = useProvider()
   const [loading, setLoading] = useState(false);
 
