@@ -64,7 +64,7 @@ function Contact(props) {
     <div className="container" style={{ ...blurryDivStyle }}>
       <span className="contact-heading" style={{ color: '#00FF83' }}>Contact us</span>
       {/* <br /> */}
-      <div className="box-container">
+      <div className="box-container1">
         {/* Content inside the additional container */}
         <div className="inner-container">
           {/* Content inside the inner container */}
