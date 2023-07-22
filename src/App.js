@@ -8,11 +8,31 @@ import './App.css'
 import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import NewHome from './Components/newHome.jsx';
 
+console.log(chain);
 
+const avalancheTest = {
+  id: 43113,
+  name: 'Avalanche Testnet',
+  network: 'avalanchefuji',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Avalanche',
+    symbol: 'TAVAX',
+  },
+  rpcUrls: {
+    public: { http: ['https://api.avax-test.network/ext/bc/C/rpc'] },
+    default: { http: ['https://rpc.ankr.com/avalanche_fuji'] },
+  },
+  blockExplorers: {
+    etherscan: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' },
+    default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' },
+  }
+}
+
+// https://wagmi.sh/react/chains
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai, chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
+  [chain.polygonMumbai, avalancheTest, chain.mainnet, chain.polygon],
   [  publicProvider(), alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" })]
 ); 
 
@@ -45,7 +65,6 @@ function App() {
     <RainbowKitProvider chains={chains}>
     <BrowserRouter>
     <Routes>
-    <Route exact path="/home" element={<NewHome/>} />
       <Route exact path="/" element={<Sidebar page={"home"}/>} />
       <Route exact path="/token" element={<Sidebar page={"token"}/>} />
       <Route exact path="/contact" element={<Sidebar page={"contact"}/>} />

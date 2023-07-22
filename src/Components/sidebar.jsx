@@ -8,7 +8,6 @@ import Price from './price.jsx'
 import Token from './token.jsx'
 import Contract from './contract.jsx'
 import Sale from './sale.jsx'
-import Logo from '../assets/logo.png'
 import Lock from './lock.jsx'
 import Home from './home.jsx'
 import Manage from './manage.jsx'
@@ -23,11 +22,10 @@ import DistributeToken from './distributeToken.jsx'
 import EditSale from './editSale.jsx'
 import Error from './error.jsx'
 import {useLocation} from 'react-router-dom'
-import { Offcanvas } from "react-bootstrap";
 import {Side1} from './sidebar1.jsx'
 import Icon from '../assets/logo_img.png'
-import Banner from '../assets/logo_img1.png'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   useAccount
@@ -124,13 +122,18 @@ ThemeIcon();
       return (
       <>
         <Link to="/search" className="rihtLink" id='sales'> <div onClick={()=>{
+          
                     setCol([false,false,false,false,false,false,false,false,false,false,false,false,false])
                 }} style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>PreSales</div>
         </Link>
 
-        <Link to="/pricing" className="rihtLink" id='pricing'><div onClick={()=>{
+        <Link 
+        // to="/pricing" 
+        className="rihtLink" id='pricing'><div onClick={(e)=>{
+                  e.preventDefault();
+                   toast("Coming Soon");
                     setCol([false,false,false,false,false,false,false,false,false,false,false,false,false])
-                }} style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>Pricing</div>
+                }} style={{ fontWeight: "400", padding: "10px", fontSize: "18px",color:`${theme==='Dark' ? 'white':'black'}` }}>Staking</div>
         </Link>
         <Link to="/contact" className="rihtLink" id='contact'><div onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,false,false,false,false,false])
@@ -156,6 +159,13 @@ ThemeIcon();
 
   return (
     <div className="mainpage">
+       <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        theme="dark"
+        pauseOnHover
+      />
+
           {/* <div onClick={Toggle} id='themeicon' style={{width:'50px',textAlign:'center',cursor:"pointer",color:`${theme==='Dark' ? '#12D576':'black'}`,padding:"0 1.5vw",border:`1px solid ${theme==='Dark' ? '#12D576':'black'}`,borderRadius:"7vw"}}>
           <ThemeIcon/>   
           </div> */}

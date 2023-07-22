@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Modal } from 'react-bootstrap'
-import Vector from '../assets/Vector.png'
-import Fox from '../assets/Fox.png'
-import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 import { ethers } from "ethers";
-import { formatAddress } from '../utils/address';
 import Loader from 'utils/loader';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {
-  useAccount,
-  useConnect,
   useContract,
-  useContractRead,
-  useContractWrite,
-  useNetwork,
   useSigner,
-  useWaitForTransaction,
   useProvider
 } from "wagmi";
 
@@ -36,7 +26,6 @@ function EditSale() {
   const provider = useProvider()
   const [tokenName, settokenName] = useState(false);
   const [tokenSymbol, settokenSymbol] = useState(false);
-  const [sale, setsale] = useState('');
   const [selectedOption, setSelectedOption] = useState('option1');
 
   const [custompayment, setcustompayment] = useState(false);
@@ -53,7 +42,6 @@ function EditSale() {
   const [duration, setduration] = useState(0);
   const [cliff, setcliff] = useState(0);
   const [releasemonths, setreleasemonths] = useState(0);
-  const [owner, setowner] = useState("");
 
   const SaleContract = useContract({
     addressOrName: SALE,
@@ -103,7 +91,7 @@ function EditSale() {
       provider
     );
 
-    let [name, symbol, supply] = await TokenContract.getTokenInfo()
+    let [name, symbol, ] = await TokenContract.getTokenInfo()
 
     settokenName(name);
     settokenSymbol(symbol);

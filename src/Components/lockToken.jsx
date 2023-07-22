@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import { ethers } from "ethers";
 import { Button, Modal } from 'react-bootstrap'
 import Vector from '../assets/Vector.png'
-import Fox from '../assets/Fox.png'
-import { Link } from 'react-router-dom'
 import { formatAddress } from '../utils/address';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -39,7 +37,6 @@ function LockToken() {
   const [lock, setLock] = useState("");
   const [amount, setAmount] = useState(0);
   const [time, setTime] = useState(0);
-  // const [approveflag, setapproveflag] = useState(0);
   const [newtime, setNewtime] = useState(0);
   const [newtoken, setnewtoken] = useState(0);
 

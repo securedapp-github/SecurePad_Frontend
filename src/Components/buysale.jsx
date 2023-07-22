@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useParams } from "react-router-dom";
 import SALEABI from "../ABI/SaleABI.json";
 import TOKENABI from "../ABI/TokenABI.json";
-import { Button, Modal } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import Loader from 'utils/loader';
 import { ethers } from "ethers";
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
 import '../Style/buysale.css'
 import { formatAddress } from '../utils/address';
+import { chainInfo } from '../utils/chainInfo';
 
 import {
     useAccount,
@@ -40,6 +41,7 @@ function BuySale(props) {
     const [releasedate, setreleasedate] = useState([]);
     const [releaseamount, setreleaseamount] = useState([]);
     const [isclaim, setisclaim] = useState(false);
+    const [chainid, setchainid] = useState(0);
 
     const [soft, setsoft] = useState(0);
     const [hard, sethard] = useState(0);
@@ -130,6 +132,14 @@ function BuySale(props) {
                 let prices = (p * 10 ** d) / 10000;
                 setprice(prices);
                 setdecimal(10 ** d);
+                setchainid(data[0].chain_id);
+
+                const { chainId } = await provider.getNetwork()
+
+                if (data[0].chain_id != chainId) {
+                    console.log("Sale Chain ID : ", data[0].chain_id);
+                    toast.error(`Wrong Network, Please switch to Chain_ID: "${data[0].chain_id}" `);
+                }
 
                 setkyc(data[0].kyc);
                 setaudit(data[0].audit);
@@ -152,33 +162,10 @@ function BuySale(props) {
                 sethard(data[0].hard);
                 setpayaddress(data[0].payment_address);
 
-                let TOKENCONTRACT = new ethers.Contract(
-                    data[0].token_address,
-                    TOKENABI,
-                    provider
-                );
+
                 settokenAddress(data[0].token_address);
                 settoken(data[0].token_name);
-                let bal = await TOKENCONTRACT.balanceOf(address);
-                bal = ethers.utils.formatEther(bal.toString());
-                setbalance(bal);
                 setpay(data[0].payment_name);
-
-                if (data[0].payment_address != "0x0000000000000000000000000000000000000000") {
-                    let FundContract = new ethers.Contract(
-                        data[0].payment_address,
-                        TOKENABI,
-                        provider
-                    );
-                    let funds = await FundContract.balanceOf(address);
-                    funds = ethers.utils.formatEther(funds.toString());
-                    setpaybalance(funds);
-                } else {
-                    let balance = await provider.getBalance(address);
-                    balance = ethers.utils.formatEther(balance.toString());
-                    balance = Number(balance).toFixed(2);
-                    setpaybalance(balance);
-                }
 
                 let saleStartTime = data[0].start * 1000;
                 let saleEndTime = data[0].end * 1000;
@@ -203,25 +190,53 @@ function BuySale(props) {
                     setallowed(true);
                     setstatus("Sale Ends at " + dateTimeString2);
                 }
+
+                setLoading(false);
+                let TOKENCONTRACT = new ethers.Contract(
+                    data[0].token_address,
+                    TOKENABI,
+                    provider
+                );
+                let bal = await TOKENCONTRACT.balanceOf(address);
+                bal = ethers.utils.formatEther(bal.toString());
+                setbalance(bal);
+
+                if (data[0].payment_address != "0x0000000000000000000000000000000000000000") {
+                    let FundContract = new ethers.Contract(
+                        data[0].payment_address,
+                        TOKENABI,
+                        provider
+                    );
+                    let funds = await FundContract.balanceOf(address);
+                    funds = ethers.utils.formatEther(funds.toString());
+                    setpaybalance(funds);
+                } else {
+                    let balance = await provider.getBalance(address);
+                    balance = ethers.utils.formatEther(balance.toString());
+                    balance = Number(balance).toFixed(2);
+                    setpaybalance(balance);
+                }
             }
-            setLoading(false);
+
+
+
             let dateTimeString = [];
+
+            // if ((data[0].cliff > 0 || data[0].lockmonth > 0)) {
+            //     let enddate = data[0].end * 1000;
+            //     for (let i = 0; i < data[0].lockmonth; i++) {
+            //         dateTimeString[i] = new Date(enddate - (data[0].cliff * 70000 * 86400) + (i * 30000 * 86400));
+            //         setreleasedate(prevItems => [...prevItems, dateTimeString[i]]);
+            //     }
+            // }
 
             if (data[0].cliff > 0 || data[0].lockmonth > 0) {
                 let enddate = data[0].end * 1000;
                 for (let i = 0; i < data[0].lockmonth; i++) {
-                    dateTimeString[i] = new Date(enddate - (data[0].cliff * 70000 * 86400) + (i * 30000 * 86400));
+                    dateTimeString[i] = new Date(enddate + (data[0].cliff * 30000 * 86400) + (i * 30000 * 86400));
                     setreleasedate(prevItems => [...prevItems, dateTimeString[i]]);
                 }
             }
-
-            // if (data[0].cliff > 0 || data[0].lockmonth > 0) {
-            //     let enddate = data[0].end * 1000;
-            //     for (let i = 0; i < data[0].lockmonth; i++) {
-            //         dateTimeString[i] = new Date(enddate + (data[0].cliff * 30000 * 86400) + (i * 30000 * 86400));
-            //         setreleasedate(prevItems => [...prevItems, dateTimeString[i]]);
-            //     }
-            // }
 
             let SALECONTRACT = new ethers.Contract(
                 SALE,
@@ -243,6 +258,9 @@ function BuySale(props) {
                     setreleaseamount(prevItems => [...prevItems, bal[i]]);
                 }
             }
+
+
+
         }
         catch (e) {
             setLoading(false);
@@ -305,7 +323,6 @@ function BuySale(props) {
     }
 
     const updateClaimedDB = async (amount, txnhash) => {
-
         const { chainId } = await provider.getNetwork()
 
         fetch(DB_LINK + 'updateActivity', {
@@ -340,6 +357,15 @@ function BuySale(props) {
         try {
             // updateRaisedDB(buyamount * decimal, "0x0ec5ef23ef82c771916e110d5b510d7927904fe7dfa19664d842f3bcb5cf8ac3");
             // return;
+
+            const { chainId } = await provider.getNetwork()
+
+            if (chainid != chainId) {
+                console.log("Sale Chain ID : ", chainid);
+                console.log("Current Chain ID : ", chainId);
+                toast.error(`Wrong Network, Please switch to Chain_ID: "${chainid}" `);
+                return;
+            }
 
             setLoading(true);
             let SaleContract = new ethers.Contract(
@@ -389,6 +415,15 @@ function BuySale(props) {
             // updateClaimedDB(2000, "0x0ec5ef23ef82c771916e110d5b510d7927904fe7dfa19664d842f3bcb5cf8ac3");
             // return;
 
+            const { chainId } = await provider.getNetwork()
+
+            if (chainid != chainId) {
+                console.log("Sale Chain ID : ", chainid);
+                console.log("Current Chain ID : ", chainId);
+                toast.error(`Wrong Network, Please switch to Chain_ID: "${chainid}" `);
+                return;
+            }
+
             setLoading(true);
             let SaleContract = new ethers.Contract(
                 SALE,
@@ -420,14 +455,15 @@ function BuySale(props) {
             pauseOnHover
         />
 
-        <div className="tokenSale1" style={{ ...blurryDivStyle, display: "flex", flexWrap: 'wrap', flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw",gap:'0.2vw' }}>
+        <div className="tokenSale1" style={{ ...blurryDivStyle, display: "flex", flexWrap: 'wrap', flexDirection: "row", justifyContent: "space-between", padding: "1vw 5vw", gap: '0.2vw' }}>
 
             <div className='main-body' style={{ width: "60%" }}>
-                <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div className='buysale-back' style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512" style={{fill:'#00FF83'}}><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
-                    <div className="buysale-back1" style={{ fontSize: "2vw", color: "#646464" }}>
-                        Go Back</div></div>
-                <div style={{ paddingBottom: "4.5vw",border:'3px solid #00FF83',width: "100%", marginTop: "3vw", backgroundColor: "#000", borderRadius: "1vw" }}>
-                    <img style={{ width: "100%", borderRadius: "inherit"}} className="body-image" src={image} alt="not found" />
+                <div onClick={Change} style={{ cursor: "pointer", display: "flex" }}><div className='buysale-back' style={{ paddingTop: "0.5vw" }}><svg xmlns="http://www.w3.org/2000/svg" width="2vw" height="2vw" viewBox="0 0 320 512" style={{ fill: '#00FF83' }}><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg></div>
+                    <div className="buysale-back1" style={{ fontSize: "1.8vw", color: "#646464" }}>
+                        {/* Go Back */}
+                        </div></div>
+                <div style={{ paddingBottom: "4.5vw", border: '3px solid #00FF83', width: "100%", marginTop: "3vw", backgroundColor: "#000", borderRadius: "1vw" }}>
+                    <img style={{ width: "100%", borderRadius: "inherit" }} className="body-image" src={image} alt="not found" />
                     <br />
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
 
@@ -458,43 +494,46 @@ function BuySale(props) {
                                 </svg>
                             )}
                         </div>
-                        <div id='audit_kyc' style={{ display: "flex", gap: "8px",paddingTop:'1vw', color: "white", paddingRight: "3vw", fontSize: "1.3vw" }}>
+                        <div id='audit_kyc' style={{ display: "flex", gap: "8px", paddingTop: '1vw', color: "white", paddingRight: "3vw", fontSize: "1.3vw" }}>
                             {audit != "" && (
-                                <Link className='auditLink' onClick={(event) => { window.open(audit, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid #00FF83", padding: "0.2vw 0.5vw", borderRadius: "10px", height: "2.7vw",backgroundColor:'#001F10' }}>
+                                <Link className='auditLink' onClick={(event) => { window.open(audit, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid #00FF83", padding: "0.2vw 0.5vw", borderRadius: "10px", height: "2.7vw", backgroundColor: '#001F10' }}>
                                     <div >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.4vw" height="1.4vw" style={{fill:'#00FF83',margin:'auto 0'}} fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
-                                    <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
-                                    <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.4vw" height="1.4vw" style={{ fill: '#00FF83', margin: 'auto 0' }} fill="currentColor" className="bi bi-shield-check" viewBox="0 0 16 16">
+                                            <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+                                            <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                        </svg>
                                     </div>
-                                    <div style={{margin:'auto 0'}}>Audit</div>
+                                    <div style={{ margin: 'auto 0' }}>Audit</div>
                                 </Link>
                             )}
                             {kyc != "" && (
-                                <Link className='kycLink' onClick={(event) => { window.open(kyc, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid #00FF83", padding: "0.2vw 0.5vw", borderRadius: "10px", height: "2.7vw",backgroundColor:'#001F10'  }}>
+                                <Link className='kycLink' onClick={(event) => { window.open(kyc, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid #00FF83", padding: "0.2vw 0.5vw", borderRadius: "10px", height: "2.7vw", backgroundColor: '#001F10' }}>
                                     <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.4vw" height="1.4vw" style={{fill:'#00FF83',margin:'auto 0'}} fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
-                                    <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
-                                    <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                                    </svg>    
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.4vw" height="1.4vw" style={{ fill: '#00FF83', margin: 'auto 0' }} fill="currentColor" className="bi bi-shield-check" viewBox="0 0 16 16">
+                                            <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+                                            <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                        </svg>
                                     </div>
-                                    <div style={{margin:'auto 0'}}>KYC+</div>
+                                    <div style={{ margin: 'auto 0' }}>KYC+</div>
                                 </Link>
                             )}
                             {vetted != "" && (
 
-                                <Link className='vettedLink' onClick={(event) => { window.open(vetted, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid #00FF83", padding: "0.2vw 0.5vw", borderRadius: "10px", height: "2.7vw",backgroundColor:'#001F10'  }}>
+                                <Link className='vettedLink' onClick={(event) => { window.open(vetted, "_blank"); }} style={{ textDecoration: "none", color: 'white', display: "flex", gap: "0.2vw", border: "1px solid #00FF83", padding: "0.2vw 0.5vw", borderRadius: "10px", height: "2.7vw", backgroundColor: '#001F10' }}>
                                     <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.4vw" height="1.4vw" style={{fill:'#00FF83',margin:'auto 0'}} fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
-                                    <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
-                                    <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                                    </svg>   
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.4vw" height="1.4vw" style={{ fill: '#00FF83', margin: 'auto 0' }} fill="currentColor" className="bi bi-shield-check" viewBox="0 0 16 16">
+                                            <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+                                            <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                        </svg>
                                     </div>
-                                    <div style={{margin:'auto 0'}}>Vetted</div>
+                                    <div style={{ margin: 'auto 0' }}>Vetted</div>
                                 </Link>
                             )}
                         </div>
-                    </div> <div className="buysale-head" style={{ paddingLeft: "1vw", paddingTop: "0.2vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "3vw", fontWeight: "900" }}>{token} TOKEN SALE</div>
+                    </div> 
+                    
+                    <div className="buysale-head" style={{ paddingLeft: "1vw", paddingTop: "0.2vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "3vw", fontWeight: "900" }}>{token} TOKEN SALE </div>
+                    <div className='buysale-desc' style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>Chain : ( {chainInfo(chainid)} )</div>
                     <div className='buysale-desc' style={{ paddingLeft: "1vw", fontSize: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, whiteSpace: "pre-wrap" }}>{desc}</div>
 
                     <div className="buysale-sale" style={{ display: "flex", padding: "1vw", justifyContent: "space-between", color: "white", fontSize: "1vw" }}>
@@ -525,133 +564,133 @@ function BuySale(props) {
                 </div>
             </div>
             <div className="buysection-parent">
-            <div className="buysection">
-                <div style={{ textAlign: 'center',border:'3px solid #00FF83', backgroundColor: "#000", borderRadius: "1vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
-                    <div>
-                        <span className='buysection-status' style={{ fontSize: "1.5vw", paddingBottom: '3vw', fontWeight: "600" }}>{status}</span>
-                    </div>
-                    <div className="progress-bar-container">
-                        {/* <span className="progress-text">Progress {progress}%</span> */}
-                        <progress className="progress-bar" value={progress} max="100"></progress>
-                        {/* <span className="value-text">{soft}{" " + token} </span>
+                <div className="buysection">
+                    <div style={{ textAlign: 'center', border: '3px solid #00FF83', backgroundColor: "#000", borderRadius: "1vw", marginTop: "6vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
+                        <div>
+                            <span className='buysection-status' style={{ fontSize: "1.5vw", paddingBottom: '3vw', fontWeight: "600" }}>{status}</span>
+                        </div>
+                        <div className="progress-bar-container">
+                            {/* <span className="progress-text">Progress {progress}%</span> */}
+                            <progress className="progress-bar" value={progress} max="100"></progress>
+                            {/* <span className="value-text">{soft}{" " + token} </span>
         <span className="new-text">{hard}{" " + token}</span> */}
-                    </div>
+                        </div>
 
-                    {/* <div style={{ marginTop: "1vw", height: "1vw", borderRadius: "1vw", backgroundColor: "#464646" }}>
+                        {/* <div style={{ marginTop: "1vw", height: "1vw", borderRadius: "1vw", backgroundColor: "#464646" }}>
                         <div style={{ height: "1vw", width: "20%", borderRadius: "1vw", backgroundColor: "#12D576" }}>
                         </div>
                     </div> */}
 
-                    <div className='buysection-soft' style={{ fontSize: "1vw",fontWeight:'400', display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                        {soft != 0 && (
-                            <div>{soft}{" " + token}</div>
-                        )}
-                        {soft == 0 && (
-                            <div></div>
-                        )}
-                        <div>{hard}{" " + token}</div>
+                        <div className='buysection-soft' style={{ fontSize: "1vw", fontWeight: '400', display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                            {soft != 0 && (
+                                <div>{soft}{" " + token}</div>
+                            )}
+                            {soft == 0 && (
+                                <div></div>
+                            )}
+                            <div>{hard}{" " + token}</div>
 
-                    </div>
-
-                    {allowed && (
-                        <div className="buysection-input" style={{ margin: '3px 0', fontSize: "1.1vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                            <div className='buysale-input' style={{ border: "2px solid #464646", display: "flex", borderRadius: "10px", padding: "0.3vw 10px" }}><input value={buyamount}
-                                onChange={(e) => setbuyamount(e.target.value)}
-                                placeholder={'0 ' + pay} style={{ marginBottom: '0', padding: "0", fontWeight: "600", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
-                                <div style={{ color: "#00FF83", fontWeight: "700", margin: 'auto 0' }}>{pay}</div>
-                            </div>
-                            <div className='buysale-button' onClick={() => { buyToken() }} style={{ cursor: "pointer", backgroundColor: "#00783D",border:'1px solid #00FF83', padding: "9.6px 20px", borderRadius: "10px" }}> BUY {' ' + token}
-                            </div>
                         </div>
-                    )}
 
-                    <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
-                        <div className="expected-token">Expected Token</div>
-                        <div className="expected-token">{buyamount * decimal}</div>
-                    </div>
+                        {allowed && (
+                            <div className="buysection-input" style={{ margin: '3px 0', fontSize: "1.1vw", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                <div className='buysale-input' style={{ border: "2px solid #464646", display: "flex", borderRadius: "10px", padding: "0.3vw 10px" }}><input value={buyamount}
+                                    onChange={(e) => setbuyamount(e.target.value)}
+                                    placeholder={'0 ' + pay} style={{ marginBottom: '0', padding: "0", fontWeight: "600", color: `${theme === 'Dark' ? 'white' : 'black'}`, fontSize: "1.1vw", width: "10vw", border: "2px solid transparent", backgroundColor: "transparent" }} type="text" />
+                                    <div style={{ color: "#00FF83", fontWeight: "700", margin: 'auto 0' }}>{pay}</div>
+                                </div>
+                                <div className='buysale-button' onClick={() => { buyToken() }} style={{ cursor: "pointer", backgroundColor: "#00783D", border: '1px solid #00FF83', padding: "9.6px 20px", borderRadius: "10px" }}> BUY {' ' + token}
+                                </div>
+                            </div>
+                        )}
 
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div className="expected-token">Sale Rate</div>
-                        <div className="expected-token"> {price} {pay} = {decimal} {token} </div>
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div className="expected-token">Your {token} Balance</div>
-                        <div className="expected-token"> {balance} </div>
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
-                        <div className="expected-token">Your {pay} Balance</div>
-                        <div className="expected-token"> {paybalance} </div>
-                    </div>
-                    <Button className="expected-token" style={{border:'1px solid #00954C',backgroundColor:'#00954C',marginTop: '1vw',padding:'10px 25px' }} onClick={() => { addTokenMetamask(); }}>Add {token} To MetaMask
-                    </Button>
+                        <div style={{ paddingTop: "2vw", display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
+                            <div className="expected-token">Expected Token</div>
+                            <div className="expected-token">{buyamount * decimal}</div>
+                        </div>
 
+                        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
+                            <div className="expected-token">Sale Rate</div>
+                            <div className="expected-token"> {price} {pay} = {decimal} {token} </div>
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
+                            <div className="expected-token">Your {token} Balance</div>
+                            <div className="expected-token"> {balance} </div>
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646", paddingTop: "0.4vw" }}>
+                            <div className="expected-token">Your {pay} Balance</div>
+                            <div className="expected-token"> {paybalance} </div>
+                        </div>
+                        <Button className="expected-token" style={{ border: '1px solid #00954C', backgroundColor: '#00954C', marginTop: '1vw', padding: '10px 25px' }} onClick={() => { addTokenMetamask(); }}>Add {token} To MetaMask
+                        </Button>
+
+                    </div>
                 </div>
+                {((cliff > 0 || release > 0)) && (
+                    <div className="claimsection">
+
+                        <div style={{ textAlign: 'center', backgroundColor: "#000", border: '3px solid #00FF83', borderRadius: "1vw", marginTop: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
+
+                            <div style={{ paddingBottom: '1vw', display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
+                                <div className="expected-token" style={{ width: '100%', textAlign: 'center', fontSize: '25px', fontWeight: '500' }}> Vesting Release Schedule</div>
+                            </div>
+
+
+                            <div>
+                                <table style={{ borderCollapse: 'collapse' }}>
+
+
+
+
+                                    <tbody>
+                                        <tr>
+                                            <th>Release</th>
+                                            <th>Date</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        {releasedate.map((date, index) => {
+                                            const hasPassed = date < currentDate;
+
+                                            return (
+                                                <tr key={index} style={{ marginBottom: '10px' }}>
+                                                    <td style={{ fontWeight: 'bold', padding: '5px' }}>
+                                                        {index + 1}
+                                                    </td>
+                                                    <td style={{ padding: '5px' }}>
+                                                        {date.toLocaleDateString()}
+                                                    </td>
+                                                    <td style={{ padding: '5px' }}>
+                                                        {releaseamount[index]}
+                                                    </td>
+                                                    <td style={{ padding: '5px' }}>
+                                                        {releaseamount[index] > 0 && hasPassed ? (
+                                                            "Claimable"
+                                                        ) : (
+                                                            <span style={{ fontWeight: 'bold', color: hasPassed ? 'blue' : 'gray' }}>
+                                                                {hasPassed ? '-' : releaseamount[index] > 0 && 'Upcoming Claim'}
+                                                            </span>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+
+                                        {isclaim && (
+                                            <Button style={{ marginLeft: '250%', marginTop: '15%', background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
+                                                Claim
+                                            </Button>
+
+                                        )}
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                )}
             </div>
-            {((cliff > 0 || release > 0)) && (
-                <div className="claimsection">
-
-                    <div style={{ textAlign: 'center', backgroundColor: "#000",border:'3px solid #00FF83', borderRadius: "1vw", marginTop: "1vw", color: `${theme === 'Dark' ? 'white' : 'black'}`, padding: "1vw 1.5vw" }}>
-
-                        <div style={{ paddingBottom:'1vw',display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "1px solid #464646" }}>
-                            <div className="expected-token" style={{width:'100%',textAlign:'center',fontSize:'25px',fontWeight:'500'}}> Vesting Release Schedule</div>
-                        </div>
-
-
-                        <div>
-                            <table style={{ borderCollapse: 'collapse' }}>
-
-
-
-                              
-                            <tbody>
-    <tr>
-        <th>Release</th>
-        <th>Date</th>
-        <th>Amount</th>
-        <th>Status</th>
-    </tr>
-    {releasedate.map((date, index) => {
-        const hasPassed = date < currentDate;
-
-        return (
-            <tr key={index} style={{ marginBottom: '10px' }}>
-                <td style={{ fontWeight: 'bold', padding: '5px' }}>
-                     {index + 1}
-                </td>
-                <td style={{ padding: '5px' }}>
-                    {date.toLocaleDateString()}
-                </td>
-                <td style={{ padding: '5px' }}>
-                    {releaseamount[index]}
-                </td>
-                <td style={{ padding: '5px' }}>
-                    {releaseamount[index] > 0 && hasPassed ? (
-                        "Claimable"
-                    ) : (
-                        <span style={{ fontWeight: 'bold', color: hasPassed ? 'blue' : 'gray' }}>
-                            {hasPassed ? '-' : releaseamount[index] > 0 && 'Upcoming Claim'}
-                        </span>
-                    )}
-                </td>
-            </tr>
-        );
-    })}
-
-    {isclaim && (
-        <Button style={{ marginLeft: '250%', marginTop: '15%', background: 'green', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px' }} onClick={() => { claimToken(); }}>
-            Claim 
-        </Button>
-        
-    )}
-</tbody>
-
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-            )}
-</div>
         </div>
     </>
     )

@@ -1,7 +1,5 @@
 import React,{useEffect,useState} from 'react'
 import {Link,useNavigate} from 'react-router-dom'
-import Logo from '../assets/logo.png'
-import CLogo from '../assets/Company-logo-dark.png'
 import Icon from '../assets/logo_img.png'
 import Banner from '../assets/logo_img1.png'
 
