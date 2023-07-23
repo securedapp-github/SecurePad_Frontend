@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../Style/search.css" // Import the CSS file for styling
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 
 import {
     useAccount
@@ -99,7 +102,37 @@ const New = ({ theme }) => {
 
     return (
         <div className="searchpage-container" style={{ margin: "1.5vw 0" }}>
-           
+           <div className="search_box">
+                <div className="s_input">
+                    <input type="text" name="" id="" placeholder="Search" tabindex="-1"/>
+                    <button style={{ color: "white" }}> <FontAwesomeIcon icon={faSearch} /></button>
+                </div>
+                <div>
+                    <select className="d_input">
+                        <option value="" disabled selected>Network</option>
+                        <option value="NoSort">No Sort</option>
+                        <option value="HardCap">Hard Cap</option>
+                        <option value="SoftCap">Soft Cap</option>
+                        <option value="LPPercent">No Sort</option>
+                        <option value="StartTime">Start Time</option>
+                        <option value="EndTime">End Time</option>
+                        <option value="Tier">Tier</option>
+                    </select>
+                    <select className="d_input">
+                        <option value="">All Status</option>
+                    </select>
+                    <select className="d_input">
+                        <option value="" disabled selected>Sort By</option>
+                        <option value="NoSort">No Sort</option>
+                        <option value="HardCap">Hard Cap</option>
+                        <option value="SoftCap">Soft Cap</option>
+                        <option value="LPPercent">No Sort</option>
+                        <option value="StartTime">Start Time</option>
+                        <option value="EndTime">End Time</option>
+                        <option value="Tier">Tier</option>
+                    </select>
+                </div>
+           </div>
             <div className="card-container">
                 {salesArray.map((card) => (
                     <Card
@@ -183,7 +216,8 @@ const Card = ({ title, description, image, soft, hard, progress, liq, lock, end,
         <div onClick={() => { GoToSaleDetail(sale) }} style={{ cursor: "pointer" }}>
             <div style={{display:'flex',gap:'5px',width:'100%',justifyContent:'right'}}>
                 <svg  id='indicator' style={{marginTop:'10px',fill:`${topstatus=='Sale Live'?'#00FF83': `${topstatus=='Sale Upcoming'?'#00A3FF':'red'}`}`}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path width='8px' height='8px' d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>
-            <div className="status"style={{ fontSize: "17px", fontWeight: "700", color: "white", paddingRight: "19.2px" }}>{topstatus}</div>
+
+                <div className="status"style={{ fontSize: "17px", fontWeight: "700", color: "white", paddingRight: "19.2px" }}>{topstatus}</div>
             </div>
             <div className="card" style={{backgroundColor: "rgba(70,70,70,0.4)" }}>
                 <img src={image} alt={title} className="card-image" />
