@@ -107,7 +107,7 @@ const New = ({ theme }) => {
                     <input type="text" name="" id="" placeholder="Search" tabindex="-1"/>
                     <button style={{ color: "white" }}> <FontAwesomeIcon icon={faSearch} /></button>
                 </div>
-                <div>
+                <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
                     <select className="d_input">
                         <option value="" disabled selected>Network</option>
                         <option value="NoSort">No Sort</option>
@@ -121,7 +121,7 @@ const New = ({ theme }) => {
                     <select className="d_input">
                         <option value="">All Status</option>
                     </select>
-                    <select className="d_input">
+                    {/* <select className="d_input">
                         <option value="" disabled selected>Sort By</option>
                         <option value="NoSort">No Sort</option>
                         <option value="HardCap">Hard Cap</option>
@@ -130,7 +130,7 @@ const New = ({ theme }) => {
                         <option value="StartTime">Start Time</option>
                         <option value="EndTime">End Time</option>
                         <option value="Tier">Tier</option>
-                    </select>
+                    </select> */}
                 </div>
            </div>
             <div className="card-container">
