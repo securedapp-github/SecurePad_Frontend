@@ -5,9 +5,11 @@
   .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-evenly;
-    gap:2vw;
-    padding:0 2vw;
+    justify-content: space-evenly;
+    gap: 2vw;
+    padding: 0 2vw;
+    overflow-y: scroll;
+    height: 700px;
     margin-top: 20px;
   }
   
@@ -247,4 +249,137 @@
 .note{
   display: flex !important;
   gap:15px !important;
+}
+
+
+/* ==================================================== Search Box ========================================== */
+
+.searchpage-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.search_box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 91%;
+  flex-wrap: wrap;
+}
+
+.s_input{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 2px solid white;
+  align-items: center;
+  padding: 9px;
+  border-radius: 25px;
+}
+.s_input input{
+  background: #2b649500;
+  border: none;
+  color: white;
+}
+.s_input input:focus {
+  outline: none;
+}
+.s_input button{
+  background: #2b649500;
+  border: none;
+}
+.d_input{
+  padding: 9px;
+  border-radius: 27px;
+  border: 2px solid white;
+  background-color: #00ffff00;
+  color: white;
+  margin-left: 11px;
+}
+
+.d_input {
+  background-color: #0000;
+  border-radius: 26px;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.d_input option {
+  background-color: #000;
+  color: white;
+  border: 2px solid;
+  border-radius: 10px;
+}
+
+/* Add a white outline to the option when focused or selected */
+.d_input option:hover,
+.d_input option:focus,
+.d_input option:selected {
+  outline: 1px solid white;
+  background-color: #000;
+  color: white;
+
+}
+
+
+.card-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit-based browsers (Chrome, Safari) */
+}
+
+/* For Firefox */
+.card-container {
+  scrollbar-width: none;
+}
+
+/* For Internet Explorer and Edge */
+.card-container {
+  -ms-overflow-style: none;
+}
+
+@media (max-width: 770px) {
+  .search_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+  .s_input{
+    margin-bottom: 15px;
+  }
+}
+
+/* For screen sizes between 770px and 933px */
+@media screen and (min-width: 770px) and (max-width: 933px) {
+  .search_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+  .s_input{
+    margin-bottom: 15px;
+  }
+}
+
+/* For screen sizes between 770px and 933px */
+@media screen and (min-width: 999px) and (max-width: 1169px) {
+  .search_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 78% !important;
+    padding: 14px;
+    flex-wrap: wrap;
+}
 }

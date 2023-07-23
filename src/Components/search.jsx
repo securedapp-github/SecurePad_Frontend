@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../Style/search.css" // Import the CSS file for styling
 import { useNavigate } from 'react-router-dom'
 
+
 import {
     useAccount
 } from "wagmi";
@@ -10,6 +11,8 @@ const New = ({ theme }) => {
     const DB_LINK = process.env.REACT_APP_DB;
 
     const [salesArray, setsalesArray] = useState([]);
+    const [chainid, setchainid] = useState(0);
+
     const { address } = useAccount();
 
     const setdata = async (data) => {
@@ -64,6 +67,7 @@ const New = ({ theme }) => {
                     'description': '', //data[i].desc,
                     'image': data[i].image,
                     'soft': data[i].soft,
+                    'chain': data[i].chain_id,
                     'hard': hardcap,
                     'progress': progress,
                     'liq': 20,
@@ -99,9 +103,60 @@ const New = ({ theme }) => {
 
     return (
         <div className="searchpage-container" style={{ margin: "1.5vw 0" }}>
-           
+           <div className="search_box">
+                {/* <div className="s_input">
+                    <input type="text" name="" id="" placeholder="Search" tabindex="-1"/>
+                    <button style={{ color: "white" }}> <FontAwesomeIcon icon={faSearch} /></button>
+                </div> */}
+                <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
+                <select className="d_input" aria-label="Filter Network" onChange={(e) => {setchainid(e.target.value)}}>
+                    <option value="0">All Network</option>
+                    <option value="41">Telos Testnet</option>
+                    <option value="40">Telos Mainnet</option>
+                    <option value="80001">Polygon Mumbai</option>
+                    <option value="137">Polygon Mainnet</option>
+                    </select>
+                    {/* <select className="d_input">
+                        <option value="">All Status</option>
+                    </select> */}
+                    {/* <select className="d_input">
+                        <option value="" disabled selected>Sort By</option>
+                        <option value="NoSort">No Sort</option>
+                        <option value="HardCap">Hard Cap</option>
+                        <option value="SoftCap">Soft Cap</option>
+                        <option value="LPPercent">No Sort</option>
+                        <option value="StartTime">Start Time</option>
+                        <option value="EndTime">End Time</option>
+                        <option value="Tier">Tier</option>
+                    </select> */}
+                </div>
+           </div>
             <div className="card-container">
-                {salesArray.map((card) => (
+                {salesArray.map((card) => {
+                    if(card.chain == chainid || chainid == 0){
+                        return (
+                    <Card
+                        key={card.id}
+                        title={card.title}
+                        description={card.description}
+                        image={card.image}
+                        soft={card.soft}
+                        hard={card.hard}
+                        progress={card.progress}
+                        liq={card.liq}
+                        lock={card.lock}
+                        end={card.end}
+                        token={card.token}
+                        sale={card.sale}
+                        kyc={card.kyc}
+                        audit={card.audit}
+                        vetted={card.vetted}
+                        coin_image={card.coin_image}
+                        topstatus={card.topstatus}
+                    />)}
+})}
+
+                {/* {salesArray.map((card) => (
                     <Card
                         key={card.id}
                         title={card.title}
@@ -142,28 +197,7 @@ const New = ({ theme }) => {
                         coin_image={card.coin_image}
                         topstatus={card.topstatus}
                     />
-                ))}
-                {salesArray.map((card) => (
-                    <Card
-                        key={card.id}
-                        title={card.title}
-                        description={card.description}
-                        image={card.image}
-                        soft={card.soft}
-                        hard={card.hard}
-                        progress={card.progress}
-                        liq={card.liq}
-                        lock={card.lock}
-                        end={card.end}
-                        token={card.token}
-                        sale={card.sale}
-                        kyc={card.kyc}
-                        audit={card.audit}
-                        vetted={card.vetted}
-                        coin_image={card.coin_image}
-                        topstatus={card.topstatus}
-                    />
-                ))}
+                ))} */}
 
             </div>
         </div>

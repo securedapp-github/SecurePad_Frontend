@@ -30,9 +30,30 @@ const avalancheTest = {
   }
 }
 
-// https://wagmi.sh/react/chains
+const telosTest = {
+  id: 41,
+  name: 'Telos EVM Testnet',
+  network: 'telostestnet',
+  iconUrl: 'https://icons.llamao.fi/icons/chains/rsz_telos.jpg',
+  iconBackground: '#fff',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Telos',
+    symbol: 'TLOS',
+  },
+  rpcUrls: {
+    public: { http: ['https://testnet.telos.net/evm'] },
+    default: { http: ['https://testnet.telos.net/evm'] },
+  },
+  blockExplorers: {
+    etherscan: { name: 'Teloscan', url: 'https://explorer-test.telos.net/' },
+    default: { name: 'Teloscan', url: 'https://explorer-test.telos.net/' },
+  },
+  testnet: true
+}
+
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai, avalancheTest, chain.mainnet, chain.polygon],
+  [chain.polygonMumbai, telosTest, chain.mainnet, chain.polygon],
   [  publicProvider(), alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" })]
 ); 
 
