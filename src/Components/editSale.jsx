@@ -197,14 +197,14 @@ function EditSale() {
             {custompayment && (<>
               <div style={{ paddingTop: "20px", color: "#cccccc" }}>Custom Payment Token Address</div>
               <input type="text" placeholder="Token Address" value={payment} onChange={(e) => setpayment(e.target.value)}
-                style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
+                style={{ padding: "15px", width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
             </>)}
 
             <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "6%" }}>Set Token Price</div>
             <div style={{ paddingTop: "20px", color: "#cccccc" }}>Price per token in Payment Token [ 1 Sale Token = X Payment Token] </div>
             <input type="number" placeholder="e.g. 0.1 if 1 Sale Token = 0.1 Payment Token: Min 0.0001"
               value={price} onChange={(e) => setprice(e.target.value)}
-              style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
+              style={{ padding: "15px", width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
 
             <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "6%" }}>Set Token Sale Raised Amount Caps</div>
             <div style={{ display: "flex", flexDirection: "row", gap: "6%", width: "100%" }}>
@@ -212,13 +212,13 @@ function EditSale() {
                 <div style={{ color: "#cccccc" }}>Soft Cap in Sale Token</div>
                 <input type="number" placeholder="e.g. 10000"
                   value={soft} onChange={(e) => setsoft(e.target.value)}
-                  style={{ width: "100%", border: "1px solid #949494", borderRadius: "5px" }} />
+                  style={{ padding: "15px", width: "100%", border: "1px solid #949494", borderRadius: "5px" }} />
               </div>
               <div style={{ width: "100%", paddingTop: "2%" }}>
                 <div style={{ color: "#cccccc" }}>Hard Cap in Sale Token</div>
                 <input type="number" placeholder="e.g. 1000000"
                   value={hard} onChange={(e) => sethard(e.target.value)}
-                  style={{ width: "100%", border: "1px solid #949494", borderRadius: "5px" }} />
+                  style={{padding: "15px",  width: "100%", border: "1px solid #949494", borderRadius: "5px" }} />
               </div>
             </div>
             <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "6%" }}>Set Purchase Limits per investor in Sale Token</div>
@@ -227,13 +227,13 @@ function EditSale() {
                 <div style={{ color: "#cccccc", width: "100%" }}>Minimum purchase (Sale Token)</div>
                 <input type="number" placeholder="e.g. 100"
                   value={min} onChange={(e) => setmin(e.target.value)}
-                  style={{ width: "100%", border: "1px solid #949494", borderRadius: "5px" }} />
+                  style={{ padding: "15px", width: "100%", border: "1px solid #949494", borderRadius: "5px" }} />
               </div>
               <div style={{ width: "100%", paddingTop: "2%" }}>
                 <div style={{ color: "#cccccc", width: "100%" }}>Maximum purchase (Sale Token)</div>
                 <input type="number" placeholder="e.g. 1000"
                   value={max} onChange={(e) => setmax(e.target.value)}
-                  style={{ width: "100%", border: "1px solid #949494", borderRadius: "5px" }} />
+                  style={{ padding: "15px", width: "100%", border: "1px solid #949494", borderRadius: "5px" }} />
               </div>
             </div>
 
@@ -247,17 +247,17 @@ function EditSale() {
             <div style={{ paddingTop: "20px", color: "#cccccc" }}>Sale End Time : {end}</div>
             <input type="number" placeholder="Set new duration in days"
               value={duration} onChange={(e) => setduration(e.target.value)}
-              style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
+              style={{ padding: "15px", width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
 
             <div style={{ color: '#12D576', fontSize: "24px", fontWeight: "550", paddingTop: "6%" }}>Set Sale Vesting/Cliff/Release Schedule</div>
             <div style={{ paddingTop: "20px", color: "#cccccc" }}>Sale Cliff Months for Release</div>
             <input type="number" placeholder="e.g. 6"
               value={cliff} onChange={(e) => setcliff(e.target.value)}
-              style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
-            <div style={{ paddingTop: "20px", color: "#cccccc" }}>Total Monthly Release Installments</div>
+              style={{ padding: "15px", width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
+            <div style={{ padding: "15px", paddingTop: "20px", color: "#cccccc" }}>Total Monthly Release Installments</div>
             <input type="number" placeholder="e.g. If 12, Amount / 12 will be released monthly for 12 months after Cliff"
               value={releasemonths} onChange={(e) => setreleasemonths(e.target.value)}
-              style={{ width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
+              style={{ padding: "15px", width: "100%", height: "50px", borderRadius: "5px", border: "1px solid #949494", backgroundColor: "#f4f4f4" }} />
 
             <Button onClick={() => { updateSale() }} style={{ backgroundColor: "#12D576", border: "#12D576", marginTop: "2vw", padding: "7px 25px", fontSize: "20px", fontWeight: "450" }} variant="">Update Sale</Button>
           </div>
