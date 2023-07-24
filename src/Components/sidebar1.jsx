@@ -37,6 +37,7 @@ export function Side1({theme}){
                 setExpand(true)
             }
         }
+
         useEffect(()=>{
             let alp1=document.getElementById('arrow1')
             let alp2=document.getElementById('arrow2')
@@ -69,10 +70,35 @@ export function Side1({theme}){
             </div>
         )
     }
+    const handleExpand_hov = () => {
+        let k2=document.getElementsByClassName('expanded-1')
+            let k3=document.getElementsByClassName('expanded')
+            if(expand){
+                for(let i=0;i<k2.length;++i){
+                    k2[i].style.display='block'
+                    k2[i].previousElementSibling.style.width='20%'
+                    if(i!==k2.length-1 && k3[i])k3[i].classList.add('expanded_1')
+                }
+                setExpand(false)
+            }
+            else{
+                for(let i=0;i<k2.length;++i){
+                    k2[i].style.display='none'
+                    k2[i].previousElementSibling.style.width='100%'
+                    if(i!==k2.length-1 && k3[i])k3[i].classList.remove('expanded_1')
+                }
+                setExpand(true)
+            }
+      };
     const [col,setCol]=useState([false,false,false,false,false,false,false,false,false,false])
     const navigate=useNavigate()
     return (
-        <div className="sidebar" id='sidebar1'  style={{backgroundColor:`${theme==='Dark' ? '#101010':'whitesmoke'}`}}>
+        <div className="sidebar" id='sidebar1'  style={{
+            backgroundColor: theme === 'Dark' ? '#101010' : 'whitesmoke',
+            transitionTimingFunction: 'ease-out',
+             // Add the CSS transition property
+ // Ensure content inside the sidebar doesn't overflow
+          }}>
             <Arrow/>
             <Link to='/'><div style={{paddingTop:'1.389vw'}} className='expanded_2' onClick={()=>{
                     setCol([false,false,false,false,false,false,false,false,false,false,false])
