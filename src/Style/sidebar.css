@@ -49,12 +49,12 @@
 .expanded-1{
     display:none;
     color:white;
-    font-size:1vw;
+    font-size:11px;
     font-weight: 600;
 }
 .expanded-2{
     color:white;
-    font-size:1vw;
+    font-size:11px;
     font-weight: 600;
 }
 
@@ -65,6 +65,7 @@
 .expanded{
     padding:0.75vw;
     cursor:pointer;
+    margin-top: -10px;
 }
 
 .expanded_1:hover{
@@ -152,6 +153,15 @@ a{
     background-color:#12D576 !important;
     border-radius:20px;
 } */
+#doc{
+    margin-top: 2vw !important;
+}
+@media (min-width: 100px) and (max-width: 1168px) {
+    #doc{
+        margin-top: 7vw !important;
+    }
+  }
+
 @media only screen and (max-width:2158px){
     .dashboard{
         padding-left:151px !important;
@@ -163,6 +173,7 @@ a{
     }
 }
 @media only screen and (max-width:1218px){
+
     svg{
         width:18px !important;
         height:18px !important;
