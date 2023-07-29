@@ -9,27 +9,6 @@ import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-console.log(chain);
-
-const avalancheTest = {
-  id: 43113,
-  name: 'Avalanche Testnet',
-  network: 'avalanchefuji',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'Avalanche',
-    symbol: 'TAVAX',
-  },
-  rpcUrls: {
-    public: { http: ['https://api.avax-test.network/ext/bc/C/rpc'] },
-    default: { http: ['https://rpc.ankr.com/avalanche_fuji'] },
-  },
-  blockExplorers: {
-    etherscan: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' },
-    default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' },
-  }
-}
-
 const telosTest = {
   id: 41,
   name: 'Telos EVM Testnet',
@@ -56,11 +35,6 @@ const { chains, provider } = configureChains(
   [chain.polygonMumbai, telosTest, chain.mainnet, chain.polygon],
   [  publicProvider(), alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" })]
 ); 
-
-// const { connectors } = getDefaultWallets({
-//   appName: "SecureDApp_Launchpad",
-//   chains
-// });
 
 const connectors = connectorsForWallets([
   {
