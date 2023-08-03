@@ -1,92 +1,71 @@
-// UniswapLP.js
-
-import React, { useState } from "react";
-import { Button, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 
-const WETH_ADDRESS = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"; // Address of WETH on the Ethereum mainnet
-const UNISWAP_ROUTER_ADDRESS = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"; // Address of Uniswap V2 Router on the Ethereum mainnet
-const SLIPPAGE_TOLERANCE = 0.005; // 0.5% slippage tolerance
+const factoryArtifacts = require('@uniswap/v2-core/build/UniswapV2Factory.json');
+const routerArtifacts = require('@uniswap/v2-periphery/build/UniswapV2Router02.json');
+const pairArtifacts = require('@uniswap/v2-core/build/UniswapV2Pair.json');
 
 function UniswapLP(props) {
   const { token1Address, token2Address, token1Amount, token2Amount } = props;
-  const [loading, setLoading] = useState(false);
-  const [transactionHash, setTransactionHash] = useState("");
+  const [pairAddress, setPairAddress] = useState("");
+  const [reserves, setReserves] = useState("");
 
-  const provideLiquidity = async () => {
-    try {
-      setLoading(true);
+  useEffect(() => {
+    async function addLiquidity() {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
 
-      if (window.ethereum) {
-        // Request access to the user's Ethereum wallet
-        await window.ethereum.enable();
+      const factoryAddress = "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f";
+      const factory = new ethers.Contract(factoryAddress, factoryArtifacts.abi, signer);
 
-        // Initialize ethers provider
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
+      const pairAddress = await factory.getPair(token1Address, token2Address);
+      setPairAddress(pairAddress);
 
-        // Initialize Uniswap router contract
-        const uniswapRouter = new ethers.Contract(UNISWAP_ROUTER_ADDRESS, [
-          "function addLiquidityETH(address,uint256,uint256,uint256,address,uint256) payable external",
-        ], signer);
+      const pair = new ethers.Contract(pairAddress, pairArtifacts.abi, signer);
 
-        // Fetch the token contract instances
-        const token1 = new ethers.Contract(token1Address, ["function approve(address,uint256)"], signer);
-        const token2 = new ethers.Contract(token2Address, ["function approve(address,uint256)"], signer);
+      let reserves = await pair.getReserves();
+      setReserves(reserves);
 
-        // Approve Uniswap router to spend tokens on behalf of the user
-        await token1.approve(UNISWAP_ROUTER_ADDRESS, ethers.constants.MaxUint256);
-        await token2.approve(UNISWAP_ROUTER_ADDRESS, ethers.constants.MaxUint256);
+      const routerAddress = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
+      const router = new ethers.Contract(routerAddress, routerArtifacts.abi, signer);
 
-        // Calculate amounts in wei
-        const token1AmountWei = ethers.utils.parseUnits(token1Amount, "wei");
-        const token2AmountWei = ethers.utils.parseUnits(token2Amount, "wei");
+      const token1Contract = new ethers.Contract(token1Address, ["function approve(address spender, uint256 amount) public returns (bool)"], signer);
+      await token1Contract.approve(router.address, token1Amount);
 
-        // Add liquidity to Uniswap using ETH
-        const deadline = Math.floor(Date.now() / 1000) + 60 * 20; // 20 minutes
-        const tx = await uniswapRouter.addLiquidityETH(
-          token1Address,
-          token1AmountWei,
-          0, // slippage tolerance for the second token (0 for ETH)
-          0, // slippage tolerance for liquidity
-          props.address, // recipient of LP tokens (owner's address)
-          deadline,
-          { value: token2AmountWei }
-        );
+      const token2Contract = new ethers.Contract(token2Address, ["function approve(address spender, uint256 amount) public returns (bool)"], signer);
+      await token2Contract.approve(router.address, token2Amount);
 
-        setTransactionHash(tx.hash);
+      const deadline = Math.floor(Date.now() / 1000) + 60 * 10; // 10 minutes from the current Unix time
 
-        // Wait for the transaction to be confirmed
-        await tx.wait();
+      // Add liquidity to the pool
+      await router.addLiquidity(
+        token1Address,
+        token2Address,
+        token1Amount,
+        token2Amount,
+        0,
+        0,
+        signer.getAddress(),
+        deadline
+      );
 
-        setLoading(false);
-      } else {
-        console.error("Ethereum provider not found. Please install MetaMask.");
-        setLoading(false);
-      }
-    } catch (error) {
-      console.error("Error providing liquidity:", error);
-      setLoading(false);
+      reserves = await pair.getReserves();
+      setReserves(reserves);
     }
-  };
+
+    addLiquidity();
+  }, [token1Address, token2Address, token1Amount, token2Amount]);
 
   return (
-    <div>
-      <Form>
-        {/* Display token1Address, token2Address, token1Amount, and token2Amount in the form if needed */}
-        {/* ... */}
-
-        <Button variant="primary" type="button" onClick={provideLiquidity} disabled={loading}>
-          {loading ? "Providing Liquidity..." : "Provide Liquidity on Uniswap"}
-        </Button>
-      </Form>
-
-      {transactionHash && (
-        <div>
-          Transaction Hash: {transactionHash}
-        </div>
-      )}
-    </div>
+    <>
+      <h2>Uniswap LP</h2>
+      <p>Token 1 Address: {token1Address}</p>
+      <p>Token 2 Address: {token2Address}</p>
+      <p>Token 1 Amount: {token1Amount}</p>
+      <p>Token 2 Amount: {token2Amount}</p>
+      <p>Pair Address: {pairAddress}</p>
+      <p>Reserves: {reserves.toString()}</p>
+    </>
   );
 }
 

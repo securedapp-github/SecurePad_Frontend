@@ -70,7 +70,7 @@ function App() {
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
       <Route exact path="/dex-launch" element={<Sidebar page={"dex-launch"}/>} />
-      <Route exact path="/uniswap-lp" element={<Sidebar page={"UniswapLP"}/>} />
+      
       <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />
       <Route exact path="/managetoken/:TOKEN" element={<Sidebar page={"managetoken"}/>} />
       <Route exact path="/locktoken/:TOKEN" element={<Sidebar page={"locktoken"}/>} />
