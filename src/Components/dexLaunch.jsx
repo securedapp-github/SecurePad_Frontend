@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Spinner } from 'react-bootstrap';
 import UniswapLP from './UniswapLP';
 
 import '../Style/dexLaunch.css';
@@ -10,8 +10,9 @@ function DexLaunch(props) {
   const [token2Address, setToken2Address] = useState("");
   const [token1Amount, setToken1Amount] = useState("");
   const [token2Amount, setToken2Amount] = useState("");
-  const [uniswapLpEnabled, setUniswapLpEnabled] = useState(false); 
+  const [uniswapLpEnabled, setUniswapLpEnabled] = useState(false);
   const [formEnabled, setFormEnabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -19,8 +20,12 @@ function DexLaunch(props) {
       alert("All fields are required!");
       return;
     }
-    setUniswapLpEnabled(true); 
-    setFormEnabled(false); 
+    setIsLoading(true);
+    setTimeout(() => { // simulate API call
+      setUniswapLpEnabled(true);
+      setFormEnabled(false);
+      setIsLoading(false);
+    }, 2000);
   };
 
   return (
@@ -71,8 +76,8 @@ function DexLaunch(props) {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Initiate Uniswap LP v2
+          <Button variant="primary" type="submit" disabled={isLoading}>
+            {isLoading ? <Spinner animation="border" size="sm" /> : 'Initiate Uniswap LP v2'}
           </Button>
         </Form>
       )}

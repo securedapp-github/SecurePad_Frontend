@@ -1,52 +1,42 @@
-form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.7); 
-  }
-  
-  form input[type="number"],
-  form select {
-    width: 100%;
-    padding: 8px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.3);
-    color: #000;
-    transition: background-color 0.3s ease;
-  }
-  form button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  form input[type="number"]:hover,
-  form select:hover,
-  form button:hover {
-    background-color: rgba(255, 255, 255, 0.5); 
-  }
+.dexLaunch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #101010;
+  border: 1px solid grey;
+  border-radius: 1.16vw;
+  padding: 1vw;
+  color: white;
+  margin: 2vw;
+}
 
-@media only screen and (max-width:940px){
-    .tokenBody{
-        flex-direction:column !important;
-        align-content:center;
-    }
-    .tokenSettings{
-        border:0 !important; 
-        padding-left:0;
-        width:100% !important;
-    }
-    .tokenCreate{
-        width:100% !important
-    }
+.dexLaunch form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dexLaunch form label {
+  font-weight: 600;
+  margin-bottom: 0.5vw;
+}
+
+.dexLaunch form .form-group {
+  margin-bottom: 2vw;
+}
+
+.dexLaunch form .form-control {
+  background-color: #2E3238;
+  color: white;
+  border: none;
+}
+
+.dexLaunch form .form-control::placeholder {
+  color: #888;
+}
+
+.dexLaunch form .btn-primary {
+  background-color: #12D576;
+  border: none;
+  padding: 0.5vw 1vw;
 }
