@@ -8,6 +8,8 @@ import './App.css'
 import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import LandingPage from './Components/landingPage.jsx'
+
 
 const telosTest = {
   id: 41,
@@ -78,8 +80,9 @@ function App() {
       <Route exact path="/managesale/:SALE" element={<Sidebar page={"managesale"}/>} />
       <Route exact path="/buysale/:SALE" element={<Sidebar page={"buysale"}/>} />
       <Route exact path="/distributetoken" element={<Sidebar page={"distributetoken"}/>} />
-      <Route path="*" element={<Sidebar page={"error"}/>} />
+      <Route  path="*" element={<Sidebar page={"error"}/>} />
 
+      <Route exact path="/landing_page" element={<LandingPage/>} />
     </Routes>
     </BrowserRouter>
     </RainbowKitProvider>
