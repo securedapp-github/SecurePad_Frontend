@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ethers } from 'ethers';
-import { addLiquidity } from '../utils/addLiquidity'; // Import the addLiquidity function
-import { Button } from 'react-bootstrap';
+import { Button, Form, Row, Col } from 'react-bootstrap';
 import '../Style/uniswapLP.css';
+import { addLiquidity } from '../utils/addLiquidity';
 
 function UniswapLP(props) {
   const [transactionHash, setTransactionHash] = useState(null);
@@ -14,6 +13,7 @@ function UniswapLP(props) {
     try {
       const receipt = await addLiquidity(token1Address, token2Address, token1Amount, token2Amount);
       setTransactionHash(receipt.transactionHash);
+      console.log("Transaction hash:", receipt.transactionHash)
       setStatus('completed');
     } catch (error) {
       console.error("Error adding liquidity:", error);
@@ -21,11 +21,59 @@ function UniswapLP(props) {
     }
   }
 
+  const labelStyle = {
+    display: 'block',
+    margin: '8px 0',
+    fontWeight: 'bold',
+    color: 'white'
+  };
+
+  const hashStyle = {
+    whiteSpace: 'normal',
+    wordWrap: 'break-word',
+    color: 'white'
+  };
+
+  const valueStyle = {
+    margin: '8px 0',
+    color: 'white'
+  };
+
+  const marginStyle = {
+    margin: '20px'
+  }
+
   return (
     <>
       <h2>Uniswap LP</h2>
-      <p>Token 1: {token1Address} Amount: {token1Amount}</p>
-      <p>Token 2: {token2Address} Amount: {token2Amount}</p>
+
+      <h4 style={marginStyle}>Token 1</h4>
+      <Row>
+        <Col md={8}>
+          <Form.Label style={labelStyle}>Address</Form.Label>
+          <p style={valueStyle}>{token1Address}</p>
+        </Col>
+        <Row>
+          <Col md={5}>
+            <Form.Label style={labelStyle}>Amount</Form.Label>
+            <p style={valueStyle}>{token1Amount}</p>
+          </Col>
+        </Row>
+      </Row>
+
+      <h4>Token 2</h4>
+      <Row>
+        <Col md={8}>
+          <Form.Label style={labelStyle}>Address</Form.Label>
+          <p style={valueStyle}>{token2Address}</p>
+        </Col>
+        <Row>
+          <Col md={4}>
+            <Form.Label style={labelStyle}>Amount</Form.Label>
+            <p style={valueStyle}>{token2Amount}</p>
+          </Col>
+          </Row>
+      </Row>
 
       {status === 'idle' && (
         <Button variant="primary" onClick={addLiquidityToPool}>
@@ -39,14 +87,14 @@ function UniswapLP(props) {
 
       {status === 'completed' && transactionHash && (
         <div>
-          <h2>Transaction completed</h2>
-          <p>Transaction Hash: {transactionHash}</p>
+          <h4>Transaction completed</h4>
+            <p>Transaction Hash: {transactionHash.substring(0, 20)}...</p>
         </div>
       )}
 
       {status === 'error' && (
         <div>
-          <h2>Error adding liquidity.</h2>
+          <h4>Error adding liquidity.</h4>
           <p>Check the console for details.</p>
         </div>
       )}

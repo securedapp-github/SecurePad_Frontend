@@ -5,7 +5,8 @@ const IERC20 = require('@openzeppelin/contracts/build/contracts/IERC20.json');
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
-const routerAddress = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'; // Mainnet Router address
+// Mainnet Router address for uniswap v2
+const routerAddress = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
 
 export async function addLiquidity(tokenAddress1, tokenAddress2, tokenAmount1, tokenAmount2) {
   const token1Contract = new ethers.Contract(
@@ -37,9 +38,9 @@ export async function addLiquidity(tokenAddress1, tokenAddress2, tokenAmount1, t
 
   const amountADesired = ethers.utils.parseEther(tokenAmount1.toString());
   const amountBDesired = ethers.utils.parseEther(tokenAmount2.toString());
-  const amountAMin = ethers.utils.parseEther('0'); // or any other minimum you'd like
-  const amountBMin = ethers.utils.parseEther('0'); // or any other minimum you'd like
-  const deadline = Math.floor(Date.now() / 1000) + 60 * 20; // 20 minutes from the current Unix time
+  const amountAMin = ethers.utils.parseEther('0');
+  const amountBMin = ethers.utils.parseEther('0');
+  const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
 
   const tx = await router.addLiquidity(
     tokenAddress1,

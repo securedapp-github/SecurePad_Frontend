@@ -9,7 +9,7 @@ import Token from './token.jsx'
 import Contract from './contract.jsx'
 import Sale from './sale.jsx'
 import Lock from './lock.jsx'
-import DexLaunch from './dexLaunch.jsx'
+import AddLiquidity from './AddLiquidity.jsx'
 import Home from './home.jsx'
 import Manage from './manage.jsx'
 import Search from './search.jsx'
@@ -91,8 +91,8 @@ function Sidebar(props) {
       if (page == 'distributetoken') {
         return <DistributeToken theme={theme} />
       }
-      if (page == 'dex-launch') {
-        return <DexLaunch theme={theme} />
+      if (page == 'add-liquidity') {
+        return <AddLiquidity theme={theme} />
       }
     }
   }
