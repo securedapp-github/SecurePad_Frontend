@@ -8,6 +8,7 @@ import './App.css'
 import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import { ToastContainer } from 'react-toastify';
 
 const telosTest = {
   id: 41,
@@ -69,6 +70,7 @@ function App() {
       <Route exact path="/search" element={<Sidebar page={"search"}/>} />
       <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
       <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
+      <Route exact path="/add-liquidity" element={<Sidebar page={"add-liquidity"}/>} />
       <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />
       <Route exact path="/managetoken/:TOKEN" element={<Sidebar page={"managetoken"}/>} />
       <Route exact path="/locktoken/:TOKEN" element={<Sidebar page={"locktoken"}/>} />
@@ -79,7 +81,6 @@ function App() {
       <Route exact path="/buysale/:SALE" element={<Sidebar page={"buysale"}/>} />
       <Route exact path="/distributetoken" element={<Sidebar page={"distributetoken"}/>} />
       <Route path="*" element={<Sidebar page={"error"}/>} />
-
     </Routes>
     </BrowserRouter>
     </RainbowKitProvider>
