@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import '../Style/uniswapLP.css';
 import { addLiquidity } from '../utils/addLiquidity';
+import ToasterUi from 'toaster-ui';
 
 function UniswapLP(props) {
+  const toaster = new ToasterUi();
   const [transactionHash, setTransactionHash] = useState(null);
   const [status, setStatus] = useState('idle');
+  
   const { token1Address, token2Address, token1Amount, token2Amount } = props;
 
   const addLiquidityToPool = async () => {
     setStatus('pending');
+    toaster.addToast("Adding liquidity...", "info", { styles: { background: 'grey' } }); // Grey color toast for loading
+
     try {
       const receipt = await addLiquidity(token1Address, token2Address, token1Amount, token2Amount);
       setTransactionHash(receipt.transactionHash);
-      console.log("Transaction hash:", receipt.transactionHash)
       setStatus('completed');
+      toaster.addToast("Liquidity added successfully!", "success", { styles: { background: 'green' } }); // Green color toast for success
     } catch (error) {
-      console.error("Error adding liquidity:", error);
       setStatus('error');
+      toaster.addToast("Error adding liquidity. Check the console for details.", "error", { styles: { background: 'red' } }); // Red color toast for error
     }
   }
 
@@ -72,7 +77,7 @@ function UniswapLP(props) {
             <Form.Label style={labelStyle}>Amount</Form.Label>
             <p style={valueStyle}>{token2Amount}</p>
           </Col>
-          </Row>
+        </Row>
       </Row>
 
       {status === 'idle' && (
@@ -88,7 +93,7 @@ function UniswapLP(props) {
       {status === 'completed' && transactionHash && (
         <div>
           <h4>Transaction completed</h4>
-            <p>Transaction Hash: {transactionHash.substring(0, 20)}...</p>
+          <p>Transaction Hash: {transactionHash.substring(0, 20)}...</p>
         </div>
       )}
 

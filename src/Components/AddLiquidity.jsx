@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Button, Form, Spinner, Row, Col } from 'react-bootstrap';
+import { Button, Form, Row, Col, Spinner } from 'react-bootstrap';
 import UniswapLP from './UniswapLP';
+import { pairExists } from '../utils/addLiquidity';
+import ToasterUi from 'toaster-ui';
 
 function AddLiquidity(props) {
+  const toaster = new ToasterUi();
   const { theme } = props;
   const [token1Address, setToken1Address] = useState("");
   const [token2Address, setToken2Address] = useState("");
@@ -12,18 +15,37 @@ function AddLiquidity(props) {
   const [formEnabled, setFormEnabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     if (!token1Address || !token2Address || !token1Amount || !token2Amount) {
       alert("All fields are required!");
       return;
     }
+    
+    toaster.addToast("Initiating liquidity check", "info", { styles: { background: 'grey' } }); // Grey color toast
+
     setIsLoading(true);
-    setTimeout(() => { // simulate API call
+    const exists = await pairExists(token1Address, token2Address);
+    if (exists) {
+      toaster.addToast("Liquidity pair already exists on DEX!", "error", { styles: { background: 'red' } }); // Red color toast
+      setIsLoading(false);
+      return;
+    }
+
+    const shouldProceed = window.confirm("The liquidity pair does not exist on DEX. Do you want to proceed with adding liquidity?");
+    if (!shouldProceed) {
+      setIsLoading(false);
+      return;
+    }
+
+    toaster.addToast("Initiate Uniswap LP V2", "info", { styles: { background: 'black' } }); // Black color toast
+
+    setTimeout(() => {
       setUniswapLpEnabled(true);
       setFormEnabled(false);
       setIsLoading(false);
-    }, 2000);
+      // toaster.addToast("Liquidity added successfully!", "success", { styles: { background: 'green' } }); // Green color toast
+    }, 5000);
   };
 
   const containerStyle = {
@@ -93,10 +115,8 @@ function AddLiquidity(props) {
   return (
     <div style={containerStyle}>
       {!uniswapLpEnabled && <h2>Add Liquidity to DEX</h2>}
-
       {formEnabled && (
         <Form onSubmit={handleFormSubmit}>
-          
           <h4 style={tokenHeaderStyle}>Token 1</h4>
           <Row>
             <Col md={8}>
@@ -157,10 +177,10 @@ function AddLiquidity(props) {
             </Col>
           </Row>
 
-          <Button 
-            variant="primary" 
-            type="submit" 
-            disabled={isLoading} 
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={isLoading}
             style={buttonStyle}
             onMouseOver={e => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
             onMouseOut={e => e.currentTarget.style.backgroundColor = buttonStyle.backgroundColor}

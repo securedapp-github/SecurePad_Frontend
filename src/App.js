@@ -8,6 +8,7 @@ import './App.css'
 import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import { ToastContainer } from 'react-toastify';
 
 const telosTest = {
   id: 41,

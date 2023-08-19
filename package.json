@@ -35,6 +35,7 @@
     "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.3",
     "react-tooltip": "^5.13.1",
+    "toaster-ui": "^1.1.5",
     "wagmi": "0.5.9",
     "web-vitals": "^2.1.4",
     "web3": "^4.0.3",
