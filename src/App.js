@@ -8,6 +8,7 @@ import './App.css'
 import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import LandingPage from './Components/landingPage.jsx'
 
 const telosTest = {
   id: 41,
@@ -61,6 +62,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route exact path="/" element={<Sidebar page={"home"}/>} />
+      <Route exact path="/home" element={<LandingPage />} />
       <Route exact path="/token" element={<Sidebar page={"token"}/>} />
       <Route exact path="/contact" element={<Sidebar page={"contact"}/>} />
       <Route exact path="/pricing" element={<Sidebar page={"pricing"}/>} />
