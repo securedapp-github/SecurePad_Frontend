@@ -9,8 +9,12 @@ import { faPlus,faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import {faFacebook,faTwitter,faInstagram,faTelegram} from "@fortawesome/free-brands-svg-icons";
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaBars} from 'react-icons/fa';
+import Plus from '../assets/plus.png';
+import Minus from '../assets/minus.png';
+
 
 export const LandingPage = () => {
+    let Odd_even = 0
     useEffect(() => {
         const handleScroll = () => {
         let objs = document.getElementById('sticky');
@@ -22,14 +26,31 @@ export const LandingPage = () => {
         };
         window.addEventListener('scroll', handleScroll);
       }, []);
+
+
+    const view_ans = (element_id,btn_id)=>{
+        let btn_obj = document.getElementById(btn_id)
+        let obj = document.getElementById(element_id)
+        if(Odd_even%2==0){
+            btn_obj.src=Minus
+            obj.style.display = "flex"
+            obj.style.transform = "scaleX(1)"
+        }else{
+            btn_obj.src=Plus
+            obj.style.display = "none"
+            obj.style.transform = "scaleX(0)"
+        }
+        Odd_even++;
+        
+    }
     
-    const faq = ["What are the requirements for projects that want to launch an IDO on SecurePAD?",
-                "How do I get involved with SecurePAD?",
-                "What is the future of SecurePAD?",
-                "What are the risks associated with using SecurePAD?",
-                "What is SecurePAD?",
-                "How do I participate in an IDO on SecurePAD?",
-                "What are the benefits of using SecurePAD?"                
+    const faq = [["What are the requirements for projects that want to launch an IDO on SecurePAD?","sample"],
+                ["How do I get involved with SecurePAD?","sample"],
+                ["What is the future of SecurePAD?","sample"],
+                ["What are the risks associated with using SecurePAD?","sample"],
+                ["What is SecurePAD?","sample"],
+                ["How do I participate in an IDO on SecurePAD?","sample"],
+                ["What are the benefits of using SecurePAD?","sample"]                
     ]
     const [content, SetContent] = useState({
         btn1:{
@@ -439,10 +460,11 @@ export const LandingPage = () => {
                                     <hr style={{color:"aliceblue"}} />
                                     <div className='plus'>
                                         <div>
-                                            <p>{item}</p>
+                                            <p>{item[0]}</p>
+                                            <p id={`para_${index}`} style={{padding: '0px 0px 0px 50px',transform: 'scaleX(0)',display: 'none'}}>{item[1]}</p>
                                         </div>
                                         <div>
-                                            <FontAwesomeIcon icon={faPlus} style={{color:'white'}} />
+                                            <img src={Plus} id={`button_${index}`} style={{width:"20px"}} onClick={()=>{view_ans(`para_${index}`,`button_${index}`)}}/>
                                         </div>
                                     </div>
                                 </div>
