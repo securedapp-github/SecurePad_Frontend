@@ -488,8 +488,8 @@ export const LandingPage = () => {
             <footer>
                 <div className='footer_con'>
                     <div className='list_item'>
-                        <h6>Company</h6>
                         <ul>
+                        <h6>Company</h6>
                             <li>Team</li>
                             <li> About Us</li>
                             <li> Request a quote</li>
@@ -498,8 +498,8 @@ export const LandingPage = () => {
                         </ul>
                     </div>
                     <div className='list_item'>
-                        <h6>Resource</h6>
                         <ul>
+                        <h6>Resource</h6>
                             <li>Solidity Shield</li>
                             <li> Audit Process</li>
                             <li> Our Services</li>
@@ -509,8 +509,8 @@ export const LandingPage = () => {
                         </ul>
                     </div>
                     <div className='list_item'>
-                        <h6>Products</h6>
                         <ul>
+                        <h6>Products</h6>
                             <li>Search</li>
                             <li> Rewards</li>
                             <li> Wallet</li>
@@ -522,8 +522,8 @@ export const LandingPage = () => {
                         </ul>
                     </div>
                     <div className='list_item'>
-                        <h6>Participate</h6>
                         <ul>
+                        <h6>Participate</h6>
                             <li>Community</li>
                             <li> Contributors</li>
                             <li> Events</li>
@@ -531,8 +531,8 @@ export const LandingPage = () => {
                         </ul>
                     </div>
                     <div className='list_item'>
-                        <h6>Explore</h6>
                         <ul>
+                        <h6>Explore</h6>
                             <li>Tokens</li>
                             <li> Apps & Services</li>
                             <li> Wallets</li>
@@ -548,14 +548,14 @@ export const LandingPage = () => {
                     </div>
                     <div>
                         <ul className='list_content'>
-                            <li>Terms of Services |</li>
-                            <li> Privacy Policy |</li>
+                            <li>Terms of Services </li><span style={{color:'white'}}>|</span>
+                            <li> Privacy Policy </li><span style={{color:'white'}}>|</span>
                             <li>Lite Paper</li>
                         </ul>
                     </div>
                     <div>
                         <ul className='list_content'>
-                            <li><a href="#" className="social-icon"><FontAwesomeIcon icon={faTwitter} style={{color:'white' }} /></a></li>
+                            <li><a href="#" className="social-icon"><FontAwesomeIcon icon={faTwitter} style={{color:'white',height:'30px' }} /></a></li>
                             <li><a href="#" className="social-icon"><FontAwesomeIcon icon={faFacebook} style={{color:'white'}} /></a></li>
                             <li><a href="#" className="social-icon"><FontAwesomeIcon icon={faInstagram} style={{color:'white'}} /></a></li>
                             <li><a href="#" className="social-icon"><FontAwesomeIcon icon={faTelegram} style={{color:'white'}} /></a></li>
