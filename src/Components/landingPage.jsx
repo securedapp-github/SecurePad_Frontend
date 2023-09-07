@@ -96,11 +96,6 @@ export const LandingPage = () => {
                 head:"",
                 content:"Create confidence with investors"
             },
-            line5:{
-                no:"05",
-                head:"",
-                content:"Share token lock information via publicly accessible web page"
-            }
         },btn3:{
             line1:{
                 no:"01",
@@ -122,11 +117,6 @@ export const LandingPage = () => {
                 head:"",
                 content:"Run a security token offering (STO)"
             },
-            line5:{
-                no:"05",
-                head:"",
-                content:"Create an IDO token presale"
-            },
         },btn4:{
             line1:{
                 no:"01",
@@ -147,11 +137,6 @@ export const LandingPage = () => {
                 no:"04",
                 head:"",
                 content:"Secure Airdrop also allows users to track the status of their airdrop tokens, so they know when they have been received and when they can be claimed."
-            },
-            line5:{
-                no:"05",
-                head:"",
-                content:"This makes it a more transparent and user-friendly way to participate in airdrops."
             },
         },btn5:{
             line1:{
@@ -438,13 +423,12 @@ export const LandingPage = () => {
                             <h3 style={{fontSize: "17px",color: "white"}}>Haven't found the answers you are looking for? Contact us at</h3>
                             <p>support@securdapp.in</p>
                         </div>
-                        <div className='fqa_btns'>
+                        {/* <div className='fqa_btns'>
                             <button className='active'>Token</button>
-                            <button>Security</button>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='l_right'>
-                        <h1>Token</h1>
+                       
                         <h6>What makes SecurePAD different from other token launchpads?</h6>
                         <p>SecurePAD is different from other token launchpads in a number of ways, including:</p>
                         <ul>
