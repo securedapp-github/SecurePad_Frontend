@@ -280,7 +280,7 @@ export const LandingPage = () => {
         </div>
         <body>
             <section className="main">
-                <div className="main_content">
+                <div className="main_content" style={{ marginTop: '70px', marginBottom: '70px'}}>
                     <div className="left">
                         <h1>Unlocking the DeFi Potential with SecurePAD</h1>
                         <p>Discover the power of Tokenomics with SecurePAD. Experience Exclusive Early Access to the Next Unicorn in DeFi Tokenization. Trustworthy Audited and vetted Web3 Projects</p>
