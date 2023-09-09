@@ -11,10 +11,40 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FaBars } from 'react-icons/fa';
 import Plus from '../assets/plus.png';
 import Minus from '../assets/minus.png';
+import { ToastContainer, toast } from "react-toastify";
 
 
 export const LandingPage = () => {
-    let Odd_even = 0
+    let Odd_even = 0;
+    const [email, setEmail] = useState("");
+
+    const sendMail = async () => {
+  
+      if (email == "") {
+        toast("Invalid Mail");
+        return;
+      }
+      fetch("https://139-59-5-56.nip.io:3443/contactMail", {
+        method: "POST",
+        body: JSON.stringify({
+          name: "Transmission Mail SecurePad",
+          mail: email,
+          msg: "Mail for transmission SecurePad",
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((res) => {})
+        .then((data) => {
+          toast.success("Mail Send Successfully");
+        })
+        .catch((err) => {
+          console.log(err.message);
+          toast("Error in sending mail");
+        });
+    };
+    
     useEffect(() => {
         const handleScroll = () => {
             let objs = document.getElementById('sticky');
@@ -272,6 +302,13 @@ export const LandingPage = () => {
     }
     let clicks = 0;
     return (
+        <>
+        <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        theme="dark"
+        pauseOnHover
+      />
         <div className='hole_page'>
             <div className='sample'>
                 <div className='Topclr'></div>
@@ -284,12 +321,13 @@ export const LandingPage = () => {
                     <div className='logo_title'>
                         <img className='logo_img' src={Icon} alt="" />
                         <div className='title_content'>
-                            <span style={{ fontSize: "30px",color: "rgb(212 212 212)" }}>Secured<span style={{ color: "white" }}>Pad</span></span>
-                            <p style={{ fontSize: "15px", color: "rgb(212 212 212)" }}>By SecuredAPP</p>
+                            <span style={{ fontSize: "35px",color: "rgb(212 212 212)" }}>Secured<span style={{ color: "white" }}>Pad</span></span>
+                            <p style={{ fontSize: "13px", color: "rgb(212 212 212)" }}>By SecuredAPP</p>
                         </div>
                     </div>
                     <div className='nav_block'>
                         <nav className="navbar" id='navbar'>
+                            <li><Link to="/contact" />Contact Us</li>
                             <Link to={`/home`} >
                             <button className="menu_btn">Launch SecurePad</button>
                             </Link>
@@ -497,10 +535,15 @@ export const LandingPage = () => {
                         <div className='right_con'>
                             <h1>Receive Transmissions</h1>
                         </div>
-                        <div >
+                        <div>
                             <div className='input_style'>
-                                <input type="text" name="" id="" placeholder='Your Email' />
-                                <button><FontAwesomeIcon icon={faAngleRight} /></button>
+                                <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Your email"
+                                id="" />
+                                <button onClick={() => {sendMail();}}><FontAwesomeIcon icon={faAngleRight} /></button>
                             </div>
                         </div>
                     </div>
@@ -586,6 +629,7 @@ export const LandingPage = () => {
                 </footer>
             </body>
         </div>
+        </>
     )
 }
 
