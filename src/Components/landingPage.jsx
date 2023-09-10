@@ -327,7 +327,7 @@ export const LandingPage = () => {
                     </div>
                     <div className='nav_block'>
                         <nav className="navbar" id='navbar'>
-                            <li><Link to="/contact" />Contact Us</li>
+                        <li><Link to={"/contact"} style={{ color: 'white' }}>Contact Us</Link></li>
                             <Link to={`/home`} >
                             <button className="menu_btn">Launch SecurePad</button>
                             </Link>
@@ -362,7 +362,7 @@ export const LandingPage = () => {
                             <h1>Unlocking the DeFi Potential with SecurePAD</h1>
                             <p>Discover the power of Tokenomics with SecurePAD. Experience Exclusive Early Access to the Next Unicorn in DeFi Tokenization. Trustworthy Audited and vetted Web3 Projects</p>
                             <h3>Embark on the Future of Fundrainsing with us.</h3>
-                            <Link to={`/token`} >
+                            <Link to={`/token`}>
                             <button>Launch Your Token Now</button>
                             </Link>
                             
