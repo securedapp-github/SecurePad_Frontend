@@ -319,7 +319,7 @@ export const LandingPage = () => {
                 </div>
             </div>
         </div>
-        <div id='body'>
+        <div id="body">
             <section className="main">
                 <div className="main_content">
                     <div className="left">
@@ -477,7 +477,7 @@ export const LandingPage = () => {
                                     <hr style={{color:"aliceblue"}} />
                                     <div className='plus'>
                                         <div onClick={()=>{view_ans(`para_${index}`,`button_${index}`)}} >
-                                            <p onClick={()=>{view_ans(`para_${index}`,`button_${index}`)}} ><span dangerouslySetInnerHTML={{ __html: item[0] }} /><span dangerouslySetInnerHTML={{ __html: item[0] }} /></p>
+                                            <p onClick={()=>{view_ans(`para_${index}`,`button_${index}`)}} ><span dangerouslySetInnerHTML={{ __html: item[0] }} /></p>
                                             <p onClick={()=>{view_ans(`para_${index}`,`button_${index}`)}} id={`para_${index}`} style={{padding: '0px 0px 0px 50px',transform: 'scaleX(0)',display: 'none'}}><span dangerouslySetInnerHTML={{ __html: item[1] }} /></p>
                                         </div>
                                         <div>
@@ -581,7 +581,7 @@ export const LandingPage = () => {
                     </div>
                 </div>
             </footer>
-        </div>
+        </div >
     </div>
   )
 }
