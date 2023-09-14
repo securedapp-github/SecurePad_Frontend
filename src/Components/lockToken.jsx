@@ -8,6 +8,7 @@ import { formatAddress } from '../utils/address';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'utils/loader';
+import { chainFactory } from '../utils/chainInfo';	
 
 import {
   useAccount,
@@ -21,8 +22,8 @@ import TOKENABI from "../ABI/TokenABI.json";
 import FACTORYABI from "../ABI/FactoryABI.json";
 
 function LockToken() {
-  const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
-
+  // const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
+  const [CONTRACT_ADDRESS, SET_CONTRACT_ADDRESS] = useState("");	
   const [loading, setLoading] = useState(false);
 
   const { TOKEN } = useParams();
@@ -58,7 +59,7 @@ function LockToken() {
   });
 
   const FactoryContract = useContract({
-    addressOrName: FACTORY_ADDRESS,
+    addressOrName: CONTRACT_ADDRESS,
     contractInterface: FACTORYABI,
     signerOrProvider: signerData,
   });
@@ -195,6 +196,16 @@ function LockToken() {
     settokenSupply(supply);
   }
 
+  const changeChain = async () => {	
+    const { chainId } = await provider.getNetwork();	
+    SET_CONTRACT_ADDRESS(chainFactory(chainId));	
+  }	
+  useEffect(() => {	
+    changeChain();	
+    console.log("refresh");	
+  }, [provider, address]);	
+  
+  
   useEffect(() => {
     if (!signerData) return;
     readTokenDetails();

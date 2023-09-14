@@ -11,6 +11,7 @@ import { formatAddress } from '../utils/address';
 import Loader from 'utils/loader';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { chainFactory } from '../utils/chainInfo';	
 
 import {
   useAccount,
@@ -20,9 +21,10 @@ import {
 
 function Wallet(props) {
   const { theme } = props
-  const CONTRACT_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
+  // const CONTRACT_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
   const DB_LINK = process.env.REACT_APP_DB;
 
+  const [CONTRACT_ADDRESS, SET_CONTRACT_ADDRESS] = useState("");	
   const { address } = useAccount();
   const [activeButton, setActiveButton] = useState(null);
   const [tableHeaders, setTableHeaders] = useState([]);
@@ -46,6 +48,9 @@ function Wallet(props) {
 
   const getHistory = async () => {
     setLoading(true);
+    const { chainId } = await provider.getNetwork();	
+    SET_CONTRACT_ADDRESS(chainFactory(chainId));	
+
     fetch(DB_LINK + "getActivity?user=" + address)
       .then((res) => res.json())
       .then((data) => setHistory(data))
@@ -241,7 +246,7 @@ function Wallet(props) {
 
   useEffect(() => {
     if (typeof (address) != 'undefined') gALL();
-  }, [address]);
+  }, [address, provider]);
 
   const blurryDivStyle = {
     filter: loading ? 'blur(5px)' : 'blur(0px)'

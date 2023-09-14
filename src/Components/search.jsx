@@ -111,6 +111,7 @@ const New = ({ theme }) => {
                 <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
                 <select className="d_input" aria-label="Filter Network" onChange={(e) => {setchainid(e.target.value)}}>
                     <option value="0">All Network</option>
+                    <option value="1287">MoonBeam Testnet</option>
                     <option value="41">Telos Testnet</option>
                     <option value="40">Telos Mainnet</option>
                     <option value="80001">Polygon Mumbai</option>

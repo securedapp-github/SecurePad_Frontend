@@ -9,6 +9,7 @@ import Loader from 'utils/loader';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { chainFactory } from '../utils/chainInfo';	
 
 import {
   useAccount,
@@ -23,7 +24,8 @@ import FACTORYABI from "../ABI/FactoryABI.json";
 function SaleToken() {
 
   const { TOKEN } = useParams();
-  const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
+  // const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
+  const [CONTRACT_ADDRESS, SET_CONTRACT_ADDRESS] = useState("");	
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const DB_LINK = process.env.REACT_APP_DB;
@@ -53,6 +55,10 @@ function SaleToken() {
   const [releasemonths, setreleasemonths] = useState(0);
   const [owner, setowner] = useState("");
 
+  const changeChain = async () => {	
+    const { chainId } = await provider.getNetwork();	
+    SET_CONTRACT_ADDRESS(chainFactory(chainId));	
+  }
 
   const TokenContract = useContract({
     addressOrName: TOKEN,
@@ -61,9 +67,9 @@ function SaleToken() {
   });
 
   const FactoryContract = useContract({
-    addressOrName: FACTORY_ADDRESS,
+    addressOrName: CONTRACT_ADDRESS,
     contractInterface: FACTORYABI,
-    signerOrProvider: signerData,
+    signerOrProvider: provider,
   });
 
   const copyAddress = (copytext) => {
@@ -114,6 +120,11 @@ function SaleToken() {
     }
   }
 
+  useEffect(() => {	
+    changeChain();	
+    console.log("refresh");	
+  }, [provider, address]);
+
   useEffect(() => {
     if (!signerData) return;
     readTokenDetails();
@@ -126,6 +137,14 @@ function SaleToken() {
   const launchSale = async () => {
     try {
       setLoading(true);
+
+      let FactoryContract = new ethers.Contract(	
+        CONTRACT_ADDRESS,	
+        FACTORYABI,	
+        signerData	
+      );	
+
+      
       console.log(TOKEN, payment, price * 10000, start, duration, releasemonths, cliff, [ethers.utils.parseUnits(min.toString(), "ether"), ethers.utils.parseUnits(max.toString(), "ether"), ethers.utils.parseUnits(soft.toString(), "ether"), ethers.utils.parseUnits(hard.toString(), "ether")]);
       const tx = await FactoryContract.launchSecureTokenSale
         (TOKEN, payment, price * 10000, start, duration, releasemonths, cliff, [ethers.utils.parseUnits(min.toString(), "ether"), ethers.utils.parseUnits(max.toString(), "ether"), ethers.utils.parseUnits(soft.toString(), "ether"), ethers.utils.parseUnits(hard.toString(), "ether")]);
