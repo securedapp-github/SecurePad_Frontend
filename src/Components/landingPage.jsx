@@ -19,32 +19,32 @@ export const LandingPage = () => {
     const [email, setEmail] = useState("");
 
     const sendMail = async () => {
-  
-      if (email == "") {
-        toast("Invalid Mail");
-        return;
-      }
-      fetch("https://139-59-5-56.nip.io:3443/contactMail", {
-        method: "POST",
-        body: JSON.stringify({
-          name: "Transmission Mail SecurePad",
-          mail: email,
-          msg: "Mail for transmission SecurePad",
-        }),
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
-        .then((res) => {})
-        .then((data) => {
-          toast.success("Mail Send Successfully");
+
+        if (email == "") {
+            toast("Invalid Mail");
+            return;
+        }
+        fetch("https://139-59-5-56.nip.io:3443/contactMail", {
+            method: "POST",
+            body: JSON.stringify({
+                name: "Transmission Mail SecurePad",
+                mail: email,
+                msg: "Mail for transmission SecurePad",
+            }),
+            headers: {
+                "Content-type": "application/json",
+            },
         })
-        .catch((err) => {
-          console.log(err.message);
-          toast("Error in sending mail");
-        });
+            .then((res) => { })
+            .then((data) => {
+                toast.success("Mail Send Successfully");
+            })
+            .catch((err) => {
+                console.log(err.message);
+                toast("Error in sending mail");
+            });
     };
-    
+
     useEffect(() => {
         const handleScroll = () => {
             let objs = document.getElementById('sticky');
@@ -290,7 +290,7 @@ export const LandingPage = () => {
         )).join('');
         console.log(eleobj)
         // if (flex == 1) {
-            eleobj.innerHTML = "<div className='Product_list' id='Product_list'>" + inp_code + "</div>";
+        eleobj.innerHTML = "<div className='Product_list' id='Product_list'>" + inp_code + "</div>";
         // }
         // else if (flex == 2) {
         //     eleobj.innerHTML = "<div className='Product_list1' id='Product_list1'>" + inp_code1 + "</div>";
@@ -303,332 +303,350 @@ export const LandingPage = () => {
     let clicks = 0;
     return (
         <>
-        <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        theme="dark"
-        pauseOnHover
-      />
-        <div className='hole_page'>
-            <div className='sample'>
-                <div className='Topclr'></div>
-                <div className='Buttomclr'></div>
-                <div className='Buttomclr1'></div>
-                <div className='Blueclr'></div>
-            </div>
-            <div id='sticky'>
-                <div className="Header">
-                    <div className='logo_title'>
-                        <img className='logo_img' src={Icon} alt="" />
-                        <div className='title_content'>
-                            <span style={{ fontSize: "35px",color: "rgb(212 212 212)" }}>Secured<span style={{ color: "white" }}>Pad</span></span>
-                            <p style={{ fontSize: "13px", color: "rgb(212 212 212)" }}>By SecuredAPP</p>
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                theme="dark"
+                pauseOnHover
+            />
+            <div className='hole_page'>
+                <div className='sample'>
+                    <div className='Topclr'></div>
+                    <div className='Buttomclr'></div>
+                    <div className='Buttomclr1'></div>
+                    <div className='Blueclr'></div>
+                </div>
+                <div id='sticky'>
+                    <div className="Header">
+                        <div className='logo_title'>
+                            <img className='logo_img' src={Icon} alt="" />
+                            <div className='title_content'>
+                                <span style={{ fontSize: "35px", color: "rgb(212 212 212)" }}>Secured<span style={{ color: "white" }}>Pad</span></span>
+                                <p style={{ fontSize: "13px", color: "rgb(212 212 212)" }}>By SecuredAPP</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className='nav_block'>
-                        <nav className="navbar" id='navbar'>
-                        <li><Link to={"/contact"} style={{ color: 'white' }}>Contact Us</Link></li>
-                            <Link to={`/home`} >
-                            <button className="menu_btn">Launch SecurePad</button>
-                            </Link>
-                        </nav>
-                        <div className='menubar_btn'>
-                            <button className='menubar_btns' style={{ background: "transparent", border: "none" }} onClick={() => {
-                                console.log("clock")
-                                let obj = document.getElementById('navbar');
-                                let icon_ = document.getElementById('icon_cont');
-                                if (clicks % 2 == 0) {
-                                    obj.style.transform = "translateY(70px)";
-                                    icon_.src = "https://www.freeiconspng.com/thumbs/close-button-png/close-button-png-27.png";
-                                    icon_.style.width = "20%";
-                                    icon_.style.transition = "1s";
-                                    icon_.style.animationdelay = "1s";
-                                } else {
-                                    icon_.src = "https://icon-library.com/images/white-menu-icon-png/white-menu-icon-png-18.jpg"
-                                    obj.style.transform = "translateY(-200px)";
-                                    icon_.style.width = "88px";
-                                }
-                                clicks++;
-                            }}><img id='icon_cont' style={{ width: '88px' }} src='https://icon-library.com/images/white-menu-icon-png/white-menu-icon-png-18.jpg'></img>
-                            </button>
+                        <div className='nav_block'>
+                            <nav className="navbar" id='navbar'>
+                                <li><Link to={"/contact"} style={{ color: 'white' }}>Contact Us</Link></li>
+                                <Link to={`/home`} >
+                                    <button className="menu_btn">Launch SecurePad</button>
+                                </Link>
+                            </nav>
+                            <div className='menubar_btn'>
+                                <button className='menubar_btns' style={{ background: "transparent", border: "none" }} onClick={() => {
+                                    console.log("clock")
+                                    let obj = document.getElementById('navbar');
+                                    let icon_ = document.getElementById('icon_cont');
+                                    if (clicks % 2 == 0) {
+                                        obj.style.transform = "translateY(70px)";
+                                        icon_.src = "https://www.freeiconspng.com/thumbs/close-button-png/close-button-png-27.png";
+                                        icon_.style.width = "20%";
+                                        icon_.style.transition = "1s";
+                                        icon_.style.animationdelay = "1s";
+                                    } else {
+                                        icon_.src = "https://icon-library.com/images/white-menu-icon-png/white-menu-icon-png-18.jpg"
+                                        obj.style.transform = "translateY(-200px)";
+                                        icon_.style.width = "88px";
+                                    }
+                                    clicks++;
+                                }}><img id='icon_cont' style={{ width: '88px' }} src='https://icon-library.com/images/white-menu-icon-png/white-menu-icon-png-18.jpg'></img>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <body>
-                <section className="main">
-                    <div className="main_content">
-                        <div className="left">
-                            <h1>Unlocking the DeFi Potential with SecurePAD</h1>
-                            <p>Discover the power of Tokenomics with SecurePAD. Experience Exclusive Early Access to the Next Unicorn in DeFi Tokenization. Trustworthy Audited and vetted Web3 Projects</p>
-                            <h3>Embark on the Future of Fundrainsing with us.</h3>
-                            <Link to={`/token`}>
-                            <button>Launch Your Token Now</button>
-                            </Link>
-                            
-                        </div>
-                        <div className='right'>
-                            <img src={I_PAD} />
-                        </div>
-                    </div>
-                    <div className='createTocken'>
-                        <div>
-                            <h1>The World's First <span>Zero Fee</span>, Security Prominent and No Code Launchpad</h1>
-                            <p>SecurePAD - Launch, Trade, and Govern</p>
-                        </div>
-                        <div>
-                            <Link to={`/token`} >
-                            <button>Launch Your Token Now</button>
-                            </Link>
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <div className='step'>
-                        <h1 className='color_text'>SecurePAD : Token Launch Process</h1>
-                        <div className='step_container'>
-                            <div className='steps'>
-                                <div>
-                                    <h3>STEP</h3>
-                                    <h1>01</h1>
-                                </div>
-                                <p>
-                                    Apply for Token Launch:<br />
-                                    Submit your project details and
-                                    tokenomics for evaluation by our
-                                    expert team.
-                                </p>
-                            </div>
-                            <div className='steps'>
-                                <div>
-                                    <h3>STEP</h3>
-                                    <h1>02</h1>
-                                </div>
-                                <p>
-                                    Smart Contract Development:<br />
-                                    Collaborate with our developers to
-                                    create secure and efficient smart contracts.
+                <body>
+                    <section className="main">
+                        <div className="main_content">
+                            <div className="left">
+                                <h1>Unlocking the DeFi Potential with SecurePAD</h1>
+                                <p>Discover the power of Tokenomics with SecurePAD. Experience Exclusive Early Access to the Next Unicorn in DeFi Tokenization. Trustworthy Audited and vetted Web3 Projects</p>
+                                <h3>Embark on the Future of Fundrainsing with us.</h3>
+                                <Link to={`/token`}>
+                                    <button>Launch Your Token Now</button>
+                                </Link>
 
-                                </p>
                             </div>
-                            <div className='steps'>
-                                <div>
-                                    <h3>STEP</h3>
-                                    <h1>03</h1>
-                                </div>
-                                <p>
-                                    Tocken Distribution:<br />
-                                    Plan and execute a successful
-                                    public sale or distribution event with
-                                    our comprehensive launchpad tools.
-                                </p>
+                            <div className='right'>
+                                <img src={I_PAD} />
                             </div>
                         </div>
-                    </div>
-                    <div className='Products'>
-                        <h1>Our Products</h1>
-                        <div className='Products_btns'>
+                        <div className='createTocken'>
                             <div>
-                                <button id="btn1" onClick={() => { get_content("btn1", 1, 1) }} className='active'>Secure Token Staking</button>
-                                <button id="btn2" onClick={() => { get_content("btn2", 2, 2) }} >Token Locker / Liquidity Locker</button>
-                                <button id="btn3" onClick={() => { get_content("btn3", 3, 2) }} >STO/ICO</button>
-                                <button id="btn4" onClick={() => { get_content("btn4", 4, 3, "") }} >Secure Airdrop</button>
-                                <button id="btn5" onClick={() => { get_content("btn5", 5, 3, "SecurePAD is a decentralised incubation and IDO launchpad that aims to bring top-notch crypto startup projects to the forefront within its community. It provides a platform for projects to launch their tokens, raise funds, and connect with investors.<br/><br/>SecurePAD will facilitate DEX Token Launch with ease by providing a number of features and services, including:") }} >DEX Token Launch</button>
-                                <button id="btn6" onClick={() => { get_content("btn6", 6, 3, "SecurePAD launchpad facilitates asset tokenization by providing a number of features and services, including:") }} >Asset Tokenization</button>
+                                <h1>The World's First <span>Zero Fee</span>, Security Prominent and No Code Launchpad</h1>
+                                <p>SecurePAD - Launch, Trade, and Govern</p>
+                            </div>
+                            <div>
+                                <Link to={`/token`} >
+                                    <button>Launch Your Token Now</button>
+                                </Link>
                             </div>
                         </div>
-                        <div className='control_div' id='control_div'>
-                            <div className='Product_list' id="Product_list">
-                                {Object.keys(content.btn1).map((key) => (
-                                    <div key={key} className='Product_item'>
-                                        <div className='num'>
-                                            <div>{content.btn1[key].no}</div>
-                                        </div>
-                                        <div className='p_content'>
-                                            <h2>{content.btn1[key].head}</h2>
-                                            <h6>{content.btn1[key].content}</h6>
-                                        </div>
+                    </section>
+                    <section>
+                        <div className='step'>
+                            <h1 className='color_text'>SecurePAD : Token Launch Process</h1>
+                            <div className='step_container'>
+                                <div className='steps'>
+                                    <div>
+                                        <h3>STEP</h3>
+                                        <h1>01</h1>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <div className='step'>
-                        <h1 className='color_text'>SecurePAD: Key Features</h1>
-                        <div className='step_container'>
-                            <div className='steps steps1'>
-                                <div>
-                                    <h3>STEP</h3>
-                                    <h1>01</h1>
+                                    <p>
+                                        Apply for Token Launch:<br />
+                                        Submit your project details and
+                                        tokenomics for evaluation by our
+                                        expert team.
+                                    </p>
                                 </div>
-                                <p>
-                                    Apply for Token Launch:<br />
-                                    Submit your project details and
-                                    tokenomics for evaluation by our
-                                    expert team.
-                                </p>
-                            </div>
-                            <div className='steps steps1'>
-                                <div>
-                                    <h3>STEP</h3>
-                                    <h1>02</h1>
-                                </div>
-                                <p>
-                                    Smart Contract Development:<br />
-                                    Collaborate with our developers to
-                                    create secure and efficient smart contracts.
+                                <div className='steps'>
+                                    <div>
+                                        <h3>STEP</h3>
+                                        <h1>02</h1>
+                                    </div>
+                                    <p>
+                                        Smart Contract Development:<br />
+                                        Collaborate with our developers to
+                                        create secure and efficient smart contracts.
 
-                                </p>
-                            </div>
-                            <div className='steps steps1'>
-                                <div>
-                                    <h3>STEP</h3>
-                                    <h1>03</h1>
+                                    </p>
                                 </div>
-                                <p>
-                                    Tocken Distribution:<br />
-                                    Plan and execute a successful
-                                    public sale or distribution event with
-                                    our comprehensive launchpad tools.
-                                </p>
+                                <div className='steps'>
+                                    <div>
+                                        <h3>STEP</h3>
+                                        <h1>03</h1>
+                                    </div>
+                                    <p>
+                                        Tocken Distribution:<br />
+                                        Plan and execute a successful
+                                        public sale or distribution event with
+                                        our comprehensive launchpad tools.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <section>
-                    <div className='fqa'>
-                        <div className='l_left'>
-                            <h1 className='color_text'>Frequently Asked Questions</h1>
-                            <div>
-                                <h3 style={{ fontSize: "17px", color: "white" }}>Haven't found the answers you are looking for? Contact us at</h3>
-                                <p>support@securdapp.in</p>
+                        <div className='Products'>
+                            <h1>Our Products</h1>
+                            <div className='Products_btns'>
+                                <div>
+                                    <button id="btn1" onClick={() => { get_content("btn1", 1, 1) }} className='active'>Secure Token Staking</button>
+                                    <button id="btn2" onClick={() => { get_content("btn2", 2, 2) }} >Token Locker / Liquidity Locker</button>
+                                    <button id="btn3" onClick={() => { get_content("btn3", 3, 2) }} >STO/ICO</button>
+                                    <button id="btn4" onClick={() => { get_content("btn4", 4, 3, "") }} >Secure Airdrop</button>
+                                    <button id="btn5" onClick={() => { get_content("btn5", 5, 3, "SecurePAD is a decentralised incubation and IDO launchpad that aims to bring top-notch crypto startup projects to the forefront within its community. It provides a platform for projects to launch their tokens, raise funds, and connect with investors.<br/><br/>SecurePAD will facilitate DEX Token Launch with ease by providing a number of features and services, including:") }} >DEX Token Launch</button>
+                                    <button id="btn6" onClick={() => { get_content("btn6", 6, 3, "SecurePAD launchpad facilitates asset tokenization by providing a number of features and services, including:") }} >Asset Tokenization</button>
+                                </div>
                             </div>
-                            {/* <div className='fqa_btns'>
+                            <div className='control_div' id='control_div'>
+                                <div className='Product_list' id="Product_list">
+                                    {Object.keys(content.btn1).map((key) => (
+                                        <div key={key} className='Product_item'>
+                                            <div className='num'>
+                                                <div>{content.btn1[key].no}</div>
+                                            </div>
+                                            <div className='p_content'>
+                                                <h2>{content.btn1[key].head}</h2>
+                                                <h6>{content.btn1[key].content}</h6>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div className='step'>
+                            <h1 className='color_text'>SecurePAD: Key Features</h1>
+                            <div className='step_container'>
+                                <div className='steps steps1'>
+                                    <div>
+                                        <h3>STEP</h3>
+                                        <h1>01</h1>
+                                    </div>
+                                    <p>
+                                        Apply for Token Launch:<br />
+                                        Submit your project details and
+                                        tokenomics for evaluation by our
+                                        expert team.
+                                    </p>
+                                </div>
+                                <div className='steps steps1'>
+                                    <div>
+                                        <h3>STEP</h3>
+                                        <h1>02</h1>
+                                    </div>
+                                    <p>
+                                        Smart Contract Development:<br />
+                                        Collaborate with our developers to
+                                        create secure and efficient smart contracts.
+
+                                    </p>
+                                </div>
+                                <div className='steps steps1'>
+                                    <div>
+                                        <h3>STEP</h3>
+                                        <h1>03</h1>
+                                    </div>
+                                    <p>
+                                        Tocken Distribution:<br />
+                                        Plan and execute a successful
+                                        public sale or distribution event with
+                                        our comprehensive launchpad tools.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div className='fqa'>
+                            <div className='l_left'>
+                                <h1 className='color_text'>Frequently Asked Questions</h1>
+                                <div>
+                                    <h3 style={{ fontSize: "17px", color: "white" }}>Haven't found the answers you are looking for? Contact us at</h3>
+                                    <p>support@securdapp.in</p>
+                                </div>
+                                {/* <div className='fqa_btns'>
                                 <button className='active'>Token</button>
                                 <button>Security</button>
                             </div> */}
-                        </div>
-                        <div className='l_right'>
+                            </div>
+                            <div className='l_right'>
 
-                            <div>
-                                {faq.map((item, index) => (
-                                    <div key={index}>
-                                        <hr style={{ color: "aliceblue" }} />
-                                        <div className='plus'>
-                                            <div onClick={() => { view_ans(`para_${index}`, `button_${index}`) }} >
-                                                <p onClick={() => { view_ans(`para_${index}`, `button_${index}`) }} >{item[0]}</p>
-                                                <p onClick={() => { view_ans(`para_${index}`, `button_${index}`) }} id={`para_${index}`} style={{ padding: '0px 0px 0px 50px', transform: 'scaleX(0)', display: 'none' }}>{item[1]}</p>
-                                            </div>
-                                            <div>
-                                                <img style={{ cursor: 'pointer', width: "20px" }} src={Plus} id={`button_${index}`} onClick={() => { view_ans(`para_${index}`, `button_${index}`) }} />
+                                <div>
+                                    {faq.map((item, index) => (
+                                        <div key={index}>
+                                            <hr style={{ color: "aliceblue" }} />
+                                            <div className='plus'>
+                                                <div onClick={() => { view_ans(`para_${index}`, `button_${index}`) }} >
+                                                    <p onClick={() => { view_ans(`para_${index}`, `button_${index}`) }} >{item[0]}</p>
+                                                    <p onClick={() => { view_ans(`para_${index}`, `button_${index}`) }} id={`para_${index}`} style={{ padding: '0px 0px 0px 50px', transform: 'scaleX(0)', display: 'none' }}>{item[1]}</p>
+                                                </div>
+                                                <div>
+                                                    <img style={{ cursor: 'pointer', width: "20px" }} src={Plus} id={`button_${index}`} onClick={() => { view_ans(`para_${index}`, `button_${index}`) }} />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
-                                <hr style={{ color: "aliceblue" }} />
+                                    ))}
+                                    <hr style={{ color: "aliceblue" }} />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='bottom_container'>
-                        <div className='right_con'>
-                            <h1>Receive Transmissions</h1>
-                        </div>
-                        <div>
-                            <div className='input_style'>
-                                <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Your email"
-                                id="" />
-                                <button onClick={() => {sendMail();}}><FontAwesomeIcon icon={faAngleRight} /></button>
+                        <div className='bottom_container'>
+                            <div className='right_con'>
+                                <h1>Receive Transmissions</h1>
+                            </div>
+                            <div>
+                                <div className='input_style'>
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="Your email"
+                                        id="" />
+                                    <button onClick={() => { sendMail(); }}><FontAwesomeIcon icon={faAngleRight} /></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <footer>
-                    <div className='footer_con'>
-                        <div className='list_item'>
-                            <ul>
-                                <h6>Company</h6>
-                                <li>Team</li>
-                                <li> About Us</li>
-                                <li> Request a quote</li>
-                                <li> Referral</li>
-                                <li>Career</li>
-                            </ul>
-                        </div>
-                        <div className='list_item'>
-                            <ul>
-                                <h6>Resource</h6>
-                                <li>Solidity Shield</li>
-                                <li> Audit Process</li>
-                                <li> Our Services</li>
-                                <li> Privacy Policy</li>
-                                <li> Workplace Policy</li>
-                                <li>Our Mission & Core values</li>
-                            </ul>
-                        </div>
-                        <div className='list_item'>
-                            <ul>
-                                <h6>Products</h6>
-                                <li>Search</li>
-                                <li> Rewards</li>
-                                <li> Wallet</li>
-                                <li> Firewall + VPN</li>
-                                <li> Talk</li>
-                                <li>News</li>
-                                <li> Playlist</li>
-                                <li> All features</li>
-                            </ul>
-                        </div>
-                        <div className='list_item'>
-                            <ul>
-                                <h6>Participate</h6>
-                                <li>Community</li>
-                                <li> Contributors</li>
-                                <li> Events</li>
-                                <li> Newsletters</li>
-                            </ul>
-                        </div>
-                        <div className='list_item'>
-                            <ul>
-                                <h6>Explore</h6>
-                                <li>Tokens</li>
-                                <li> Apps & Services</li>
-                                <li> Wallets</li>
-                                <li> Interchain security</li>
-                                <li> Blog</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr style={{ color: "rgba(255, 255, 255, 0.20)" }} />
-                    <div className='bottom_lable'>
-                        <div>
-                            <img className='flogo' src={Flogo} alt="" />
-                        </div>
-                        <div>
-                            <ul className='list_content'>
-                                <li>Terms of Services </li><span style={{ color: 'white' }}>|</span>
-                                <li> Privacy Policy </li><span style={{ color: 'white' }}>|</span>
-                                <li>Lite Paper</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul className='list_content'>
-                                <li><a href="https://discord.com/invite/jQcd5WwhNy" className="social-icon"><FontAwesomeIcon icon={faDiscord} style={{ color: 'white', height: '30px' }} /></a></li>
-                                <li><a href="https://twitter.com/secure_dapp" className="social-icon"><FontAwesomeIcon icon={faTwitter} style={{ color: 'white', height: '30px' }} /></a></li>
-                                <li><a href="https://www.instagram.com/securedapp_official/" className="social-icon"><FontAwesomeIcon icon={faLinkedin} style={{ color: 'white' }} /></a></li>
-                                <li><a href="https://telegram.me/securedappcommunity" className="social-icon"><FontAwesomeIcon icon={faTelegram} style={{ color: 'white' }} /></a></li>
-                            </ul>
+                    </section>
+                    <footer>
+                        <div className='footer_con'>
+                            <div className='list_item'>
+                                <ul>
+                                    <h6>Company</h6>
+                                    <li><a href="/" target="_blank" style={{ color: 'white' }}>Team</a></li>
+                                    <li><a href="/" target="_blank" style={{ color: 'white' }}>About Us</a></li>
+                                    <li><a href="/" target="_blank" style={{ color: 'white' }}>Request a Quote</a></li>
+                                    <li><a href="/" target="_blank" style={{ color: 'white' }}>Referral</a></li>
+                                    <li><a href="https://securedapp.gitbook.io/securedapp-launchpad/careers" target="_blank" style={{ color: 'white' }}>Career</a></li>
+                                </ul>
+                            </div>
+                            <div className='list_item'>
+                                <ul>
+                                    <h6>Resource</h6>
+                                    <li><a href="https://securedapp.io" style={{ color: 'white' }}>Solidity Shield</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Audit Process</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Our Services</a></li>
+                                    <li><a href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securepad" style={{ color: 'white' }}>Privacy Policy</a></li>
+                                    <li><a href="https://securedapp.gitbook.io/securedapp-launchpad/workplace-policy" style={{ color: 'white' }}>Workplace Policy</a></li>
+                                    <li><a href="/mission-and-core-values" style={{ color: 'white' }}>Our Mission & Core Values</a></li>
 
+                                </ul>
+                            </div>
+                            <div className='list_item'>
+                                <ul>
+                                    <h6>Products</h6>
+                                    <li><a href="/search" style={{ color: 'white' }}>Search</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Rewards</a></li>
+                                    <li><a href="/wallet" style={{ color: 'white' }}>Wallet</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Firewall + VPN</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Talk</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>News</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Playlist</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>All features</a></li>
+
+                                </ul>
+                            </div>
+                            <div className='list_item'>
+                                <ul>
+                                    <h6>Participate</h6>
+                                    <li><a href="/" style={{ color: 'white' }}>Community</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Contributors</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Events</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Newsletters</a></li>
+
+                                </ul>
+                            </div>
+                            <div className='list_item'>
+                                <ul>
+                                    <h6>Explore</h6>
+                                    <li><a href="/token" style={{ color: 'white' }}>Tokens</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Apps & Services</a></li>
+                                    <li><a href="/wallet" style={{ color: 'white' }}>Wallets</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Interchain security</a></li>
+                                    <li><a href="/" style={{ color: 'white' }}>Blog</a></li>
+
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </footer>
-            </body>
-        </div>
+                        <hr style={{ color: "rgba(255, 255, 255, 0.20)" }} />
+                        <div className='bottom_lable'>
+                            <div>
+                                <img className='flogo' src={Flogo} alt="" />
+                            </div>
+                            <div>
+                                <ul className='list_content'>
+                                    <li>
+                                        <a href="https://securedapp.gitbook.io/securedapp-launchpad/t-and-c-securepad"
+                                            target="_blank"  style={{ color: 'white' }}>
+                                            Terms of Services
+                                        </a>
+                                    </li><span style={{ color: 'white' }}>|</span>
+                                    <li>
+                                        <a href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securepad"
+                                            target="_blank"  style={{ color: 'white' }}>
+                                            Privacy Policy
+                                        </a>
+                                    </li><span style={{ color: 'white' }}>|</span>
+                                    <li>
+                                        <a href="https://securepad.xyz"  style={{ color: 'white' }}>
+                                            Lite Paper
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul className='list_content'>
+                                    <li><a href="https://discord.com/invite/jQcd5WwhNy" className="social-icon"><FontAwesomeIcon icon={faDiscord} style={{ color: 'white', height: '30px' }} /></a></li>
+                                    <li><a href="https://twitter.com/secure_dapp" className="social-icon"><FontAwesomeIcon icon={faTwitter} style={{ color: 'white', height: '30px' }} /></a></li>
+                                    <li><a href="https://www.instagram.com/securedapp_official/" className="social-icon"><FontAwesomeIcon icon={faLinkedin} style={{ color: 'white' }} /></a></li>
+                                    <li><a href="https://telegram.me/securedappcommunity" className="social-icon"><FontAwesomeIcon icon={faTelegram} style={{ color: 'white' }} /></a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </footer>
+                </body>
+            </div>
         </>
     )
 }

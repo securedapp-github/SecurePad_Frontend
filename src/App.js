@@ -9,6 +9,26 @@ import Sidebar from './Components/sidebar.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import LandingPage from './Components/landingPage.jsx'
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
+
+const MoonbeamChain = {
+  id: 1287,
+  name: 'Moonbeam Testnet',
+  network: 'Moonbase',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'DEV',
+    symbol: 'DEV',
+  },
+  rpcUrls: {
+    default: 'https://rpc.api.moonbase.moonbeam.network',
+  },
+  blockExplorers: {
+    default: { name: 'MoonBeam Scan', url: 'https://moonbase.moonscan.io' },
+  },
+  iconUrl: ["https://icons.llamao.fi/icons/chains/rsz_moonbeam.jpg"],
+  testnet: false,
+}
 
 const telosTest = {
   id: 41,
@@ -33,8 +53,10 @@ const telosTest = {
 }
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai, telosTest, chain.mainnet, chain.polygon],
-  [  publicProvider(), alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" })]
+  [chain.polygonMumbai, telosTest, chain.mainnet, chain.polygon, MoonbeamChain],
+  [  
+    jsonRpcProvider({ rpc: () => ({ http: "https://rpc.api.moonbase.moonbeam.network" }) }),
+    alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" }),  publicProvider()]
 ); 
 
 const connectors = connectorsForWallets([

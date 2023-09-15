@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import "../Style/token.css"
@@ -10,6 +10,7 @@ import Info from './info.jsx';
 import { formatAddress } from '../utils/address';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { chainFactory } from '../utils/chainInfo';	
 
 import {
   useAccount,
@@ -21,7 +22,8 @@ import FACTORYABI from "../ABI/FactoryABI.json";
 
 function Token(props) {
   const { theme } = props
-  const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
+  // const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
+  const [CONTRACT_ADDRESS, SET_CONTRACT_ADDRESS] = useState("");	
   const [modal, setModal] = useState(false)
   const [token, setToken] = useState("");
   const [symbol, setSymbol] = useState("");
@@ -41,10 +43,19 @@ function Token(props) {
   const { data: signerData } = useSigner();
 
   const FactoryContract = useContract({
-    addressOrName: FACTORY_ADDRESS,
+    addressOrName: CONTRACT_ADDRESS,
     contractInterface: FACTORYABI,
-    signerOrProvider: signerData,
+    signerOrProvider: provider,
   });
+
+  const changeChain = async () => {	
+    const { chainId } = await provider.getNetwork();	
+    SET_CONTRACT_ADDRESS(chainFactory(chainId));	
+  }	
+  useEffect(() => {	
+    changeChain();	
+    console.log("refresh");	
+  }, [provider, address]);
 
   const addTokenMetamask = async () => {
     const tokenAddress1 = newToken;
@@ -119,6 +130,13 @@ function Token(props) {
   const createToken = async () => {
     try {
       setLoading(true);
+
+      let FactoryContract = new ethers.Contract(	
+        CONTRACT_ADDRESS,	
+        FACTORYABI,	
+        signerData	
+      );
+      
       // if(isdocument || iskyc || isforce || documents != ""){
       //   console.log(iskyc, isforce , documents);
       //   const tx = await FactoryContract.launchSecurityToken(documents, token, symbol, decimals, initialSupply, isforce);
