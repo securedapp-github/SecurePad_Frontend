@@ -48,11 +48,13 @@ export const LandingPage = () => {
     useEffect(() => {
         const handleScroll = () => {
             let objs = document.getElementById('sticky');
+            if (objs !== null) {
             if (window.scrollY > 69) {
                 objs.style.backgroundColor = '#0000008f';
             } else {
                 objs.style.backgroundColor = 'transparent';
             }
+        }
         };
         window.addEventListener('scroll', handleScroll);
     }, []);
@@ -371,6 +373,7 @@ export const LandingPage = () => {
                                 <img src={I_PAD} />
                             </div>
                         </div>
+                       
                         <div className='createTocken'>
                             <div>
                                 <h1>The World's First <span>Zero Fee</span>, Security Prominent and No Code Launchpad</h1>
