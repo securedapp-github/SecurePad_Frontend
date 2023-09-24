@@ -364,7 +364,7 @@ export const LandingPage = () => {
                                 <h1>Unlocking the DeFi Potential with SecurePAD</h1>
                                 <p>Discover the power of Tokenomics with SecurePAD. Experience Exclusive Early Access to the Next Unicorn in DeFi Tokenization. Trustworthy Audited and vetted Web3 Projects</p>
                                 <h3>Embark on the Future of Fundrainsing with us.</h3>
-                                <Link to={`/token`}>
+                                <Link to={`/token-launchpad`}>
                                     <button>Launch Your Token Now</button>
                                 </Link>
 
@@ -380,7 +380,7 @@ export const LandingPage = () => {
                                 <p>SecurePAD - Launch, Trade, and Govern</p>
                             </div>
                             <div>
-                                <Link to={`/token`} >
+                                <Link to={`/token-launchpad`} >
                                     <button>Launch Your Token Now</button>
                                 </Link>
                             </div>
@@ -578,9 +578,9 @@ export const LandingPage = () => {
                             <div className='list_item'>
                                 <ul>
                                     <h6>Products</h6>
-                                    <li><a href="/search" style={{ color: 'white' }}>Search</a></li>
+                                    <li><a href="/tokensale" style={{ color: 'white' }}>Search</a></li>
                                     <li><a href="/" style={{ color: 'white' }}>Rewards</a></li>
-                                    <li><a href="/wallet" style={{ color: 'white' }}>Wallet</a></li>
+                                    <li><a href="/decentralized-wallet" style={{ color: 'white' }}>Wallet</a></li>
                                     <li><a href="/" style={{ color: 'white' }}>Firewall + VPN</a></li>
                                     <li><a href="/" style={{ color: 'white' }}>Talk</a></li>
                                     <li><a href="/" style={{ color: 'white' }}>News</a></li>
@@ -602,9 +602,9 @@ export const LandingPage = () => {
                             <div className='list_item'>
                                 <ul>
                                     <h6>Explore</h6>
-                                    <li><a href="/token" style={{ color: 'white' }}>Tokens</a></li>
+                                    <li><a href="/token-launchpad" style={{ color: 'white' }}>Tokens</a></li>
                                     <li><a href="/" style={{ color: 'white' }}>Apps & Services</a></li>
-                                    <li><a href="/wallet" style={{ color: 'white' }}>Wallets</a></li>
+                                    <li><a href="/decentralized-wallet" style={{ color: 'white' }}>Wallets</a></li>
                                     <li><a href="/" style={{ color: 'white' }}>Interchain security</a></li>
                                     <li><a href="/" style={{ color: 'white' }}>Blog</a></li>
 

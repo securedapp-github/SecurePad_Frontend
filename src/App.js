@@ -85,14 +85,14 @@ function App() {
     <Routes>
       <Route exact path="/home" element={<Sidebar page={"home"}/>} />
       <Route exact path="/" element={<LandingPage />} />
-      <Route exact path="/token" element={<Sidebar page={"token"}/>} />
+      <Route exact path="/token-launchpad" element={<Sidebar page={"token"}/>} />
       <Route exact path="/contact" element={<Sidebar page={"contact"}/>} />
       <Route exact path="/pricing" element={<Sidebar page={"pricing"}/>} />
-      <Route exact path="/wallet" element={<Sidebar page={"wallet"}/>} />
-      <Route exact path="/contract" element={<Sidebar page={"contract"}/>} />
-      <Route exact path="/search" element={<Sidebar page={"search"}/>} />
-      <Route exact path="/sale" element={<Sidebar page={"sale"}/>} />
-      <Route exact path="/lock" element={<Sidebar page={"lock"}/>} />
+      <Route exact path="/decentralized-wallet" element={<Sidebar page={"wallet"}/>} />
+      <Route exact path="/manage-your-tokens" element={<Sidebar page={"contract"}/>} />
+      <Route exact path="/tokensale" element={<Sidebar page={"search"}/>} />
+      <Route exact path="/sto-ico-token-sale" element={<Sidebar page={"sale"}/>} />
+      <Route exact path="/create-token-locker" element={<Sidebar page={"lock"}/>} />
       <Route exact path="/manage" element={<Sidebar page={"manage"}/>} />
       <Route exact path="/managetoken/:TOKEN" element={<Sidebar page={"managetoken"}/>} />
       <Route exact path="/locktoken/:TOKEN" element={<Sidebar page={"locktoken"}/>} />
@@ -101,7 +101,7 @@ function App() {
       <Route exact path="/editsale/:SALE" element={<Sidebar page={"editsale"}/>} />
       <Route exact path="/managesale/:SALE" element={<Sidebar page={"managesale"}/>} />
       <Route exact path="/buysale/:SALE" element={<Sidebar page={"buysale"}/>} />
-      <Route exact path="/distributetoken" element={<Sidebar page={"distributetoken"}/>} />
+      <Route exact path="/token-airdrop" element={<Sidebar page={"distributetoken"}/>} />
       <Route path="*" element={<Sidebar page={"error"}/>} />
 
     </Routes>

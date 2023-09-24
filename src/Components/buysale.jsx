@@ -72,7 +72,7 @@ function BuySale(props) {
 
     function Change(e) {
         e.preventDefault()
-        navigate('/search')
+        navigate('/tokensale')
     }
 
     function countDecimals(value) {

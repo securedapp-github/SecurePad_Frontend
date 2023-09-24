@@ -126,7 +126,7 @@ function Sidebar(props) {
   function NavIcons() {
     return (
       <>
-        <Link to="/search" className="rihtLink" id='sales'> <div onClick={() => {
+        <Link to="/tokensale" className="rihtLink" id='sales'> <div onClick={() => {
 
           setCol([false, false, false, false, false, false, false, false, false, false, false, false, false])
         }} style={{ fontWeight: "400", padding: "10px", fontSize: "18px", color: `${theme === 'Dark' ? 'white' : 'black'}` }}>PreSales</div>
@@ -209,7 +209,7 @@ function Sidebar(props) {
               <div className='expanded-2' style={{ color: col[0] ? '#12D576' : 'white' }}>Home</div>
             </div>
           </Link>
-          <Link to='/search'>
+          <Link to='/tokensale'>
             <div className='expanded' id='sale_logo' style={{ display: 'none', marginTop: '15px' }} onClick={() => {
               setCol([false, false, false, false, false, false, false, false, false, false, false, true, false])
             }}>
@@ -223,7 +223,7 @@ function Sidebar(props) {
               <div className='expanded-2' style={{ color: col[11] ? '#12D576' : 'white' }}>Presales</div>
             </div>
           </Link>
-          <Link to='/wallet'>
+          <Link to='/decentralized-wallet'>
             <div className='expanded' style={{ marginTop: '15px' }} onClick={() => {
               setCol([false, true, false, false, false, false, false, false, false, false, false, false, false])
             }}>
@@ -236,7 +236,7 @@ function Sidebar(props) {
               <div className='expanded-2' style={{ color: col[1] ? '#12D576' : 'white' }}>User Profile</div>
             </div>
           </Link>
-          <Link to='/token'>
+          <Link to='/token-launchpad'>
             <div className='expanded' style={{ marginTop: '15px' }} onClick={() => {
               setCol([false, false, true, false, false, false, false, false, false, false, false, false, false])
             }}>
@@ -269,7 +269,7 @@ function Sidebar(props) {
             </div>
           </Link> */}
           
-          <Link to='/contract'>
+          <Link to='/token-airdrop'>
             <div className='expanded' style={{ marginTop: '15px' }} onClick={() => {
               setCol([false, false, false, false, true, false, false, false, false, false, false, false, false])
             }}>
@@ -295,7 +295,7 @@ function Sidebar(props) {
             <div className='expanded-2' style={{ color: col[5] ? '#12D576' : 'white' }}>Create STO/ICO</div>
           </div> */}
         
-          <Link to='/sale'>
+          <Link to='/sto-ico-token-sale'>
             <div className='expanded' style={{ marginTop: '15px' }} onClick={() => {
               setCol([false, false, false, false, false, false, true, false, false, false, false, false, false])
             }}>
@@ -308,7 +308,7 @@ function Sidebar(props) {
               <div className='expanded-2' style={{ color: col[6] ? '#12D576' : 'white' }}>Create Sale</div>
             </div>
           </Link>
-          <Link to='/lock'>
+          <Link to='/create-token-locker'>
             <div className='expanded' style={{ marginTop: '15px' }} onClick={() => {
               setCol([false, false, false, false, false, false, false, true, false, false, false, false, false])
             }}>

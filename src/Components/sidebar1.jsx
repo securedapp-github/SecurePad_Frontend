@@ -92,7 +92,7 @@ export function Side1({ theme }) {
                         <div className='expanded-1' style={{ color: col[0] ? '#12D576' : 'white' }}>Home</div>
                     </div>
                 </Link>
-                <Link to='/wallet'>
+                <Link to='/decentralized-wallet'>
                     <div className='expanded' onClick={() => {
                         setCol([false, true, false, false, false, false, false, false, false, false, false])
                     }}>
@@ -105,7 +105,7 @@ export function Side1({ theme }) {
                         <div className='expanded-1' style={{ color: col[1] ? '#12D576' : 'white' }}>User Profile</div>
                     </div>
                 </Link>
-                <Link to='/token'>
+                <Link to='/token-launchpad'>
                     <div className='expanded' onClick={() => {
                         setCol([false, false, true, false, false, false, false, false, false, false, false])
                     }}>
@@ -138,7 +138,7 @@ export function Side1({ theme }) {
                     </div>
                 </Link> */}
 
-                <Link to='/contract'>
+                <Link to='/token-airdrop'>
                     <div className='expanded' onClick={() => {
                         setCol([false, false, false, false, true, false, false, false, false, false, false])
                     }}>
@@ -164,7 +164,7 @@ export function Side1({ theme }) {
                     <div className='expanded-1' style={{ color: col[5] ? '#12D576' : 'white' }}>Create STO/ICO</div>
                 </div> */}
 
-                <Link to='/sale'>
+                <Link to='/sto-ico-token-sale'>
                     <div className='expanded' onClick={() => {
                         setCol([false, false, false, false, false, false, true, false, false, false, false])
                     }}>
@@ -177,7 +177,7 @@ export function Side1({ theme }) {
                         <div className='expanded-1' style={{ color: col[6] ? '#12D576' : 'white' }}>Create Sale</div>
                     </div>
                 </Link>
-                <Link to='/lock'>
+                <Link to='/create-token-locker'>
                     <div className='expanded' onClick={() => {
                         setCol([false, false, false, false, false, false, false, true, false, false, false])
                     }}>

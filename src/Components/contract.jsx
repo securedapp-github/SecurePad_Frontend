@@ -37,7 +37,7 @@ function Contract(props) {
           <Link to={`/managetoken/${token}`} >
             <Button style={{border:'1px solid transparent',padding: "2% 7%", backgroundColor: "#12D576", borderRadius: "30px", marginTop: "1%", fontSize: "20px", fontWeight: "400" }}>Continue</Button>
           </Link>
-          <Link to={`/token`} >
+          <Link to={`/token-launchpad`} >
             <h5 style={{ padding: "3% 0", color:`${theme==='Dark' ? 'white':'black'}` }}>Don't have your token yet ? <span style={{ color: "#12D576", fontWeight: "700" }}>Create Token</span></h5>
           </Link>
         </div>
