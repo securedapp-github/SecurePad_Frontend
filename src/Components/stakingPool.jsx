@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import "../Style/sale.css";
 import { Link } from "react-router-dom";
-
-function Sale(props) {
+const StakingPool = (props) => {
   const { theme } = props;
-  const [sale, setsale] = useState("");
-
+  const [stake, setstake] = useState("");
   return (
     <div style={{ padding: "0 2%" }}>
       <h2 style={{ fontWeight: "700", color: "#12D576", paddingLeft: "5%" }}>
@@ -42,7 +39,6 @@ function Sale(props) {
             </label>
           </div>
           <div style={{ padding: "2%", display: "flex", flexDirection: "row" }}>
-            {" "}
             <svg
               width="25"
               height="30"
@@ -141,8 +137,8 @@ function Sale(props) {
           </h3>
           <input
             type="text"
-            value={sale}
-            onChange={(e) => setsale(e.target.value)}
+            value={stake}
+            onChange={(e) => setstake(e.target.value)}
             style={{
               margin: "10px",
               marginLeft: "0",
@@ -156,7 +152,7 @@ function Sale(props) {
             }}
           />
 
-          <Link to={`/saletoken/${sale}`}>
+          <Link to={`/createstaking/${stake}`}>
             <button
               style={{
                 padding: "2% 7%",
@@ -174,6 +170,6 @@ function Sale(props) {
       </div>
     </div>
   );
-}
+};
 
-export default Sale;
+export default StakingPool;

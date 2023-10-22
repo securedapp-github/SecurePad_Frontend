@@ -15,8 +15,7 @@ import { useAccount, useContract, useSigner, useProvider } from "wagmi";
 
 import TOKENABI from "../ABI/TokenABI.json";
 import FACTORYABI from "../ABI/FactoryABI.json";
-
-function SaleToken() {
+const CreateStaking = (props) => {
   const { TOKEN } = useParams();
   // const FACTORY_ADDRESS = process.env.REACT_APP_FACTORY_CONTRACT;
   const [CONTRACT_ADDRESS, SET_CONTRACT_ADDRESS] = useState("");
@@ -196,9 +195,8 @@ function SaleToken() {
   const blurryDivStyle = {
     filter: loading ? "blur(5px)" : "blur(0px)",
   };
-
   return (
-    <>
+    <div>
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -210,7 +208,11 @@ function SaleToken() {
 
       {confirmpage && (
         <div
-          style={{ ...blurryDivStyle, padding: "2%", margin: "0 10vw 0 20vw" }}
+          style={{
+            ...blurryDivStyle,
+            padding: "2%",
+            margin: "0 10vw 0 20vw",
+          }}
         >
           <div
             className="saleFirstRow"
@@ -248,10 +250,10 @@ function SaleToken() {
                   color: "#12D576",
                 }}
               >
-                Create Token Sale
+                Create Staking
               </div>
               <div style={{ color: "#cccccc" }}>
-                Step 2 of 2: Confirm Token Sale Details
+                Step 2 of 2: Confirm Staking Details
               </div>
 
               <div
@@ -267,47 +269,30 @@ function SaleToken() {
                 <div>
                   <div>Token Name</div>
                   <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Token Symbol
+                    Reward Token
                   </div>
                   <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Token Address
+                    Reward Rate
                   </div>
                   <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Total Token Supply
+                    Hardcap
                   </div>
                   <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Tokens on Sale
+                    Min Stake
                   </div>
                   <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Price per Token in Payment Token
+                    Stake Start Time
                   </div>
                   <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Payment Token
+                    Stake End Time
                   </div>
                   <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Soft Cap
+                    Claim Start
                   </div>
                   <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Hard Cap
+                    Unstake Start
                   </div>
-                  <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Min Token Purchase
-                  </div>
-                  <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Max Token Purchase
-                  </div>
-                  <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Sale Start Time
-                  </div>
-                  <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Sale Duration
-                  </div>
-                  <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Cliff - Months Before Release
-                  </div>
-                  <div style={{ whiteSpace: "nowrap", paddingTop: "1vw" }}>
-                    Release Over Months
-                  </div>
+                  
                   <div
                     style={{
                       whiteSpace: "nowrap",
@@ -315,7 +300,7 @@ function SaleToken() {
                       paddingBottom: "10%",
                     }}
                   >
-                    Sale Owner{" "}
+                    Stake Owner{" "}
                   </div>
                 </div>
                 <div>
@@ -469,9 +454,9 @@ function SaleToken() {
                         {formatAddress(sale)}
                       </div>
                       {/* <div style={{ color: "#2D5C8F", paddingTop: "1vw" }}>
-                      <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
-                      </svg>{sale}</div> */}
+                    <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 20C1.45 20 0.979002 19.804 0.587002 19.412C0.195002 19.02 -0.000664969 18.5493 1.69779e-06 18V5C1.69779e-06 4.71667 0.0960018 4.479 0.288002 4.287C0.480002 4.095 0.717335 3.99934 1 4C1.28333 4 1.521 4.096 1.713 4.288C1.905 4.48 2.00067 4.71734 2 5V18H12C12.2833 18 12.521 18.096 12.713 18.288C12.905 18.48 13.0007 18.7173 13 19C13 19.2833 12.904 19.521 12.712 19.713C12.52 19.905 12.2827 20.0007 12 20H2ZM6 16C5.45 16 4.979 15.804 4.587 15.412C4.195 15.02 3.99934 14.5493 4 14V2C4 1.45 4.196 0.979002 4.588 0.587002C4.98 0.195002 5.45067 -0.000664969 6 1.69779e-06H15C15.55 1.69779e-06 16.021 0.196002 16.413 0.588002C16.805 0.980002 17.0007 1.45067 17 2V14C17 14.55 16.804 15.021 16.412 15.413C16.02 15.805 15.5493 16.0007 15 16H6ZM6 14H15V2H6V14Z" fill="#2882E3" />
+                    </svg>{sale}</div> */}
                     </div>
                   </div>
                   <div style={{ textAlign: "center", paddingTop: "5%" }}>
@@ -500,7 +485,11 @@ function SaleToken() {
 
       {!confirmpage && (
         <div
-          style={{ ...blurryDivStyle, padding: "2%", margin: "0 10vw 0 20vw" }}
+          style={{
+            ...blurryDivStyle,
+            padding: "2%",
+            margin: "0 10vw 0 20vw",
+          }}
         >
           <div
             className="saleFirstRow"
@@ -538,7 +527,7 @@ function SaleToken() {
                   color: "#12D576",
                 }}
               >
-                Create Token Sale: ({tokenSymbol}) {tokenName}{" "}
+                Create Staking: ({tokenSymbol}) {tokenName}{" "}
               </div>
               <div style={{ color: "#cccccc" }}>
                 Step 1 of 2: Configure your token sale
@@ -609,11 +598,38 @@ function SaleToken() {
                   paddingTop: "6%",
                 }}
               >
-                Set Token Price
+                Reward Token
               </div>
               <div style={{ paddingTop: "20px", color: "#cccccc" }}>
-                Price per token in Payment Token [ 1 Sale Token = X Payment
-                Token]{" "}
+                Token Reward{" "}
+              </div>
+              <input
+                type="text"
+                placeholder="e.g. 0.1 if 1 Sale Token = 0.1 Payment Token: Min 0.0001"
+                value={price}
+                onChange={(e) => setprice(e.target.value)}
+                style={{
+                  padding: "15px",
+                  width: "100%",
+                  height: "50px",
+                  borderRadius: "5px",
+                  border: "1px solid #949494",
+                  backgroundColor: "#f4f4f4",
+                }}
+              />
+
+              <div
+                style={{
+                  color: "#12D576",
+                  fontSize: "24px",
+                  fontWeight: "550",
+                  paddingTop: "6%",
+                }}
+              >
+                Reward Rate
+              </div>
+              <div style={{ paddingTop: "20px", color: "#cccccc" }}>
+                in 10^2{" "}
               </div>
               <input
                 type="number"
@@ -638,135 +654,14 @@ function SaleToken() {
                   paddingTop: "6%",
                 }}
               >
-                Set Token Sale Raised Amount Caps
+                Hardcap
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "6%",
-                  width: "100%",
-                }}
-              >
-                <div style={{ width: "100%", paddingTop: "2%" }}>
-                  <div style={{ color: "#cccccc" }}>Soft Cap in Sale Token</div>
-                  <input
-                    type="number"
-                    placeholder="e.g. 10000"
-                    value={soft}
-                    onChange={(e) => setsoft(e.target.value)}
-                    style={{
-                      padding: "15px",
-                      width: "100%",
-                      border: "1px solid #949494",
-                      borderRadius: "5px",
-                    }}
-                  />
-                </div>
-                <div style={{ width: "100%", paddingTop: "2%" }}>
-                  <div style={{ color: "#cccccc" }}>Hard Cap in Sale Token</div>
-                  <input
-                    type="number"
-                    placeholder="e.g. 1000000"
-                    value={hard}
-                    onChange={(e) => sethard(e.target.value)}
-                    style={{
-                      padding: "15px",
-                      width: "100%",
-                      border: "1px solid #949494",
-                      borderRadius: "5px",
-                    }}
-                  />
-                </div>
-              </div>
-              <div
-                style={{
-                  color: "#12D576",
-                  fontSize: "24px",
-                  fontWeight: "550",
-                  paddingTop: "6%",
-                }}
-              >
-                Set Purchase Limits per investor in Sale Token
-              </div>
-              <div style={{ display: "flex", flexDirection: "row", gap: "6%" }}>
-                <div style={{ width: "100%", paddingTop: "2%" }}>
-                  <div style={{ color: "#cccccc", width: "100%" }}>
-                    Minimum purchase (Sale Token)
-                  </div>
-                  <input
-                    type="number"
-                    placeholder="e.g. 100"
-                    value={min}
-                    onChange={(e) => setmin(e.target.value)}
-                    style={{
-                      padding: "15px",
-                      width: "100%",
-                      border: "1px solid #949494",
-                      borderRadius: "5px",
-                    }}
-                  />
-                </div>
-                <div style={{ width: "100%", paddingTop: "2%" }}>
-                  <div style={{ color: "#cccccc", width: "100%" }}>
-                    Maximum purchase (Sale Token)
-                  </div>
-                  <input
-                    type="number"
-                    placeholder="e.g. 1000"
-                    value={max}
-                    onChange={(e) => setmax(e.target.value)}
-                    style={{
-                      padding: "15px",
-                      width: "100%",
-                      border: "1px solid #949494",
-                      borderRadius: "5px",
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div
-                style={{
-                  color: "#12D576",
-                  fontSize: "24px",
-                  fontWeight: "550",
-                  paddingTop: "6%",
-                }}
-              >
-                Set Sale Timings
-              </div>
-
-              <div style={{ paddingTop: "20px", color: "#cccccc" }}>
-                Sale Start Time
-              </div>
-              <input
-                type="datetime-local"
-                placeholder="yyyy-mm-dd hh:mm:ss"
-                value={startdate}
-                onChange={(e) => {
-                  setstartdate(e.target.value);
-                  const dateObject = new Date(e.target.value);
-                  setstart(Math.floor(dateObject.getTime() / 1000));
-                }}
-                style={{
-                  padding: "15px",
-                  width: "100%",
-                  height: "50px",
-                  borderRadius: "5px",
-                  border: "1px solid #949494",
-                  backgroundColor: "#f4f4f4",
-                }}
-              />
-
-              <div style={{ paddingTop: "20px", color: "#cccccc" }}>
-                Sale Duration in days
-              </div>
+              <div style={{ paddingTop: "20px", color: "#cccccc" }}> </div>
               <input
                 type="number"
-                placeholder="e.g. 10"
-                value={duration}
-                onChange={(e) => setduration(e.target.value)}
+                placeholder="e.g. 0.1 if 1 Sale Token = 0.1 Payment Token: Min 0.0001"
+                value={price}
+                onChange={(e) => setprice(e.target.value)}
                 style={{
                   padding: "15px",
                   width: "100%",
@@ -785,16 +680,14 @@ function SaleToken() {
                   paddingTop: "6%",
                 }}
               >
-                Set Sale Vesting/Cliff/Release Schedule
+                Min stake
               </div>
-              <div style={{ paddingTop: "20px", color: "#cccccc" }}>
-                Sale Cliff Months for Release
-              </div>
+              <div style={{ paddingTop: "20px", color: "#cccccc" }}> </div>
               <input
                 type="number"
-                placeholder="e.g. 6"
-                value={cliff}
-                onChange={(e) => setcliff(e.target.value)}
+                placeholder="e.g. 0.1 if 1 Sale Token = 0.1 Payment Token: Min 0.0001"
+                value={price}
+                onChange={(e) => setprice(e.target.value)}
                 style={{
                   padding: "15px",
                   width: "100%",
@@ -804,14 +697,74 @@ function SaleToken() {
                   backgroundColor: "#f4f4f4",
                 }}
               />
-              <div style={{ paddingTop: "20px", color: "#cccccc" }}>
-                Total Monthly Release Installments
+
+              <div
+              style={{
+                color: "#12D576",
+                fontSize: "24px",
+                fontWeight: "550",
+                paddingTop: "6%",
+              }}
+            >
+              Set Stake Timings
+            </div>
+
+            <div style={{ paddingTop: "20px", color: "#cccccc" }}>
+              Stake Start Time
+            </div>
+            <input
+              type="datetime-local"
+              placeholder="yyyy-mm-dd hh:mm:ss"
+              value={startdate}
+              onChange={(e) => {
+                setstartdate(e.target.value);
+                const dateObject = new Date(e.target.value);
+                setstart(Math.floor(dateObject.getTime() / 1000));
+              }}
+              style={{
+                padding: "15px",
+                width: "100%",
+                height: "50px",
+                borderRadius: "5px",
+                border: "1px solid #949494",
+                backgroundColor: "#f4f4f4",
+              }}
+            />
+
+            <div style={{ paddingTop: "20px", color: "#cccccc" }}>
+              Stake End Time
+            </div>
+            <input
+              type="datetime-local"
+              placeholder="e.g. 10"
+              value={duration}
+              onChange={(e) => setduration(e.target.value)}
+              style={{
+                padding: "15px",
+                width: "100%",
+                height: "50px",
+                borderRadius: "5px",
+                border: "1px solid #949494",
+                backgroundColor: "#f4f4f4",
+              }}
+            />
+
+              <div
+                style={{
+                  color: "#12D576",
+                  fontSize: "24px",
+                  fontWeight: "550",
+                  paddingTop: "6%",
+                }}
+              >
+                Claim Start
               </div>
+              <div style={{ paddingTop: "20px", color: "#cccccc" }}> </div>
               <input
                 type="number"
-                placeholder="e.g. If 12, Amount / 12 will be released monthly for 12 months after Cliff"
-                value={releasemonths}
-                onChange={(e) => setreleasemonths(e.target.value)}
+                placeholder="e.g. 0.1 if 1 Sale Token = 0.1 Payment Token: Min 0.0001"
+                value={price}
+                onChange={(e) => setprice(e.target.value)}
                 style={{
                   padding: "15px",
                   width: "100%",
@@ -830,15 +783,33 @@ function SaleToken() {
                   paddingTop: "6%",
                 }}
               >
-                Whitelist managed after Sale Creation
+                Unstake Start
               </div>
+              <div style={{ paddingTop: "20px", color: "#cccccc" }}> </div>
+              <input
+                type="number"
+                placeholder="e.g. 0.1 if 1 Sale Token = 0.1 Payment Token: Min 0.0001"
+                value={price}
+                onChange={(e) => setprice(e.target.value)}
+                style={{
+                  padding: "15px",
+                  width: "100%",
+                  height: "50px",
+                  borderRadius: "5px",
+                  border: "1px solid #949494",
+                  backgroundColor: "#f4f4f4",
+                }}
+              />
+
+
+
               {/* <div style={{ paddingTop: "1%" }}>
-          <input type="radio" id="option1" name="myRadio" value="option1" />
-          <label for="option1" style={{ color: "#cccccc" }}>Every address can invest</label>
-          <br />
-          <input type="radio" id="option2" name="myRadio" value="option2" style={{ padding: "4%" }} />
-          <label for="option2" style={{ color: "#cccccc" }}>Only whitelisted adresses can invest</label>
-        </div> */}
+        <input type="radio" id="option1" name="myRadio" value="option1" />
+        <label for="option1" style={{ color: "#cccccc" }}>Every address can invest</label>
+        <br />
+        <input type="radio" id="option2" name="myRadio" value="option2" style={{ padding: "4%" }} />
+        <label for="option2" style={{ color: "#cccccc" }}>Only whitelisted adresses can invest</label>
+      </div> */}
 
               <div
                 style={{
@@ -848,10 +819,10 @@ function SaleToken() {
                   paddingTop: "6%",
                 }}
               >
-                Set Token Sale Owner
+                Set Stake Owner
               </div>
               <div style={{ paddingTop: "20px", color: "#cccccc" }}>
-                Token sale owner address
+                Stake owner address
               </div>
               <input
                 type="text"
@@ -887,8 +858,8 @@ function SaleToken() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
-}
+};
 
-export default SaleToken;
+export default CreateStaking;
