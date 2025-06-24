@@ -53,7 +53,7 @@ const telosTest = {
 }
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai, telosTest, chain.mainnet, chain.polygon, MoonbeamChain],
+  [chain.polygon, telosTest, chain.mainnet, MoonbeamChain],
   [  
     jsonRpcProvider({ rpc: () => ({ http: "https://rpc.api.moonbase.moonbeam.network" }) }),
     alchemyProvider({ alchemyId: "IItFVmzc5gWClV0ba3hDDdqtppKw-9OP" }),  publicProvider()]
